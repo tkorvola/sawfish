@@ -201,7 +201,9 @@ windows."
     "Return the class that window W belongs to, as a string. Returns `nil' if W
 has no associated class."
     (let ((prop (get-x-text-property w 'WM_CLASS)))
-      (and prop (aref prop 1))))
+      (and prop
+           (> (length prop) 1)
+           (aref prop 1))))
 
   (define (get-window-wm-protocols w)
     "Return a list of symbols defining the X11 window manager protocols
