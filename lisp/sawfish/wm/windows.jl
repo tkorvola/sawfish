@@ -202,6 +202,7 @@ windows."
 has no associated class."
     (let ((prop (get-x-text-property w 'WM_CLASS)))
       (and prop
+           ; Unfortunately some clients set WM_CLASS incorrectly.
            (> (length prop) 1)
            (aref prop 1))))
 

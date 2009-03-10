@@ -313,6 +313,7 @@
   (define-match-window-formatter 'WM_CLASS
    (lambda (vec)
      (format nil "%s/%s"
+             ; Unfortunately some clients set WM_CLASS incorrectly.
              (and (> (length vec) 1) (aref vec 1))
              (aref vec 0))))
 
