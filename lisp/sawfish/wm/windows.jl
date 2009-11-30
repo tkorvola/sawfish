@@ -115,7 +115,7 @@
   (defvar desktop-window-depth -4
     "The stacking depth of desktop windows.")
 
-  (defvar dock-window-depth 0
+  (defvar dock-window-depth 2
     "The stacking depth of dock windows.")
 
 ;;; finding windows, reading properties
