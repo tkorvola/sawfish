@@ -53,42 +53,48 @@
 
 ;;; Customization options.
 
-  (defgroup gpsy "Grow, Pack, Shrink & Yank")
+  (defgroup gpsy "Grow, Pack, Shrink & Yank" :group move)
 
   (defcustom grow-is-maximize t
     "Whether growing is considered to be maximization."
     :type boolean
-    :group gpsy)
+    :group (move gpsy))
 
   (defcustom pack-warp-pointer 'maybe
-    "Whether and how to move the pointer."
+    "Whether and how to move the pointer when packing windows.
+`maybe' means that the pointer is moved along with the window, if the
+pointer was within the window area before packing. `always' warps the
+pointer to the center of the window if it isn't already in the
+window, then does like `maybe'.  `never' means not to warp the
+pointer."
     :type (choice always maybe never)
-    :group gpsy)
+    :group (move gpsy))
 
-  (defcustom grow-pack-bump-obscured ()
+  (defcustom grow-pack-bump-obscured nil
     "Whether to bump into fully obscured windows."
     :type boolean
-    :group gpsy)
+    :group (move gpsy))
 
   (defcustom grow-pack-bump-other-depth 'always
-    "Whether to bump into windows on a different depth."
+    "Whether to bump into windows on a different depth. When 'maybe,
+Only `avoided' windows are bumped."
     :type (choice always maybe never)
-    :group gpsy)
+    :group (move gpsy))
 
   (defcustom grow-pack-bump-ignored t
     "Whether to bump into ignored windows."
     :type boolean
-    :group gpsy)
+    :group (move gpsy))
 
   (defcustom shrink-window-minimum-size 10
     "The minimum height or width to which a window may be shrunk."
     :type number
-    :group gpsy)
+    :group (move gpsy))
 
   (defcustom yank-window-minimum-visible 10
     "The minimum amount of window left visible, if yanked over the edge."
     :type number
-    :group gpsy)
+    :group (move gpsy))
 
 ;;; Code:
 
@@ -153,10 +159,28 @@ See `pack-window-up'."
 
   ;; Implementation part.
 
+  (define (bump-get-head w direction)
+    (let* ((frame-dims (window-frame-dimensions w))
+           (frame-pos (window-position w))
+           (head1 (current-head w))
+           (head2 (find-head
+                   (case direction
+                     ((left) (- (car frame-pos) 1))
+                     ((right) (+ (car frame-pos) (car frame-dims)))
+                     (t (car frame-pos)))
+                   (case direction
+                     ((up) (- (cdr frame-pos) 1))
+                     ((down) (+ (cdr frame-pos) (cdr frame-dims)))
+                     (t (cdr frame-pos))))))
+      (if head2 head2 head1)))
+
   (define (bump-distance w direction maximize min-dist)
     (let* ((a (window-position w))
 	   (z (window-frame-dimensions w))
 	   (depth (window-get w 'depth))
+	   (head (bump-get-head w direction))
+	   (head-dims (head-dimensions head))
+	   (head-offs (head-offset head))
 	   bump cmp
 	   xa xz
 	   min-next border xborders)
@@ -169,7 +193,9 @@ See `pack-window-up'."
 					,(y xa) . ,(+ (y xa) (y xz))))
 		  a (y a)
 		  z (+ a (y z))
-		  bump 0
+	          bump (if (eq direction 'up)
+	                   (cdr head-offs)
+	                   (car head-offs))
 		  cmp <=)
 	  (setq border (+ (x a) (x z))
 		min-next (+ border min-dist)
@@ -177,7 +203,9 @@ See `pack-window-up'."
 				      ,(y xa) . ,(+ (y xa) (y xz))))
 		a (y a)
 		z (+ a (y z))
-		bump ((if (eq direction 'down) screen-height screen-width))
+	        bump (if (eq direction 'down)
+	                 (+ (cdr head-offs) (cdr head-dims))
+	                 (+ (car head-offs) (car head-dims)))
 		cmp >=)))
       (if (cmp bump min-next)
 	  (mapc

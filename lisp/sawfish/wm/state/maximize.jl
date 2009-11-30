@@ -48,9 +48,7 @@
 	    maximize-window-fullscreen
 	    maximize-window-fullscreen-toggle
 	    maximize-window-fullxinerama
-	    maximize-window-fullxinerama-toggle
-	    maximize-unframe
-	    maximize-reframe)
+	    maximize-window-fullxinerama-toggle)
 
     (open rep
 	  rep.system
@@ -68,6 +66,8 @@
 	  sawfish.wm.frames
 	  sawfish.wm.misc
 	  sawfish.wm.focus
+          sawfish.wm.viewport
+          sawfish.wm.state.shading
 	  sawfish.wm.util.prompt)
 
   (define-structure-alias maximize sawfish.wm.state.maximize)
@@ -132,8 +132,8 @@ that dimension.")
   ;; currently maximize window to `(X Y W H)', the saved geometry.
   (define (save-unmaximized-geometry w)
     (unless (window-get w 'unmaximized-geometry)
-      (let ((coords (window-position w))
-	    (dims (window-dimensions w)))
+      (let* ((coords (window-relative-position w))
+             (dims (window-dimensions w)))
 	(window-put w 'unmaximized-geometry (list (car coords) (cdr coords)
 						  (car dims) (cdr dims))))))
 
@@ -150,7 +150,7 @@ that dimension.")
     (when vertically
       (window-put w 'maximized-vertically nil))
     (let ((dims (window-dimensions w))
-	  (coords (window-position w))
+	  (coords (window-relative-position w))
 	  (saved (unmaximized-geometry w)))
       (when saved
 	(unless (window-maximized-horizontally-p w)
@@ -224,8 +224,9 @@ that dimension.")
 	  (cons perp-1 perp-2)))))
 
   (define (do-horizontal w edges coords dims fdims)
-    (let ((head-offset (current-head-offset w))
-	  (head-dims (current-head-dimensions w)))
+    (let* ((head (window-head-any-viewport w))
+           (head-offset (head-offset head))
+           (head-dims (head-dimensions head)))
       (let ((x-span (expand-edges (cdr coords) (+ (cdr coords) (cdr fdims))
 				  (car head-offset)
 				  (+ (car head-offset) (car head-dims))
@@ -237,8 +238,9 @@ that dimension.")
 	w)))
 
   (define (do-vertical w edges coords dims fdims)
-    (let ((head-offset (current-head-offset w))
-	  (head-dims (current-head-dimensions w)))
+    (let* ((head (window-head-any-viewport w))
+           (head-offset (head-offset head))
+           (head-dims (head-dimensions head)))
       (let ((y-span (expand-edges (car coords) (+ (car coords) (car fdims))
 				  (cdr head-offset)
 				  (+ (cdr head-offset) (cdr head-dims))
@@ -253,7 +255,9 @@ that dimension.")
 
   (define (do-both window avoided edges coords dims fdims)
     (let ((max-rect (largest-rectangle-from-edges
-		     edges #:avoided avoided #:head (current-head window))))
+		     edges
+                     #:avoided avoided
+                     #:head (window-head-any-viewport window))))
       (when max-rect
 	(rplaca coords (nth 0 max-rect))
 	(rplacd coords (nth 1 max-rect))
@@ -336,54 +340,59 @@ that dimension.")
 
   (define (maximize-window w #!optional direction only-1d)
     "Maximize the dimensions of the window."
-    (let ((unshade-selected-windows t))
-      (display-window-without-focusing w))
+    (when (window-get w 'shaded)
+      (unshade-window w))
     (when (window-maximized-fullscreen-p w)
       (maximize-window-fullscreen w nil))
-    (let* ((coords (window-position w))
-	   (dims (window-dimensions w))
-	   (fdims (window-frame-dimensions w))
-	   (hints (window-size-hints w))
-	   (avoided (and maximize-avoid-avoided (avoided-windows w)))
-	   (edges (get-visible-window-edges
-		   #:with-ignored-windows t
-		   #:windows avoided
-		   #:include-heads (list (current-head w)))))
+    (let* ((viewport (window-viewport w))
+           (coords (window-position w))
+           (head (window-head-any-viewport w))
+           (dims (window-dimensions w))
+           (fdims (window-frame-dimensions w))
+           (hints (window-size-hints w))
+           (avoided (and maximize-avoid-avoided (avoided-windows w)))
+           (edges (get-visible-window-edges
+                   #:with-ignored-windows t
+                   #:windows avoided
+                   #:include-heads (list head)
+                   #:viewport viewport)))
       (when (window-maximizable-p w direction hints)
-	(save-unmaximized-geometry w)
-	(cond ((null direction)
-	       (if (not only-1d)
-		   (do-both w avoided edges coords dims fdims)
-		 (do-horizontal w edges coords dims fdims)
-		 (do-vertical w edges coords dims fdims))
-	       (window-put w 'maximized-horizontally t)
-	       (window-put w 'maximized-vertically t))
-	      ((eq direction 'horizontal)
-	       (do-horizontal w edges coords dims fdims)
-	       (window-put w 'maximized-horizontally t))
-	      ((eq direction 'vertical)
-	       (do-vertical w edges coords dims fdims)
-	       (window-put w 'maximized-vertically t)))
-	(maximize-truncate-dims w dims direction hints)
-	(move-resize-window-to w (car coords) (cdr coords)
-			       (car dims) (cdr dims))
-	(when maximize-raises
-	  (raise-window* w))
-	(call-window-hook 'window-maximized-hook w (list direction))
-	(call-window-hook 'window-state-change-hook w (list '(maximized))))))
+        (save-unmaximized-geometry w)
+        (cond ((null direction)
+               (if (not only-1d)
+                   (do-both w avoided edges coords dims fdims)
+                 (do-horizontal w edges coords dims fdims)
+                 (do-vertical w edges coords dims fdims))
+               (window-put w 'maximized-horizontally t)
+               (window-put w 'maximized-vertically t))
+              ((eq direction 'horizontal)
+               (do-horizontal w edges coords dims fdims)
+               (window-put w 'maximized-horizontally t))
+              ((eq direction 'vertical)
+               (do-vertical w edges coords dims fdims)
+               (window-put w 'maximized-vertically t)))
+        (maximize-truncate-dims w dims direction hints)
+        (move-resize-window-to w (car coords) (cdr coords)
+                               (car dims) (cdr dims))
+        (when maximize-raises
+          (raise-window* w))
+        (call-window-hook 'window-maximized-hook w (list direction))
+        (call-window-hook 'window-state-change-hook w
+                          (list '(maximized))))))
 
   ;; does all unmaximizing except for changing the window properties and
   ;; calling the hooks
   (define (unmaximize-window-1 w #!optional direction before)
-    (let ((geom (unmaximized-geometry w))
+    (let ((vp-offset (viewport-offset-pixel (window-viewport w)))
+          (geom (unmaximized-geometry w))
 	  (coords (window-position w))
 	  (dims (window-dimensions w)))
       (when geom
 	(when (memq direction '(() fullscreen horizontal))
-	  (rplaca coords (nth 0 geom))
+	  (rplaca coords (+ (nth 0 geom) (car vp-offset)))
 	  (rplaca dims (nth 2 geom)))
 	(when (memq direction '(() fullscreen vertical))
-	  (rplacd coords (nth 1 geom))
+	  (rplacd coords (+ (nth 1 geom) (cdr vp-offset)))
 	  (rplacd dims (nth 3 geom)))
 	(when before
 	  (before))
@@ -489,14 +498,6 @@ unmaximized."
 	(unmaximize-window w 'horizontal)
       (maximize-fill-window w 'horizontal)))
 
-  (define (maximize-unframe w)
-    (set-window-type w 'unframed)
-    (maximize-window w))
-
-  (define (maximize-reframe w)
-    (set-window-type w 'default)
-    (maximize-window w))
-
   ;;###autoload
   (define-command 'maximize-fill-window
     maximize-fill-window #:spec "%W")
@@ -510,10 +511,6 @@ unmaximized."
     maximize-fill-window-horizontally-toggle #:spec "%W")
   (define-command 'maximize-fill-window-vertically-toggle
     maximize-fill-window-vertically-toggle #:spec "%W")
-  (define-command 'maximize-unframe
-    maximize-unframe #:spec "%W")
-  (define-command 'maximize-reframe
-    maximize-reframe #:spec "%W")
 
   ;; fullscreen commands
 
@@ -521,13 +518,18 @@ unmaximized."
     "Fullscreen maximize the window."
     (cond ((and state (not (window-maximized-fullscreen-p w)))
 	   (when (window-maximizable-p w)
-	     (let ((head-offset (current-head-offset w))
-                   (head-dims (current-head-dimensions w)))
+             (let* ((viewport (window-viewport w))
+                    (vp-offset (viewport-offset-pixel viewport))
+                    (head (window-head-any-viewport w))
+                    (head-offset (head-offset head))
+                    (head-dims (head-dimensions head)))
 	       (save-unmaximized-geometry w)
 	       (window-put w 'unmaximized-type (window-type w))
 	       (push-window-type w 'unframed 'sawfish.wm.state.maximize)
-	       (move-resize-window-to w (car head-offset) (cdr head-offset)
-				      (car head-dims) (cdr head-dims))
+	       (move-resize-window-to w
+                                      (+ (car head-offset) (car vp-offset))
+                                      (+ (cdr head-offset) (cdr vp-offset))
+                                      (car head-dims) (cdr head-dims))
 	       (raise-window* w)
 	       (window-put w 'maximized-fullscreen t)
 	       (window-put w 'maximized-vertically t)
@@ -546,7 +548,8 @@ unmaximized."
     (maximize-window-fullscreen w (not (window-maximized-fullscreen-p w))))
 
   (define-command 'maximize-window-fullscreen
-    maximize-window-fullscreen #:spec "%W")
+    maximize-window-fullscreen #:spec "%W
+t")
   (define-command 'maximize-window-fullscreen-toggle
     maximize-window-fullscreen-toggle #:spec "%W")
 
@@ -554,13 +557,16 @@ unmaximized."
     "Fullscreen maximize the window across all Xinerama screens."
     (cond ((and state (not (window-maximized-fullscreen-p w)))
 	   (when (window-maximizable-p w)
-	     (let ((screen-dims (screen-dimensions)))
+	     (let ((screen-dims (screen-dimensions))
+                   (vp-offset (viewport-offset-pixel (window-viewport w))))
 	       (save-unmaximized-geometry w)
 	       (window-put w 'unmaximized-type (window-type w))
 	       (push-window-type w 'unframed 'sawfish.wm.state.maximize)
-	       (move-resize-window-to w 0 0
-                                      (car screen-dims)
-                                      (cdr screen-dims))
+	       (move-resize-window-to w
+                                      (car vp-offset)
+                                      (cdr vp-offset)
+                                      (+ (car screen-dims) (car vp-offset))
+                                      (+ (cdr screen-dims) (cdr vp-offset)))
 	       (raise-window* w)
 	       (window-put w 'maximized-fullscreen t)
 	       (window-put w 'maximized-vertically t)
@@ -579,7 +585,9 @@ across all Xinerama and unmaximized."
     (maximize-window-fullxinerama w (not (window-maximized-fullscreen-p w))))
 
   (define-command 'maximize-window-fullxinerama
-    maximize-window-fullxinerama #:spec "%W")
+    maximize-window-fullxinerama #:spec "%W
+t")
+  
   (define-command 'maximize-window-fullxinerama-toggle
     maximize-window-fullxinerama-toggle #:spec "%W")
 

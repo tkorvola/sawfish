@@ -174,7 +174,7 @@ by the current theme, then FALLBACK-TYPE is used instead.")
                                       (list frame-font-inactive-color
                                             frame-font-active-color)
                                       t))
-              '(title 'tab))
+              '(title tab))
       (mapc (lambda (fc) (remove-frame-part-value fc 'foreground t))
             '(title tab)))
     (mapc rebuild-frame (managed-windows)))
@@ -237,6 +237,27 @@ generate.")
 
   (defvar default-bevel-percent nil
     "Bevel intensity as a percentage.")
+
+  ;; frame fonts & colors
+  (defcustom use-custom-font-color '()
+    "Use custom font colors for frames"
+    :type boolean
+    :group appearance
+    :after-set (lambda () (update-frame-font-color)))
+
+  (defcustom frame-font-active-color "black"
+    "Font color for active frames"
+    :type color
+    :group appearance
+    :depends use-custom-font-color
+    :after-set (lambda () (update-frame-font-color)))
+
+  (defcustom frame-font-inactive-color "black"
+    "Font color for inactive frames"
+    :type color
+    :group appearance
+    :depends use-custom-font-color
+    :after-set (lambda () (update-frame-font-color)))
 
 ;;; managing frame types
 
@@ -690,4 +711,5 @@ generate.")
 
   (sm-add-saved-properties 'ignored 'frame-style)
   (sm-add-restored-properties 'type)
-  (add-swapped-properties 'frame-active-color 'frame-inactive-color))
+  (add-swapped-properties 'frame-active-color 'frame-inactive-color)
+  )

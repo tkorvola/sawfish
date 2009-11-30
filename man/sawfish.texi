@@ -3,10 +3,10 @@
 @settitle sawfish Programming Manual
 @footnotestyle end
 
-@set EDITION 0.14
-@set VERSION 1.5.0
-@set UPDATED 02 Apr 2009
-@set UPDATE-MONTH Apr 2009
+@set EDITION 0.15
+@set VERSION 1.6.0
+@set UPDATED 17 Oct 2009
+@set UPDATE-MONTH Oct 2009
 
 @ifinfo
 @dircategory Programming
@@ -91,6 +91,7 @@ last updated @value{UPDATED} for Sawfish version @value{VERSION}.
 * Keymaps::			Bindings events to actions
 * Event Loop::			Handling input events
 * Miscellaneous Functions::	Useful features
+* External Applications::       Invocation of external applications
 * Standard Hooks::		Hooking into wm actions
 * Standard Properties::		Window properties
 * Session Management::		Saving state across sessions
@@ -1766,6 +1767,146 @@ Double the size of @var{window}
 Halve the size of @var{window}
 @end deffn
 
+Sawfish supports increasing a windows size until it bumps into another
+window. This is called ``grow''. ``Shrink'' achieves the opposite,
+i.e. it decreases a windows size, until it does no longer overlap any
+other window, or more precisely, until it overlaps with one less window.
+
+@deffn Command grow-window-up window #!optional arg
+Grows @var{window} upwards until it "bumps into" another window.
+If the top edge was beyond the screen edge, it is brought back in.
+With a universal prefix @var{arg}, maximize upwards instead. With a numeric
+prefix @var{arg}, grow upwards by that many increments specified by
+window or pixels instead.
+@end deffn
+
+@deffn Command grow-window-down window #!optional arg
+Grows @var{window} downwards until it "bumps into" another window.
+See @code{grow-window-up}.
+@end deffn
+
+@deffn Command grow-window-left window #!optional arg
+Grows @var{window} left until it "bumps into" another window.
+See @code{grow-window-up}.
+@end deffn
+
+@deffn Command grow-window-right window #!optional arg
+Grows @var{window} right until it "bumps into" another window.
+See @code{grow-window-up}.
+@end deffn
+
+@deffn Command shrink-window-up window
+Shrinks @var{window} by moving the lower edge upwards until it
+intersects with one window less than before.
+@end deffn
+
+@deffn Command shrink-window-down window
+Shrinks @var{window} by moving the upper edge downwards until it
+intersects with one window less than before.
+@end deffn
+
+@deffn Command shrink-window-left window
+Shrinks @var{window} by moving the right edge to the left until it
+intersects with one window less than before.
+@end deffn
+
+@deffn Command shrink-window-right window
+Shrinks @var{window} by moving the left edge to the right until it
+intersects with one window less than before.
+@end deffn
+
+Moving counterparts, instead of resizing of ``grow'' and ``shrink'',
+are ``pack'' and ``yank''. So, ``pack'' moves until the window bumps
+into another, and ``yank'' moves until the overlap reduces.
+
+@deffn Command pack-window-up window #! optional arg
+Moves @var{window} upwards until it "bumps into" another window.
+If the top edge was beyond the screen edge, it is moved back in.
+With a universal prefix @var{arg}, move upwards maximally instead.
+With a numeric prefix @var{arg}, move upwards by that many pixels instead.
+@end deffn
+
+@deffn Command pack-window-down #!optional arg
+Moves @var{window} downwards until it "bumps into" another window.
+See @code{pack-window-up}.
+@end deffn
+
+@deffn Command pack-window-left window #!optional arg
+Moves @var{window} left until it "bumps into" another window.
+See @code{pack-window-up}.
+@end deffn
+
+@deffn Command pack-window-right window #!optional arg
+Moves @var{window} right until it "bumps into" another window.
+See @code{pack-window-up}.
+@end deffn
+
+@deffn Command yank-window-up window
+Yanks @var{window} upwards until it inserts with one window less than
+before.
+@end deffn
+
+@deffn Command yank-window-down window
+Yanks @var{window} downwards until it inserts with one window less than
+before.
+@end deffn
+
+@deffn Command yank-window-left window
+Yanks @var{window} left until it inserts with one window less than
+before.
+@end deffn
+
+@deffn Command yank-window-right window
+Yanks @var{window} right until it inserts with one window less than
+before.
+@end deffn
+
+grow, pack, shrink and yank behavior can be customized through the
+following variables:
+
+@defvar grow-is-maximize
+Whether growing is considered to be maximization.
+The default value is @code{t}.
+@end defvar
+
+@defvar pack-warp-pointer
+Whether and how to move the pointer, either @code{always} @code{maybe}
+or @code{never}. The default value is @code{maybe}
+
+@code{maybe} means that the pointer is moved along with the window, if
+the pointer was within the window area before packing. @code{always}
+warps the pointer to the center of the window if it isn't already in
+the window, then does like @code{maybe}. @code{never} means not to
+warp the pointer.
+@end defvar
+
+@defvar grow-pack-bump-obscured
+Whether to bump into fully obscured windows.
+The default value is @code{nil}.
+@end defvar
+
+@defvar grow-pack-bump-other-depth
+Whether to bump into windows on a different depth, either @code{always}
+@code{maybe} or @code{never}. The default value is @code{always}.
+
+@code{maybe} means only @code{avoided} windows (@pxref{Avoided Windows}).
+@end defvar
+
+@defvar grow-pack-bump-ignored
+Whether to bump into ignored windows.
+The default value is @code{t}.
+@end defvar
+
+@defvar shrink-window-minimum-size
+The minimum height or width to which a window may be shrunk.
+The default value is @code{10}.
+@end defvar
+
+@defvar yank-window-minimum-visible
+The minimum amount of window left visible, if yanked over the edge.
+The default value is @code{10}.
+@end defvar
+
 @deffn Command move-window-center windows
 Place @var{window} in the middle of the screen
 (frame-size is respected while calculating position)
@@ -1822,7 +1963,7 @@ is @code{north-west} (specified by ICCCM).
 @cindex Windows, showing and hiding
 
 Sawfish provides two low-level functions for withdrawing client windows
-from the display. These are used to implement both virtual workspaces
+from the display. These are used to implement both workspaces
 (@pxref{Workspaces}) and iconification (@pxref{Iconifying Windows}).
 
 @defun hide-window window
@@ -2364,15 +2505,14 @@ is usually required for terminal windows, for example.)
 The ``fullscreen'' category maximizes the window to the current
 screen.
 
-@deffn Function maximize-window-fullscreen window
+@deffn Function maximize-window-fullscreen window state
 @deffnx Command maximize-window-fullscreen window
 Maximize both dimensions of @var{window} on the screen, removing
 window decorations and making the window edges flush with the screen
-sides.
+sides. 
 
-If defined, @var{direction} is a symbol, either @code{vertical} or
-@code{horizontal}, and maximization will only occur for that
-direction.
+If @var{state} nil, it unmaximizes. Else, it maximizes. If called as
+a command, it always maximizes.
 @end deffn
 
 @deffn Function maximize-window-fullscreen-toggle window
@@ -2380,24 +2520,19 @@ direction.
 Toggle the state of @var{window} between maximized and unmaximized in
 the screen, removing window decorations and making the window edges
 flush with the screen sides.
-
-If defined, @var{direction} is a symbol, either @code{vertical} or
-@code{horizontal}, and maximization will only occur for that
-direction.
 @end deffn
 
 The ``fullxinerama'' category maximizes the window to the entire
 Xinerama display.
 
-@deffn Function maximize-window-fullxinerama window
+@deffn Function maximize-window-fullxinerama window state
 @deffnx Command maximize-window-fullxinerama window
 Maximize both dimensions of @var{window} across all Xinerama screens,
 removing window decorations and making the window edges flush with the
 screen sides.
 
-If defined, @var{direction} is a symbol, either @code{vertical} or
-@code{horizontal}, and maximization will only occur for that
-direction.
+If @var{state} nil, it unmaximizes. Else, it maximizes. If called as
+a command, it always maximizes.
 @end deffn
 
 @deffn Function maximize-window-fullxinerama-toggle window
@@ -2405,10 +2540,6 @@ direction.
 Toggle the state of @var{window} between maximized and unmaximized
 across all Xinerama screeens, removing window decorations and making
 the window edges flush with the screen sides.
-
-If defined, @var{direction} is a symbol, either @code{vertical} or
-@code{horizontal}, and maximization will only occur for that
-direction.
 @end deffn
 
 @node Unmaximizing,  , Maximizing Without Borders, Maximizing Windows
@@ -3870,33 +4001,29 @@ Disable all frame parts that are a member of @var{class} in
 @node Viewports, Workspaces, Window Frames, Top
 @chapter Viewports
 @cindex Viewports
+@cindex Large Desktop
 
-It is sometimes useful to have a logical display that is larger than
-the computer screen.  This is most often implemented by displaying
-only a portion of the logical display at any time.  Sawfish does this
-using ``viewports''.
+Sawfish can have the virtual desktop size larger then the computer
+screen size. This notion is called ``viewport'' in Sawfish.
 
-When viewports are enabled, the Sawfish logical display becomes
-potentially infinitely large in the two directions ``across'' and
-``down'' (to the maximum representable size of integers).  Sawfish
-divides this logical display into a potentially infinite grid of
-cells.  Each cell of the grid is the same size of the virtual display.
+Viewport can be thought that it displays a portion of virtual desktop,
+and the entire virtual desktop consists of the grid of ``cells'' whose
+size is of the physical screen. Viewport sits on a cell.
+
+Technically speaking, the word ``viewport'' should mean the currently
+displayed part of the entire desktop. But in Sawfish, the entire
+desktop is wrongly called ``viewport'', too. When focused to
+enlargement, ``large desktop'' is the correct nomenclature, but
+simply calling it ``workspace'' = ``virtual desktop'' are correct, too,
+for most cases.
 
 @defvar viewport-dimensions
-The current number of viewports across and down the virtual display.
-This is a cons cell @code{(@var{across} . @var{down})}.  Defaults to
-@code{(1 . 1)}.
-@end defvar
+The number of viewports of the virtual desktop. This is a cons cell
+@code{(columns . rows)}.  Defaults to @code{(1 . 1)}.
 
-@defvar viewport-minimum-dimensions
-This is only useful if @code{viewport-boundary-mode} is set to
-@code{dynamic}, otherwise it is automatically set to the same value as
-viewport-dimensions.  If @code{viewport-boundary-mode} is set to
-@code{dynamic} then @code{viewport-dimensions} will never shrink to
-less than @code{viewport-minimum-dimensions}.  If setting
-@code{viewport-minimum-dimensions} by hand (not by the customization
-interface) be sure to call @code{viewport-minimum-size-changed} after
-doing so.
+If @code{viewport-boundary-mode} is @code{dynamic} (@pxref{Dynamic 
+Viewport}), then this variable is the current size of the current
+workspace, and does not have the meaning as a user option.
 @end defvar
 
 @defun set-number-of-viewports width height
@@ -3904,31 +4031,30 @@ Change @code{viewport-dimensions} to have the value
 @code{(@var{width} . @var{height})}.
 @end defun
 
-Note that cell indices start at zero in each dimension.  Indices are
-never negative.
-
 @menu
-* Switching Viewports::
+* Viewport Functions::
+* Dynamic Viewport::       Automatic resizing of workspace.
 * Windows and Viewports::
 @end menu
 
-@node Switching Viewports, Windows and Viewports, Viewports, Viewports
-@section Switching Viewports
+@node Viewport Functions, Dynamic Viewport, Viewports, Viewports
+@section Viewport Functions
 
-A user switches viewports by telling Sawfish to move the physical
-display from cell to cell.  On a cell change, windows in previous
-cells are removed, and windows in the current cell appear.  Windows
-that span two or more cells will appear in each cell, appropriately
-displaced.
+Each cell is labeled with the index @code{(col, row)}, and the
+top-left cell is @code{(0, 0)}.  Indices are never negative.
+
+Sawfish implements viewport as follows. On a cell change, windows in
+previous cells are removed, and windows in the current cell appear.
+Windows that span two or more cells will appear in each cell,
+appropriately displaced.
 
 @defun screen-viewport
-Returns the currently displayed viewport as a pair @code{(@var{x},
+Returns the currently displayed viewport as a pair @code{(@var{x} .
 @var{y})}.
 @end defun
 
 @defun set-screen-viewport col row
-Change the physical display to view cell @code{(@var{col},
-@var{row})}.
+Change the viewport to visit cell (@var{col}, @var{row}).
 @end defun
 
 @defun move-viewport right down
@@ -3937,29 +4063,56 @@ Move the viewport to see the cell @var{right} slots to the right and
 @end defun
 
 @defvar viewport-boundary-mode
-How to act when switching via @code{set-screen-viewport} to a viewport
-that is outside of @code{viewport-dimensions}.  When set to
-@code{wrap-around}, it loops in the vertical and horizontal axes
-enough times to keep the viewport within the defined dimensions.  When
-set to @code{stop}, it refuses to switch to a viewport outside of
-@code{viewport-dimensions}.  If it is set to @code{dynamic} it
-automatically resizes @code{viewport-dimensions} to permit the move
-and eliminate unneeded rows or columns, down to the minimum dimensions
-specified by @code{viewport-minimum-dimensions}.  Defaults to
-@code{wrap-around}.
+Decides how to act when you call @code{set-screen-viewport} and you
+try to go outside of the virtual desktop. (Its size is specified by
+@code{viewport-dimensions}.) Defaults to @code{stop}.
+
+When set to @code{stop}, it stops at the boundary of the virtual desktop.
+
+When set to @code{wrap-around}, it behaves as if the leftmost viewport
+and the rightmost are connected. Same for the top and bottom.
+
+If it is set to @code{dynamic}, then the workspace size changes
+automatically. For detail, see @xref{Dynamic Viewport}.
 @end defvar
 
+@defun viewport-honor-workspace-edges
+Returns whether or not the display is permitted to move past the
+current workspace boundaries.  It returns true if
+@code{viewport-boundary-mode} is not set to @code{dynamic}.
+@end defun
+
+@defun viewport-at x y
+Returns a cons cell consisting of @code{(column . row)} of the viewport
+containing the specified @var{x} and @var{y} coordinates.  The
+coordinates are specified relative to the current viewport, so
+@code{(viewport-at 0 0)} is equivalent to @code{(screen-viewport)}.
+@end defun
+
+@defun viewport-offset-pixel viewport
+Returns the offset from the current viewport to @var{viewport}
+which is specified as @code{(column . row)}. The return value is the
+cons cell @code{(x . y)}. The values are in pixel, and are negative if
+it lies at left or above the current viewport.
+
+@var{viewport} can be non existent one. If @var{viewport} is @code{nil} it
+is understood as the current viewport, i.e., @code{(0 . 0)} will be
+returned.
+@end defun
+
+Actually, Sawfish can move viewport by any pixels, not only by
+screen size. Here're low level functions to do it.
+
 @defun warp-viewport x y
-Change the position of the physical display, such that location
-@code{(@var{x}, @var{y})} is at the top-left of the display.  The
-physical display may be showing more than one cell at this point.
-All windows are redisplayed as appropriate.
+Change the position of the viewport, such that location
+@code{(@var{x}, @var{y})} is at the top-left of the display. The unit
+is by pixels.
 @end defun
 
 @defun set-viewport x y
-Change the position of the physical display, such that location
-@code{(@var{x}, @var{y})} is at the top-left of the display.  The
-physical display may be showing more than one cell at this point.
+Change the position of the viewport, such that location
+@code{(@var{x}, @var{y})} is at the top-left of the display. The unit
+is by pixels.
 
 Unlike @code{warp-viewport}, the change takes place by dividing the
 motion into @code{scroll-viewport-steps} steps, and redisplaying after
@@ -3967,29 +4120,71 @@ each step in the motion.
 @end defun
 
 @defvr Customizable scroll-viewport-steps
-Number of steps in which to divide a viewport change for
-@code{set-viewport}.  Each step requires a redisplay.  Defaults to 1,
-which causes an instantaneous change to the new viewport.  The
-customization limit is 50.
+When you move the viewport, the bigger this value, the more
+smoothly the screen is scrolled. It is the number of steps for
+scrolling. 
+
+The default value 1 means the change is instantaneous, and no scroll
+is done. The upper limit for customization is 50.
+
+This variable is used for @code{set-viewport}. All interactive commands
+defined by Sawfish call this function, so this variable is important
+for user.
 @end defvr
 
-@node Windows and Viewports,  , Switching Viewports, Viewports
+@node Dynamic Viewport, Windows and Viewports, Viewport Functions, Viewports
+@section Dynamic Viewport
+
+If the variable @code{viewport-boundary-mode} (@pxref{Viewport
+Functions}) is set to @code{dynamic}, the viewport is ``dynamic''. If
+dynamic viewport is enabled, then each workspace has its size
+indepedent of other workspaces, and it is automatically resized so
+that it contains all windows plus the current viewport. The size is set at
+Sawfish startup, and each time you move viewport.
+
+Even in dynamic viewport, the top-left cell is always @code{(0, 0)},
+and the cell indices are never negative.
+
+The dynamic viewport is still an experimental feature, and its
+specification may change.
+
+@defvar viewport-minimum-dimensions
+This is only useful if dynamic viewport is enabled. It means that
+@code{viewport-dimensions} gets never less than this variable. 
+
+If setting @code{viewport-minimum-dimensions} by hand (not by the
+customization interface) be sure to call
+@code{viewport-minimum-size-changed} after doing so.
+
+If the viewport is not dynamic, it is automatically set to the same
+value as @code{viewport-dimensions}.
+@end defvar
+
+Under dynamic viewport, @code{viewport-dimensions} is the current size
+of the current workspace, and does not have the meaning as a user option.
+
+@node Windows and Viewports,  , Dynamic Viewport, Viewports
 @section Windows and Viewports
 
 @defun window-viewport window
-Returns a cons cell @code{(@var{col} . @var{row})} of the viewport
+Returns a cons cell @code{(col . row)} of the viewport
 holding the top-left corner of @var{window}.
 @end defun
 
-@defun window-outside-viewport-p window
+@defun window-relative-position w
+Returns in a cons cell the coodinates of the window relative to the
+current viewport.
+@end defun
+
+@defun window-outside-viewport-p window &optional viewport
 Returns true if @var{window} is completely outside the current
-viewport in any direction.
+viewport in any direction.  If @var{viewport} is specified check against
+that viewport rather than the current one.
 @end defun
 
 @defun window-absolute-position window
-Returns a cons cell @code{(@var{x} . @var{y})} of the position of
-@var{window} in its containing viewport.  The containing viewport may
-or may not be the current viewport.
+Returns the coordinates of the window as if the window's viewport
+is selected. The return value is the cons cell (x . y).
 @end defun
 
 @defun set-window-viewport window col row
@@ -4024,12 +4219,14 @@ the viewport they were iconified on.  Defaults to true.
 @chapter Workspaces
 @cindex Workspaces
 @cindex Desktop workspaces
+@cindex Virtual desktop
 
 Workspaces provide another way for users to organize their windows in
-Sawfish.  Instead of stretching the screen real estate to the right
-and down, workplaces stack screens on top of each other.  The user
-drills down into the stack, or pops up through the stack, seeing the
-appropriate windows in each workspace.
+Sawfish. Unlike viewports, workspaces don't have geometric relationship
+with each other.
+
+The word ``virtual desktop'' is sometimes used instead of
+``workspace''.
 
 @menu
 * Workspace Intervals::			``Interesting'' workspaces
@@ -4046,8 +4243,8 @@ to positive infinity, we normally present only the first non-empty
 workspace through the last non-empty workspace to the user.  The
 non-empty interval is occasionally re-normalized to start with zero.
 
-We typically refer to workplaces with lower IDs being to the ``left''
-of workplaces with higher IDs, as if on a number line.
+We typically refer to workspaces with lower IDs being to the ``left''
+of workspaces with higher IDs, as if on a number line.
 
 @defvar current-workspace
 The ID of the currently active workspace.  This is an integer.  The
@@ -4070,7 +4267,7 @@ function uses the result of @code{workspace-limits} directly.
 
 @defun workspace-id-from-logical offset &optional limits
 Takes an offset position into an interval of ``interesting''
-workspaces, and returns the workplace ID at that position.  If
+workspaces, and returns the workspace ID at that position.  If
 @var{limits} is provided, it must be a pair @code{(@var{first-index}
 . @var{last-index})} like that returned by @code{workspace-limits}.
 If it is not provided, the function uses the result of
@@ -4180,8 +4377,8 @@ previous workspace.
 Add or remove workspaces until the number of ``interesting''
 workspaces is equal to @var{wanted}.
 
-When adding workplaces, the new workplaces get indices higher than any
-existing indices.  When removing workplaces, the lowest workplaces are
+When adding workspaces, the new workspaces get indices higher than any
+existing indices.  When removing workspaces, the lowest workspaces are
 always chosen for removal (their windows are merged into the new
 lowest-index workspace).
 @end defun
@@ -4482,6 +4679,13 @@ window.  If @var{window} is supplied and @var{nil}, return
 @code{(pointer-head)}.
 @end defun
 
+@defun window-head-any-viewport window
+Like @code{current-head}, this will return the ID of the heand
+containing the specified window.  But unlike @code{current-head},
+@code{window-head-any-viewport} returns the head that the window would
+be in if its viewport were the visible viewport.
+@end defun
+
 @defun current-head-dimensions &optional window
 Return a cons-cell defining the size in pixels of the current head
 (that containing the window @var{window}, or the pointer if
@@ -4673,35 +4877,37 @@ Consider the following definition:
  ("Programs" . apps-menu)
  ("Customize" . custom-menu)
  ("About..." (customize 'about))
- ()
+ () ; Separation horizontal bar.
  ("Restart" restart)
  ("Quit" quit))
 @end lisp
 
 @noindent
-This is the definition of Sawfish's root menu. We can see that four
-submenus are created dynamically by dereferencing variables (in fact,
-three of this variables contain functions) (@code{workspace-menu},
-@code{window-menu}, @code{apps-menu} and @code{custom-menu}). Note that
-these must be special variables, i.e. initially declared using the
-@code{defvar} special form.
+This is the old definition of Sawfish's root menu. We can see
+that four submenus are created dynamically by dereferencing variables
+(in fact, three of this variables contain functions)
+(@code{workspace-menu}, @code{window-menu}, @code{apps-menu} and
+@code{custom-menu}). Note that these must be special variables,
+i.e. initially declared using the @code{defvar} special form.
 
-The @code{apps-menu} variable can thus be used to redefine the
-applications menu. The default definition is as follows:
+User can set @code{apps-menu} as they like. If it is unset, then
+Sawfish generates applications menu from @file{*.desktop} files. In
+that case, user can use @code{user-apps-menu} variable to define their
+own applications menu, and it is appended by auto generated one.
+Example of @code{user-apps-menu} definition can be as follows:
 
 @lisp
-(("xterm" (system "xterm &"))
+(("_xterm" (system "xterm &"))
  ("Emacs" (system "emacs &"))
- ("Netscape" (system "netscape &"))
- ("The GIMP" (system "gimp &"))
- ("XFIG" (system "xfig &"))
- ("GV" (system "gv &"))
- ("xcalc" (system "xcalc &")))
+ ("Firefox" (system "firefox &"))
+ ("The _GIMP" (system "gimp &"))
+ () ; Seperation horizontal bar
+ )
 @end lisp
 
 @noindent
 The @code{system} function simply executes its single argument using
-@file{/bin/sh}.
+@file{/bin/sh}. The underscore defines the keyboard shortcut.
 
 When displaying a menu item, it is possible to also display the
 corresponding keyboard shortcut in the menu.
@@ -4755,6 +4961,51 @@ the root menu.  The default root menu includes this as a child menu.
 @defun popup-apps-menu
 Display the applications menu.
 @end defun
+
+Sawfish generates applications menu from @file{*.desktop} files.
+
+@defvar apps-menu-autogen
+If non-nil, @code{apps-menu} is automatically generated from
+@code{user-apps-menu} and @file{*.desktop} files. If you set
+@code{apps-menu}, then it won't happen anyway.
+ 
+Default is @code{t}.
+@end defvar
+
+@defvar user-apps-menu
+Your own application menu entries. It is followed by auto generated
+applications menu.
+@end defvar
+
+@defvar apps-menu-ignore-no-display
+Some entries are hidden from the menu, especially GNOME Apps like
+eog, nautilus or evince. If you want to have them added to your menu,
+set this to non-nil. Default is @code{nil}.
+@end defvar
+
+@defvar desktop-directory
+List of directories to look for *.desktop files. Default is
+@code{'("/usr/share/applications")}.
+@end defvar
+
+@defvar apps-menu-alphabetize
+Sort the generated apps menu alphabetically. Defaults to @code{t}.
+@end defvar
+
+@defvar apps-menu-lang
+Language for applications menu auto generation, in string. Default is
+set from locale.
+@end defvar
+
+@deffn Function update-apps-menu
+@deffnx Comand update-apps-menu
+Set @code{apps-menu} to @code{user-apps-menu}, and if
+@code{apps-menu-autogen} is non-nil, append the auto generated one.
+@end deffn
+
+@deffn Function generate-apps-menu
+Return the applications menu list, generated from @file{*.desktop} files.
+@end deffn
 
 @defun window-ops-menu
 The variable containing the definition of all window operations.
@@ -5263,8 +5514,8 @@ prefix argument.
 @end defvar
 
 @defvar this-command
-The command currently being called, or @samp{nil} if no command is
-being called.
+The command currently being called. The value is only set during
+command call, and @code{nil} anytime else.
 @end defvar
 
 @defvar last-command
@@ -5504,7 +5755,7 @@ Returns the number of X events waiting to be handled.
 @end defun
 
 
-@node Miscellaneous Functions, Standard Hooks, Event Loop, Top
+@node Miscellaneous Functions, External Applications, Event Loop, Top
 @chapter Miscellaneous Functions
 @cindex Miscellaneous functions
 
@@ -5512,6 +5763,7 @@ Returns the number of X events waiting to be handled.
 * Pointer Functions::
 * Grab Functions::
 * Display Functions::
+* Rectangle Functions::
 * Gradient Functions::
 * Other Functions::
 @end menu
@@ -5686,7 +5938,7 @@ called.
 @end defun
 
 
-@node Display Functions, Gradient Functions, Grab Functions, Miscellaneous Functions
+@node Display Functions, Rectangle Functions, Grab Functions, Miscellaneous Functions
 @section Display Functions
 @cindex Display functions
 @cindex Functions, display
@@ -5770,7 +6022,172 @@ has the input focus.
 @end defun
 
 
-@node Gradient Functions, Other Functions, Display Functions, Miscellaneous Functions
+@node Rectangle Functions, Gradient Functions, Display Functions, Miscellaneous Functions
+@section Rectangle Functions
+@cindex Rectangle functions
+@cindex Functions, rectangle
+
+Rectangles define a region of the display.  A rectangle is a list of
+values: @code{(left top right bottom [weight])}.  @code{left} and
+@code{top} are the @code{x} and @code{y} coordinates of the upper left
+corner, @code{right} and @code{bottom} are the coordinates for the lower
+right corner.  @code{weight} is an integer.  The bulk of the rectangle
+management functions are in sawfish.wm.util.rects.
+
+@defun rect-left rect
+The x-axis value of the left side of the rectangle.  Equivalent to
+@code{car}
+@end defun
+
+@defun rect-top rect
+The y-axis value of the top of the rectangle.  Equivalent to
+@code{cadr}
+@end defun
+
+@defun rect-right rect
+The x-axis value of the right side of the rectangle.  Equivalent to
+@code{caddr}
+@end defun
+
+@defun rect-bottom rect
+The y-axis value of the bottom of the rectangle.  Equivalent to
+@code{cadddr}
+@end defun
+
+@defun rect-obscured r by
+Check whether the rectangle @code{r} is wholly or partially contained in
+rectangle @code{by}.  Returns one of the symbols @code{unobscured},
+@code{partially-obscured}, or @code{fully-obscured}.
+@end defun
+
+@defun rect-minus r s &optional tail
+Return a list of rectangles whose union is the part of rectangle
+@code{r} not contained in rectangle @code{s}.  If @code{tail} is given,
+the result is prepended to it.
+@end defun
+
+@defun rectangles-from-grid x-points y-poinst &optional pred
+The two lists of integers @code{x-points} and @code{y-points} define a
+rectangular grid. Return the complete list of rectangles formed by the
+intersections of the grid.
+
+If @code{pred} is defined it is called for each rectangle and only those
+for which it returns @code{t} are added to the returned list.
+
+Assumes that @code{x-points} and @code{y-points} are both sorted
+smallest->largest.
+@end defun
+
+@defun rectangles-from-windows windows &optional weight-fun
+Returns a list of rectangle objects representing the list of window
+objects @code{windows}.
+
+If @code{weight-fun} is defined, it is a function to call on each window
+to return the weight for that window. If not defined, the window's
+@code{weight} property is used instead.
+@end defun
+
+@defun grid-from-rectangles rects &optional with-root
+Given a list of rectangles @code{rects} return a cons cell
+@code{(x-points . y-points)} defining the grid they represent.
+
+If @code{with-root} is non-nil, then add the root window boundaries to
+the grid.
+@end defun
+
+@defun rectangle-area rect
+Returns the area of the specified rectangle.
+@end defun
+
+@defun rectangle-from-coords point dims
+Return the rectangle object with origin @code{point} and dimensions
+@code{dims}.
+@end defun
+
+@defun rectangle-corners
+Return a list of four cons cells representing the coordinates of the
+corners of the rectangle @code{rect}.
+@end defun
+
+@defun rectangle-center rect
+Returns a cons cell of the (approximate, to the nearest integer)
+coordinates of the center of the rectangle @code{rect}.
+@end defun
+
+@defun rectangle-center* point dims
+The same as @code{rectangle-center} except that the rectangle is
+specified via the x,y coordinates @code{point} and the dimensions
+@code{dims}.
+@end defun
+
+@defun rectangle-union rect1 rect2
+Gives the smallest rectangle containing both @code{rect1} and
+@code{rect2}.  The weight of the resulting rectangle is the weight of
+@code{rect1}.
+@end defun
+
+@defun rectangle-intersection rect1 rect2
+Gives the intersection of the two rectangles @code{rect1} and
+@code{rect2}.  The weigth of the resultant rectangle is the weight of
+@code{rect1}.  Returns @code{nil} if there the two rectangles do not
+intersect.
+@end defun
+
+@defun rect-1d-overlap a-1 a-2 b-1 b-2
+@code{a-1} to @code{a-2} indicates one line segment and @code{b-1} to
+@code{b-2} indicates another.  Returns the overlap between the two line
+segments.
+@end defun
+
+@defun rect-2d-overlap dims point rect
+Returns the overlap between two rectangles, one with dimensions
+@code{dims} and upper-left corner at @code{point}; the other is defined
+by @code{rect}.
+@end defun
+
+@defun rect-2d-overlap* rect1 rect2
+Like @code{rect-2d-overlap}, except that the rectangles are
+@code{rect1} and @code{rect2}.
+@end defun
+
+@defun rect-total-overlap dims point rects
+Returns the total area of the overlap between a rectangle defined by
+@code{dims} and @code{point}, and the list of rectangles @code{rects}
+when placed at @code{point}.
+@end defun
+
+@defun rect-wholly-within-rect outer inner
+Returns @code{t} if @code{inner} is completely within the boundaries of
+@code{outer}.
+@end defun
+
+@defun rect-wholly-visible-p
+Returns @code{t} if @code{rect} is completely inside the screen
+boundaries.
+@end defun
+
+@defun rectangle-heads
+Returns the number of screen heads that the rectangle @code{rect}
+appears on.
+@end defun
+
+These functions are found in sawfish.wm.viewport:
+
+@defun rect-within-viewport-p rect &optional viewport
+Return @code{t} if @code{rect} is entirely inside the screen boundaries
+for some viewport, regardless of whether it is the current viewport, or
+even if the viewport currently exists.  If @code{viewport} is specified
+check only against that viewport.
+@end defun
+
+@defun rect-within-head-p rect &optional head
+Return @code{t} if @code{rect} is entirely within some head on some
+viewport. If @code{head} is provided @code{rect} must be within that
+head on some viewport.
+@end defun
+
+
+@node Gradient Functions, Other Functions, Rectangle Functions, Miscellaneous Functions
 @section Gradient Functions
 @cindex Gradient functions
 @cindex Functions, gradients
@@ -5890,10 +6307,6 @@ with the environment variable @code{SAWFISHSITELISPDIR}.
 The version number of the running Sawfish.
 @end defvar
 
-@defun primitive-play-sample filename
-Plays the sound file @var{filename} (which must be a string).
-@end defun
-
 @defun call-with-error-handler thunk
 Call the zero-parameter function @var{thunk}.  If an error occurs,
 trap it and pass its @code{car} and @code{cdr} to
@@ -5958,7 +6371,33 @@ Remove all duplicates values from @var{lst}, using @code{eq}.  The
 order of elements is not preserved.
 @end defun
 
-@node Standard Hooks, Standard Properties, Miscellaneous Functions, Top
+@node External Applications, Standard Hooks, Miscellaneous Functions, Top
+@chapter External Applications
+@cindex External applications
+
+There're some functions and variables for invocation of external applications.
+
+@defvr {Customizable} xterm-program
+The program launched by the @code{xterm} function. Interpreted by shell.
+@end defvr
+
+@deffn Function xterm #!optional command
+@deffnx Command xterm
+Start a new terminal. Optional argument @var{COMMAND} is passed to the
+terminal with @code{-e} option, so for most, including xterm, it can contain
+arguments to be passed.
+@end deffn
+
+@defvr {Customizable} browser-program
+The program launched by the @code{browser} function. Interpreted by shell.
+@end defvr
+
+@deffn Function browser #!optional url
+@deffnx Command browser
+Start a new browser instance. Visit @var{URL} if supplied.
+@end deffn
+
+@node Standard Hooks, Standard Properties, External Applications, Top
 @chapter Standard Hooks
 @cindex Standard hooks
 @cindex Hooks, standard
@@ -5992,7 +6431,7 @@ The available hooks are listed below.
 * Window Cycling Hooks::
 * X Hooks::
 * Pointer Motion Hooks::
-* Workspace Hooks::
+* Workspace and Viewport Hooks::
 * Startup and Shutdown Hooks::
 * Other Hooks::
 @end menu
@@ -6003,8 +6442,12 @@ The available hooks are listed below.
 @cindex Command Hooks
 @cindex Hooks, Command
 
+The hook functions are passed one argument which is the command name.
+
 @defvr {Hook} pre-command-hook
-Called before each command is evaluated.
+Called before each command is evaluated. If you set the value
+@code{this-command} to @code{nil} in this hook, then the command 
+won't be executed.
 @end defvr
 
 @defvr {Hook} post-command-hook
@@ -6203,7 +6646,7 @@ argument to the hook.
 @end defvr
 
 
-@node Pointer Motion Hooks, Workspace Hooks, X Hooks, Standard Hooks
+@node Pointer Motion Hooks, Workspace and Viewport Hooks, X Hooks, Standard Hooks
 @section Pointer Motion Hooks
 @cindex Pointer Motion Hooks
 @cindex Hooks, Pointer Motion
@@ -6270,10 +6713,11 @@ never gets focus.
 @end defvr
 
 
-@node Workspace Hooks, Startup and Shutdown Hooks, Pointer Motion Hooks, Standard Hooks
-@section Workspace Hooks
+@node Workspace and Viewport Hooks, Startup and Shutdown Hooks, Pointer Motion Hooks, Standard Hooks
+@section Workspace and Viewport Hooks
 @cindex Workspace Hooks
-@cindex Hooks, Workspace
+@cindex Viewport Hooks
+@cindex Hooks, Workspace and Viewport
 
 @defvr {Hook} enter-workspace-hook
 @defvrx {Hook} leave-workspace-hook
@@ -6319,7 +6763,7 @@ edge in question.
 @end defvr
 
 
-@node Startup and Shutdown Hooks, Other Hooks, Workspace Hooks, Standard Hooks
+@node Startup and Shutdown Hooks, Other Hooks, Workspace and Viewport Hooks, Standard Hooks
 @section Startup and Shutdown Hooks
 @cindex Startup and Shutdown Hooks
 @cindex Hooks, Startup and Shutdown

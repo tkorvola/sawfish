@@ -150,8 +150,6 @@ sawfish comes with ABSOLUTELY NO WARRANTY; for details see the file COPYING\n"
 
 (main)
 
-(write standard-output "Bye.\n")
-
 ;; Local variables:
 ;; major-mode: lisp-mode
 ;; End:

@@ -102,7 +102,7 @@
           warp-to-window-y-offset uniquify-name-format
           transients-get-focus decorate-transients
           raise-windows-on-uniconify uniconify-to-current-workspace
-          uniconify-to-current-viewport iconify-ignored
+          iconify-ignored
           focus-windows-on-uniconify transients-are-group-members
           raise-selected-windows warp-to-selected-windows
           menus-include-shortcuts configure-auto-gravity
@@ -117,7 +117,8 @@
           nokogiri-user-level nokogiri-buttons workspace-boundary-mode
           workspace-send-boundary-mode lock-first-workspace
           ignore-window-input-hint workspace-geometry
-          pointer-motion-threshold ignore-program-positions))
+          pointer-motion-threshold ignore-program-positions
+          infinite-desktop.stop-at-workspace-borders))
 
 ;;; obsolete custom setters
 

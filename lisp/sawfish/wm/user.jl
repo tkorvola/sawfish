@@ -46,7 +46,7 @@
 	   sawfish.wm.util.display-window
 	   sawfish.wm.util.compat
 	   sawfish.wm.ext.error-handler
-	   sawfish.wm.ext.fdo-menu
+	   sawfish.wm.ext.apps-menu
 	   sawfish.wm.frames)
      (set-binds))
 
@@ -81,7 +81,7 @@
 
 	  (when (and (file-exists-p "~/.sawmillrc")
 	             (not (file-exists-p "~/.sawfishrc")))
-	    (rename-file "~/.sawmillrc" "~/sawfishrc")
+	    (rename-file "~/.sawmillrc" "~/.sawfishrc")
 	    (message "Renamed file ~/.sawmillrc -> ~/.sawfishrc"))
 
 	  ;; First the site-wide stuff
@@ -114,12 +114,11 @@
       (error
        (format (stderr-file) "error in local config--> %S\n" error-data))))
 
-  ;; use a default menu if none is given
-  (unless (or batch-mode apps-menu)
-    (update-saw-menu))
+  ;; generate apps-menu from *.desktop files
+  (unless batch-mode
+    (init-apps-menu))
 
   ;; apply customized font-colors
-  (require 'sawfish.wm.extras)
   (if use-custom-font-color
       (update-frame-font-color))
 

@@ -44,7 +44,7 @@
 	  sawfish.wm.workspace
 	  sawfish.wm.state.maximize
 	  sawfish.wm.state.iconify
-	  sawfish.wm.commands.user
+	  sawfish.wm.commands.launcher
 	  sawfish.wm.ext.error-handler)
 
   (define-structure-alias menus sawfish.wm.menus)
@@ -150,6 +150,8 @@ before killing it.")
       ()
       (,(_ "Sessi_on")
        (,(_ "Display Errors") display-errors)
+       (,(_ "Reload Appsmenu") update-apps-menu)
+       ()
        (,(_ "Restart Sawfish") restart)
        (,(_ "Quit Sawfish") quit))
       ()
