@@ -33,8 +33,7 @@
 	    move-window-viewport
             viewport-at
 	    window-viewport
-            viewport-offset-pixel
-            window-relative-position
+            viewport-offset-coord
 	    window-absolute-position
 	    set-number-of-viewports
             rect-within-viewport-p
@@ -427,7 +426,7 @@ even if the viewport currently exists.  If `viewport' is specified
 check only against that viewport."
     (let ((vp (viewport-at (car rect) (nth 1 rect))))
       (when (or (null viewport) (equal vp viewport))
-        (let ((offset (viewport-offset-pixel vp)))
+        (let ((offset (viewport-offset-coord vp)))
           (rect-wholly-within-rect (list (car offset)
                                          (cdr offset)
                                          (+ (car offset) (screen-width))
@@ -442,7 +441,7 @@ check only against that viewport."
     "Return t if `rect' is entirely within some head on some
 viewport. If `head' is provided `rect' must be within that head on
 some viewport."
-    (let* ((offset (viewport-offset-pixel (viewport-at (car rect)
+    (let* ((offset (viewport-offset-coord (viewport-at (car rect)
                                                  (nth 1 rect))))
            (left (- (car rect) (car offset)))
            (top (- (nth 1 rect) (cdr offset)))
@@ -464,12 +463,12 @@ some viewport."
            (dims (window-dimensions w))
            (center (cons (+ (car coords) (quotient (car dims) 2))
                          (+ (cdr coords) (quotient (cdr dims) 2))))
-           (vp-offset (viewport-offset-pixel (viewport-at (car center)
+           (vp-offset (viewport-offset-coord (viewport-at (car center)
                                                     (cdr center)))))
       (find-head (- (car center) (car vp-offset))
                  (- (cdr center) (cdr vp-offset)))))
 
-  (define (viewport-offset-pixel vp)
+  (define (viewport-offset-coord vp)
     "Returns the offset from the current viewport to viewport `VP'
 which is specified as (column . row). The return value is the cons
 cell (x . y). The values are in pixel, and are negative if it lies at
@@ -484,26 +483,37 @@ understood as the current viewport, i.e., (0 . 0) will be returned."
            (* (- (cdr vp) (cdr cur-vp)) (screen-height))))
       '(0 . 0)))
 
-  (define (window-relative-position w)
-    "Returns a cons cell with the coordinates of the window relative
-to the viewport it occupies."
-    (let ((offset (viewport-offset-pixel (window-viewport w)))
-          (coords (window-position w)))
-      (cons
-       (- (car coords) (car offset))
-       (- (cdr coords) (cdr offset)))))
-
-  (define (window-absolute-position w)
+  (define (window-absolute-position w #!optional disambiguate)
     "Returns the coordinates of the window as if the window's viewport
 is selected. The return value is the cons cell (x . y)."
     ;; So, ignoring the side effect, it's roughly equal to
     ;; (set-screen-viewport (window-viewport w))
     ;; (window-position w)
-    (let ((position (window-position w)))
-      (if (window-outside-viewport-p w)
-	  (cons (mod (+ (car position) viewport-x-offset) (screen-width))
-		(mod (+ (cdr position) viewport-y-offset) (screen-height)))
-	position)))
+    ;; The correct name should be "window-position-in-viewport".
+
+    ;; The temporary hack 'disambiguate' is introduced in Sawfish 1.6.
+    ;; It will be removed.
+
+    ;; Two methods differ if the window lies across several vp slots.
+    (if disambiguate
+	;; method 1: always returns the same value.
+	;; This is introduced in 1.6, and necessary for maximization.
+	(let ((offset (viewport-offset-coord (window-viewport w)))
+	      (coords (window-position w)))
+	  (cons
+	   (- (car coords) (car offset))
+	   (- (cdr coords) (cdr offset))))
+      ;; method 2: If the window is visible from the current viewport,
+      ;; then simply window-position is returned.
+      ;; Else, the viewport where the window's top-left lies is used.
+      ;; This has existed for long time.
+      ;; Perhaps this can be deleted, and check of visibility can be
+      ;; separated, done by the caller.
+      (let ((position (window-position w)))
+	(if (window-outside-viewport-p w)
+	    (cons (mod (+ (car position) viewport-x-offset) (screen-width))
+		  (mod (+ (cdr position) viewport-y-offset) (screen-height)))
+	  position))))
 
   (define (viewport-size-changed #!optional force)
     ;; This is called when the user requests a change (e.g., from the

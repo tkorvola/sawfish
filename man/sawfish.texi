@@ -4054,6 +4054,7 @@ dimensions directly.
 @menu
 * Viewport Functions::
 * Dynamic Viewport::       Automatic resizing of workspace.
+* Smooth Viewport::        Nice feature but not always compatible
 * Windows and Viewports::
 @end menu
 
@@ -4109,7 +4110,7 @@ The coordinates are specified relative to the current viewport, so
 @code{(viewport-at 0 0)} is equivalent to @code{(screen-viewport)}.
 @end defun
 
-@defun viewport-offset-pixel viewport
+@defun viewport-offset-coord viewport
 Returns the offset from the current viewport to @var{viewport} which
 is specified as @code{(@var{column} . @var{row})}. The return value is
 the cons cell @code{(@var{x} . @var{y})}. The values are in pixel, and are
@@ -4146,7 +4147,7 @@ defined by Sawfish call this function, so this variable is important
 for the user.
 @end defvr
 
-@node Dynamic Viewport, Windows and Viewports, Viewport Functions, Viewports
+@node Dynamic Viewport, Smooth Viewport, Viewport Functions, Viewports
 @section Dynamic Viewport
 
 ``Dynamic viewport'' is enabled by setting
@@ -4193,17 +4194,41 @@ those who are not using dynamic viewports do not need to worry about
 Under dynamic viewport, @code{viewport-dimensions} is the current size
 of the current workspace, and does not have the meaning as a user option.
 
-@node Windows and Viewports,  , Dynamic Viewport, Viewports
+@node Smooth Viewport, Windows and Viewports, Dynamic Viewport, Viewports
+@section Smooth Viewport
+@cindex Smooth Viewport
+@cindex Infinite Desktop
+
+``Infinite desktop'' is an intuitive, nice feature. Just move the
+mouse, for example to right, very far. As the pointer hits the screen
+edge, the viewport moves as if it is dragged by mouse motion. Viewport
+moves around by any amount, not limited to by a step of the physical
+screen size.
+
+To enable infinite desktop, put the following in your
+@file{~/.sawfish/rc}:
+
+@lisp
+(require 'sawfish.wm.ext.infinite-desktop)
+@end lisp
+
+Options can be set from the configurator, under @code{Workspace}
+section.
+
+Infinite desktop behavior differs noticeably from the usual viewport
+which lies on grid cells. For example, it does not make sense to ask
+in which viewport a window lies. The design is not complete yet, and
+may change in future. There may be some bugs.
+
+It is called ``infinite desktop'' by historical reason, but in fact
+you can limit the entire desktop size as you like.
+
+@node Windows and Viewports,  , Smooth Viewport, Viewports
 @section Windows and Viewports
 
 @defun window-viewport window
 Returns a cons cell @code{(@var{col} . @var{row})} of the viewport
 holding the top-left corner of @var{window}.
-@end defun
-
-@defun window-relative-position w
-Returns in a cons cell the coodinates of the window relative to the
-viewport it occupies.
 @end defun
 
 @defun window-outside-viewport-p window &optional viewport
@@ -5571,25 +5596,12 @@ under @code{system}.
 @defunx destroy-window
 @defunx kill-client
 @defunx no-operation
+
 Calls the function of the same name.  @code{destroy-window} and
 @code{kill-client} both take @code{%W} as argument.
-@end defun
 
-@defun poweroff @var{action}
-A function for rebooting, halting, suspending and hibernating
-your machine. Normally this is only used when running outside
-of GNOME or KDE, as their functions for doing so are beeing used then.
-
-The following @var{action} calls the following command:
-
-@var{reboot}    @code{reboot-command}
-@var{halt}      @code{halt-command}
-@var{suspend}   @code{suspend-command}
-@var{hibernate} @code{hibernate-command}
-
-Plus when @var{action} is @var{reboot} or @var{halt}, the
-@code{before-exit-hook} and afterwards @code{map-windows delete-windows},
-to ensure we safely quit the current session.
+(Strictly speaking, @code{kill-client} calls @code{x-kill-client},
+and @code{no-operation} calls @code{nop}.)
 @end defun
 
 @node Keymaps, Event Loop, Commands, Top
@@ -5813,6 +5825,7 @@ Returns the number of X events waiting to be handled.
 * Display Functions::
 * Rectangle Functions::
 * Gradient Functions::
+* Sawfish Invocation Functions::
 * Other Functions::
 @end menu
 
@@ -6282,7 +6295,7 @@ head on some viewport.
 @end defun
 
 
-@node Gradient Functions, Other Functions, Rectangle Functions, Miscellaneous Functions
+@node Gradient Functions, Sawfish Invocation Functions, Rectangle Functions, Miscellaneous Functions
 @section Gradient Functions
 @cindex Gradient functions
 @cindex Functions, gradients
@@ -6309,63 +6322,13 @@ will be @var{from}, the color at the bottom-right @var{to}, with a
 smooth transition between.
 @end defun
 
+@node Sawfish Invocation Functions, Other Functions, Gradient Functions, Miscellaneous Functions
+@section Sawfish Invocation Functions
+@cindex Sawfish Invocation Functions
+@cindex Functions, Sawfish invocation
 
-@node Other Functions, , Gradient Functions, Miscellaneous Functions
-@section Other Functions
-@cindex Other functions
-@cindex Functions, other
-
-@defun sync-server
-Flush all pending X requests, don't wait for them to finish.
-@end defun
-
-@defun send-client-message window type data format
-Send an X @code{ClientMessage} event to @var{window} (a window object,
-the symbol @code{root} or a numeric xid).
-
-The event will be of the type @var{type} (a symbol), contain the array
-of integers @var{data} (i.e. a vector or a string), and will be
-transferred as @var{format} sized quantities (8, 16 or 32).
-@end defun
-
-@defun create-window parent x y width height
-Create an unmapped window that is a child of @var{parent} (a window
-object, an integer window id, or the symbol @code{root}), with the
-specified dimensions.
-
-Returns the window id of the new window.
-@end defun
-
-@defun exit-type
-If Sawfish is shutting down, this function returns one of the strings
-@code{"user-quit"}, @code{"user-restart"} or @code{"session-quit"}.
-If Sawfish is not shutting down, it returns @code{nil}.
-@end defun
-
-@defun x-atom symbol
-Return the integer identifying the X atom with the same name as
-@var{symbol}.
-@end defun
-
-@defun x-atom-name integer
-Return the symbol with the same name as the X atom identified by the
-integer @var{integer}.
-@end defun
-
-@defvar canonical-display-name
-A string containing the canonical name of the X display.  This
-includes the full host name and the screen number.  For example:
-@code{"foo.bar.com:0.0"}.
-@end defvar
-
-@defvar display-name
-A string containing the name of the X display, exactly as passed to
-Sawfish.  For example: @code{":0"}, or @code{"foo:0.0"}.
-@end defvar
-
-@defvar saved-command-line-args
-Holds a list of all of the command line arguments (including the
-executable name).
+@defvar sawfish-version
+The version number of the running Sawfish.
 @end defvar
 
 @defvar sawfish-directory
@@ -6398,8 +6361,84 @@ example: @code{"/usr/share/sawfish/site-lisp"}. You can override it
 with the environment variable @code{SAWFISHSITELISPDIR}.
 @end defvar
 
-@defvar sawfish-version
-The version number of the running Sawfish.
+@defun exit-type
+If Sawfish is shutting down, this function returns one of the strings
+@code{"user-quit"}, @code{"user-restart"} or @code{"session-quit"}.
+If Sawfish is not shutting down, it returns @code{nil}.
+@end defun
+
+@defun poweroff action
+A function for rebooting, halting, suspending and hibernating
+your machine. Normally this is only used when running outside
+of GNOME or KDE; they provied their own versions of functions.
+
+@var{action} is a symbol, and each invokes the shell command
+defined by the variable as follows:
+
+@multitable @columnfractions .2 .5
+@headitem @var{action} @tab variable
+@item @code{reboot} @tab @code{reboot-command}
+@item @code{halt} @tab @code{halt-command}
+@item @code{suspend} @tab @code{suspend-command}
+@item @code{hibernate} @tab @code{hibernate-command}
+@end multitable
+
+When @var{action} is @code{reboot} or @code{halt}, 
+@code{before-exit-hook} is called, and @code{delete-windows} is
+applied to each window to ensure we safely quit the current session.
+@end defun
+
+
+@node Other Functions, , Sawfish Invocation Functions, Miscellaneous Functions
+@section Other Functions
+@cindex Other functions
+@cindex Functions, other
+
+@defun sync-server
+Flush all pending X requests, don't wait for them to finish.
+@end defun
+
+@defun send-client-message window type data format
+Send an X @code{ClientMessage} event to @var{window} (a window object,
+the symbol @code{root} or a numeric xid).
+
+The event will be of the type @var{type} (a symbol), contain the array
+of integers @var{data} (i.e. a vector or a string), and will be
+transferred as @var{format} sized quantities (8, 16 or 32).
+@end defun
+
+@defun create-window parent x y width height
+Create an unmapped window that is a child of @var{parent} (a window
+object, an integer window id, or the symbol @code{root}), with the
+specified dimensions.
+
+Returns the window id of the new window.
+@end defun
+
+@defun x-atom symbol
+Return the integer identifying the X atom with the same name as
+@var{symbol}.
+@end defun
+
+@defun x-atom-name integer
+Return the symbol with the same name as the X atom identified by the
+integer @var{integer}.
+@end defun
+
+@defvar canonical-display-name
+A string containing the canonical name of the X display.  This
+includes the full host name and the screen number.  For example:
+@code{"foo.bar.com:0.0"}.
+@end defvar
+
+@defvar display-name
+A string containing the name of the X display, exactly as passed to
+Sawfish.  For example: @code{":0"}, or @code{"foo:0.0"}.
+@end defvar
+
+@defvar saved-command-line-args
+Holds a list of all of the command line arguments (including the
+executable name).
 @end defvar
 
 @defun call-with-error-handler thunk
@@ -7183,7 +7222,7 @@ Return the X11 keysym (an integer) named by the Lisp symbol
 
 
 @node X Bitmaps and Pixmaps, X Drawing, X Keysyms, Low-level X Interface
-@section X Windows
+@section X Bitmaps and Pixmaps
 
 @defun x-bitmap-p
 Return @code{t} if @var{arg} is an X-bitmap object.
@@ -7230,7 +7269,7 @@ Return @code{t} if @var{obj} is an X pixmap object.
 
 
 @node X Drawing, Available X Symbols, X Bitmaps and Pixmaps, Low-level X Interface
-@section X Windows
+@section X Drawing
 
 @defun x-clear-window window
 Clear the window associated with @var{window} to its background color.

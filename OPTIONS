@@ -190,6 +190,9 @@
 ;; (define-special-variable apps-menu-alphabetize 't
 ;;   "Sort the apps menu alphabetically.")
 
+;; (define-special-variable want-poweroff-menu t
+;;   "Add poweroff menu if you don't use GNOME / KDE.")
+
 ;; window placement options
 
 ;;  (define-special-variable place-window-mode 'top-left
@@ -655,14 +658,14 @@
 
 ;; (require 'sawfish.wm.ext.infinite-desktop)
 
-;; (define-special-variable infinite-desktop-p 1
-;;   "Simulate an infinite desktop (Conflicts edge-flipping).")
+;; (define-special-variable infinite-desktop-p t
+;;   "\"Infinite desktop\", or smooth viewport motion with mouse (Conflicts edge-flipping).")
 
 ;; (define-special-variable infinite-desktop.move-distance 64
-;;   "Amount to move the workspace.")
+;;   "Amount to move the viewport when the pointer hits the screen edge.")
 
 ;; (define-special-variable infinite-desktop.move-cursor-distance 32
-;;   "Amount to move the cursor after moving the workspace.")
+;;   "Amount to pull back the cursor after moving the viewport.")
 
 ;; poweroff options
 
