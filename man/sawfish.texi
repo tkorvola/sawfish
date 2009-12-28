@@ -4999,6 +4999,10 @@ Displays a menu defined by the list of item definitions @var{spec}.
 In addition, Sawfish provides various canned menus, and functions to
 display those menus.
 
+@defvar popup-window-list-menu
+Display the menu containing the list of all open windows.
+@end defvar
+
 @defvar root-menu
 Contains the root menu definition.
 @end defvar
@@ -6616,7 +6620,7 @@ suppresses that behavior.
 Called when the window is first adopted by the window manager.  This
 occurs before the window is created, installed or placed.  At this
 early stage, the only safe action is to set properties of the window
-(with @code{window-set}).
+(with @code{window-put}).
 
 @code{add-window-hook} is a deprecated hook, replaced by
 @code{before-add-window-hook}.  It is called immediately after

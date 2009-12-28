@@ -1,3 +1,46 @@
+2009-12-28  Christopher Bratusek <zanghar@freenet.de>
+	* configure.in: use `kde4-config --install data' instead of `kde4-config --path data' [Kim B. Heino]
+
+	* sawfish.spec.in: find kde4/librep directories while runtime instead of hardcoding [Kim B. Heino]
+
+	* man/news.texi: added 1.6.1 section
+	                 updated
+			 added Codenames to Headings
+
+	* configure.in: generate debian/changelog from debian/changelog.in
+
+2009-12-27  Christopher Bratusek <zanghar@freenet.de>
+	* configure.in: improve configures help message for better readability [Kim B. Heino]
+
+	* lisp/sawfish/wm/workspace.jl
+	* src/display.c: s/sawmill/sawfish/ [Kim B. Heino]
+
+	* man/sawfish.texi: small misstake in doc
+
+2009-12-22  Christopher Bratusek <zanghar@freenet.de>
+	* man/news.texi: revised
+
+	* KEYBINDINGS: more description on KeyPad
+
+	* README.IMPORTANT: updated
+
+	* debian/changelog: removed, generated from .in file
+
+	== 1.6.1 ==
+
+	* configure.in: post-release version-bump to 1.6.1 "Astral"
+			--without-nine-mouse-buttons is not allowed to have 4 hyphens,
+			so it's now --without-nine-mousebuttons
+
+	* sawfish.spec.in: small fixup [Kim B. Heino]
+
+2009-12-21  Christopher Bratusek <zanghar@freenet.de>
+	* po/sawfish.pot: updated
+
+	* man/sawfish.texi: added doc for popup-window-list-menu
+
+	* configure.in: different code name (I don't want to have the same for RC and Stable)
+
 2009-12-19  Christopher Bratusek <zanghar@freenet.de>
 	* po/sawfish.pot: added sawfish.pot to the tree, as intltool + sawfish is a no-go currently
 
