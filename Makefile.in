@@ -27,7 +27,7 @@ VPATH=@srcdir@
 
 SUBDIRS = @SUBDIRS@
 
-all : build.h DOC NEWS FAQ
+all : build.h DOC
 	for dir in $(SUBDIRS); do \
 	  [ -d $$dir ] && ( cd $$dir && $(MAKE) $@ ) || exit 1; \
  	done
@@ -75,12 +75,6 @@ uninstall :
 DOC :
 	repdoc DOC `find $(srcdir) \( -name '*.c' -o -name '*.jl' \) -print`
 
-NEWS : man/news.texi
-	(cd man && $(MAKE) ../NEWS )
-
-FAQ : man/faq.texi
-	(cd man && $(MAKE) ../FAQ )
-
 clean :
 	-for dir in $(SUBDIRS); do \
 	  [ -d $$dir ] && ( cd $$dir && $(MAKE) $@ ) || exit 1; \
@@ -92,11 +86,18 @@ distclean :
 	  [ -d $$dir ] && ( cd $$dir && $(MAKE) $@ ) || exit 1; \
 	done
 	rm -f config.cache config.h config.log config.status Makedefs Makefile
-	rm -f *~ NEWS DOC* TAGS build.h sawfish.spec sawfish*.ebuild sawfish.pc
-	rm -rf aclocal.m4 autom4te.cache
+	rm -f *~ NEWS DOC* TAGS build.h
+
+gitclean :
+	rm -f aclocal.m4 configure
+	rm -rf autom4te.cache
+	rm -f sawfish.spec sawfish*.ebuild sawfish.pc
+	-fakeroot debian/rules clean
+	rm -f debian/changelog debian/control
+
 
 TAGS :
 	etags --language=c `find $(srcdir) -name '*.[ch]' -print` \
 	      --language=lisp `find $(srcdir) -name '*.jl' -print`
 
-.PHONY: install uninstall tar clean realclean distclean TAGS
+.PHONY: install uninstall tar clean gitclean distclean TAGS

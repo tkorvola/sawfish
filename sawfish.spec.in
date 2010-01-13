@@ -13,10 +13,10 @@ BuildRequires: gmp-devel texinfo
 Provides: windowmanager
 
 %define rep_execdir %(pkg-config librep --variable=repcommonexecdir)
-%if %(kde4-config; echo $?)
-%define kde_apps %{_datadir}/kde4/apps/
+%if %{?_kde4_appsdir:1}%{!?_kde4_appsdir:0}
+%define kde_apps %{_kde4_appsdir}
 %else
-%define kde_apps %(kde4-config --install data)
+%define kde_apps %{_datadir}/kde4/apps
 %endif
 
 %description
@@ -31,12 +31,8 @@ using a GTK+ interface.  Sawfish is mostly GNOME compliant
 %setup -q
 
 %build
-./autogen.sh \
-	--x-libraries=%{_libdir} \
-	--x-includes=/usr/include/X11
-
 %configure
-make host_type=%{_target_platform}
+make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -78,6 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/sawfish/%{version}/%{_host}
 %{rep_execdir}/sawfish
 %{_infodir}/sawfish*
+%{_includedir}/sawfish/
 
 %changelog
 * Sat Sep 05 2009 Kim B. Heino <b@bbbs.net>

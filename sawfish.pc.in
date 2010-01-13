@@ -1,9 +1,10 @@
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 libdir=@libdir@
-includedir=@includedir@
+includedir=@includedir@/sawfish/
 
 sawfishhosttype=@host@
+imageloader=@imageloader@
 
 Name: sawfish
 Description: The Sawfish X11 Window Manager

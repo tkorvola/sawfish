@@ -1,3 +1,82 @@
+2010-01-12  Teika Kazura <teika@lavabit.com>
+	* lisp/sawfish/wm/state/maximize.jl
+	* man/news.texi
+	* man/sawfish.texi: New command 'maximize-discard'. Some doc and code improvements in maximize.jl.
+
+2010-01-06  Jeremy Hankins <nowan@nowan.org>
+	* lisp/sawfish/wm/viewport.jl: Reset the viewport to 0,0 on exit
+		  for *all* workspaces.  This prevents windows from ending
+		  up in strange places on restart.  Also fixed a bug in
+		  select-workspace-and-viewport where it would not select
+		  the correct viewport.
+
+2010-01-03  Christopher Bratusek <zanghar@freenet.de>
+	* Makefile.in: + add gitclean target
+	               + instead of removing generated packging-script files upon
+		        `distclean', remove them on `gitclean'
+		       + call fakeroot debian/rules clean
+		       + remove NEWS and FAQ rules (dupped, as in man/Makefile.in)
+
+	* debian/changelog.in: s/+0200/+0100/
+
+	* debian/control.in: removed debian-specific bits
+
+	* sawfish.spec.in: don't call autogen.sh
+
+	* debian/rules: don't all autotools
+	                don't remove config.{guess,sub} on rules/clean
+			removed unnecessary bit
+
+	* lisp/Makefile.in
+	* lisp/sawfish/cfg/Makefile.in
+	* lisp/sawfish/gtk/Makefile.in
+	* man/Makefile.in
+	* scripts/Makefile.in
+	* sounds/Makefile.in
+	* themes/Makefile.in
+	* src/Makefile.in: renamed all realclean rules to gitclean
+	                   general improvements on *clean rules
+
+	* autogen.sh: call gitclean instead of distclean
+
+	* sawfish.ebuild.in: remove audiofile/esound
+	                     missing `fi' added
+
+2010-01-03  Jeremy Hankins <nowan@nowan.org>
+	* lisp/sawfish/wm/state/wm-spec.jl
+	* lisp/sawfish/wm/viewport.jl: Fixed bug where gnome-pager gets
+		  confused about the viewport when displaying all
+		  workspaces.
+
+2010-01-02  Christopher Bratusek <zanghar@freenet.de>
+	* po/Makefile.in: don't remove sawfish.pot upon distclean
+
+	* sawfish.pc.in: export the imageloader sawfish is configured
+	                 to make use of [required for sawfish-pager 0.7.2]
+
+	* man/news.texi: revised and updated
+
+	* sawfish.pc.in
+	* sawfish.spec.in
+	* debian/sawfish.install
+	* src/Makefile.in: install headers to $includedir/sawfish/
+	                   -- [required for sawfish-pager 0.7.2]
+
+	* src/client.c
+	* src/sawfish.h: updated for librep 0.90.5 header directory change
+
+	* src/sawfish.h: include config.h, if available, else sawfish_config.h
+
+	* configure.in: bump minimum librep to 0.90.5
+	                bump minimum rep-gtk to 0.90.2
+
+	* autogen.sh: added --nocfg flag for not running configure afterwards
+
+	* sawfish.spec.in: improved [Kim B. Heino]
+
+2009-12-30  Timo Korvola <tkorvola@iki.fi>
+	* lisp/sawfish/wm/commands/shrink-yank.jl: fixed docstrings
+
 2009-12-29  Christopher Bratusek <zanghar@freenet.de>
 	* configure.in: auto-generate debian/control
 

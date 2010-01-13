@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -f Makefile ]; then
-	make distclean
+	make gitclean
 fi
 
 if [ -f aclocal.m4 ]; then
@@ -34,4 +34,6 @@ if [ -f configure.in ]; then
   autoconf $AUTOCONF_FLAGS || exit 1
 fi
 
-./configure "$@"
+if [ "${1}" != "--nocfg" ]; then
+	./configure "$@"
+fi

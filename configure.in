@@ -29,9 +29,9 @@ AM_PROG_LIBTOOL
 #IT_PROG_INTLTOOL([0.40.0])
 
 dnl Release versioning info
-version="1.6.1"
+version="1.6.2"
 subversion=""
-codename="Astral"
+codename="Mighty Disco King"
 
 VERSION=${version}
 
@@ -204,7 +204,7 @@ else FONT_LOADER="X.Org"
 fi
 
 dnl Check for librep
-REP_MIN_VER="0.90.4"
+REP_MIN_VER="0.90.5"
 
 PKG_CHECK_MODULES(LIBREP, librep >= ${REP_MIN_VER}
 		  ,REP_EXECDIR="`pkg-config --variable=repcommonexecdir librep`"
@@ -215,7 +215,7 @@ PKG_CHECK_MODULES(LIBREP, librep >= ${REP_MIN_VER}
 		  ,AC_MSG_ERROR([cannot locate librep]))
 
 dnl Check for rep-gtk
-REP_GTK_MIN_VER="0.90.0"
+REP_GTK_MIN_VER="0.90.2"
 
 PKG_CHECK_MODULES(REP_GTK, rep-gtk >= ${REP_GTK_MIN_VER}
 		  ,
@@ -244,6 +244,7 @@ if test "$with_gdk_pixbuf" != "no"; then
 			  IMAGE_LIBS='${GDK_PIXBUF_LIBS}'
 			  IMAGE_CFLAGS='${GDK_PIXBUF_CFLAGS}'
 			  IMAGE_LOADER="GDK Pixbuf Xlib"
+			  imageloader="gdk-pixbuf-xlib"
 			  with_gdk_pixbuf=yes
 			  ,AC_MSG_ERROR([cannot locate gdk-pixbuf-xlib])
 			  with_gdk_pixbuf=no)
@@ -258,6 +259,7 @@ if test "$with_gdk_pixbuf" = "no"; then
 			  IMAGE_CFLAGS='${IMLIB1_CFLAGS}'
 			  IMLIB_VERSION="`pkg-config --modversion imlib`"
 			  IMAGE_LOADER="IMLIB 1"
+			  imageloader="imlib1"
 			  ,AC_MSG_ERROR([cannot locate imlib1 library]))
 fi
 
@@ -349,6 +351,7 @@ AC_SUBST(localedir)
 AC_SUBST(install_sh)
 AC_SUBST(datarootdir)
 AC_SUBST(gitdate)
+AC_SUBST(imageloader)
 AC_SUBST(MAKEDEP)
 AC_SUBST(GNOMEDIR)
 AC_SUBST(KDEDIR)

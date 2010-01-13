@@ -161,7 +161,13 @@ Scroll is done whose steps are `scroll-viewport-steps'."
     (call-hook 'viewport-moved-hook))
 
   (define (viewport-before-exiting)
-    (set-screen-viewport 0 0))
+    ;; Reset all workspaces to viewport 0,0.  This is so that on
+    ;; restart (or if another wm takes over) windows aren't in strange
+    ;; places.
+    (mapc (lambda (ws-data)
+            (select-workspace (car ws-data))
+            (set-screen-viewport 0 0))
+          workspace-viewport-data))
 
   (add-hook 'before-exit-hook viewport-before-exiting t)
 
@@ -246,8 +252,8 @@ well as any windows in the current workspace."
     "On leaving a workspace, store information about the viewport
 configuration so that it can be restored properly later.
 `WS' is the workspace to leave."
-    (let ((vp-data (list viewport-y-offset
-                         viewport-x-offset
+    (let ((vp-data (list viewport-x-offset
+                         viewport-y-offset
                          viewport-dimensions))
           (old-ent (assoc ws workspace-viewport-data)))
       (if old-ent
@@ -265,24 +271,24 @@ When `viewport-boundary-mode' is not `dynamic', make sure that the new
 viewport is within `viewport-dimensions'."
     (let ((vp-data (cdr (assoc ws workspace-viewport-data))))
       (if vp-data
-          (let ((maybe-y-offset (car vp-data))
-                (maybe-x-offset (nth 1 vp-data)))
+          (let ((maybe-x-offset (car vp-data))
+                (maybe-y-offset (nth 1 vp-data)))
             (if (eq viewport-boundary-mode 'dynamic)
                 (setq viewport-dimensions (nth 2 vp-data)
-                      viewport-y-offset maybe-y-offset
-                      viewport-x-offset maybe-x-offset)
+                      viewport-x-offset maybe-x-offset
+                      viewport-y-offset maybe-y-offset)
               ;; Do maybe-y-offset and maybe-x-offset fit within
               ;; current viewport-dimensions?
-              (if (and (<= maybe-y-offset
-                           (* (1- (car viewport-dimensions)) (screen-height)))
-                       (<= maybe-x-offset
-                           (* (1- (cdr viewport-dimensions)) (screen-width))))
-                  (setq viewport-y-offset maybe-y-offset
-                        viewport-x-offset maybe-x-offset)
-                (setq viewport-y-offset 0
-                      viewport-x-offset 0))))
-        (setq viewport-y-offset 0
-              viewport-x-offset 0))
+              (if (and (<= maybe-x-offset
+                           (* (1- (cdr viewport-dimensions)) (screen-width)))
+                       (<= maybe-y-offset
+                           (* (1- (car viewport-dimensions)) (screen-height))))
+                  (setq viewport-x-offset maybe-x-offset
+                        viewport-y-offset maybe-y-offset)
+                (setq viewport-x-offset 0
+                      viewport-y-offset 0))))
+        (setq viewport-x-offset 0
+              viewport-y-offset 0))
       (viewport-size-changed)))
 
   (add-hook 'enter-workspace-hook
@@ -308,8 +314,8 @@ viewport is within `viewport-dimensions'."
       t))
 
   (define (select-workspace-and-viewport space col row)
-    (select-workspace space nil (lambda ()
-				  (set-screen-viewport col row))))
+    (select-workspace space)
+    (set-screen-viewport col row))
 
   ;; returns t if it actually moved the viewport
   (define (move-viewport right down)

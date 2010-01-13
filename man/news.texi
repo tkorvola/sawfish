@@ -7,6 +7,25 @@ they occurred between. For more detailed information see the
 @file{ChangeLog} file in the Sawfish source tree, or git log.
 (See Wiki page for how to access git repository.)
 
+@heading 1.6.2
+
+@itemize @bullet
+
+@item The 1.6.2 release has some improvements.
+
+@item New features
+@itemize @minus
+@item New command @code{maximize-discard} [Teika kazura]
+
+The command @code{maximize-discard} stops a maximized window to be
+treated as maximized any more, so that you can move and resize the
+window.
+
+The functinon @code{maximize-discard} has existed, and now it's
+exported.
+@end itemize
+@end itemize
+
 @heading 1.6.1 "Astral"
 
 @itemize @bullet
@@ -15,36 +34,72 @@ they occurred between. For more detailed information see the
 
 @item Build and Installation
 @itemize @minus
+@item New/Updated requirements:
+@itemize +
+@item librep 0.90.4 -> 0.90.5
+@item rep-gtk 0.90.0 -> 0.90.2
+@end itemize
 
 @item The configure option @code{--without-nine-mouse-buttons} is not allowed
-to have 4 hyphens, therefore it's renamed to @code{--without-nine-mousebuttons},
-to make it work. [Christopher Bratusek]
+to have 4 hyphens, therefore it's renamed to @code{--without-nine-mousebuttons}.
+[Christopher Bratusek]
 
-@item Reworked configures help-message for better readability [Kim B. Heino]
+@item Reworked configures help-message for better readability.
+[Kim B. Heino]
 
 @item Configure now uses @code{kde4-config --install data} rather than
 @code{kde4-config --path data}, so no sed-kludge is needed anymore.
 
-Make $datadir/kde4/apps/ the fallback path, if KDE4 is not installed
+Make $datadir/kde4/apps/ the fallback path, if KDE4 is not installed.
 [Kim B. Heino]
 
-@item Improved debian and rpm packaging scripts. [Christopher Bratusek]
+@item Majorly improved debian and rpm packaging scripts.
+[Christopher Bratusek] [Kim B. Heino]
 
 @item The spec has been reworked to detect kde4/librep directories while runtime,
 instead of hardcoding those paths from configure, which makes it more portable.
 [Kim B. Heino]
 
 @item Our own implementation of dlmalloc is disabled since 2002, as it breaks
-sawfish on several architectures. From this version on, we don't ship it.
+sawfish on several architectures. From this version on, we don't ship it anymore.
 [Kim B. Heino]
+
+@item Export the imageloader beeing used by sawfish in the .pc file.
+[Christopher Bratusek]
+
+@item Don't remove the .pot file upon @code{make distclean}.
+[Christopher Bratusek]
+
+@item Install Sawfishs header files to $includedir/sawfish/.
+[Christopher Bratusek]
+
+@item Autotools improvements (Makefile, autogen.sh & Co.)
+[Christopher Bratusek]
 @end itemize
+@item Bugfixes
+@itemize @minus
+
+@item Fixed a bug where the gnome-panels pager gets confused about the current
+viewport when displaying all workspaces.
+[Jeremy Hankins]
+
+@item Fixed minor bugs in viewport.jl.
+[Jeremy Hankins]
+@end itemize
+
 @item Doc
 @itemize @minus
 
-@item Fixed a small doc misstake (refered to window-set instead of window-put)
+@item Fixed a small doc misstake (refered to window-set instead of window-put).
 [Christopher Bratusek]
 
-@item Last 3 ``sawmill'' replaced by ``sawfish'' [Kim B. Heino]
+@item Fixed the docstrings of shrink and yank.
+[Timo Korvola]
+@end itemize
+@item Misc
+@itemize @minus
+@item Last 3 instances of ``sawmill'' replaced by ``sawfish''.
+[Kim B. Heino]
 @end itemize
 @end itemize
 
