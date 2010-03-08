@@ -1,3 +1,97 @@
+2010-03-06  Teika Kazura <teika@lavabit.com>
+	* OPTIONS
+	* lisp/sawfish/wm/util/display-window.jl
+	* man/faq.texi
+	* man/news.texi
+	* man/sawfish.texi
+	* src/events.c
+	* src/windows.c: Doc, mainly texi "windows" chapter organization. Groups are revised. New sections: "Getting Windows",
+	                 "Stacking Vilibility", "Activating Window". Functions `display-window' and `activate-window' are documented.
+			 Option `unshade-selected-windows' is documented.  Distinction between 'window-wants-input-p' and
+			 'window-really-wants-input-p' is described. Minor error fix: 'window-transient-p' returns the parent id,
+			 not t, when transient. Docstring with trailing "\\w" puts the widget right to the label in the configurator.
+			 Faq item on per head workspace switching.
+
+	* OPTIONS
+	* lisp/sawfish/wm/windows.jl
+	* man/faq.texi
+	* man/news.texi: Long unsupported option 'ignore-window-input-hint' is deleted, together with related codes.
+
+	* man/news.texi
+	* man/sawfish.texi: In texi, dropped 'edition' number, the date oflast update, and so on. These items tend to be
+	                    incorrect, since editors often forget touching them.
+
+2010-02-27  Teika Kazura <teika@lavabit.com>
+	* lisp/Makefile.in
+	* lisp/sawfish/cfg/main.jl.in
+	* lisp/sawfish/wm.jl
+	* man/news.texi
+	* man/sawfish.texi
+	* src/main.c
+	* src/sawfish_subrs.h
+	* themes/Makefile.in: Implements SAWFISH_USER_LISP_DIR. Like PATH, it's colon seperated directories.
+	                      Its value will be prepended to load-path. Now it's possible for users to override any
+			      installed lisp files. sawfish-config respects it, too. Doc.
+
+	* lisp/sawfish/wm/commands.jl
+	* lisp/sawfish/wm/custom.jl
+	* lisp/sawfish/wm/misc.jl
+	* lisp/sawfish/wm/state/iconify.jl
+	* lisp/sawfish/wm/util/with-output.jl
+	* lisp/sawfish/wm/windows.jl
+	* man/news.texi
+	* man/sawfish.texi: Doc. Comments in source to prevent error during init. Comment on _SAWFISH_WM_RAISE_WINDOW
+	                    and _SAWFISH_WM_LOWER_WINDOW. `select-window' returns nil for the root window.
+
+2010-02-17  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/keymaps.jl: then pressing the lock-button also do a state-change [Fuchur]
+
+2010-02-16  Christopher Bratusek <zanghar@freenet.de>
+	* configure.in: post-release versionbump to 1.6.3 "Hava Nagila"
+
+2010-02-13  Teika Kazura <teika@lavabit.com>
+	* lisp/sawfish/wm/ext/apps-menu.jl
+	* man/news.texi: The dangerous 'open-file' in apps-menu.jl is protected with condition-case. Symlink is read again.
+	                 All 'if' are replaced by 'when' when possible.
+
+	* lisp/sawfish/gtk/README
+	* src/display.c: Doc. Comments in source. New file lisp/sawfish/gtk/README describes the diretory's contents.
+
+	* lisp/sawfish/wm/tabs/tab.jl: Minor fix: delete bogus export in tab.jl.
+
+	* lisp/sawfish/wm/ext/match-window.jl
+	* man/news.texi: Bugfix of window placement by direction. When the window placement mode is for example east
+	                 and the window is wider than the screen, then the window was put wrongly. It is fixed.
+
+2010-02-13  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/ext/apps-menu.jl: non-readable .desktop files are no longer stopping sawfish startup
+	                                    though files with permission 000 are still...
+
+2010-02-10  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/ext/apps-menu.jl: - ignore .desktop files that are symlinks
+	                                    - don't crash if first char of a keyvalue is ;
+					    - don't crash if # is part of the keyvalue
+					    -- [Matthew Love]
+
+2010-02-02  Teika Kazura <teika@lavabit.com>
+	* lisp/sawfish/cfg/wm.jl
+	* lisp/sawfish/wm/commands/grow-pack.jl
+	* lisp/sawfish/wm/commands/shrink-yank.jl
+	* lisp/sawfish/wm/util/compat.jl
+	* lisp/sawfish/wm/util/nokogiri.jl
+	* man/Makefile.in
+	* man/faq.texi
+	* man/news.texi
+	* man/sawfish.texi:  Doc changes. Corrections and descrption / format improvements in grow, pack, shrink and yank.
+	                     Verbose instruction on how to compile docs. Describes exactly what 'obsolete' variables are.
+			     Comments in sourecs. Basic Xinerama doc.
+
+2010-01-24  Christopher Bratusek <zanghar@freenet.de>
+	* sawfish.spec.in: improved [Kim B. Heino]
+
+2010-01-23  Christopher Bratusek <zanghar@freenet.de>
+	* sawfish.ebuild.in: improved
+
 2010-01-18  Christopher Bratusek <zanghar@freenet.de>
 	* lisp/sawfish/wm/menus.jl: sawfish-themer is dead, so remove the corresponing entry from custom-menu
 
@@ -7,6 +101,9 @@
 	* KEYBINDINGS: underline headings
 	               add keymap for specific application section
 		       add keymap-trans section
+
+	* man/sawfish.texi
+	* man/news.texi: updated
 
 2010-01-15  Christopher Bratusek <zanghar@freenet.de>
 	* lisp/sawfish/wm/autoload.jl

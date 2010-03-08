@@ -1,5 +1,7 @@
 @c -*- texinfo -*-
 
+@c To compile: makeinfo --no-validate  --no-headers faq.texi > FAQ
+
 @chapter Frequently Asked Questions
 
 @enumerate
@@ -194,6 +196,18 @@ $ visudo                 # add the group "shutdown" to sudoers
 
 That's it, now everyone in the @code{shutdown} group can do it!
 
+@item I have multiple heads. Is it possible to switch workspace per head?
+
+You have to devise a trick, because the strict answer is no.  There's
+``sticky-head'' script which partly achives it on the wiki, but it's
+still incomplete: @url{http://sawfish.wikia.com/wiki/Sticky-head}
+
+Technically, Sawfish's workspace implements ``virtual desktop''
+specified in the window manager standard (ewmh), which has to be
+at least the size of the X screen, so the workspace has to containt
+all heads. ``Per head workspace'' has to be implemented as a new
+mechanism on top of workspace.
+
 @item Why don't you use GUILE?
 
 Mainly because I'm lazy; I had already written rep, and therefore
@@ -236,13 +250,9 @@ Recompile GTK+ using the @samp{--disable-xim} option to configure
 
 @item Why don't some windows ever get focused?
 
-If you don't have the option ``give focus to windows even when they
-haven't asked for it'' set to nil (define-special-variable
-ignore-window-input-hint nil), then windows that don't ask for focus
-don't get it.
-
-Windows ask to receive focus by setting their WM_HINTS property
-appropriately; for example if I xprop a gnome-terminal:
+Because that window doesn't accept it. Technically, windows ask to
+receive focus by setting their WM_HINTS property appropriately; for
+example if I xprop a gnome-terminal:
 
 @example
 WM_HINTS(WM_HINTS):
@@ -276,7 +286,6 @@ $ killall panel
 It means that you're trying to execute Lisp code that was compiled for
 an outdated version of the Lisp virtual machine. Recompile any Lisp
 files that you have installed locally.
-
 
 @item Historical question: Why is it now called @emph{Sawfish}?
 

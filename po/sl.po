@@ -1,37 +1,41 @@
-# Slovenian translation file for Sawfish.
+# Slovenian translation for sawfish.
 # Copyright (C) 2000 Free Software Foundation, Inc.
-# Andraz Tori <andraz.tori1@guest.arnes.si> 2000
+# This file is distributed under the same license as the sawfish package.
+#
+# Andraž Tori <andraz.tori1@guest.arnes.si>, 2000.
+# Matej Urbančič <mateju@svn.gnome.org>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: sawfish\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-18 18:28+0100\n"
-"PO-Revision-Date: 2000-07-03 11:46+0200\n"
-"Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
-"Language-Team: Slovenian <sl@li.org>\n"
+"POT-Creation-Date: 2009-12-21 18:05+0100\n"
+"PO-Revision-Date: 2010-02-26 14:43+0100\n"
+"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
+"Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
+"X-Poedit-Country: SLOVENIA\n"
+"X-Poedit-Language: Slovenian\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #. ../themes/Crux/theme.jl
 msgid "Crux Theme"
 msgstr "Crux tema"
 
 #. ../themes/Crux/theme.jl
-msgid ""
-"Accent color for focused windows (if unset uses the GTK+ selection color)."
-msgstr ""
-"Naglašena barva za fokusirana okna (če ni nastavljena uporabi GTK+ barvo "
-"izbire)."
+msgid "Accent color for focused windows (if unset uses the GTK+ selection color)."
+msgstr "Naglašena barva za okna v žarišču (če ni nastavljena uporabi GTK+ barvo izbire)."
 
 #. ../themes/Crux/theme.jl
 msgid "Display the window's icon in its menu button."
-msgstr "Kaži ikono okna v njegovem menuju gumbov."
+msgstr "Pokaži ikono okna v njegovem meniju gumbov."
 
 #. ../themes/Crux/theme.jl
 msgid "Display title buttons to mimic: \\w"
-msgstr "Kaži gumbe naslovne vrstice:\\w"
+msgstr "Pokaži gumbe naslovne vrstice:\\w"
 
 #. ../themes/gradient/theme.jl
 msgid "Gradient Theme"
@@ -58,24 +62,23 @@ msgstr "Smer preliva v 'prelivnem' slogu okvirja."
 
 #. ../themes/gradient/theme.jl
 msgid "`From' color of inactive frames in `gradient' frame style."
-msgstr "'From' barva nedejavnih okvirjev v okvirnem slogu 'preliv'."
+msgstr "'Od' barva nedejavnih okvirjev v okvirnem slogu 'preliv'."
 
 #. ../themes/gradient/theme.jl
 msgid "`To' color of inactive frames in `gradient' frame style."
-msgstr "'To' barva nedejavnih okvirjev v okvirnem slogu 'preliv'."
+msgstr "'Za' barva nedejavnih okvirjev v okvirnem slogu 'preliv'."
 
 #. ../themes/gradient/theme.jl
 msgid "`From' color of active frames in `gradient' frame style."
-msgstr "'From' barva dejavnih okvirjev v okvirnem slogu 'preliv'."
+msgstr "'Od' barva dejavnih okvirjev v okvirnem slogu 'preliv'."
 
 #. ../themes/gradient/theme.jl
 msgid "`To' color of active frames in `gradient' frame style."
-msgstr "'To' barva dejavnih okvirjev v okvirnem slogu 'preliv'."
+msgstr "'Za' barva dejavnih okvirjev v okvirnem slogu 'preliv'."
 
 #. ../themes/gradient/theme.jl
 msgid "Use less memory when creating gradients, possibly affecting quality."
-msgstr ""
-"Uporabi manj pomnilnika ob ustvarjanju prelivov (lahko upliva na kvailteto)."
+msgstr "Uporabi manj pomnilnika ob ustvarjanju prelivov (lahko vpliva na kakovost)."
 
 #. ../themes/mono/theme.jl
 msgid "Mono Theme"
@@ -83,8 +86,7 @@ msgstr "Enobarvna tema"
 
 #. ../themes/mono/theme.jl
 msgid "Color of inactive frames (if unset use GTK+ background color)."
-msgstr ""
-"Barva nedejavnih okvirjev (če ni nastavljena uporabi GTK+ barvo ozadja)."
+msgstr "Barva nedejavnih okvirjev (če ni nastavljena uporabi GTK+ barvo ozadja)."
 
 #. ../themes/mono/theme.jl
 msgid "Color of active frames (if unset use GTK+ selection color)."
@@ -111,40 +113,35 @@ msgstr "Besedilo je v nazivih oken \\w poravnano."
 
 #. ../themes/mxflat/theme.jl
 msgid "mxflat"
-msgstr ""
+msgstr "mxflat"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "title"
-msgstr "Stanje"
+msgstr "naziv"
 
 #. ../themes/mxflat/theme.jl
 msgid "basic"
-msgstr ""
+msgstr "osnovno"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "gradient"
-msgstr "transistentna okna"
+msgstr "preliv"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "colors"
-msgstr "Izberi barvo"
+msgstr "barve"
 
 #. ../themes/mxflat/theme.jl
 msgid "buttons"
-msgstr ""
+msgstr "gumbi"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "positions 1"
-msgstr "Lega"
+msgstr "položaj 1"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "positions 2"
-msgstr "Lega"
+msgstr "položaj 2"
 
 #. ../themes/mxflat/theme.jl
 msgid "keymaps 1"
@@ -155,23 +152,21 @@ msgid "keymaps 2"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "borders"
-msgstr "Zgornja meja"
+msgstr "robovi"
 
 #. ../themes/mxflat/theme.jl
 msgid "extended"
-msgstr ""
+msgstr "razširjeno"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "normal"
-msgstr "Običajen"
+msgstr "običajno"
 
 #. ../lisp/sawfish/wm/stacking.jl
 #. ../themes/mxflat/theme.jl
 msgid "all"
-msgstr "vsemi"
+msgstr "vse"
 
 #. ../lisp/sawfish/wm/window-anim.jl
 #. ../lisp/sawfish/wm/util/stacking.jl
@@ -185,54 +180,39 @@ msgstr "brez"
 msgid ""
 "decoration mode\n"
 "\n"
-"Set the mode 'when to draw a titlebar and window buttons'.  The decoration "
-"mode 'all' means that all windows, even transients/dialogs, will get a "
-"titlebar and buttons.  None means no window will get any :-).  Usually "
-"transients only have a contents-border.  This option is for reimplementing a "
-"sawfish feature that is gone in the latest version."
+"Set the mode 'when to draw a titlebar and window buttons'.  The decoration mode 'all' means that all windows, even transients/dialogs, will get a titlebar and buttons.  None means no window will get any :-).  Usually transients only have a contents-border.  This option is for reimplementing a sawfish feature that is gone in the latest version."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid "titlebar height (9 - 1000 pixel)"
-msgstr ""
+msgstr "višina nazivne vrstice (9 - 1000 točk)"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "customize title string\n"
 "\n"
-"See the tooltip for the 'title string' option below for more information.  "
-"(NOTE: I hope the redrawing problems with this option are solved.  If not, "
-"write an email please!)"
+"See the tooltip for the 'title string' option below for more information.  (NOTE: I hope the redrawing problems with this option are solved.  If not, write an email please!)"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "title string\n"
 "\n"
-"The string you insert here will be your new title string.  Variables always "
-"start with a dollar-sign ($) and are replaced with their actual values.  To "
-"get the value of an environment variable use $(variable), eg $(DISPLAY).  To "
-"get the value of an rep/sawfish function use $[fuction], eg $[current-time-"
-"string].  The following vars are built-in: $name, $fullname, $width, $width-"
-"content, $height, $height-content, $depth, $x-pos, $y-pos, $current-ws and "
-"$last-ws. (NOTE: I hope the redrawing problems with this option are solved.  "
-"If not, write an email please!"
+"The string you insert here will be your new title string.  Variables always start with a dollar-sign ($) and are replaced with their actual values.  To get the value of an environment variable use $(variable), eg $(DISPLAY).  To get the value of an rep/sawfish function use $[fuction], eg $[current-time-string].  The following vars are built-in: $name, $fullname, $width, $width-content, $height, $height-content, $depth, $x-pos, $y-pos, $current-ws and $last-ws. (NOTE: I hope the redrawing problems with this option are solved.  If not, write an email please!"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "update title string periodically\n"
 "\n"
-"This is useful if your title string changes without user interaction (eg "
-"because it displays the current time or something like that)."
+"This is useful if your title string changes without user interaction (eg because it displays the current time or something like that)."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "title string update interval (1 - 1000000 s)\n"
 "\n"
-"This is useful if your title string changes without user interaction (e.g., "
-"because it displays the current time or something like that)."
+"This is useful if your title string changes without user interaction (e.g., because it displays the current time or something like that)."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
@@ -250,40 +230,34 @@ msgid ""
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "real-center"
-msgstr "sredina"
+msgstr "prava sredina"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "title string horizontal alignment\n"
 "\n"
-"'real-center' means to take the whole titlebar into account while centering "
-"the string. when selecting 'center' only the distance between the buttons is "
-"taken into account."
+"'real-center' means to take the whole titlebar into account while centering the string. when selecting 'center' only the distance between the buttons is taken into account."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "title string horizontal align adjustment (-10000 - 10000 pixel)\n"
 "\n"
-"The horizontal position of the title string can only be adjusted if the "
-"horizontal alignment is not 'center'.  The range also depends on the setting "
-"of the option above.  It the title string is already aligned left, you "
-"cannot adjust it to be even further left because there are button in the way."
+"The horizontal position of the title string can only be adjusted if the horizontal alignment is not 'center'.  The range also depends on the setting of the option above.  It the title string is already aligned left, you cannot adjust it to be even further left because there are button in the way."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid "top"
-msgstr ""
+msgstr "zgoraj"
 
 #. ../themes/mxflat/theme.jl
 msgid "bottom"
-msgstr ""
+msgstr "spodaj"
 
 #. ../themes/mxflat/theme.jl
 msgid "title string vertical alignment"
-msgstr ""
+msgstr "navpična poravnava niza naziva"
 
 #. ../themes/mxflat/theme.jl
 msgid "title string vertical align adjustment (-10000 - 10000 pixel)"
@@ -293,44 +267,38 @@ msgstr ""
 msgid ""
 "gradient titlebar background (experimental)\n"
 "\n"
-"When activating the gradient background the normal titlebar background "
-"colors will be ignored.  Besides the button background colors will be "
-"ignored.  (NOTE: This can be very cpu intensive if you set the quality to a "
-"low value, i.e., high quality.)"
+"When activating the gradient background the normal titlebar background colors will be ignored.  Besides the button background colors will be ignored.  (NOTE: This can be very cpu intensive if you set the quality to a low value, i.e., high quality.)"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "gradient mode\n"
 "\n"
-"With gradient mode vertical or diagonal only the first or last (reversed) 2 "
-"colors in the list are used."
+"With gradient mode vertical or diagonal only the first or last (reversed) 2 colors in the list are used."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "gradient quality (1 best - 20 worst)\n"
 "\n"
-"The value here is the factor the calculated gradient image will be scaled "
-"down.  This increases speed but decreases quality."
+"The value here is the factor the calculated gradient image will be scaled down.  This increases speed but decreases quality."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid "rainbow"
-msgstr ""
+msgstr "mavrica"
 
 #. ../themes/mxflat/theme.jl
 msgid "jamaica"
-msgstr ""
+msgstr "jamajka"
 
 #. ../themes/mxflat/theme.jl
 msgid "rgb"
-msgstr ""
+msgstr "rgb"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "custom"
-msgstr "Prilagodi"
+msgstr "po meri"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
@@ -343,82 +311,66 @@ msgstr ""
 msgid ""
 "\n"
 "\n"
-"With gradient mode vertical or diagonal only the first or last (reversed) 2 "
-"colors in the list are used.  Besides the gradient color mode must be set to "
-"custom to activate this list."
+"With gradient mode vertical or diagonal only the first or last (reversed) 2 colors in the list are used.  Besides the gradient color mode must be set to custom to activate this list."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "reverse colors"
-msgstr "Izberi barvo"
+msgstr "nasprotne barve"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "unfocused/highlighted titlebar colors hue (0 - 360)\n"
 "\n"
-"This value changes the hue of a color, by moving (0 - 360) degress around "
-"the color cycle...180 for example inverts the color"
+"This value changes the hue of a color, by moving (0 - 360) degress around the color cycle...180 for example inverts the color"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 #, c-format
 msgid ""
-"unfocused/highlighted titlebar colors saturation (0 - 100% of the focused "
-"color)\n"
+"unfocused/highlighted titlebar colors saturation (0 - 100% of the focused color)\n"
 "\n"
 "The saturation of a color is a measurement of the color intensity"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 #, c-format
-msgid ""
-"unfocused/highlighted titlebar colors brightness (0 - 100% of the focused "
-"color)"
+msgid "unfocused/highlighted titlebar colors brightness (0 - 100% of the focused color)"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "  focused titlebar color\n"
 "\n"
-"This is one of the 4 base colors.  You can set these 4 colors and keep the "
-"extended colors deactivated.  All other color options of the theme will then "
-"depend on these 4 colors."
+"This is one of the 4 base colors.  You can set these 4 colors and keep the extended colors deactivated.  All other color options of the theme will then depend on these 4 colors."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "unfocused titlebar color\n"
 "\n"
-"This is one of the 4 base colors.  You can set these 4 colors and keep the "
-"extended colors deactivated.  All other color options of the theme will then "
-"depend on these 4 colors."
+"This is one of the 4 base colors.  You can set these 4 colors and keep the extended colors deactivated.  All other color options of the theme will then depend on these 4 colors."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "  focused title string color\n"
 "\n"
-"This is one of the 4 base colors.  You can set these 4 colors and keep the "
-"extended colors deactivated.  All other color options of the theme will then "
-"depend on these 4 colors."
+"This is one of the 4 base colors.  You can set these 4 colors and keep the extended colors deactivated.  All other color options of the theme will then depend on these 4 colors."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "unfocused title string color\n"
 "\n"
-"This is one of the 4 base colors.  You can set these 4 colors and keep the "
-"extended colors deactivated.  All other color options of the theme will then "
-"depend on these 4 colors."
+"This is one of the 4 base colors.  You can set these 4 colors and keep the extended colors deactivated.  All other color options of the theme will then depend on these 4 colors."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "customize extended title string colors\n"
 "\n"
-"You can customize additional colors of the title string.  If you deactivate "
-"this, these colors will be set to the focused title string color."
+"You can customize additional colors of the title string.  If you deactivate this, these colors will be set to the focused title string color."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
@@ -438,59 +390,53 @@ msgid "unfocused clicked title string color"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "default-9"
-msgstr "Privzeto"
+msgstr "privzeto-9"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "default-12"
-msgstr "Privzeto"
+msgstr "privzeto-12"
 
 #. ../themes/mxflat/theme.jl
 msgid "square-6"
-msgstr ""
+msgstr "kvadrat-6"
 
 #. ../themes/mxflat/theme.jl
 msgid "square-9"
-msgstr ""
+msgstr "kvadrat-9"
 
 #. ../themes/mxflat/theme.jl
 msgid "square-12"
-msgstr ""
+msgstr "kvadrat-12"
 
 #. ../themes/mxflat/theme.jl
 msgid "square-15"
-msgstr ""
+msgstr "kvadrat-15"
 
 #. ../themes/mxflat/theme.jl
 msgid "square-18"
-msgstr ""
+msgstr "kvadrat-18"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "ball-9"
-msgstr "vsemi"
+msgstr "kroglica-9"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "ball-12"
-msgstr "vsemi"
+msgstr "kroglica-12"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "button icon set (experimental)\n"
 "\n"
-"The number at the end is the width/height of the button icons in the icon "
-"set.  (NOTE: YOU NEED TO RESTART SAWFISH AFTER CHANGING THE BUTTON ICON SET!)"
+"The number at the end is the width/height of the button icons in the icon set.  (NOTE: YOU NEED TO RESTART SAWFISH AFTER CHANGING THE BUTTON ICON SET!)"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "customize button size\n"
 "\n"
-"By default the button size follows the size of the titlebar, but by "
-"activating this you can set it to something different."
+"By default the button size follows the size of the titlebar, but by activating this you can set it to something different."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
@@ -504,33 +450,28 @@ msgstr ""
 msgid ""
 "button vertical alignment\n"
 "\n"
-"If a button is smaller than the titlebar you might want to set its vertical "
-"alignment."
+"If a button is smaller than the titlebar you might want to set its vertical alignment."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "scale button icons (experimental)\n"
 "\n"
-"In case you don't like the default size of 9 pixel you might activate button-"
-"scaling.  YOU NEED TO RESTART SAWFISH AFTER CHANGING THE BUTTON SCALE!"
+"In case you don't like the default size of 9 pixel you might activate button-scaling.  YOU NEED TO RESTART SAWFISH AFTER CHANGING THE BUTTON SCALE!"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "button icon scale; changes here need a restart of sawfish (0 - 1000 pixel)\n"
 "\n"
-"in case you don't like the default size of 9 pixel you might activate button-"
-"scaling. (NOTE: YOU NEED TO RESTART SAWFISH AFTER CHANGING THE BUTTON SCALE!)"
+"in case you don't like the default size of 9 pixel you might activate button-scaling. (NOTE: YOU NEED TO RESTART SAWFISH AFTER CHANGING THE BUTTON SCALE!)"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "display window icon on menu button\n"
 "\n"
-"Many people like having the window-icon displayed on the menu-button.  This "
-"icon is defined by the application itself and is also shown in your pager "
-"and task-list."
+"Many people like having the window-icon displayed on the menu-button.  This icon is defined by the application itself and is also shown in your pager and task-list."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
@@ -539,7 +480,7 @@ msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid "button distance (0 - 1000 pixel)"
-msgstr ""
+msgstr "razdalja gumbov (0 - 1000 točk)"
 
 #. ../themes/mxflat/theme.jl
 msgid "buttons left offset (0 - 1000 pixel)"
@@ -553,88 +494,71 @@ msgstr ""
 msgid ""
 "customize button position (-1 -2 -3 .. title string .. +3 +2 +1)\n"
 "\n"
-"Enabling this will allow you to set the positon of each button in the "
-"titlebar manually.  A negative/positiv value means the button will be drawn "
-"on left/right side of the titlebar."
+"Enabling this will allow you to set the positon of each button in the titlebar manually.  A negative/positiv value means the button will be drawn on left/right side of the titlebar."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid "title-height"
-msgstr ""
+msgstr "višina-naziva"
 
 #. ../themes/mxflat/theme.jl
 msgid "pixel"
-msgstr ""
+msgstr "točka"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "button position model\n"
 "\n"
-"'title-height' means calculate position as multiple of title height. when "
-"selecting 'pixel' you can adjust the button position pixelwise, but keep in "
-"mind that several buttons might slide on top of each other. 'none' means no "
-"buttons at all."
+"'title-height' means calculate position as multiple of title height. when selecting 'pixel' you can adjust the button position pixelwise, but keep in mind that several buttons might slide on top of each other. 'none' means no buttons at all."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "menu button position"
-msgstr "Pomni _položaj"
+msgstr "položaj gumba menija"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "shade button position"
-msgstr "povezave tipk gumba \"senči\""
+msgstr "položaj gumba za senčenje"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "iconify button position"
-msgstr "povezave tipk gumba \"skrči\""
+msgstr "položaj gumba za pomanjšanje v ikono"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "maximize button position"
-msgstr "povezave tipk gumba \"razpni\""
+msgstr "položaj gumba za razpenjanje"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "close button position"
-msgstr "povezave tipk gumba \"zapri\""
+msgstr "položaj gumba za zapiranje"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "sticky button position"
-msgstr "povezave tipk gumba \"skrči\""
+msgstr "položaj lepljivega gumba"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "previous workspace button position"
-msgstr "Prejšnje okno delovne površine"
+msgstr "položaj gumba predhodne delovne površine"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "next workspace button position"
-msgstr "Naslednje okno delovno površine"
+msgstr "položaj gumba naslednje delovne površine"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "configure button position"
-msgstr "povezave tipk gumba \"skrči\""
+msgstr "nastavitev položaja gumba"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "info button position"
-msgstr "Shrani zgodovino položaja okna"
+msgstr "položaj gumba podrobnosti"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "always-on-top button position"
-msgstr "Shrani zgodovino položaja okna"
+msgstr "položaj gumba vedno-na-vrhu"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "lock button position"
-msgstr "povezave tipk gumba \"zapri\""
+msgstr "položaj gumba za zaklepanje"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
@@ -645,52 +569,45 @@ msgid ""
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "mxflat:sticky-button-keymap"
-msgstr "povezave tipk gumba \"skrči\""
+msgstr "mxflat:tipke lepljivega gumba"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "customize previous button keymap\n"
 "\n"
-"By default a button will work as it's name suggests. Button1: send window to "
-"previous workspace - button2 workspace-list - button3 send window to first "
-"workspace - button6 pack window left"
+"By default a button will work as it's name suggests. Button1: send window to previous workspace - button2 workspace-list - button3 send window to first workspace - button6 pack window left"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 #, fuzzy
 msgid "mxflat:previous-button-keymap"
-msgstr "povezave tipk gumba \"menu\""
+msgstr "Premakne se na predhodni gumb."
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "customize next button keymap\n"
 "\n"
-"By default a button will work as it's name suggests. Button1: send window to "
-"next workspace - button2 workspace-list - button3 send window to last "
-"workspace - button6 pack window right"
+"By default a button will work as it's name suggests. Button1: send window to next workspace - button2 workspace-list - button3 send window to last workspace - button6 pack window right"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 #, fuzzy
 msgid "mxflat:next-button-keymap"
-msgstr "povezave tipk gumba \"menu\""
+msgstr "Premakne se na naslednji gumb."
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "\n"
 "\n"
-"button1: send window to next workspace - button2 workspace-list - button3 "
-"send window to last workspace - button6 pack window right"
+"button1: send window to next workspace - button2 workspace-list - button3 send window to last workspace - button6 pack window right"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "customize configure button keymap\n"
 "\n"
-"By default a button will work as it's name suggests. Button1: start sawfish-"
-"config - button3: toggle custom title string"
+"By default a button will work as it's name suggests. Button1: start sawfish-config - button3: toggle custom title string"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
@@ -709,8 +626,7 @@ msgstr ""
 msgid ""
 "customize info button keymap\n"
 "\n"
-"By default a button will work as it's name suggests. Button1: window list - "
-"button3 window snooper (not included by default)"
+"By default a button will work as it's name suggests. Button1: window list - button3 window snooper (not included by default)"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
@@ -722,18 +638,14 @@ msgstr "povezave tipk gumba \"menu\""
 msgid ""
 "always on top depth (-1000 - 1000)\n"
 "\n"
-"A window will have this depth after you have pressed the always-on-top "
-"button.  0 is the normal window level.  Every positive value means above "
-"other windows, a negative value means below.  Keep it at a positive value in "
-"order to have the always-on-top button do it's job."
+"A window will have this depth after you have pressed the always-on-top button.  0 is the normal window level.  Every positive value means above other windows, a negative value means below.  Keep it at a positive value in order to have the always-on-top button do it's job."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "customize always-on-top button keymap\n"
 "\n"
-"By default a button will work as it's name suggests. Button1: sets window "
-"depth to the adjusted value."
+"By default a button will work as it's name suggests. Button1: sets window depth to the adjusted value."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
@@ -745,8 +657,7 @@ msgstr "povezave tipk gumba \"menu\""
 msgid ""
 "customize look button keymap\n"
 "\n"
-"By default a button will work as it's name suggests. Button1: lock window "
-"position"
+"By default a button will work as it's name suggests. Button1: lock window position"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
@@ -758,17 +669,16 @@ msgstr "povezave tipk gumba \"zapri\""
 msgid ""
 "customize button-colors\n"
 "\n"
-"When you active this you will be able to set custom button colors.  By "
-"default the button colors depend on the titlebar colors."
+"When you active this you will be able to set custom button colors.  By default the button colors depend on the titlebar colors."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid "  focused button background color"
-msgstr ""
+msgstr " barva ozadja gumba v žarišču"
 
 #. ../themes/mxflat/theme.jl
 msgid "unfocused button background color"
-msgstr ""
+msgstr "barva ozadja gumba brez žarišča"
 
 #. ../themes/mxflat/theme.jl
 msgid "  focused highlighted button background color"
@@ -788,11 +698,11 @@ msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid "  focused button foreground color"
-msgstr ""
+msgstr " barva pisave gumba v žarišču"
 
 #. ../themes/mxflat/theme.jl
 msgid "unfocused button foreground color"
-msgstr ""
+msgstr "barva pisave gumba brez žarišča"
 
 #. ../themes/mxflat/theme.jl
 msgid "  focused highlighted button foreground color"
@@ -813,28 +723,21 @@ msgstr ""
 msgid ""
 "border width for maximized windows (0 - 1000 pixel)\n"
 "\n"
-"When you like having a big border around your windows you might have noticed "
-"that sawfish still draws that big border when the window is maximized.  If "
-"you don't want that, set the border width for maximized windows smaller than "
-"the border width for unmaximized windows.  (NOTE: this feature is still "
-"buggy as sawfish does not resize the windows correctly yet, so the best "
-"might be to set it to the normal border width.)"
+"When you like having a big border around your windows you might have noticed that sawfish still draws that big border when the window is maximized.  If you don't want that, set the border width for maximized windows smaller than the border width for unmaximized windows.  (NOTE: this feature is still buggy as sawfish does not resize the windows correctly yet, so the best might be to set it to the normal border width.)"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "customize border for focused windows (experimental)\n"
 "\n"
-"(NOTE: this works but it is VERY cpu intensive and might slow down your "
-"computer noticably.  So turn it on at your own risk.)"
+"(NOTE: this works but it is VERY cpu intensive and might slow down your computer noticably.  So turn it on at your own risk.)"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "border width for focused windows (0 - 1000 pixel)\n"
 "\n"
-"(NOTE: this works but it is VERY cpu intensive and might slow down your "
-"computer noticably.  So turn it on at your own risk.)"
+"(NOTE: this works but it is VERY cpu intensive and might slow down your computer noticably.  So turn it on at your own risk.)"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
@@ -848,58 +751,47 @@ msgstr ""
 msgid ""
 "border offset (-1000 - 1000 pixel)\n"
 "\n"
-"Adjust the point where the border actually starts.  Many gtk2 apps draw a "
-"small black border around their contents window and this is just ugly when "
-"sawfish draws another border around the window. With a border offset of -1 "
-"the sawfish window border will overlay the gtk2 border exactly."
+"Adjust the point where the border actually starts.  Many gtk2 apps draw a small black border around their contents window and this is just ugly when sawfish draws another border around the window. With a border offset of -1 the sawfish window border will overlay the gtk2 border exactly."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "keep window borders and corners at their place when shading a window\n"
 "\n"
-"When shading a window borders and corners will stay where they were and not "
-"merge with the titlebar."
+"When shading a window borders and corners will stay where they were and not merge with the titlebar."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "show window corners\n"
 "\n"
-"The corners are used to resize a window in two directions at the same time.  "
-"Usually the width and length of window corners are determined by the border "
-"width but you can adjust them below."
+"The corners are used to resize a window in two directions at the same time.  Usually the width and length of window corners are determined by the border width but you can adjust them below."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "corners length adjustement (-1 - 100 pixel)\n"
 "\n"
-"Increasing the corner length will grow the window corners along the window "
-"border (i.e. make them longer).  With a border width of 1 pixel it is hard "
-"to grab the 1 pixel corner to be able to resize the window in two "
-"directions; thus, make it bigger."
+"Increasing the corner length will grow the window corners along the window border (i.e. make them longer).  With a border width of 1 pixel it is hard to grab the 1 pixel corner to be able to resize the window in two directions; thus, make it bigger."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid "outside"
-msgstr ""
+msgstr "izven"
 
 #. ../themes/mxflat/theme.jl
 msgid "inside"
-msgstr ""
+msgstr "znotraj"
 
 #. ../themes/mxflat/theme.jl
 msgid "corner direction"
-msgstr ""
+msgstr "smer robov"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "corners width adjustement (0 - 100 pixel)\n"
 "\n"
-"This option makes the window corners broader. with a border width of 1 pixel "
-"it is hard to grab this 1 pixel corner to be able to resize the window in "
-"two directions; thus, make it bigger."
+"This option makes the window corners broader. with a border width of 1 pixel it is hard to grab this 1 pixel corner to be able to resize the window in two directions; thus, make it bigger."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
@@ -910,68 +802,57 @@ msgstr ""
 msgid ""
 "fake shadow (experimental)\n"
 "\n"
-"Draw a small additional border around your windows emulating a solid shadow "
-"effect.  Use the options below to adjust its width and direction.  (NOTE: "
-"this is VERY cpu intensive and might slow down your computer noticably.  So "
-"turn it on at your own risk.)"
+"Draw a small additional border around your windows emulating a solid shadow effect.  Use the options below to adjust its width and direction.  (NOTE: this is VERY cpu intensive and might slow down your computer noticably.  So turn it on at your own risk.)"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "fake shadow only on focused windows"
-msgstr "Vrstična slika za nefokusirana okna."
+msgstr "lažno senčenje le pri okniv v žarišču"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "north"
-msgstr "ne"
+msgstr "zgoraj"
 
 #. ../themes/mxflat/theme.jl
 msgid "east"
-msgstr ""
+msgstr "desno"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "south"
-msgstr "ne"
+msgstr "spodaj"
 
 #. ../themes/mxflat/theme.jl
 msgid "west"
-msgstr ""
+msgstr "levo"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "north-east"
-msgstr "ne"
+msgstr "zgoraj-desno"
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "north-west"
-msgstr "ne"
+msgstr "zgoraj-levo"
 
 #. ../themes/mxflat/theme.jl
 msgid "south-east"
-msgstr ""
+msgstr "spodaj-desno"
 
 #. ../themes/mxflat/theme.jl
 msgid "south-west"
-msgstr ""
+msgstr "spodaj-levo"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "fake shadow light source\n"
 "\n"
-"Set the direction of the fake shadow.  Usually only 2 or 3 borders of your "
-"window have a fake shadow.  This depends on where the light comes from."
+"Set the direction of the fake shadow.  Usually only 2 or 3 borders of your window have a fake shadow.  This depends on where the light comes from."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "fake shadow light distance (0 - 100)\n"
 "\n"
-"This option has only an effect on the north, east, south and west light "
-"sources.  The further away the light source is, the smaller will the two "
-"'side' shadows be."
+"This option has only an effect on the north, east, south and west light sources.  The further away the light source is, the smaller will the two 'side' shadows be."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
@@ -980,39 +861,38 @@ msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid "shadow color"
-msgstr ""
+msgstr "barva sence"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
 "customize border colors\n"
 "\n"
-"You can customize your border colors here. If you deactivate this, these "
-"colors will be set to the focused title string color."
+"You can customize your border colors here. If you deactivate this, these colors will be set to the focused title string color."
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid "  focused border color"
-msgstr ""
+msgstr " barva okvira v žarišču"
 
 #. ../themes/mxflat/theme.jl
 msgid "unfocused border color"
-msgstr ""
+msgstr "barva okvira brez žarišča"
 
 #. ../themes/mxflat/theme.jl
 msgid "  focused highlighted border color"
-msgstr ""
+msgstr " barva poudarjenega okvira v žarišču"
 
 #. ../themes/mxflat/theme.jl
 msgid "unfocused highlighted border color"
-msgstr ""
+msgstr "barva poudarjenega okvira brez žarišča"
 
 #. ../themes/mxflat/theme.jl
 msgid "  focused clicked border color"
-msgstr ""
+msgstr " barva kliknjenega okvira v žarišču"
 
 #. ../themes/mxflat/theme.jl
 msgid "unfocused clicked border color"
-msgstr ""
+msgstr "barva kliknjenega okvira brez žarišča"
 
 #. ../themes/simple/theme.jl
 msgid "Simple Theme"
@@ -1020,11 +900,11 @@ msgstr "Enostavna tema"
 
 #. ../themes/simple/theme.jl
 msgid "Color of inactive frames in `simple' frame style."
-msgstr "Barva nedejavnih okvirjev v 'enostavnem' okvirskem slogu."
+msgstr "Barva nedejavnih okvirjev v 'enostavnem' slogu okvirja."
 
 #. ../themes/simple/theme.jl
 msgid "Color of active frames in `simple' frame style."
-msgstr "Barva dejavnih okvirjev v 'enostavnem' okvirskem slogu."
+msgstr "Barva dejavnih okvirjev v 'enostavnem' slogu okvirja."
 
 #. ../themes/smaker/theme.jl
 msgid "SMaker Theme"
@@ -1036,19 +916,19 @@ msgstr "Uporabi črno-na-belem slike za gumbe."
 
 #. ../themes/smaker/theme.jl
 msgid "Color to use when drawing text."
-msgstr "Barva besedila."
+msgstr "Barva za izris besedila."
 
 #. ../themes/smaker/theme.jl
 msgid "Bar image for unfocused windows."
-msgstr "Vrstična slika za nefokusirana okna."
+msgstr "Vrstična slika za okna brez žarišča."
 
 #. ../themes/smaker/theme.jl
 msgid "Bar image for focused windows."
-msgstr "Vrstična slika za fokusirana okna."
+msgstr "Vrstična slika za okna v žarišču."
 
 #. ../themes/smaker/theme.jl
 msgid "Bar image for highlighted parts."
-msgstr "Vrstična slika za osvetljene dele."
+msgstr "Vrstična slika za poudarjene dele."
 
 #. ../themes/smaker/theme.jl
 msgid "Bar image for clicked parts."
@@ -1064,25 +944,24 @@ msgstr "Širina okenskega robu."
 
 #. ../themes/smaker/theme.jl
 msgid "Border width of bar images."
-msgstr "Širina vrstice slik."
+msgstr "Širina robov vrstice slik."
 
 #. ../lisp/sawfish/cfg/apply.jl
 #, c-format
 msgid "While changing %s:"
-msgstr "med spreminjanjem %s:"
+msgstr "Med spreminjanjem %s:"
 
 #. ../lisp/sawfish/cfg/apply.jl
 msgid "Sawfish Error"
-msgstr "Napaka Sawfisha"
+msgstr "Napaka Sawfish"
 
 #. ../lisp/sawfish/cfg/layouts/keymaps.jl
 msgid "Context:"
-msgstr "Kontekst:"
+msgstr "Vsebina:"
 
 #. ../lisp/sawfish/cfg/shell.jl
-#, fuzzy
 msgid "Sawfish Configurator"
-msgstr "Sawfish nastavitve"
+msgstr "Nastavitve Sawfish"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 #. ../lisp/sawfish/wm/commands.jl
@@ -1098,7 +977,7 @@ msgstr "Nedokumentirano"
 #. ../lisp/sawfish/cfg/widgets/match-window.jl
 #. ../lisp/sawfish/cfg/widgets/event.jl
 msgid "Grab..."
-msgstr "Zgrabi..."
+msgstr "Zgrabi ..."
 
 #. ../lisp/sawfish/cfg/widgets/workspace-geometry.jl
 #. ../lisp/sawfish/cfg/widgets/gtk/workspace-geometry.jl
@@ -1108,17 +987,16 @@ msgstr "Delovne površine:"
 #. ../lisp/sawfish/cfg/widgets/workspace-geometry.jl
 #. ../lisp/sawfish/cfg/widgets/gtk/workspace-geometry.jl
 msgid "Columns:"
-msgstr "Stolpcev:"
+msgstr "Stolpci:"
 
 #. ../lisp/sawfish/cfg/widgets/workspace-geometry.jl
 #. ../lisp/sawfish/cfg/widgets/gtk/workspace-geometry.jl
 msgid "Rows:"
-msgstr "Vrstic:"
+msgstr "Vrstice:"
 
 #. ../lisp/sawfish/cfg/widgets/keymap.jl
-#, fuzzy
 msgid "Edit Binding"
-msgstr "Uredi povezave"
+msgstr "Uredi bližnjice"
 
 #. ../lisp/sawfish/gtk/widgets/alist.jl
 #. ../lisp/sawfish/cfg/widgets/keymap.jl
@@ -1131,7 +1009,7 @@ msgstr "Tipka:"
 
 #. ../lisp/sawfish/cfg/widgets/match-window.jl
 msgid "Matchers"
-msgstr "Pogoji za ustrezanje"
+msgstr "Pogoji za skladanje"
 
 #. ../lisp/sawfish/cfg/widgets/match-window.jl
 msgid "Actions"
@@ -1142,14 +1020,13 @@ msgid "not"
 msgstr "ne"
 
 #. ../lisp/sawfish/cfg/widgets/match-window.jl
-#, fuzzy
 msgid "Match Window Properties"
-msgstr "Poišči okna z ustreznimi lastnostmi"
+msgstr "Uskladi lastnosti okna"
 
 #. ../lisp/sawfish/gtk/widget.jl
 #, c-format
 msgid "No matching item for %S"
-msgstr "Ni ustreznega predmeta za %S"
+msgstr "Ni skladnega predmeta za %S"
 
 #. ../lisp/sawfish/gtk/widget.jl
 msgid "** unknown widget **  "
@@ -1162,27 +1039,27 @@ msgstr "Vrednost"
 #. ../lisp/sawfish/gtk/widgets/font.jl
 #. ../lisp/sawfish/gtk/widgets/file.jl
 msgid "Browse..."
-msgstr "Brskaj..."
+msgstr "Prebrskaj ..."
 
 #. ../lisp/sawfish/gtk/widgets/file.jl
 msgid "Select file"
-msgstr "Izberi datoteko"
+msgstr "Izbor datoteke"
 
 #. ../lisp/sawfish/gtk/widgets/font.jl
 msgid "Select font"
-msgstr "Izberi pisavo"
+msgstr "Izbor pisave"
 
 #. ../lisp/sawfish/gtk/widgets/list.jl
 msgid "Add..."
-msgstr "Dodaj..."
+msgstr "Dodaj ..."
 
 #. ../lisp/sawfish/gtk/widgets/list.jl
 msgid "Delete"
-msgstr "Zbriši"
+msgstr "Izbriši"
 
 #. ../lisp/sawfish/gtk/widgets/list.jl
 msgid "Edit..."
-msgstr "Uredi..."
+msgstr "Uredi ..."
 
 #. ../lisp/sawfish/gtk/widgets/list.jl
 msgid "Add:"
@@ -1198,21 +1075,19 @@ msgstr "Da"
 
 #. ../lisp/sawfish/gtk/widgets/scheme-boolean.jl
 msgid "No"
-msgstr "Brez"
+msgstr "Ne"
 
 #. ../lisp/sawfish/wm/animation/outline.jl
 msgid "Animation Outline Coordinates"
-msgstr ""
+msgstr "Koordinate obrobe animacije"
 
 #. ../lisp/sawfish/wm/animation/outline.jl
-#, fuzzy
 msgid "Animation Steps"
-msgstr "Dejanja"
+msgstr "Koraki animacije"
 
 #. ../lisp/sawfish/wm/animation/outline.jl
-#, fuzzy
 msgid "Animation Delay"
-msgstr "Dejanja"
+msgstr "Časovni zamik animacije"
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
 #. ../lisp/sawfish/wm/autoload.jl
@@ -1227,7 +1102,7 @@ msgstr "Kroženje oken"
 #. ../lisp/sawfish/wm/tabs/tab.jl
 #. ../lisp/sawfish/wm/autoload.jl
 msgid "Tabs"
-msgstr ""
+msgstr "Zavihki"
 
 #. ../lisp/sawfish/wm/ext/audio-events.jl
 #. ../lisp/sawfish/wm/autoload.jl
@@ -1236,9 +1111,8 @@ msgstr "Zvok"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 #. ../lisp/sawfish/wm/autoload.jl
-#, fuzzy
 msgid "Window Rules"
-msgstr "_Okna"
+msgstr "Pravila oken"
 
 #. ../lisp/sawfish/wm/ext/tooltips.jl
 #. ../lisp/sawfish/wm/autoload.jl
@@ -1253,7 +1127,7 @@ msgstr "Zgodovina"
 #. ../lisp/sawfish/wm/util/prompt.jl
 #. ../lisp/sawfish/wm/autoload.jl
 msgid "Messages"
-msgstr ""
+msgstr "Sporočila"
 
 #. ../lisp/sawfish/wm/commands/viewport-linear.jl
 #. ../lisp/sawfish/wm/autoload.jl
@@ -1270,11 +1144,11 @@ msgstr "Izberi naslednje okno trenutne delovne površine."
 
 #. ../lisp/sawfish/wm/commands/cycle.jl
 msgid "Previous workspace window"
-msgstr "Prejšnje okno delovne površine"
+msgstr "Predhodno okno delovne površine"
 
 #. ../lisp/sawfish/wm/commands/cycle.jl
 msgid "Focus on the previous window of the current workspace."
-msgstr "Fokusiraj na prejšnje okno trenutne delovne površine."
+msgstr "Postavi v žarišče predhodno okno trenutne delovne površine."
 
 #. ../lisp/sawfish/wm/commands/cycle.jl
 msgid "Next window"
@@ -1282,15 +1156,15 @@ msgstr "Naslednje okno"
 
 #. ../lisp/sawfish/wm/commands/cycle.jl
 msgid "Select the next window, cycling through all possible workspaces."
-msgstr "Izberi naslednje okno, pojdi čez vse možne delovne površine."
+msgstr "Izberi naslednje okno krožno preko vseh delovnih površin."
 
 #. ../lisp/sawfish/wm/commands/cycle.jl
 msgid "Previous window"
-msgstr "Prejšnje okno"
+msgstr "Predhodno okno"
 
 #. ../lisp/sawfish/wm/commands/cycle.jl
 msgid "Select the previous window, cycling through all possible workspaces."
-msgstr "Izberi prejšnje okno, pojdi čez vse možne delovne površine."
+msgstr "Izberi predhodno okno krožno preko vseh delovnih površin."
 
 #. ../lisp/sawfish/wm/commands/describe.jl
 msgid "Describe symbol"
@@ -1298,7 +1172,7 @@ msgstr "Opiši simbol"
 
 #. ../lisp/sawfish/wm/commands/describe.jl
 msgid "Display the documentation of a specified symbol."
-msgstr "Pokaži dokumentacijo, navedenega simbola."
+msgstr "Pokaži dokumentacijo navedenega simbola."
 
 #. ../lisp/sawfish/wm/commands/describe.jl
 msgid "Apropos function"
@@ -1310,19 +1184,19 @@ msgstr "Ustrezna spremenljivka"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Iconify group"
-msgstr "Skrči skupino"
+msgstr "Pomanjšaj skupino v ikono"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Uniconify group"
-msgstr "Odkrči skupino"
+msgstr "Povečaj skupino"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Iconify transient group"
-msgstr "Skrči transistentno skupino"
+msgstr "Pomanjšaj podrejeno skupino v ikono"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Uniconify transientgroup"
-msgstr "Odkrči transistentno skupino"
+msgstr "Povečaj podrejeno skupino"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Make group sticky"
@@ -1330,7 +1204,7 @@ msgstr "Naredi skupino lepljivo"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Make group unsticky"
-msgstr "Naredi skupino nelepljivo"
+msgstr "Prekliči lepljivost skupine"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Toggle group sticky"
@@ -1346,27 +1220,27 @@ msgstr "Pošlji skupino na naslednjo delovno površino"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Send group to previous workspace"
-msgstr "Pošlji skupino na prejšnjo delovno površino"
+msgstr "Pošlji skupino na predhodno delovno površino"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Move group to current viewport"
-msgstr "Prestavi skupino v trenutni pogled"
+msgstr "Premakni skupino v trenutno vidno polje"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Move group left"
-msgstr "Prestavi skupino levo"
+msgstr "Premakni skupino levo"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Move group right"
-msgstr "Prestavi skupino"
+msgstr "Premakni skupino"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Move group up"
-msgstr "Prestavi skupino navzgor"
+msgstr "Premakni skupino navzgor"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Move group down"
-msgstr "Prestavi skupino navzdol"
+msgstr "Premakni skupino navzdol"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Raise group"
@@ -1378,7 +1252,7 @@ msgstr "Spusti skupino"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Raise lower group"
-msgstr "Dvigni/spusti skupino"
+msgstr "Dvigni ali spusti skupino"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Raise group depth"
@@ -1390,11 +1264,11 @@ msgstr "Spusti globino skupine"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Delete group"
-msgstr "Zbriši skupino"
+msgstr "Izbriši skupino"
 
 #. ../lisp/sawfish/wm/commands/groups.jl
 msgid "Delete all windows in the group that the current window is a member of."
-msgstr "Zbriši vsa okna v skupini katere član je trenutno okno."
+msgstr "Izbriši vsa okna v skupini katere član je trenutno okno."
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
 msgid "Whether growing is considered to be maximization."
@@ -1422,13 +1296,12 @@ msgid ""
 "window, then does like `maybe'.  `never' means not to warp the\n"
 "pointer."
 msgstr ""
-"Kdaj in kako premikati kazalec ob pakiranju oken.\n"
+"Kdaj in kako premikati kazalnik ob pakiranju oken.\n"
 "\n"
 "`mogoče' pomeni, da se kazalec giblje skupaj z oknom, če je bil\n"
 "pred pakiranjem znotraj območja okna.\n"
 "\n"
-"`vedno' postavi kazalec v središče okna (če ga še ni v oknu) in nato naredi "
-"enako kot 'mogoče'\n"
+"`vedno' postavi kazalec v središče okna (če ga še ni v oknu) in nato naredi enako kot 'mogoče'\n"
 "already in the window, then does like `maybe'.\n"
 "\n"
 "`nikoli' pomeni, naj se kazalec ne prestavi v okno."
@@ -1437,8 +1310,7 @@ msgstr ""
 #, fuzzy
 msgid "Whether to bump into fully obscured windows."
 msgstr ""
-"Ali naj se zaletim v popolnoma obskurno okno ob povečevanju ali "
-"zmanjševanju\n"
+"Ali naj se zaletim v popolnoma obskurno okno ob povečevanju ali zmanjševanju\n"
 "okna."
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
@@ -1447,14 +1319,12 @@ msgid ""
 "Whether to bump into windows on a different depth. When 'maybe,\n"
 "Only `avoided' windows are bumped."
 msgstr ""
-"Ali naj se ob povečevanju in zmanjševanju oken zaletim v okna drugih "
-"globin.\n"
+"Ali naj se ob povečevanju in zmanjševanju oken zaletim v okna drugih globin.\n"
 "`maybe' pomeni, da le izogibana okna drugih globin."
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
-#, fuzzy
 msgid "Whether to bump into ignored windows."
-msgstr "Ali naj se ob povečevanju in zmanjševanju zaletim v prezrta okna."
+msgstr "Ali naj se okna zaletijo v prezrta okna."
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
 msgid "The minimum height or width to which a window may be shrunk."
@@ -1462,33 +1332,31 @@ msgstr ""
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
 msgid "The minimum amount of window left visible, if yanked over the edge."
-msgstr ""
+msgstr "Najmanjši del še vidnega okna, kadar je to potegnjeno preko roba."
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
 msgid "Grow window left"
-msgstr "Pvečaj okno levo"
+msgstr "Povečaj okno levo"
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
-#, fuzzy
 msgid ""
 "Grows window to the left until it `bumps into' another window.\n"
 "See `grow-window-up'."
 msgstr ""
-"Poveča okno na levo dokler se ne 'zaleti' ob drugo okno.\n"
-"Poglejte `grow-window-up'."
+"Poveča okno na levo dokler se ne 'zaleti' v drugo okno.\n"
+"Poglejte možnost `grow-window-up'."
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
 msgid "Grow window right"
 msgstr "Povečaj okno desno"
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
-#, fuzzy
 msgid ""
 "Grows window to the right until it `bumps into' another window.\n"
 "See `grow-window-up'."
 msgstr ""
-"Poveča okno na desno dokler se ne 'zaleti' ob drugo okno.\n"
-"Poglejte  `grow-window-up'`"
+"Poveča okno na desno dokler se ne 'zaleti' v drugo okno.\n"
+"Poglejte možnost `grow-window-up'`"
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
 msgid "Grow window up"
@@ -1499,53 +1367,49 @@ msgid ""
 "Grows window upwards until it `bumps into' another window.\n"
 "If the top edge was beyond the screen edge, it is brought back in.\n"
 "With a universal prefix arg, maximize upwards instead.\n"
-"With a numeric prefix arg, grow upwards by that many increments specified "
-"by\n"
+"With a numeric prefix arg, grow upwards by that many increments specified by\n"
 "window or pixels instead."
 msgstr ""
-"Poveča okno navzgor dokler se ne 'zaleti' ob drugo okno.\n"
-"Če je zgornji rob nad robom zaslona ga potegne nazaj.ÜnZ univerzalnim "
-"predponskim argumentom poveča navzgor največ.\n"
-"Z numeričnim predponskim argumenom poveča navzgor za določen korak."
+"Poveča okno navzgor dokler se ne 'zaleti' v drugo okno.\n"
+"V kolikor je zgornji rob nad robom zaslona, ga potegne nazaj.\n"
+"S splošno predpono argumenta okno razpne navzgor.\n"
+"S številčno predpono pa poveča navzgor za določen korak."
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
 msgid "Grow window down"
 msgstr "Povečaj okno dol"
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
-#, fuzzy
 msgid ""
 "Grows window downwards until it `bumps into' another window.\n"
 "See `grow-window-up'."
 msgstr ""
-"Poveča okno navzdol dokler se ne 'zaleti' ob drugo okno.\n"
-" Poglejte `grow-window-up'`"
+"Poveča okno navzdol dokler se ne 'zaleti' v drugo okno.\n"
+"Poglejte možnost `grow-window-up'`"
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
 msgid "Pack window left"
 msgstr "Pomanjšaj okno levo"
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
-#, fuzzy
 msgid ""
 "Moves window to the left until it `bumps into' another window.\n"
 "See `pack-window-up'."
 msgstr ""
-"Premakne okno levo dokler se ne 'zaleti' ob drugo okno.\n"
-" Poglejte `pack-window-up'."
+"Premakne okno levo dokler se ne 'zaleti' v drugo okno.\n"
+"Poglejte možnost `pack-window-up'."
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
 msgid "Pack window right"
 msgstr "Pomanjšaj okno desno"
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
-#, fuzzy
 msgid ""
 "Moves window to the right until it `bumps into' another window.\n"
 "See `pack-window-up'."
 msgstr ""
-"Premakne okno desno dokler se ne 'zaleti' ob drugo okno.\n"
-" Poglejte `pack-window-up'."
+"Premakne okno desno dokler se ne 'zaleti' v drugo okno.\n"
+"Poglejte možnost `pack-window-up'."
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
 msgid "Pack window up"
@@ -1558,23 +1422,22 @@ msgid ""
 "With a universal prefix arg, move upwards maximally instead.\n"
 "With a numeric prefix arg, move upwards by that many pixels instead."
 msgstr ""
-"Poveča okno navzgor dokler se ne 'zaleti' ob drugo okno.\n"
-"Če je zgornji rob nad robom zaslona ga potegne nazaj.ÜnZ univerzalnim "
-"predponskim argumentom največ poveča navzgor.\n"
-"Z numeričnim predponskim argumenom poveča navzgor za določen korak."
+"Poveča okno navzgor dokler se ne 'zaleti' v drugo okno.\n"
+"V kolikor je zgornji rob nad robom zaslona, ga potegne nazaj.\n"
+"S splošno predpono argumenta okno razpne navzgor.\n"
+"S številčno predpono pa poveča navzgor za določen korak."
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
 msgid "Pack window down"
 msgstr "Pomanjšaj okno navzdol"
 
 #. ../lisp/sawfish/wm/commands/grow-pack.jl
-#, fuzzy
 msgid ""
 "Moves window downwards until it `bumps into' another window.\n"
 "See `pack-window-up'."
 msgstr ""
-"Premakne okno navzdol dokler se ne 'zaleti' ob drugo okno.\n"
-" Poglejte `pack-window-up'."
+"Premakne okno navzdol dokler se ne 'zaleti' v drugo okno.\n"
+"Poglejte možnost `pack-window-up'."
 
 #. ../lisp/sawfish/wm/commands/help.jl
 msgid "Help show faq"
@@ -1597,19 +1460,16 @@ msgid "Help about"
 msgstr "Pomoč o"
 
 #. ../lisp/sawfish/wm/commands/launcher.jl
-#, fuzzy
 msgid "External Applications"
-msgstr "Kaži menu aplikacij."
+msgstr "Zunanji programi"
 
 #. ../lisp/sawfish/wm/commands/launcher.jl
-#, fuzzy
 msgid "The program launched by the `xterm' function. Interpreted by shell."
-msgstr "Program pognan z ukazom 'xterm'."
+msgstr "Program zagnan z ukazom 'xterm' in razložen v lupini."
 
 #. ../lisp/sawfish/wm/commands/launcher.jl
-#, fuzzy
 msgid "The program launched by the `browser' function. Interpreted by shell."
-msgstr "Program pognan z ukazom 'xterm'."
+msgstr "Program zagnan z ukazom 'browser' in razložen v lupini."
 
 #. ../lisp/sawfish/wm/commands/launcher.jl
 msgid "Xterm"
@@ -1625,316 +1485,285 @@ msgid "Command:"
 msgstr "Ukaz:"
 
 #. ../lisp/sawfish/wm/commands/launcher.jl
-#, fuzzy
 msgid "Browser"
-msgstr "Brskaj..."
+msgstr "Brskalnik"
 
 #. ../lisp/sawfish/wm/commands/launcher.jl
-#, fuzzy
 msgid "Start browser. Url is optional."
-msgstr "Poženi nov xterm."
+msgstr "Zaženi brslalnik z izbranim naslovom URL."
 
 #. ../lisp/sawfish/wm/commands/launcher.jl
 msgid "url:"
-msgstr ""
+msgstr "URL:"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Number of pixels to move pointer in."
-msgstr "Število pikslov za premik kazalca v 'premakni-kazalec' ukazu."
+msgstr "Število točk za premik kazalnika."
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move cursor right"
-msgstr "Premakni kazalec desno"
+msgstr "Premakni kazalnik desno"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move the cursor `move-cursor-increment' pixels to the right."
-msgstr "Premakni kazalec za 'premakni-kazalec' pikslov desno."
+msgstr "Premakni kazalnik za 'premakni-kazalec' pikslov desno."
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move cursor left"
-msgstr "Premakni kazalec levo"
+msgstr "Premakni kazalnik levo"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move the cursor `move-cursor-increment' pixels to the left."
-msgstr "Premakni kazalec za 'premakni-kazalec' pikslov levo."
+msgstr "Premakni kazalnik za 'premakni-kazalec' točk levo."
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move cursor up"
-msgstr "Premakni kazalec navzgor"
+msgstr "Premakni kazalnik višje"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move the cursor `move-cursor-increment' pixels upwards."
-msgstr "Premakni kazalec za 'premakni-kazalec' pikslov navzgor."
+msgstr "Premakni kazalnik za 'premakni-kazalec' točk višje."
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move cursor down"
-msgstr "Premakni kazalec navzdol"
+msgstr "Premakni kazalnik nižje"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move the cursor `move-cursor-increment' pixels downwards."
-msgstr "Premakni kazalec za 'premakni-kazalec' pikslov navzdol."
+msgstr "Premakni kazalec za 'premakni-kazalec' točk nižje."
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move cursor right fine"
-msgstr "Premakni kazalec za piksel desno"
+msgstr "Premakni kazalnik točko desno"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move the cursor 1 pixel to the right."
-msgstr "Premakni kazalec za 1 piksel desno."
+msgstr "Premakni kazalnik za eno točko desno."
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move cursor left fine"
-msgstr "Premakni kazalec za piksel levo"
+msgstr "Premakni kazalnik točko levo"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move the cursor 1 pixel to the left."
-msgstr "Premakni kazalec za 1 piksel levo."
+msgstr "Premakni kazalnik za eno točko levo."
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move cursor up fine"
-msgstr "Premakni kazalec za piksel navzgor"
+msgstr "Premakni kazalnik točko višje"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move the cursor 1 pixel upwards."
-msgstr "Premakni kazalec za 1 piksel navzgor."
+msgstr "Premakni kazalnik za eno točko višje."
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move cursor down fine"
-msgstr "Premakni kazalec za piksel navzdol"
+msgstr "Premakni kazalnik točko nižje"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
 msgid "Move the cursor 1 pixel downwards."
-msgstr "Premakni kazalec za 1 piksel navzdol."
+msgstr "Premakni kazalnik za eno točko nižje."
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move cursor northwest"
-msgstr "Premakni kazalec desno"
+msgstr "Premakni kazalnik navzgor in levo"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move the cursor `move-cursor-increment' pixels northwest"
-msgstr "Premakni kazalec za 'premakni-kazalec' pikslov levo."
+msgstr "Premakni kazalnik `move-cursor-increment' točk navzgor in levo"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move cursor northeast"
-msgstr "Premakni kazalec desno"
+msgstr "Premakni kazalnik navzgor in desno"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move the cursor `move-cursor-increment' pixels northeast"
-msgstr "Premakni kazalec za 'premakni-kazalec' pikslov levo."
+msgstr "Premakni kazalnik `move-cursor-increment' točk navzgor in desno"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move cursor southwest"
-msgstr "Premakni kazalec levo"
+msgstr "Premakni kazalnik navzdol in levo"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move the cursor `move-cursor-increment' pixels southwest"
-msgstr "Premakni kazalec za 'premakni-kazalec' pikslov levo."
+msgstr "Premakni kazalnik za `move-cursor-increment' točk navzdol in levo"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move cursor southeast"
-msgstr "Premakni kazalec levo"
+msgstr "Premakni kazalnik navzdol in desno"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move the cursor `move-cursor-increment' pixels southeast"
-msgstr "Premakni kazalec za 'premakni-kazalec' pikslov levo."
+msgstr "Premakni kazalnik za `move-cursor-increment' točk navzdol in desno"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move cursor northwest fine"
-msgstr "Premakni kazalec za piksel desno"
+msgstr "Premakni kazalnik navzdol in levo za točko"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move cursor northeast fine"
-msgstr "Premakni kazalec za piksel desno"
+msgstr "Premakni kazalnik navzgor in desno za točko"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move cursor southwest fine"
-msgstr "Premakni kazalec za piksel levo"
+msgstr "Premakni kazalnik navzdol in levo za točko"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move cursor southeast fine"
-msgstr "Premakni kazalec za piksel levo"
+msgstr "Premakni kazalnik navzdol in desno za točko"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move cursor center"
-msgstr "Premakni kazalec levo"
+msgstr "Premakni kazalnik na sredino"
 
 #. ../lisp/sawfish/wm/commands/move-cursor.jl
-#, fuzzy
 msgid "Move the cursor to the center of the screen"
-msgstr "Premakni kazalec za 1 piksel levo."
+msgstr "Premakni kazalnik na sredino zaslona"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid "opaque"
-msgstr ""
+msgstr "neprosojno"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid "box"
-msgstr ""
+msgstr "kvadrat"
 
 #. ../lisp/sawfish/wm/window-anim.jl
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid "cross"
-msgstr ""
+msgstr "križ"
 
 #. ../lisp/sawfish/wm/window-anim.jl
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid "elliptical"
-msgstr "navpično"
+msgstr "elipsa"
 
 #. ../lisp/sawfish/wm/window-anim.jl
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid "draft"
-msgstr ""
+msgstr "osnutek"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid "How windows being moved are animated"
-msgstr "Dvigni okna, kadar se odsenčijo."
+msgstr "Premikanje oken je animirano"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid "How windows being resized are animated"
-msgstr "Dvigni okna, kadar se odsenčijo."
+msgstr "Spreminjanje velikosti oken je animirano"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid "Raise windows when they are moved or resized."
-msgstr "Dvigni okna, ko dobijo fokus."
+msgstr "Dvigni okna med premikanjem in prilagajanjem velikosti"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid "Show current position of windows while moving."
-msgstr "Kaži treuntni položaj oken ob premikanju."
+msgstr "Pokaži trenutni položaj oken med premikanjem."
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid "Show current dimensions of windows while resizing."
-msgstr "Kaži trenutno velikost oken ob spreminjanju le te."
+msgstr "Pokaži trenutno velikost oken med spreminjanem velikosti."
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid "region"
-msgstr ""
+msgstr "območje"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid "border"
-msgstr "Zgornja meja"
+msgstr "rob"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid "grab"
-msgstr ""
+msgstr "zgrabi"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid "border-grab"
-msgstr "povezave tipk roba"
+msgstr "zgrabi-rob"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid "How to choose window edges when resizing."
-msgstr "Kaži trenutno velikost oken ob spreminjanju le te."
+msgstr "Kako izbrati robove okna med spreminjanjem velikosti."
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid ""
 "Distance in pixels before window edges align with each other.\n"
 "\n"
-"When moving a window, this option lets you align one of its edges with an "
-"edge of another window."
+"When moving a window, this option lets you align one of its edges with an edge of another window."
 msgstr ""
-"Razdalja v pikslih, preden se robova poravnata drug z drugim.\n"
+"Razdalja v točkah, preden se robova poravnata drug z drugim.\n"
 "\n"
-"Ob premikanju okna ta možnost omogoči poravnavo enega njegovih robov z robom "
-"drugega okna."
+"Ob premikanju okna ta možnost omogoči poravnavo enega njegovih robov z robom drugega okna."
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid "Move window center"
-msgstr "Prestavi okno naprej"
+msgstr "Premakni okno na sredino"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid "Move window interactively"
-msgstr "Interaktivno premikaj okno"
+msgstr "Interaktivno premakni okno"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid "Move the window interactively, with mouse or keyboard."
-msgstr "Z uporabo miške interaktivno premikaj okno."
+msgstr "Z uporabo miške ali tipkovnice premakni okno."
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid "Resize window interactively"
-msgstr "Interaktivno spreminjaj velikost okna"
+msgstr "Interaktivno spremeni velikost okna"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid "Resize the window interactively, with mouse or keyboard."
-msgstr "Z uporabo miške interaktivno spreminjaj velikost okna."
+msgstr "Z uporabo miške ali tipkovnice spremeni velikost okna."
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid "Move selected window"
 msgstr "Premakni izbrano okno"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid ""
 "Wait for the user to select a window, then interactively move\n"
 "that window."
-msgstr "Počakaj, da uporabnik izbere okno, nato interaktivno premikaj to okno."
+msgstr ""
+"Počakaj, da uporabnik izbere okno, nato ga s pomočjo miške ali tipkovnice\n"
+"premikaj."
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
 msgid "Resize selected window"
 msgstr "Spremeni velikost izbranega okna"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid ""
 "Wait for the user to select a window, then interactively resize\n"
 "that window."
 msgstr ""
-"Počakaj, da uporabnik izbere okno, nato interaktivno spreminjaj velikost "
-"tega okna."
+"Počakaj, da uporabnik izbere okno, nato mu s pomočjo miške ali tipkovnice\n"
+"spreminjaj velikost."
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid "Double window size"
-msgstr "Preklopi lepljivost okna"
+msgstr "Dvojna velikost okna"
 
 #. ../lisp/sawfish/wm/commands/move-resize.jl
-#, fuzzy
 msgid "Halve window size"
-msgstr "Naredi okno lepljivo"
+msgstr "Polovična velikost okna"
 
 #. ../lisp/sawfish/wm/commands/poweroff.jl
 msgid "The command used to reboot the computer."
-msgstr ""
+msgstr "Ukaz za ponovni zagon računalnika"
 
 #. ../lisp/sawfish/wm/commands/poweroff.jl
 msgid "The command used to halt the computer."
-msgstr ""
+msgstr "Ukaz za zaustavitev računalnika."
 
 #. ../lisp/sawfish/wm/commands/poweroff.jl
 msgid "The command used to suspend the computer."
-msgstr ""
+msgstr "Ukaz za postavitev računalnika v mirovanje."
 
 #. ../lisp/sawfish/wm/commands/poweroff.jl
 msgid "The command used to hibernate the computer."
-msgstr ""
+msgstr "Ukaz za hiberniranje računalnika."
 
 #. ../lisp/sawfish/wm/commands/poweroff.jl
 msgid "Poweroff"
-msgstr ""
+msgstr "Izklopi"
 
 #. ../lisp/sawfish/wm/commands/raise-commands.jl
 msgid "Raise and pass through click"
@@ -1945,22 +1774,18 @@ msgstr "Dvigni in posreduj klik naprej"
 msgid ""
 "Raise the window that received the current event, then replay any pointer\n"
 "events that invoked the command."
-msgstr ""
-"Dvigni okno, ki je prejelo dogodek (in njegove dialoge), nato znova sproži "
-"dogodke kazalca, ki so povzročili ukaz."
+msgstr "Dvigni okno, ki je prejelo dogodek (in njegove dialoge), nato znova sproži dogodke kazalca, ki so povzročili ukaz."
 
 #. ../lisp/sawfish/wm/commands/raise-commands.jl
 msgid "Raise and pass through click if focused"
-msgstr "Dvigni in, če je fokusiran, posreduj klik"
+msgstr "Dvigni in, če je v žarišču, posreduj klik"
 
 #. ../lisp/sawfish/wm/commands/raise-commands.jl
 #, fuzzy
 msgid ""
 "Raise the window that received the current event (if it's focused), then\n"
 "replay any pointer events that invoked the command."
-msgstr ""
-"Dvigni okno, ki je prejelo dogodek (in njegove dialoge), nato znova sproži "
-"dogodke kazalca, ki so povzročili ukaz."
+msgstr "Dvigni okno, ki je prejelo dogodek (in njegove dialoge), nato znova sproži dogodke kazalca, ki so povzročili ukaz."
 
 #. ../lisp/sawfish/wm/commands/raise-commands.jl
 msgid "Raise or pass through click"
@@ -1979,26 +1804,23 @@ msgstr "Dvigni skupino in posreduj klik"
 msgid ""
 "Raise the group of windows that received the current event, then replay\n"
 "any pointer events that invoked the command."
-msgstr ""
-"Dvigni okno, ki je prejelo dogodek (in njegove dialoge), nato znova sproži "
-"dogodke kazalca, ki so povzročili ukaz."
+msgstr "Dvigni okno, ki je prejelo dogodek (in njegove dialoge), nato znova sproži dogodke kazalca, ki so povzročili ukaz."
 
 #. ../lisp/sawfish/wm/commands/raise-commands.jl
 msgid "Raise transients and pass through click"
-msgstr "Dvigni transistentna okna in posreduj klik"
+msgstr "Dvigni podrejena okna in posreduj klik"
 
 #. ../lisp/sawfish/wm/commands/raise-commands.jl
 msgid ""
 "Raise the window that received the current event and any transients it\n"
 "has, then replay any pointer events that invoked the command."
 msgstr ""
-"Dvigni okno, ki je prejelo dogodek (in njegove dialoge), nato znova sproži "
-"dogodke kazalca, ki so povzročili ukaz."
+"Dvigni okno, ki je prejelo dogodek z vsemi podrejenimi okni\n"
+"in nato znova sproži dogodke kazalnika, ki so povzročili ukaz."
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
-#, fuzzy
 msgid "Shrink window left"
-msgstr "Drsenje okna levo"
+msgstr "Skrči okno z leve"
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
 msgid ""
@@ -2007,9 +1829,8 @@ msgid ""
 msgstr ""
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
-#, fuzzy
 msgid "Shrink window right"
-msgstr "Drsneje okna desno"
+msgstr "Skrči okno z desne"
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
 msgid ""
@@ -2018,9 +1839,8 @@ msgid ""
 msgstr ""
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
-#, fuzzy
 msgid "Shrink window up"
-msgstr "Drsenje okna navzgor"
+msgstr "Skrči okno od zgoraj"
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
 msgid ""
@@ -2029,9 +1849,8 @@ msgid ""
 msgstr ""
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
-#, fuzzy
 msgid "Shrink window down"
-msgstr "Drsenje okna navzdol"
+msgstr "Skrči okno od spodaj"
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
 msgid ""
@@ -2040,48 +1859,52 @@ msgid ""
 msgstr ""
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
-#, fuzzy
 msgid "Yank window left"
-msgstr "Pomanjšaj okno levo"
+msgstr "Potegni okno v levo"
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
 msgid ""
 "Yanks WINDOW to the left until it inserts with one window less\n"
 "than before."
 msgstr ""
+"Potegni OKNO na levo, dokler se ne vstavi v eno okno manj\n"
+"kot prej."
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
-#, fuzzy
 msgid "Yank window right"
-msgstr "Pomanjšaj okno desno"
+msgstr "Potegni okno v desno"
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
 msgid ""
 "Yanks WINDOW to the right until it inserts with one window less\n"
 "than before."
 msgstr ""
+"Potegni OKNO na desno, dokler se ne vstavi v eno okno manj\n"
+"kot prej."
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
-#, fuzzy
 msgid "Yank window up"
-msgstr "Pomanjšaj okno navzgor"
+msgstr "Potegni okno navzgor"
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
 msgid ""
 "Yanks WINDOW upwards until it inserts with one window less than\n"
 "before."
 msgstr ""
+"Potegni OKNO navzgor, dokler se ne vstavi v eno okno manj\n"
+"kot prej."
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
-#, fuzzy
 msgid "Yank window down"
-msgstr "Pomanjšaj okno navzdol"
+msgstr "Potegni okno navzdol"
 
 #. ../lisp/sawfish/wm/commands/shrink-yank.jl
 msgid ""
 "Yanks WINDOW downwards until it inserts with one window less than\n"
 "before."
 msgstr ""
+"Potegni OKNO navzdol, dokler se ne vstavi v eno okno manj\n"
+"kot prej."
 
 #. ../lisp/sawfish/wm/commands/size-window.jl
 msgid "Size window add row"
@@ -2125,7 +1948,7 @@ msgstr "Premakni okno za `slide-window-increment' levo."
 
 #. ../lisp/sawfish/wm/commands/slide-window.jl
 msgid "Slide window right"
-msgstr "Drsneje okna desno"
+msgstr "Drsenje okna desno"
 
 #. ../lisp/sawfish/wm/commands/slide-window.jl
 msgid "Move the window `slide-window-increment' pixels to the right."
@@ -2181,74 +2004,71 @@ msgstr "Premakni skupino oken za `slide-window-increment' navzdol."
 
 #. ../lisp/sawfish/wm/commands/viewport-extras.jl
 msgid "Move viewport next"
-msgstr "Prestavi pogled naprej"
+msgstr "Premakni vidno polje naprej"
 
 #. ../lisp/sawfish/wm/commands/viewport-extras.jl
 msgid "Move to the next viewport."
-msgstr "Prestavi v naslednji pogled."
+msgstr "Premakni v naslednje vidno polje."
 
 #. ../lisp/sawfish/wm/commands/viewport-extras.jl
 msgid "Move viewport previous"
-msgstr "Prestavi pogled nazaj"
+msgstr "Premakni vidno polje nazaj"
 
 #. ../lisp/sawfish/wm/commands/viewport-extras.jl
 msgid "Move to the previous viewport."
-msgstr "Prestavi v prejšnji pogled."
+msgstr "Premakni v predhodno vidno polje."
 
 #. ../lisp/sawfish/wm/commands/viewport-extras.jl
 msgid "Move window previous"
-msgstr "Prestavi okno nazaj"
+msgstr "Premakni okno nazaj"
 
 #. ../lisp/sawfish/wm/commands/viewport-extras.jl
 msgid "Move the window to the previous viewport."
-msgstr "Prestavi okno v prejšnji pogled."
+msgstr "Premakni okno v predhodno vidno polje."
 
 #. ../lisp/sawfish/wm/commands/viewport-extras.jl
 msgid "Move window next"
-msgstr "Prestavi okno naprej"
+msgstr "Premakni okno naprej"
 
 #. ../lisp/sawfish/wm/commands/viewport-extras.jl
-#, fuzzy
 msgid "Move the window to the next viewport."
-msgstr "Prestavi okno v prejšnji pogled."
+msgstr "Premakni okno v naslednje vidno polje."
 
 #. ../lisp/sawfish/wm/commands/viewport-linear.jl
 msgid "Set viewport linear"
-msgstr "Nastavi linerani pogled"
+msgstr "Nastavi vidno polje vodoravno"
 
 #. ../lisp/sawfish/wm/commands/viewport-linear.jl
 msgid "Set window viewport linear"
-msgstr "Nastavi linearne delovne površine"
+msgstr "Nastavi vidno polje oken vodoravno"
 
 #. ../lisp/sawfish/wm/commands/x-cycle.jl
 msgid "Display window names and icons while cycling through windows."
-msgstr "Ob kroženju preko oken kaži imena in ikone oken."
+msgstr "Ob kroženju preko oken pokaži imena in ikone oken."
 
 #. ../lisp/sawfish/wm/commands/x-cycle.jl
 msgid "Include iconified windows when cycling."
-msgstr "Ob kroženju vključuj pomanjšana okna."
+msgstr "Ob kroženju pokaži tudi skrita okna."
 
 #. ../lisp/sawfish/wm/commands/x-cycle.jl
 msgid "Include windows on all workspaces when cycling."
-msgstr "Ob kroženju vključuj okna na vseh delovnih površinah."
+msgstr "Ob kroženju pokaži okna vseh delovnih površin."
 
 #. ../lisp/sawfish/wm/commands/x-cycle.jl
 msgid "Include windows on all viewports when cycling."
-msgstr "Ob kroženju vključuj okna vseh pogledov."
+msgstr "Ob kroženju pokaži okna vseh vidnih polj."
 
 #. ../lisp/sawfish/wm/commands/x-cycle.jl
-#, fuzzy
 msgid "Raise windows while they're temporarily selected during cycling."
-msgstr "Dvigni okna, ko dobijo fokus."
+msgstr "Dvigni okna, ko so v žarišču med kroženjem."
 
 #. ../lisp/sawfish/wm/commands/x-cycle.jl
 msgid "cycle-keymap"
-msgstr "povezave tipk ob kroženju"
+msgstr "tipke kroženja"
 
 #. ../lisp/sawfish/wm/commands/x-cycle.jl
-msgid ""
-"Keymap containing bindings active only during window cycling operations."
-msgstr "Mapiranje tipk, ki je dejavno le ob kroženju skozi okna."
+msgid "Keymap containing bindings active only during window cycling operations."
+msgstr "Tipkovne bližnjice, ki so dejavne le med kroženjem oken"
 
 #. ../lisp/sawfish/wm/commands.jl
 msgid "Call command"
@@ -2264,7 +2084,7 @@ msgstr "Izvedi ukaz lupine"
 
 #. ../lisp/sawfish/wm/commands.jl
 msgid "Execute the given shell command."
-msgstr "Izvedi dan ukaz lupine."
+msgstr "Izvedi podan ukaz lupine."
 
 #. ../lisp/sawfish/wm/commands.jl
 msgid "Command sequence"
@@ -2288,7 +2108,7 @@ msgstr "Uniči okno"
 
 #. ../lisp/sawfish/wm/commands.jl
 msgid "Kill client"
-msgstr "Ubij klienta"
+msgstr "Uniči odjemalca"
 
 #. ../lisp/sawfish/wm/commands.jl
 msgid "No operation"
@@ -2300,16 +2120,16 @@ msgstr "Pokliči ukaz z izpisom na zaslon"
 
 #. ../lisp/sawfish/wm/commands.jl
 msgid "Prompt for a command, execute it, and print any output to the screen."
-msgstr "Vprašaj za ukaz, ga izvedi in izpiši izhod na zaslon."
+msgstr "Vprašaj za ukaz, ga izvedi in izpiši odvod na zaslon."
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 #. ../lisp/sawfish/wm/custom.jl
 msgid "Focus"
-msgstr "Fokus"
+msgstr "Žarišče"
 
 #. ../lisp/sawfish/wm/custom.jl
 msgid "Move/Resize"
-msgstr "Premakni/Spremeni velikost"
+msgstr "Premakni/spremeni velikost"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 #. ../lisp/sawfish/wm/custom.jl
@@ -2326,9 +2146,8 @@ msgid "Bindings"
 msgstr "Povezave"
 
 #. ../lisp/sawfish/wm/custom.jl
-#, fuzzy
 msgid "Mini/Maximizing"
-msgstr "Krčenje in razpenjanje"
+msgstr "Skrčenje in razpenjanje"
 
 #. ../lisp/sawfish/wm/custom.jl
 msgid "Miscellaneous"
@@ -2337,7 +2156,7 @@ msgstr "Razno"
 #. ../lisp/sawfish/wm/ext/match-window.jl
 #. ../lisp/sawfish/wm/custom.jl
 msgid "Placement"
-msgstr "Namestitev"
+msgstr "Postavitev"
 
 #. ../lisp/sawfish/wm/customize.jl
 msgid "Customize"
@@ -2345,16 +2164,15 @@ msgstr "Prilagodi"
 
 #. ../lisp/sawfish/wm/customize.jl
 msgid "Invoke the configurator GUI."
-msgstr ""
+msgstr "Prikliči namestilnik grafičnega vmesnika"
 
 #. ../lisp/sawfish/wm/ext/3d-hack.jl
 msgid "3d hack"
 msgstr "3d hack"
 
 #. ../lisp/sawfish/wm/ext/apps-menu.jl
-#, fuzzy
 msgid "Update apps menu"
-msgstr "Vzklični menu programov"
+msgstr "Posodobi meni programov"
 
 #. ../lisp/sawfish/wm/ext/apps-menu.jl
 msgid ""
@@ -2364,7 +2182,7 @@ msgstr ""
 
 #. ../lisp/sawfish/wm/ext/audio-events.jl
 msgid "Play sound effects for window events."
-msgstr "Igraj zvočne učinke za okenske dogodke."
+msgstr "Predvajaj zvočne učinke za dogodke okna."
 
 #. ../lisp/sawfish/wm/ext/audio-events.jl
 msgid "Event"
@@ -2372,24 +2190,23 @@ msgstr "Dogodek"
 
 #. ../lisp/sawfish/wm/ext/audio-events.jl
 msgid "Audio file"
-msgstr "Datoteka z zvokom"
+msgstr "Zvočna datoteka"
 
 #. ../lisp/sawfish/wm/ext/auto-raise.jl
 msgid "Auto-Raise"
-msgstr "Samoejni-dvig"
+msgstr "Samodejni-dvig"
 
 #. ../lisp/sawfish/wm/ext/auto-raise.jl
-#, fuzzy
 msgid "Raise windows when they are focused."
-msgstr "Dvigni okna, kadar se odsenčijo."
+msgstr "Dvigni okna, kadar so v žarišču."
 
 #. ../lisp/sawfish/wm/ext/auto-raise.jl
 msgid "Delay in milliseconds until focused windows are raised."
-msgstr "Čas v mikrosekundah, preden so fokusirana okna dvignjena."
+msgstr "Čas v mikrosekundah, preden se okna v žarišču dvignejo."
 
 #. ../lisp/sawfish/wm/ext/edge-flip.jl
 msgid "Edge Flipping"
-msgstr "Preskok preko roba na drug pogled"
+msgstr "Preskok preko roba"
 
 #. ../lisp/sawfish/wm/ext/edge-flip.jl
 msgid "Select the next desktop when the pointer hits screen edge."
@@ -2397,7 +2214,7 @@ msgstr "Preskoči na naslednje namizje, ko kazalec zadane ob rob zaslona."
 
 #. ../lisp/sawfish/wm/ext/edge-flip.jl
 msgid "viewport"
-msgstr "pogled"
+msgstr "vidno polje"
 
 #. ../lisp/sawfish/wm/ext/edge-flip.jl
 msgid "workspace"
@@ -2405,7 +2222,7 @@ msgstr "delovna površina"
 
 #. ../lisp/sawfish/wm/ext/edge-flip.jl
 msgid "Hitting the screen edge selects the next: \\w"
-msgstr "Zadetek roba zaslona izbere naslednje: \\w"
+msgstr "Dotik roba zaslona izbere naslednje: \\w"
 
 #. ../lisp/sawfish/wm/ext/edge-flip.jl
 msgid "Only flip when interactively moving a window."
@@ -2413,7 +2230,7 @@ msgstr "Preskoči le kadar se okno interaktivno premika."
 
 #. ../lisp/sawfish/wm/ext/edge-flip.jl
 msgid "Milliseconds to delay before edge flipping."
-msgstr ""
+msgstr "Čas zamika pred preskakovanjem robov v milisekundah"
 
 #. ../lisp/sawfish/wm/ext/error-handler.jl
 msgid "Beep when errors occur."
@@ -2432,9 +2249,8 @@ msgid "standard-error"
 msgstr "običajna-napaka"
 
 #. ../lisp/sawfish/wm/ext/error-handler.jl
-#, fuzzy
 msgid "both"
-msgstr "ne"
+msgstr "oba"
 
 #. ../lisp/sawfish/wm/ext/error-handler.jl
 msgid "Display error messages to: \\w"
@@ -2446,30 +2262,27 @@ msgstr "Ni napak."
 
 #. ../lisp/sawfish/wm/ext/error-handler.jl
 msgid "Display errors"
-msgstr "Kaži napake"
+msgstr "Pokaži napake"
 
 #. ../lisp/sawfish/wm/ext/error-handler.jl
 msgid "Display all errors that have occurred to the screen."
 msgstr "Na zaslonu pokaži vse napake, ki so se zgodile."
 
 #. ../lisp/sawfish/wm/ext/infinite-desktop.jl
-#, fuzzy
 msgid "Infinite Desktop"
-msgstr "Fokusiraj namizje"
+msgstr "Neskončno namizje"
 
 #. ../lisp/sawfish/wm/ext/infinite-desktop.jl
-msgid "Simulate an infinite desktop (Conflicts edge-flipping)."
-msgstr ""
+msgid "\"Infinite desktop\", or smooth viewport motion with mouse (Conflicts edge-flipping)."
+msgstr "\"Neskončno namizje\", ali gladki prehod gibanja vidnega polja z miško (ni v skladu z preskakovanjem robov)."
 
 #. ../lisp/sawfish/wm/ext/infinite-desktop.jl
-#, fuzzy
-msgid "Amount to move the workspace."
-msgstr "Pošlji na naslednjo delovno površino"
+msgid "Amount to move the viewport when the pointer hits the screen edge."
+msgstr "Premik vidnega polja, ko se kazalnik dotakne roba zaslona."
 
 #. ../lisp/sawfish/wm/ext/infinite-desktop.jl
-#, fuzzy
-msgid "Amount to move the cursor after moving the workspace."
-msgstr "Prestavi okno na delovno površino št. N."
+msgid "Amount to pull back the cursor after moving the viewport."
+msgstr "Premik kazalnika nazaj po premiku vidnega polja."
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Name"
@@ -2493,38 +2306,36 @@ msgstr "Gostitelj"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Locale"
-msgstr "Locale"
+msgstr "Jezikovne nastavitve"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Ignore program position"
-msgstr "Prezri podano lego okna"
+msgstr "Prezri postavitev programa"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Place mode"
-msgstr "Način izbire lege"
+msgstr "Način postavitve"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Position"
-msgstr "Lega"
+msgstr "Položaj"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Workspace"
 msgstr "Delovna površina"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
-#, fuzzy
 msgid "New workspace"
-msgstr "Naslednja delovna površino"
+msgstr "Nova delovna površina"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
-#, fuzzy
 msgid "New viewport"
-msgstr "pogled"
+msgstr "Novo vidno polje"
 
 #. ../lisp/sawfish/wm/viewport.jl
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Viewport"
-msgstr "Pogled"
+msgstr "Vidno polje"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Depth"
@@ -2532,12 +2343,11 @@ msgstr "Globina"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Placement weight"
-msgstr "Teža izbire lege"
+msgstr "Teža izbire položaja"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
-#, fuzzy
 msgid "Fixed position"
-msgstr "Lega"
+msgstr "Določen položaj"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Sticky"
@@ -2545,31 +2355,32 @@ msgstr "Lepljiv"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Sticky viewport"
-msgstr "Lepljiv pogled"
+msgstr "Lepljivo vidno polje"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Raise on focus"
-msgstr "Dvigni ob fokusu"
+msgstr "Dvigni med žariščenjem"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
+#, fuzzy
 msgid "Focus when mapped"
-msgstr "Fokus ob mapiranju"
+msgstr "Postavi v žarišče med mapiranjem"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Never focus"
-msgstr "Nikoli ne fokusiraj"
+msgstr "Nikoli ne postavi v žarišče"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Focus click through"
-msgstr "Ob kliku za fokus, pošlji klik dalje"
+msgstr "Ob kliku žarišča, pošlji klik dalje"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Focus mode"
-msgstr "Način fokusa"
+msgstr "Način žariščenja"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Frame type"
-msgstr "Tip okvirja"
+msgstr "Vrsta okvirja"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Frame style"
@@ -2577,36 +2388,35 @@ msgstr "Slog okvirja"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Dimensions"
-msgstr "Dimenzije"
+msgstr "Velikost"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Maximized"
-msgstr "Razpet"
+msgstr "Razpeto"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Iconified"
-msgstr "Skrčen v ikono"
+msgstr "Pomanjšano v ikono"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Shaded"
-msgstr "Senčen"
+msgstr "Senčeno"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Never iconify"
-msgstr ""
+msgstr "Nikoli ne pomanjšaj v ikono"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
-#, fuzzy
 msgid "Never maximize"
-msgstr "Odrazpni"
+msgstr "Nikoli ne razpni"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Avoid"
-msgstr "Izogibaj se"
+msgstr "Izogibanje"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Ignored"
-msgstr "Prezrt"
+msgstr "Prezrto"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Group"
@@ -2614,7 +2424,7 @@ msgstr "Skupina"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Ungrouped"
-msgstr "Ni v skupini"
+msgstr "Brez skupine"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Cycle skip"
@@ -2627,32 +2437,31 @@ msgstr "Izpusti v seznamu oken"
 #. ../lisp/sawfish/wm/ext/match-window.jl
 #, fuzzy
 msgid "Task list skip"
-msgstr "Izpusti v seznamu oken"
+msgstr "Preklopi izpuščanje seznama nalog"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Unique name"
 msgstr "Edinstveno ime"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
-#, fuzzy
 msgid "Window name"
-msgstr "Okno:"
+msgstr "Ime okna"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Shade hover"
-msgstr "Začasna odsenčitev"
+msgstr "Odstrani senčenje pri prehodu miške"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Transients above"
-msgstr "transistentna okna"
+msgstr "Podrejena okna zgoraj"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Ignore stacking requests"
-msgstr "Prezri zahtevke po določenem skladanju"
+msgstr "Prezri zahteve po določenem skladanju"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Auto gravity"
-msgstr "Samodejna privlačnost"
+msgstr "Samodejna težnost"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Other"
@@ -2660,7 +2469,7 @@ msgstr "Drugo"
 
 #. ../lisp/sawfish/wm/ext/shade-hover.jl
 msgid "Shade Hover"
-msgstr "Začasna odsenčitev"
+msgstr "Odstrani senčenje pri prehodu miške"
 
 #. ../lisp/sawfish/wm/ext/shade-hover.jl
 msgid ""
@@ -2668,46 +2477,45 @@ msgid ""
 "\n"
 "(Temporarily unshades windows while the mouse pointer is over them.)"
 msgstr ""
-"Vključi začasne odsenčitve.\n"
-"(Začasno odsenči okna, kadar je nad njimi kazalec.)"
+"Omogoči odstranitev senčenja ob prehodu miške.\n"
+"\n"
+"(Začasno odstrani senčenje okna, kadar je nad njimi kazalnik miške.)"
 
 #. ../lisp/sawfish/wm/ext/shade-hover.jl
 msgid "Delay in milliseconds before unshading windows."
-msgstr "Premor v milisekundah preden se okna odsenčijo."
+msgstr "Premor v milisekundah preden se odstrani senčenje okna."
 
 #. ../lisp/sawfish/wm/ext/shade-hover.jl
 msgid "Raise windows when they are unshaded."
-msgstr "Dvigni okna, kadar se odsenčijo."
+msgstr "Dvigni okna, kadar se odstrani senčenje."
 
 #. ../lisp/sawfish/wm/ext/tooltips.jl
 msgid "Display tooltips for window frames."
-msgstr "Kaži namige za okvirje oken."
+msgstr "Pokaži namige za okvirje oken."
 
 #. ../lisp/sawfish/wm/ext/tooltips.jl
 msgid "Show full documentation in tooltips."
-msgstr "V namigih kaži polno dokumentacijo."
+msgstr "V namigih pokaži polno dokumentacijo."
 
 #. ../lisp/sawfish/wm/ext/tooltips.jl
-#, fuzzy
 msgid "Number of milliseconds before displaying tooltips."
-msgstr "Premor v milisekundah preden se okna odsenčijo."
+msgstr "Premor pred prikazom orodnega namiga v milisekundah."
 
 #. ../lisp/sawfish/wm/ext/tooltips.jl
-#, fuzzy
 msgid "Number of milliseconds before removing tooltips."
-msgstr "Premor v milisekundah preden se okna odsenčijo."
+msgstr "Čas prikazovanja orodnih namigov v milisekundah."
 
 #. ../lisp/sawfish/wm/ext/tooltips.jl
 msgid "Font used to display tooltips, or nil for default."
-msgstr ""
+msgstr "Pisava za prikazovanje namigov; prazna vrednost je privzeta pisava."
 
 #. ../lisp/sawfish/wm/ext/tooltips.jl
 msgid "Color used for the tooltips background"
-msgstr ""
+msgstr "Barva ozadja oken namigov."
 
 #. ../lisp/sawfish/wm/ext/tooltips.jl
 msgid "Color used for the tooltips foreground"
-msgstr ""
+msgstr "Barva ospredja oken namigov."
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Remember _position"
@@ -2726,19 +2534,16 @@ msgid "_Forget saved state"
 msgstr "Po_zabi shranjeno stanje"
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
-#, fuzzy
 msgid "_Clear window-istory"
-msgstr "P_ošlji okno na"
+msgstr "_Počisti zgodovino okna"
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
-#, fuzzy
 msgid "_Save window-history"
-msgstr "P_ošlji okno na"
+msgstr "_Shrani zgodovino okna"
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
-#, fuzzy
 msgid "_Reload window-history"
-msgstr "Pozabi vso zgodovino shranjenih oken."
+msgstr "_Ponovno naloži zgodovino okna"
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Automatically remember window positions."
@@ -2754,7 +2559,7 @@ msgstr "Samodejno si zapomni ostale atribute okna."
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Don't automatically remember details of transient windows."
-msgstr "Položaja pogovornih oken ne pomni samodejno."
+msgstr "Ne zapomni si položaja pogovornih oken."
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Window history save position"
@@ -2762,15 +2567,15 @@ msgstr "Shrani zgodovino položaja okna"
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Remember the current position of the focused window."
-msgstr "Pomni trenutni položaj fokusiranega okna."
+msgstr "Pomni trenutni položaj okna v žarišču."
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Window history save dimensions"
-msgstr "Shrani zgodovino dimenzij okna"
+msgstr "Shrani zgodovino velikosti okna"
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Remember the current dimensions of the focused window."
-msgstr "Pomni trenutno velikost fokusiranega okna."
+msgstr "Pomni trenutno velikost okna v žarišču."
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Window history save attributes"
@@ -2778,7 +2583,7 @@ msgstr "Shrani zgodovino atributov okna"
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Remember the current attributes of the focused window."
-msgstr "Pomni trenutne atribute  fokusiranega okna."
+msgstr "Pomni trenutne atribute okna v žarišču."
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Window history forget"
@@ -2801,88 +2606,72 @@ msgid "_History"
 msgstr "_Zgodovina"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "Workspace down"
-msgstr "Delovna površina %d"
+msgstr "Delovna površina spodaj"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "View the workspace below the current workspace"
-msgstr "Ustvari novo delovno površino, ki naj bo pred trenutno."
+msgstr "Poglej delovno površino pod trenutno delovno površino"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "Workspace up"
-msgstr "Delovna površina"
+msgstr "Delovna površina zgoraj"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "View the workspace above the current workspace"
-msgstr "Ustvari novo delovno površino, ki naj bo pred trenutno."
+msgstr "Poglej delovno površino nad trenutno delovno površino"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "Workspace left"
-msgstr "Prestavi delovno površino levo"
+msgstr "Delovna površina levo"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "View the workspace to the left of the current workspace"
-msgstr "Ustvari novo delovno površino, ki naj bo pred trenutno."
+msgstr "Poglej delovno površino na levi strani trenutne delovne površine"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "Workspace right"
-msgstr "Prestavi delovno površino desno"
+msgstr "Delovna površina desno"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "View the workspace to the right of the current workspace"
-msgstr "Ustvari novo delovno površino, ki naj bo pred trenutno."
+msgstr "Poglej delovno površino na desni strani trenutne delovne površine"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "Send to workspace down"
-msgstr "Pošlji na delovno površino"
+msgstr "Pošlji na spodnjo delovno površino"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "Send window to the workspace below the current workspace"
-msgstr "Ustvari novo delovno površino, ki naj bo pred trenutno."
+msgstr "Pošlji okno na delovno površino pod trenutno."
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "Send to workspace up"
-msgstr "Pošlji na delovno površino"
+msgstr "Pošlji na zgornjo delovno površino"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "Send window to the workspace above the current workspace"
-msgstr "Ustvari novo delovno površino, ki naj bo pred trenutno."
+msgstr "Pošlji okno na delovno površino nad trenutno."
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "Send to workspace left"
-msgstr "Pošlji na delovno površino"
+msgstr "Pošlji na levo delovno površino"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "Send window to the workspace left of the current workspace"
-msgstr "Ustvari novo delovno površino, ki naj bo pred trenutno."
+msgstr "Pošlji okno na delovno površino na levi od trenutne."
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "Send to workspace right"
-msgstr "Pošlji na delovno površino"
+msgstr "Pošlji na desno delovno površino"
 
 #. ../lisp/sawfish/wm/ext/workspace-grid.jl
-#, fuzzy
 msgid "Send window to the workspace right of the current workspace"
-msgstr "Ustvari novo delovno površino, ki naj bo pred trenutno."
+msgstr "Pošlji okno na delovno površino na desni od trenutne."
 
 #. ../lisp/sawfish/wm/focus.jl
 msgid "When does the mouse pointer affect the input focus."
-msgstr "Kdaj kazalec miške vpliva na fokus."
+msgstr "Kdaj kazalec miške vpliva na žarišče."
 
 #. ../lisp/sawfish/wm/focus.jl
 msgid "Click-to-focus mode passes the click through to the application."
@@ -2895,7 +2684,7 @@ msgstr "Znižaj okno na dno znotraj njegovega sklada."
 
 #. ../lisp/sawfish/wm/focus.jl
 msgid "When true, pointer in/out events don't cause focus changes."
-msgstr ""
+msgstr "Izbrana možnost omogoči, da vhodni/izhodni dogodki ne spremenijo žarišča."
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Default frame style:"
@@ -2903,7 +2692,7 @@ msgstr "Privzet slog okvirjev:"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Automatically reload themes when they are updated."
-msgstr "Samodejno znova naloži teme, ko so posodobljene."
+msgstr "Samodejno ponovno naloži teme, ko so posodobljene."
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Default font: \\w"
@@ -2911,15 +2700,15 @@ msgstr "Privzeta pisava: \\w"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Use custom font colors for frames"
-msgstr ""
+msgstr "Uporabi privzete barve pisave za okvirje"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Font color for active frames"
-msgstr ""
+msgstr "Barva pisave dejavnih okvirjev"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Font color for inactive frames"
-msgstr ""
+msgstr "Barva pisave nedejavnih okvirjev"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Edit frame style"
@@ -2931,19 +2720,19 @@ msgstr "Privzeto"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Normal"
-msgstr "Običajen"
+msgstr "Običajno"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Title-only"
-msgstr "Le-naziv"
+msgstr "Le naziv"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Border-only"
-msgstr "Le-rob"
+msgstr "Le rob"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Top-border"
-msgstr "Zgornja meja"
+msgstr "Zgornji rob"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "None"
@@ -2956,289 +2745,263 @@ msgid "_Help"
 msgstr "_Pomoč"
 
 #. ../lisp/sawfish/wm/integration/gnome.jl
-#, fuzzy
 msgid "_GNOME Help"
-msgstr "Pomoč _GNOME..."
+msgstr "Pomoč _GNOME"
 
 #. ../lisp/sawfish/wm/integration/gnome.jl
 msgid "GNOME Website"
-msgstr ""
+msgstr "Spletišče Gnome"
 
 #. ../lisp/sawfish/wm/integration/gnome.jl
-#, fuzzy
 msgid "About GNOME"
-msgstr "O GNOME..."
+msgstr "O GNOME"
 
 #. ../lisp/sawfish/wm/menus.jl
 #. ../lisp/sawfish/wm/integration/standalone.jl
 #. ../lisp/sawfish/wm/integration/kde.jl
 #. ../lisp/sawfish/wm/integration/gnome.jl
 msgid "Sessi_on"
-msgstr ""
+msgstr "_Seja"
 
 #. ../lisp/sawfish/wm/integration/gnome.jl
-#, fuzzy
 msgid "_Logout from GNOME"
-msgstr "Odjavi se iz trenutne GNOME seje."
+msgstr "_Odjava iz GNOME"
 
 #. ../lisp/sawfish/wm/integration/gnome.jl
 msgid "_Shutdown from GNOME"
-msgstr ""
+msgstr "_Izklopi iz GNOME"
 
 #. ../lisp/sawfish/wm/integration/kde.jl
-#, fuzzy
 msgid "_KDE Help"
-msgstr "_Pomoč"
+msgstr "Pomoč _KDE"
 
 #. ../lisp/sawfish/wm/integration/kde.jl
 msgid "KDE Website"
-msgstr ""
+msgstr "Spletišče KDE"
 
 #. ../lisp/sawfish/wm/integration/kde.jl
-#, fuzzy
 msgid "_Logout from KDE"
-msgstr "Odjavi se iz trenutne GNOME seje."
+msgstr "_Odjava iz KDE"
 
 #. ../lisp/sawfish/wm/integration/kde.jl
-#, fuzzy
 msgid "_Reboot from KDE"
-msgstr "Odjavi se iz trenutne GNOME seje."
+msgstr "_Ponovni zagon iz KDE"
 
 #. ../lisp/sawfish/wm/integration/kde.jl
 msgid "_Shutdown from KDE"
-msgstr ""
+msgstr "_Izklopi iz KDE"
 
 #. ../lisp/sawfish/wm/integration/standalone.jl
-#, fuzzy
 msgid "_Reboot System"
-msgstr "Odjavi se iz trenutne GNOME seje."
+msgstr "_Ponovni zagon sistema"
 
 #. ../lisp/sawfish/wm/integration/standalone.jl
 msgid "_Shutdown System"
-msgstr ""
+msgstr "_Izklopi sistem"
 
 #. ../lisp/sawfish/wm/integration/standalone.jl
 msgid "S_uspend System"
-msgstr ""
+msgstr "_Postavi sistem v mirovanje"
 
 #. ../lisp/sawfish/wm/integration/standalone.jl
 msgid "_Hibernate System"
-msgstr ""
+msgstr "_Hibernacija sistema"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "global-keymap"
-msgstr "Globalne povezave tipk"
+msgstr "splošne tipke"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "Keymap containing bindings active anywhere."
-msgstr "Mapiranje tipk, ki je dejavno povsod."
+msgstr "Tipkovne bližnjice, ki so dejavne pri vseh oknih"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "window-keymap"
-msgstr "Povezave tipk okna"
+msgstr "tipke okna"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "Keymap containing bindings active when a client window is focused."
-msgstr "Mapiranje tipk, ki je dejavno kadar je okno fokusirano."
+msgstr "Tipkovne bližnjice, ki so dejavne, ko je v žarišču odjemno okno."
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "root-window-keymap"
-msgstr "povezave tipk osnovnega okna"
+msgstr "tipke korenskega okna"
 
 #. ../lisp/sawfish/wm/keymaps.jl
-#, fuzzy
 msgid ""
 "Keymap containing bindings active when the pointer is in the root window\n"
 "(or when no window is focused)."
 msgstr ""
-"Mapiranje tipk, ki je dejavno kadar je kazalec izven oken\n"
-"(ali ni fokusirano nobeno okno)."
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik v korenskem oknu\n"
+"(ali pa, ko ni v žarišču nobenega okna)."
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "title-keymap"
-msgstr "povezave tipk naziva"
+msgstr "tipke nazivne vrstice"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid ""
 "Keymap containing bindings active when the pointer is in the title of\n"
 "a window. (Only mouse-bindings are evaluated in this map.)"
 msgstr ""
-"Mapiranje tipk, ki je dejavno kadar je kazalec na nazivu okna.\n"
-"(Delujejo le miškine povezave.)"
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik v nazivni vrstici okna.\n"
+"(delujejo le miškine povezave)."
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "border-keymap"
-msgstr "povezave tipk roba"
+msgstr "tipke za premikanje robov"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid ""
 "Keymap containing bindings active when the pointer is in the border of\n"
 "a window. (Only mouse-bindings are evaluated in this map.)"
 msgstr ""
-"Mapiranje tipk, ki je dejavno kadar je kazalec na robu okna\n"
-"(Delujejo le miškine povezave.)"
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik na robu okna\n"
+"(delujejo le miškine povezave)."
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "close-button-keymap"
-msgstr "povezave tipk gumba \"zapri\""
+msgstr "tipke gumba za zapiranje"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid ""
 "Keymap containing bindings active when the pointer is in the close button\n"
 "of a window. (Only mouse-bindings are evaluated in this map.)"
 msgstr ""
-"Mapiranje tip, ki je dejavno kadar je kazalec nad gumbom za zapiranje\n"
-"(Delujejo le miškine povezave.)"
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik nad gumbom za zapiranje\n"
+"okna (delujejo le miškine povezave)."
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "iconify-button-keymap"
-msgstr "povezave tipk gumba \"skrči\""
+msgstr "tipke gumba za pomanjšanje okna"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid ""
 "Keymap containing bindings active when the pointer is in the iconify\n"
 "button of a window. (Only mouse-bindings are evaluated in this map.)"
 msgstr ""
-"Mapiranje tipk, ki je dejavno kadar je kazalec nad gumbom za pomanjšanje\n"
-"(Delujejo le miškine povezave.)"
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik nad gumbom za pomanjšanje\n"
+"okna (delujejo le miškine povezave)."
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "maximize-button-keymap"
-msgstr "povezave tipk gumba \"razpni\""
+msgstr "tipke gumba za razpenjanje"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid ""
 "Keymap containing bindings active when the pointer is in the maximize\n"
 "button of a window. (Only mouse-bindings are evaluated in this map.)"
 msgstr ""
-"Mapiranje tipk, ki je dejavno kadar je kazalec nad gumbom za razenjanje\n"
-"(Delujejo le miškine povezave.)"
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik nad gumbom za razpenjanje\n"
+"okna (delujejo le miškine povezave.)"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "menu-button-keymap"
-msgstr "povezave tipk gumba \"menu\""
+msgstr "tipke gumba menija"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid ""
 "Keymap containing bindings active when the pointer is in the menu button\n"
 "of a window. (Only mouse-bindings are evaluated in this map.)"
 msgstr ""
-"Mapiranje tipk, ki je dejavno kadar je kazalec nad gumbom za menu\n"
-"(Delujejo le miškine povezave.)"
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik nad gumbom za meni\n"
+"(delujejo le miškine povezave)."
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "shade-button-keymap"
-msgstr "povezave tipk gumba \"senči\""
+msgstr "tipke gumba za senčenje"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid ""
 "Keymap containing bindings active when the pointer is in the shade button\n"
 "of a window. (Only mouse-bindings are evaluated in this map.)"
 msgstr ""
-"Mapiranje tipk, ki je dejavno kadar je kazalec nad gumbom za senčenje\n"
-"(Delujejo le miškine povezave.)"
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik nad gumbom za senčenje\n"
+"(delujejo le miškine povezave)."
 
 #. ../lisp/sawfish/wm/keymaps.jl
-#, fuzzy
 msgid "sticky-button-keymap"
-msgstr "povezave tipk gumba \"skrči\""
+msgstr "tipke lepljivega gumba"
 
 #. ../lisp/sawfish/wm/keymaps.jl
-#, fuzzy
 msgid ""
 "Keymap containing bindings active when the pointer is in the sticky button\n"
 "of a window. (Only mouse-bindings are evaluated in this map.)"
 msgstr ""
-"Mapiranje tip, ki je dejavno kadar je kazalec nad gumbom za zapiranje\n"
-"(Delujejo le miškine povezave.)"
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik nad lepljivim gumbom\n"
+"(delujejo le miškine povezave.)"
 
 #. ../lisp/sawfish/wm/keymaps.jl
-#, fuzzy
 msgid "lock-button-keymap"
-msgstr "povezave tipk gumba \"zapri\""
+msgstr "tipka za zaklepanje"
 
 #. ../lisp/sawfish/wm/keymaps.jl
-#, fuzzy
 msgid ""
 "Keymap containing bindings active when the pointer is in the lock button\n"
 "of a window. (Only mouse-bindings are evaluated in this map.)"
 msgstr ""
-"Mapiranje tip, ki je dejavno kadar je kazalec nad gumbom za zapiranje\n"
-"(Delujejo le miškine povezave.)"
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik nad gumbom za zaklepanje\n"
+"(delujejo le miškine povezave)."
 
 #. ../lisp/sawfish/wm/keymaps.jl
-#, fuzzy
 msgid "rename-button-keymap"
-msgstr "povezave tipk gumba \"menu\""
+msgstr "tipka gumba za preimenovanje"
 
 #. ../lisp/sawfish/wm/keymaps.jl
-#, fuzzy
 msgid ""
 "Keymap containing bindings active when the pointer is in the rename button\n"
 "of a window. (Only mouse-bindings are evaluated in this map.)"
 msgstr ""
-"Mapiranje tipk, ki je dejavno kadar je kazalec nad gumbom za menu\n"
-"(Delujejo le miškine povezave.)"
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik nad gumbom za preimenovanje\n"
+"(delujejo le miškine povezave)."
 
 #. ../lisp/sawfish/wm/keymaps.jl
-#, fuzzy
 msgid "move-resize-button-keymap"
-msgstr "povezave tipk gumba \"zapri\""
+msgstr "tipka premikanja in spreminjanja velikosti"
 
 #. ../lisp/sawfish/wm/keymaps.jl
-#, fuzzy
 msgid ""
-"Keymap containing bindings active when the pointer is in the move/resize "
-"button\n"
+"Keymap containing bindings active when the pointer is in the move/resize button\n"
 "of a window. (Only mouse-bindings are evaluated in this map.)"
 msgstr ""
-"Mapiranje tip, ki je dejavno kadar je kazalec nad gumbom za zapiranje\n"
-"(Delujejo le miškine povezave.)"
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik nad gumbom za premikanje in spreminjanje\n"
+"velikosti okna (delujejo le miškine povezave)."
 
 #. ../lisp/sawfish/wm/keymaps.jl
-#, fuzzy
 msgid "raise-lower-button-keymap"
-msgstr "povezave tipk gumba \"zapri\""
+msgstr ""
 
 #. ../lisp/sawfish/wm/keymaps.jl
-#, fuzzy
 msgid ""
-"Keymap containing bindings active when the pointer is in the raise/lower "
-"button\n"
+"Keymap containing bindings active when the pointer is in the raise/lower button\n"
 "of a window. (Only mouse-bindings are evaluated in this map.)"
 msgstr ""
-"Mapiranje tip, ki je dejavno kadar je kazalec nad gumbom za zapiranje\n"
-"(Delujejo le miškine povezave.)"
+"Tipkovne bližnjice, ki so dejavne le, ko je kazalnik nad gumbom za dviganje in spuščanje\n"
+"okna (delujejo le miškine povezave)."
 
 #. ../lisp/sawfish/wm/keymaps.jl
-#, fuzzy
 msgid "Modifier key(s) used for default shortcuts."
-msgstr ""
-"Ubežna tipka, ki se uporablja za privzete bližnjice upravljalnika oken."
+msgstr "Spremenilniki uporabljeni za privzete bližnjice."
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Mi_nimize"
-msgstr "Pomanjšaj"
+msgstr "_Skrči"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Unma_ximize"
-msgstr "Odrazpni"
+msgstr "_Pomanjšaj"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Ma_ximize"
-msgstr "Razpni"
+msgstr "Ra_zpni"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "_Move"
-msgstr ""
+msgstr "_Premakni"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "_Resize"
-msgstr "Premakni/Spremeni velikost"
+msgstr "Sp_remeni velikost"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "_Close"
@@ -3258,146 +3021,129 @@ msgstr "P_ošlji okno na"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "_Previous workspace"
-msgstr "_Prejšnjo delovno površino"
+msgstr "_Predhodna delovna površina"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "_Next workspace"
-msgstr "_Naslednjo delovno površino"
+msgstr "_Naslednja delovna površina"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "C_opy window to"
-msgstr "P_ošlji okno na"
+msgstr "_Kopiraj na"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "P_revious workspace"
-msgstr "Prejšnja delovna površino"
+msgstr "_Predhodna delovna površina"
+
+#. ../lisp/sawfish/wm/menus.jl
+msgid "Ne_xt workspace"
+msgstr "_Naslednja delovna površina"
 
 #. ../lisp/sawfish/wm/menus.jl
 #, fuzzy
-msgid "Ne_xt workspace"
-msgstr "Naslednja delovna površino"
-
-#. ../lisp/sawfish/wm/menus.jl
 msgid "_Grow & Pack"
-msgstr ""
+msgstr "Vrsta zlaganja"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Grow left"
-msgstr "Povečaj okno levo"
+msgstr "Povečaj okno z leve"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Grow right"
-msgstr "Povečaj okno desno"
+msgstr "Povečaj okno z desne"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Grow up"
-msgstr "Povečaj okno navzgor"
+msgstr "Povečaj okno od spodaj"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Grow down"
-msgstr "Povečaj okno navzdol"
+msgstr "Povečaj okno od zgoraj"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Pack left"
-msgstr "Pomanjšaj okno levo"
+msgstr "Pomanjšaj okno z leve"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Pack right"
-msgstr "Pomanjšaj okno desno"
+msgstr "Pomanjšaj okno z desne"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Pack up"
-msgstr "Pomanjšaj okno navzgor"
+msgstr "Pomanjšaj okno od spodaj"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Pack down"
-msgstr "Pomanjšaj okno navzdol"
+msgstr "Pomanjšaj okno od zgoraj"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Shrink & _Yank"
-msgstr ""
+msgstr "Skrči in _potegni"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Shrink left"
-msgstr "Drsenje okna levo"
+msgstr "Skrči levo"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Shrink right"
-msgstr "Drsneje okna desno"
+msgstr "Skrči desno"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Shrink up"
-msgstr "Drsenje okna navzgor"
+msgstr "Skrči navzgor"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Shrink down"
-msgstr "Drsenje okna navzdol"
+msgstr "Skrči navzdol"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Yank left"
-msgstr "Pomanjšaj okno levo"
+msgstr "Potegni levo"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Yank right"
-msgstr "Pomanjšaj okno desno"
+msgstr "Potegni desno"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Yank up"
-msgstr "Pomanjšaj okno navzgor"
+msgstr "Potegni navzgor"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Yank down"
-msgstr "Pomanjšaj okno navzdol"
+msgstr "Potegni navzdol"
 
 #. ../lisp/sawfish/wm/menus.jl
 #, fuzzy
 msgid "Stac_king"
-msgstr "Skladanje"
+msgstr "Kralj"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "_Raise"
-msgstr "Dvigni"
+msgstr "_Dvigni"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "_Lower"
-msgstr "Spusti"
+msgstr "_Spusti"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "_Upper layer"
-msgstr "Spodnja plast"
+msgstr "_Zgornja plast"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Lo_wer layer"
-msgstr "Zgornja plast"
+msgstr "_Spodnja plast"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Frame ty_pe"
-msgstr "Tip okvirja"
+msgstr "_Vrsta okvirja"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Frame sty_le"
-msgstr "Slog okvirja"
+msgstr "_Slog okvirja"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Sawfish Rootmenu"
-msgstr "Domača stran Sawfish"
+msgstr "Korenski meni programa Sawfish"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "_Windows"
@@ -3416,88 +3162,80 @@ msgid "_Customize"
 msgstr "Pri_lagodi"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Display Errors"
-msgstr "Kaži napake"
+msgstr "Pokaži napake"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Reload Appsmenu"
-msgstr "Vzklični menu programov"
+msgstr "Ponovno naloži meni programov"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Restart Sawfish"
-msgstr "Znova zaženi"
+msgstr "Ponovno zaženi program Sawfish"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Quit Sawfish"
-msgstr "O Sawfish..."
+msgstr "Končaj Sawfish"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "_FAQ..."
-msgstr "Po_gosta vprašanja in odgovori..."
+msgstr "Po_gosto zastavljena vprašanja ..."
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "_News..."
-msgstr "_Novice..."
+msgstr "_Novice ..."
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "_WWW page..."
-msgstr "_Spletna stran..."
+msgstr "_Spletišče ..."
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "_Manual..."
-msgstr "P_riročnik..."
+msgstr "P_riročnik ..."
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "_About Sawfish..."
-msgstr "O Sawfish..."
+msgstr "_O programu ..."
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Kill Window"
-msgstr "_Okna"
+msgstr "Uniči okno"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Popup window menu"
-msgstr "Vklični menu okna"
+msgstr "Pojavni meni okna"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Display the menu listing all window operations."
-msgstr "Kaži menu, ki vsebuje vse operacije z okni."
+msgstr "Pokaži meni, ki vsebuje vsa okna opravil."
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Popup root menu"
-msgstr "Vzklični menu korenskega okna"
+msgstr "Pojavni korenski meni"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Display the main menu."
-msgstr "Kaži glavno okno."
+msgstr "Pokaži glavni meni."
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Popup apps menu"
-msgstr "Vzklični menu programov"
+msgstr "Pojavni meni programov"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Display the applications menu."
-msgstr "Kaži menu aplikacij."
+msgstr "Pokaži meni programov."
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Popup window list menu"
-msgstr "Vklični menu okna"
+msgstr "Pojavni meni seznama oken"
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "Display the window-list menu."
-msgstr "Kaži glavno okno."
+msgstr "Pokaži meni seznama oken."
 
 #. ../lisp/sawfish/wm/menus.jl
-#, fuzzy
 msgid "S_awfishConfig"
-msgstr "Sawfish nastavitve"
+msgstr "_Sawfish nastavitve"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Edit theme..."
@@ -3510,15 +3248,15 @@ msgstr "Razdalja med zaporednimi postavitvami v `stager' načinu postavitev."
 
 #. ../lisp/sawfish/wm/placement.jl
 msgid "Method of placing windows: \\w"
-msgstr "Način določitve položaja oken: \\w"
+msgstr "Način prikazovanja oken: \\w"
 
 #. ../lisp/sawfish/wm/placement.jl
 msgid "Method of placing dialog windows: \\w"
-msgstr "Način določitve položaja oken dialogov: \\w"
+msgstr "Način prikazovanja pogovornih oken: \\w"
 
 #. ../lisp/sawfish/wm/placement.jl
 msgid "Ignore program-specified window placements."
-msgstr ""
+msgstr "Prezri programska določila postavitve oken."
 
 #. ../lisp/sawfish/wm/stacking.jl
 msgid "Stacking"
@@ -3526,11 +3264,11 @@ msgstr "Skladanje"
 
 #. ../lisp/sawfish/wm/stacking.jl
 msgid "parents"
-msgstr "starši"
+msgstr "nadrejeno"
 
 #. ../lisp/sawfish/wm/stacking.jl
 msgid "Keep transient windows stacked above: \\w"
-msgstr "Pusti transistentna okna nad: \\w"
+msgstr "Pusti podrejena okna nad: \\w"
 
 #. ../lisp/sawfish/wm/stacking.jl
 msgid "Raise single window"
@@ -3546,21 +3284,19 @@ msgstr "Spusti za eno okno"
 
 #. ../lisp/sawfish/wm/stacking.jl
 msgid "Lower the window to its lowest allowed position in the stacking order."
-msgstr "Znižaj okno na dno znotraj njegovega sklada."
+msgstr "Spusti okno na dno znotraj njegovega sklada."
 
 #. ../lisp/sawfish/wm/stacking.jl
 msgid "Raise lower single window"
-msgstr "Dvigni/spusti za eno okno"
+msgstr "Dvigni ali spusti za eno okno"
 
 #. ../lisp/sawfish/wm/stacking.jl
-#, fuzzy
 msgid ""
 "If the window is at its highest possible position, then lower it to its\n"
 "lowest possible position. Otherwise raise it as far as allowed."
 msgstr ""
-"Če je okno na najvišjem možnem položaju, ga spusti na najnižji možen "
-"položaj,\n"
-"sicer pa ga dvigni čimbolj na vrh. (spremeni tudi nivo dialogov)"
+"V kolikor je okno na najvišjem mogočem položaju, ga spusti na najnižji\n"
+"mogoč položaj, sicer pa ga dvigni čimbolj na vrh."
 
 #. ../lisp/sawfish/wm/stacking.jl
 msgid "Raise window depth"
@@ -3568,33 +3304,33 @@ msgstr "Dvigni globino okna"
 
 #. ../lisp/sawfish/wm/stacking.jl
 msgid "Put the window in the stacking level above its current level."
-msgstr "Premakni okno v skladu za stopnjo navzgor."
+msgstr "Premakni okno v sklad nad trenutno ravnjo."
 
 #. ../lisp/sawfish/wm/stacking.jl
 msgid "Lower window depth"
-msgstr "Spusti globino okna"
+msgstr "Znižaj globino okna"
 
 #. ../lisp/sawfish/wm/stacking.jl
 msgid "Put the window in the stacking level beneath its current level."
-msgstr "Premakni okno v skladu za stopnjo navzdol."
+msgstr "Premakni okno v sklad pod trenutno ravnjo."
 
 #. ../lisp/sawfish/wm/util/stacking.jl
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "transients"
-msgstr "transistentna okna"
+msgstr "podrejena okna"
 
 #. ../lisp/sawfish/wm/util/stacking.jl
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "group"
-msgstr "skupino"
+msgstr "skupina"
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "Minimizing a window also removes its: \\w"
-msgstr "Ob pomanjkanju okna se odstrani tudi njegovo: \\w"
+msgstr "Ob skrčenju okna se odstrani tudi: \\w"
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "Unminimizing a window also restores its: \\w"
-msgstr "Ob odpomanjšanju okna se povrne tudi njegova: \\w"
+msgstr "Ob povečanju okna se povrne tudi njegova: \\w"
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "Iconify window"
@@ -3606,7 +3342,7 @@ msgstr "Skrči okno."
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "Uniconify window"
-msgstr "Odkrči okno"
+msgstr "Povečaj okno iz ikone"
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "Restore the window from its minimized state."
@@ -3614,15 +3350,15 @@ msgstr "Povrni okno iz skrčenega stanja."
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "Toggle window iconified"
-msgstr "Preklopi skrčenost okna"
+msgstr "Preklopi skrčenost okna v ikono"
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "Toggle the iconification of window W."
-msgstr "Preklopi skrčenost okna."
+msgstr "Preklopi skrčenje v ikono okna W."
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "Iconify workspace windows"
-msgstr "Skrči vsa okna delovne površine"
+msgstr "Skrči v ikone vsa okna delovne površine"
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "Minimize all windows on the current workspace."
@@ -3630,24 +3366,23 @@ msgstr "Skrči vsa okna na trenutni delovni površini."
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "Make window sticky"
-msgstr "Naredi okno lepljivo"
+msgstr "Določi okno kot lepljivo"
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "Make window unsticky"
-msgstr "Naredi okno nelepljivo"
+msgstr "Prekliči lepljivost okna"
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "Toggle window sticky"
 msgstr "Preklopi lepljivost okna"
 
 #. ../lisp/sawfish/wm/state/iconify.jl
-#, fuzzy
 msgid ""
 "Toggle the `stickiness' of the window--whether or not it is a member of\n"
 "all workspaces."
 msgstr ""
-"Preklopi `lepljivost' okna neglede na to ali je član vseh \n"
-"delovnih površin."
+"Preklopi `lepljivost' okna neglede na to ali je prikazano na vseh\n"
+"delovnih površinah."
 
 #. ../lisp/sawfish/wm/state/iconify.jl
 msgid "_Sticky"
@@ -3655,86 +3390,83 @@ msgstr "_Lepljivo"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "Make window ignored"
-msgstr "Naredi okno prezrto"
+msgstr "Nastavi izpuščanje okna"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "Ignore the window."
-msgstr "Ignoriraj okno."
+msgstr "Izpusti okno."
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "Make window not ignored"
-msgstr "Naredi okno ne prezrto"
+msgstr "Prekliči nastavitev izpuščanja okna"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "Unignore the window."
-msgstr "Odignoriraj okno."
+msgstr "Prekliči izpuščanje okna."
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "Toggle window ignored"
-msgstr "Preklopi prezrtost okna"
+msgstr "Preklopi izpuščanje okna"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "Toggle whether a window is ignored or not."
-msgstr "Preklopi ali je okno ignorirano ali ne."
+msgstr "Preklopi ali je okno prezrto ali ne."
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "Toggle window never focus"
-msgstr "Preklopi nefokusabilnost okna"
+msgstr "Preklopi možnost žarišča okna"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "Toggle whether a window is focusable or not."
-msgstr "Preklopi ali lahko okno dobi fokus."
+msgstr "Preklopi ali je okno lahko v žarišču"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "Toggle window cycle skip"
-msgstr "Preklopi prezrtje okna ob kroženju"
+msgstr "Preklopi izpuščanje okna med kroženjem"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "Toggle whether a window is ignored while window cycling."
-msgstr "Preklopi ignoriranje okna med kroženjem skozi okna."
+msgstr "Preklopi izpuščanje okna med kroženjem skozi okna."
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "Toggle window list skip"
-msgstr "Preklopi prezrtje okna v seznamu oken"
+msgstr "Preklopi izpuščanje okna v seznamu oken"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "Toggle whether a window will be include in the window list."
 msgstr "Preklopi ali je okno vključeno v seznam oken."
 
 #. ../lisp/sawfish/wm/state/ignored.jl
-#, fuzzy
 msgid "Toggle task list skip"
-msgstr "Preklopi prezrtje okna v seznamu oken"
+msgstr "Preklopi izpuščanje seznama nalog"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
-#, fuzzy
 msgid "Toggle whether a window will be included in the task-list."
-msgstr "Preklopi ali je okno vključeno v seznam oken."
+msgstr "Preklopi ali je okno vključeno v seznam nalog."
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "_Ignored"
-msgstr "_Ignorirano"
+msgstr "_Prezrto"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "_Focusable"
-msgstr "_Fokusabilno"
+msgstr "_Žariščeno"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "_Cyclable"
-msgstr "_Kiklabilno"
+msgstr "_V kroženju"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
 msgid "In _window list"
 msgstr "V seznamu _oken"
 
 #. ../lisp/sawfish/wm/state/ignored.jl
-#, fuzzy
 msgid "In _task list"
-msgstr "V seznamu _poslov GNOME"
+msgstr "V seznamu _nalog"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Lock position and size while windows are maximized."
-msgstr "Zakleni geometrijo okna medtem, ko je to razpeto."
+msgstr "Zakleni položaj in velikost med razpenjanjem okna."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize window"
@@ -3742,18 +3474,19 @@ msgstr "Razpni okno"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize the dimensions of the window."
-msgstr "Maksimizira velikost okna."
+msgstr "Razpne velikost okna."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Unmaximize window"
-msgstr "Odrazpni okno"
+msgstr "Pomanjšaj okno"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
-#, fuzzy
 msgid ""
 "Restore the dimensions of the window to its original,\n"
 "unmaximized, state."
-msgstr "Povrni velikost okna na njegovo izhodišno, ne razpeto, stanje."
+msgstr ""
+"Povrni velikost okna na njegovo osnovno,\n"
+"ne-razpeto velikost."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize window vertically"
@@ -3761,7 +3494,7 @@ msgstr "Razpni okno navpično"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize the vertical dimension of the window."
-msgstr "Povečaj navpično velikost okna."
+msgstr "Razpni navpično velikost okna."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize window horizontally"
@@ -3769,7 +3502,7 @@ msgstr "Razpni okno vodoravno"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize the horizontal dimension of the window."
-msgstr "Povečaj vodoravno velikost okna."
+msgstr "Razpni vodoravno velikost okna."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize window toggle"
@@ -3777,31 +3510,31 @@ msgstr "Preklopi razpetost okna"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Toggle the state of the window between maximized and unmaximized."
-msgstr "Preklopi stanje okna med razpetim in zmanjšanim."
+msgstr "Preklopi stanje okna med razpetim in pomanjšanim."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize window horizontally toggle"
 msgstr "Preklopi vodoravno razpetost okna."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
-#, fuzzy
 msgid ""
 "Toggle the state of the window between horizontally maximized and\n"
 "unmaximized."
 msgstr ""
 "Preklopi stanje okna med vodoravno razpetim in\n"
-"zmanjšanim"
+"pommanjšanim."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize window vertically toggle"
 msgstr "Preklopi navpično razpetost okna."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
-#, fuzzy
 msgid ""
 "Toggle the state of the window between vertically maximized and\n"
 "unmaximized."
-msgstr "Preklopi stanje okna med razpetim in zmanjšanim."
+msgstr ""
+"Preklopi stanje okna med navpično razpetim in\n"
+"pomanjšanim."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize fill window"
@@ -3809,96 +3542,95 @@ msgstr "Razpni okno brez prekrivanja"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize the window without obscuring any other windows."
-msgstr "Povečaj okno, brez prekiravnja drugih oken."
+msgstr "Povečaj okno, brez prekrivanja drugih oken."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize fill window vertically"
-msgstr "Razpni okno brez prekrivanja navpično"
+msgstr "Razpni okno navpično brez prekrivanja"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize the window vertically without obscuring any other windows."
-msgstr "Povečaj okno navpično, brez prekiravnja drugih oken."
+msgstr "Povečaj okno navpično, brez prekrivanja drugih oken."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize fill window horizontally"
-msgstr "Razpni okno brez prekrivanja vodoravno"
+msgstr "Razpni okno vodoravno brez prekrivanja"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize the window horizontally without obscuring any other windows."
-msgstr "Povečaj okno vodoravno, brez prekiravnja drugih oken."
+msgstr "Razpni okno vodoravno, brez prekrivanja drugih oken."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize fill window toggle"
-msgstr "Preklopi razpetost okna brez prekrivanja"
+msgstr "Preklopi razpetost okna"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
-msgid ""
-"Toggle the state of the window between maximized-filled and unmaximized."
-msgstr "Preklopi stanje med razpeto-polnjeno in nerazpeto."
+msgid "Toggle the state of the window between maximized-filled and unmaximized."
+msgstr "Preklopi stanje med razpetim in pomanjšanim oknom."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize fill window horizontally toggle"
-msgstr "Preklopi vodoravno razpetost okna brez prekrivanja"
+msgstr "Preklopi vodoravno razpetost okna"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
-#, fuzzy
 msgid ""
 "Toggle the state of the window between horizontally maximized-filled and\n"
 "unmaximized."
-msgstr "Preklopi stanje med vodoravno razpeto-polnjeno in nerazpeto."
+msgstr ""
+"Preklopi stanje okna med vodoravno polno razpetim in\n"
+"pomanjšanim."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize fill window vertically toggle"
-msgstr "Preklopi vodoravno razpetost okna brez prekrivanja"
+msgstr "Preklopi vodoravno razpetost okna"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
-#, fuzzy
 msgid ""
 "Toggle the state of the window between vertically maximized-filled and\n"
 "unmaximized."
-msgstr "Preklopi stanje med razpeto-polnjeno in nerazpeto."
+msgstr ""
+"Preklopi stanje okna med polno navpišno razpetim in\n"
+"pomanjšanim."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize window fullscreen"
 msgstr "Razpni okno čez cel zaslon"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
-#, fuzzy
 msgid "Fullscreen maximize the window."
-msgstr "Skrči okno."
+msgstr "Razpni okno čez cel zaslon"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize window fullscreen toggle"
 msgstr "Preklopi razpetost okna čez cel zaslon"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
-#, fuzzy
 msgid ""
 "Toggle the state of the window between fullscreen maximized and\n"
 "unmaximized."
-msgstr "Preklopi stanje okna med razpetim in zmanjšanim."
+msgstr ""
+"Preklopi stanje okna med celozaslonsko razpetim in\n"
+"pomanjšanim."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
-#, fuzzy
 msgid "Maximize window fullxinerama"
-msgstr "Razpni okno čez cel zaslon"
+msgstr "Razpri okno fullxinerama"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
-#, fuzzy
 msgid "Fullscreen maximize the window across all Xinerama screens."
-msgstr "Skrči okno."
+msgstr "Razpri okno preko vseh Xinerama zaslonov."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
-#, fuzzy
 msgid "Maximize window fullxinerama toggle"
-msgstr "Preklopi razpetost okna čez cel zaslon"
+msgstr "Preklopi razpetost fullxinerama okna"
 
 #. ../lisp/sawfish/wm/state/maximize.jl
-#, fuzzy
 msgid ""
 "Toggle the state of the window between fullscreen maximized\n"
 "across all Xinerama and unmaximized."
-msgstr "Preklopi stanje med razpeto-polnjeno in nerazpeto."
+msgstr ""
+"Preklopi stanje med celozaslonskim razpetim preko vseh Xinerama zaslonov in \n"
+"pomanjšanim."
 
 #. ../lisp/sawfish/wm/state/shading.jl
 msgid "Shade window"
@@ -3906,28 +3638,26 @@ msgstr "Senči okno"
 
 #. ../lisp/sawfish/wm/state/shading.jl
 msgid "Display only the title bar of the window."
-msgstr "Kaži le nazivno vrstico okna."
+msgstr "Pokaži le nazivno vrstico okna."
 
 #. ../lisp/sawfish/wm/state/shading.jl
 msgid "Unshade window"
-msgstr "Odsenči okno"
+msgstr "Odstrani senčenje okna"
 
 #. ../lisp/sawfish/wm/state/shading.jl
-#, fuzzy
 msgid ""
 "If the window is shaded (see `shade-window'), restore it to it's usual\n"
 "state."
 msgstr ""
-"Če je okno senčeno (glej `senči-okno'), ga povrni v\n"
-"njegovo običajno stanje."
+"V kolikor je okno senčeno (pogle `senči-okno'), ga povrni v njegovo\n"
+"običajno stanje."
 
 #. ../lisp/sawfish/wm/state/shading.jl
 msgid "Toggle window shaded"
 msgstr "Preklopi senčenje okna"
 
 #. ../lisp/sawfish/wm/state/shading.jl
-msgid ""
-"Toggle the shaded (only the title bar is displayed) state of the window."
+msgid "Toggle the shaded (only the title bar is displayed) state of the window."
 msgstr "Preklopi senčeno (prikazana je le nazivna vrstica) stanje okna."
 
 #. ../lisp/sawfish/wm/state/shading.jl
@@ -3936,100 +3666,93 @@ msgstr "S_enčeno"
 
 #. ../lisp/sawfish/wm/state/transient.jl
 msgid "Focus on application windows when they first appear."
-msgstr "Fokusiraj okna programov, ki so prvič prikazani."
+msgstr "Postavi v žarišče okna programov, ko se prvič pojavijo."
 
 #. ../lisp/sawfish/wm/state/transient.jl
 msgid "Raise window and transients"
-msgstr "Dvigni okno in njegova transistenta okna"
+msgstr "Dvigni okno in njegova podrejena okna"
 
 #. ../lisp/sawfish/wm/state/transient.jl
 msgid ""
 "Raise the current window to its highest allowed position in the stacking\n"
 "order. Also raise any transient windows that it has."
 msgstr ""
-"Zvišaj okno na vrh znotraj njegovega sklada (skupaj z njegovimi dialogi)."
+"Dvigni okno na vrh znotraj njegovega sklada\n"
+"Enako dvigni tudi pripadajoča podrejena okna."
 
 #. ../lisp/sawfish/wm/state/transient.jl
 msgid "Lower window and transients"
-msgstr "Spusti okno in njegova transistentna okna"
+msgstr "Spusti okno in njegova podrejena okna"
 
 #. ../lisp/sawfish/wm/state/transient.jl
 msgid ""
 "Lower the current window to its lowest allowed position in the stacking\n"
 "order. Also lower any transient windows that it has."
 msgstr ""
-"Znižaj okno na dno znotraj njegovega sklada (skupaj z njegovimi dialogi)."
+"Spusti okno na dno pripadajočega sklada.\n"
+"Enako spusti tudi pripadajoča podrejena okna."
 
 #. ../lisp/sawfish/wm/state/transient.jl
 msgid "Raise lower window and transients"
-msgstr "Dvigni/spusti okno in njegova transistentna okna"
+msgstr "Dvigni ali spusti okno in njegova podrejena okna"
 
 #. ../lisp/sawfish/wm/state/transient.jl
 msgid ""
 "If the window is at its highest possible position, then lower it to its\n"
-"lowest possible position. Otherwise raise it as far as allowed. Also "
-"changes\n"
+"lowest possible position. Otherwise raise it as far as allowed. Also changes\n"
 "the level of any transient windows it has."
 msgstr ""
-"Če je okno na najvišjem možnem položaju, ga spusti na najnižji možen "
-"položaj,\n"
-"sicer pa ga dvigni čimbolj na vrh. (spremeni tudi nivo dialogov)"
+"Kadar je okno na najvišjem dovoljenem položaju, ga spusti na najnižji\n"
+"položaj, sicer pa ga dvigni čim višje. Spremeni tudi raven podrejenih oken\n"
+"v kolikor obstajajo."
 
 #. ../lisp/sawfish/wm/tabs/tab.jl
 msgid "Width of tab's left-edge decoration"
-msgstr ""
+msgstr "Okrašenost širine levega roba zavihka"
 
 #. ../lisp/sawfish/wm/tabs/tab.jl
 msgid "Width of tab's right-edge decoration"
-msgstr ""
+msgstr "Okrašenost širine desnega roba zavihka"
 
 #. ../lisp/sawfish/wm/tabs/tab.jl
 msgid "Width of tab area's left-edge decoration"
-msgstr ""
+msgstr "Okrašenost širine območja levega roba zavihka"
 
 #. ../lisp/sawfish/wm/tabs/tab.jl
 msgid "Width of tab area's right-edge decoration"
-msgstr ""
+msgstr "Okrašenost širine območja desnega roba zavihka"
 
 #. ../lisp/sawfish/wm/tabs/tab.jl
-#, fuzzy
 msgid "Raise Tabs on Hover"
-msgstr "Dvigni ob fokusu"
+msgstr "Dvigni zavihek ob prehodu miške"
 
 #. ../lisp/sawfish/wm/tabs/tab.jl
-#, fuzzy
 msgid "Tab add to group"
-msgstr "Spusti skupino"
+msgstr "Zavihek dodaj skupini"
 
 #. ../lisp/sawfish/wm/tabs/tabgroup.jl
-#, fuzzy
 msgid "Tab release window"
-msgstr "Zbriši okno"
+msgstr "Zavihek sprostitve okna"
 
 #. ../lisp/sawfish/wm/tabs/tabgroup.jl
-#, fuzzy
 msgid "Release active window from its group"
-msgstr "Povrni okno iz skrčenega stanja."
+msgstr "Sprosti dejavno okno iz skupine"
 
 #. ../lisp/sawfish/wm/tabs/tabgroup.jl
-#, fuzzy
 msgid "Tab raise left window"
-msgstr "Dvigni/spusti okno"
+msgstr "Zavihek dviga levega okna"
 
 #. ../lisp/sawfish/wm/tabs/tabgroup.jl
-#, fuzzy
 msgid "Raise left window in current group"
-msgstr "Dvigni/spusti okno in njegova transistentna okna"
+msgstr "Dvigni levo okno v trenutni skupini"
 
 #. ../lisp/sawfish/wm/tabs/tabgroup.jl
-#, fuzzy
 msgid "Tab raise right window"
-msgstr "Dvigni za eno okno"
+msgstr "Zavihek dviga desnega okna"
 
 #. ../lisp/sawfish/wm/tabs/tabgroup.jl
-#, fuzzy
 msgid "Raise right window in current group"
-msgstr "Dvigni/spusti okno in njegova transistentna okna"
+msgstr "Dvigni desno okno v trenutni skupini"
 
 #. ../lisp/sawfish/wm/util/compat.jl
 msgid "Insert workspace"
@@ -4037,23 +3760,23 @@ msgstr "Vstavi delovno površino"
 
 #. ../lisp/sawfish/wm/util/display-window.jl
 msgid "Unshade selected windows."
-msgstr "Odsenči izbrana okna."
+msgstr "Odstrani senčenje izbranih oken."
 
 #. ../lisp/sawfish/wm/util/display-window.jl
 msgid "Display window without focusing"
-msgstr "Kaži okno brez fokusa"
+msgstr "Pokaži okno brez postavljanja v žarišče"
 
 #. ../lisp/sawfish/wm/util/display-window.jl
 msgid "Display the workspace/viewport containing the window W."
-msgstr "Pokaži delovno površino, ki vsebuje okno W."
+msgstr "Pokaži delovno površino ali vidno polje, ki vsebuje okno W."
 
 #. ../lisp/sawfish/wm/util/display-window.jl
 msgid "Display window"
-msgstr "Kaži okno"
+msgstr "Pokaži okno"
 
 #. ../lisp/sawfish/wm/util/display-window.jl
 msgid "Display the workspace containing the window W, then focus on W."
-msgstr "Pokaži delovno površino, ki vsebuje okno W nato fokusiraj na W."
+msgstr "Pokaži delovno površino, ki vsebuje okno W in ga nato postavi v žarišče."
 
 #. ../lisp/sawfish/wm/util/groups.jl
 msgid "New group"
@@ -4061,7 +3784,7 @@ msgstr "Nova skupina"
 
 #. ../lisp/sawfish/wm/util/gtkrc.jl
 msgid "Gtkrc reload style"
-msgstr "Način vnovične naložitve gtkrc"
+msgstr "Slog ponovnega nalaganja gtkrc"
 
 #. ../lisp/sawfish/wm/util/gtkrc.jl
 msgid "Reload the gtkrc settings."
@@ -4077,39 +3800,35 @@ msgstr "Vpraša za zaporedje tipk, nato izpiše povezavo."
 
 #. ../lisp/sawfish/wm/util/keymap.jl
 msgid "Press key..."
-msgstr "Pritisnite tipko..."
+msgstr "Pritisnite tipko ..."
 
 #. ../lisp/sawfish/wm/util/keymap.jl
 msgid "[Quote]"
-msgstr "[Citat]"
+msgstr "[Navedek]"
 
 #. ../lisp/sawfish/wm/util/keymap.jl
 msgid "Quote event"
-msgstr "Citiraj dogodek"
+msgstr "Navedi dogodek"
 
 #. ../lisp/sawfish/wm/util/keymap.jl
-#, fuzzy
 msgid ""
 "Sends the next key event directly to the focused client window, ignoring\n"
 "any window manager bindings that it may have."
 msgstr ""
-"Pošlje naslednji tipkovničin dogodek neposredno na fokusirano okno, ne \n"
+"Pošlje naslednji tipkovni dogodek neposredno na okno v žarišču, ne \n"
 "oziraje se na povezave, ki jih ima upravljalnik oken za ta dogodek."
 
 #. ../lisp/sawfish/wm/util/marks.jl
-#, fuzzy
 msgid "Mark window"
-msgstr "Pomanjšaj okno navzgor"
+msgstr "Označi okno"
 
 #. ../lisp/sawfish/wm/util/marks.jl
-#, fuzzy
 msgid "Unmark window"
-msgstr "Odsenči okno"
+msgstr "Odstrani oznako okna"
 
 #. ../lisp/sawfish/wm/util/marks.jl
-#, fuzzy
 msgid "Unmark all windows"
-msgstr "Odrazpni okno"
+msgstr "Odstrani oznake vseh oken"
 
 #. ../lisp/sawfish/wm/util/play-audio.jl
 msgid ""
@@ -4135,11 +3854,11 @@ msgstr "Delovna površina:"
 
 #. ../lisp/sawfish/wm/util/prompt.jl
 msgid "Font for prompt: \\w"
-msgstr ""
+msgstr "Velikost pisave naziva: \\w"
 
 #. ../lisp/sawfish/wm/util/prompt.jl
 msgid "Prompt message's colors."
-msgstr ""
+msgstr "Barve prikaznega sporočila"
 
 #. ../lisp/sawfish/wm/util/prompt.jl
 msgid "prompt-keymap"
@@ -4147,7 +3866,7 @@ msgstr "povezave tipk ob vpisu besedila"
 
 #. ../lisp/sawfish/wm/util/prompt.jl
 msgid "Keymap containing bindings active when reading a string from the user."
-msgstr "Mapiranje tipk, ki je aktivno kadar uporabnik vpisuje besedilo."
+msgstr "Določanje tipk z dejavnimi bližnjicami, kadar uporabnik vpisuje besedilo."
 
 #. ../lisp/sawfish/wm/util/stacking.jl
 msgid "When raising a window, also raise its: \\w"
@@ -4158,37 +3877,38 @@ msgid "Raise window"
 msgstr "Dvigni okno"
 
 #. ../lisp/sawfish/wm/util/stacking.jl
-#, fuzzy
 msgid ""
 "Raise the window to its highest allowed position in the stacking\n"
 "order."
-msgstr "Zvišaj okno na vrh znotraj njegovega sklada."
+msgstr ""
+"Dvigni okno na najvišji dovoljen položaj v razvrstitvi\n"
+"sklada."
 
 #. ../lisp/sawfish/wm/util/stacking.jl
 msgid "Lower window"
 msgstr "Spusti okno"
 
 #. ../lisp/sawfish/wm/util/stacking.jl
-#, fuzzy
 msgid ""
 "Lower the window to its lowest allowed position in the stacking\n"
 "order."
-msgstr "Znižaj okno na dno znotraj njegovega sklada."
+msgstr ""
+"Spusti okno na najnižji dovoljen položaj v razvrstitvi\n"
+"sklada."
 
 #. ../lisp/sawfish/wm/util/stacking.jl
 msgid "Raise lower window"
-msgstr "Dvigni/spusti okno"
+msgstr "Dvigni ali spusti okno"
 
 #. ../lisp/sawfish/wm/util/stacking.jl
-#, fuzzy
 msgid ""
 "If the window is at its highest possible position, then lower it\n"
 "to its lowest possible position. Otherwise raise it as far as\n"
 "allowed."
 msgstr ""
-"Če je okno na najvišjem možnem položaju, ga spusti na najnižji možen "
-"položaj,\n"
-"sicer pa ga dvigni čimbolj na vrh. (spremeni tudi nivo dialogov)"
+"V kolikor je okno na najvišjem možnem položaju, ga spusti na\n"
+"najnižji dovoljen položaj, sicer pa ga dvigni čim višje\n"
+"na vrh kot je dovoljeno"
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid ""
@@ -4198,15 +3918,12 @@ msgid ""
 msgstr ""
 
 #. ../lisp/sawfish/wm/viewport.jl
-msgid ""
-"Minimum number of columns and rows of virtual desktop (if boundary mode is "
-"dynamic): \\w"
+msgid "Minimum number of columns and rows of virtual desktop (if boundary mode is dynamic): \\w"
 msgstr ""
 
 #. ../lisp/sawfish/wm/viewport.jl
-#, fuzzy
 msgid "Windows uniconify to the current viewport."
-msgstr "Prestavi skupino v trenutni pogled"
+msgstr "Povečaj okna na trenutnem vidnem polju"
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid ""
@@ -4219,31 +3936,28 @@ msgstr ""
 #. ../lisp/sawfish/wm/workspace.jl
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "wrap-around"
-msgstr ""
+msgstr "prelomi"
 
 #. ../lisp/sawfish/wm/workspace.jl
 #. ../lisp/sawfish/wm/viewport.jl
-#, fuzzy
 msgid "stop"
-msgstr "Prilagodi"
+msgstr "zaustavi"
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "dynamic"
-msgstr ""
+msgstr "dinamično"
 
 #. ../lisp/sawfish/wm/viewport.jl
-msgid ""
-"Stop, wrap-around, or grow the virtual desktop when you go beyond virtual "
-"desktop edge."
+msgid "Stop, wrap-around, or grow the virtual desktop when you go beyond virtual desktop edge."
 msgstr ""
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Activate viewport"
-msgstr "Aktiviraj pogled"
+msgstr "Omogoči vidno polje"
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Select the specified viewport."
-msgstr "Izberi naveden pogled."
+msgstr "Izberi določeno vidno polje."
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Column:"
@@ -4255,206 +3969,203 @@ msgstr "Vrstica:"
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Activate viewport column"
-msgstr "Aktiviraj stolpec pogleda"
+msgstr "Omogoči stolpec vidnega polja"
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Select the specified viewport column."
-msgstr "Izberi naveden stolpec pogleda."
+msgstr "Izberi določen stolpec vidnega polja."
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Activate viewport row"
-msgstr "Aktiviraj vrstico pogleda."
+msgstr "Omogoči vrstico vidnega polja."
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Select the specified viewport row."
-msgstr "Izberi navedeno vrstico pogleda."
+msgstr "Izberi določeno vrstico vidnega polja."
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move window to viewport"
-msgstr "Prestavi okno v pogled"
+msgstr "Premakni okno v vidno polje"
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move the current window to the specified viewport."
-msgstr "Prestavi trenutno okno v naveden pogled."
+msgstr "Premakni trenutno okno v določeno vidno polje."
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move viewport right"
-msgstr "Prestavi pogled desno"
+msgstr "Premakni vidno polje desno"
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move the viewport one screen to the right."
-msgstr "Prestavi pogled za en zaslon desno."
+msgstr "Premakni vidno polje za en zaslon desno."
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move viewport left"
-msgstr "Prestavi pogled levo"
+msgstr "Premakni vidno polje levo"
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move the viewport one screen to the left."
-msgstr "Prestavi pogled za en zaslon levo."
+msgstr "Premakni vidno polje en zaslon levo."
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move viewport up"
-msgstr "Prestavi pogled navzgor"
+msgstr "Premakni vidno polje navzgor"
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move the viewport one screen up."
-msgstr "Prestavi pogled za en zaslon navzgor."
+msgstr "Premakni vidno polje en zaslon navzgor."
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move viewport down"
-msgstr "Prestavi pogled navzdol"
+msgstr "Premakni vidno polje navzdol"
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move the viewport one screen down."
-msgstr "Prestavi pogled za en zaslon navzdol."
+msgstr "Premakni vidno polje za en zaslon navzdol."
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move window right"
-msgstr "Prestavi okno desno"
+msgstr "Premakni okno desno"
 
 #. ../lisp/sawfish/wm/viewport.jl
-#, fuzzy
 msgid ""
 "Move the window to the viewport on the right, and switch to that\n"
 "viewport."
-msgstr "Prestavi okno v pogled na desni in preklopi na ta pogled.."
+msgstr ""
+"Premakni okno v vidno polje na desni in preklopi na to\n"
+"vidno polje."
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move window left"
-msgstr "Prestavi okno levo"
+msgstr "Premakni okno levo"
 
 #. ../lisp/sawfish/wm/viewport.jl
-#, fuzzy
 msgid ""
 "Move the window to the viewport on the left, and switch to that\n"
 "viewport."
-msgstr "Prestavi okno v pogled na levi in preklopi na ta pogled."
+msgstr ""
+"Premakni okno v vidno polje na levi in preklopi na to\n"
+"vidno polje."
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move window up"
-msgstr "Prestavi okno navzgor"
+msgstr "Premakni okno navzgor"
 
 #. ../lisp/sawfish/wm/viewport.jl
-#, fuzzy
 msgid ""
 "Move the window to the viewport above, and switch to that\n"
 "viewport."
-msgstr "Prestavi okno v pogled zgoraj in preklopi na ta pogled."
+msgstr ""
+"Premakni okno v vidno polje zgoraj in preklopi na to\n"
+"vidno polje."
 
 #. ../lisp/sawfish/wm/viewport.jl
 msgid "Move window down"
-msgstr "Prestavi okno navzdol"
+msgstr "Premakni okno navzdol"
 
 #. ../lisp/sawfish/wm/viewport.jl
-#, fuzzy
 msgid ""
 "Move the window to the viewport below, and switch to that\n"
 "viewport."
-msgstr "Prestavi okno v pogled spodaj in preklopi na ta pogled."
+msgstr ""
+"Premakni okno v vidno polje spodaj in preklopi na to\n"
+"vidno polje."
 
 #. ../lisp/sawfish/wm/window-anim.jl
-#, fuzzy
 msgid "Animation"
-msgstr "Dejanja"
+msgstr "Animacija"
 
 #. ../lisp/sawfish/wm/window-anim.jl
-#, fuzzy
 msgid "solid"
-msgstr "Izogibaj se"
+msgstr "polno"
 
 #. ../lisp/sawfish/wm/window-anim.jl
 msgid "wireframe"
-msgstr ""
+msgstr "ogrodje"
 
 #. ../lisp/sawfish/wm/window-anim.jl
 msgid "The default window animation mode"
-msgstr ""
+msgstr "Privzeti način animiranja oken"
 
 #. ../lisp/sawfish/wm/windows.jl
-#, fuzzy
 msgid "Give focus to windows even when they haven't asked for it."
-msgstr "Dvigni okna, ko dobijo fokus."
+msgstr "Postavi okno v žarišče, tudi če okno tega ne zahteva."
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Warping"
-msgstr ""
+msgstr "Postavljanje kazalnika"
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Offset (%) from window edges when warping pointer."
-msgstr ""
+msgstr "Odmik (%) od robov okna med postavljanjem kazalnika."
 
 #. ../lisp/sawfish/wm/windows.jl
-#, fuzzy
 msgid "Whether to enable warping the cursor to windows."
-msgstr "Ali naj se ob povečevanju in zmanjševanju zaletim v prezrta okna."
+msgstr "Ali naj se omogoči postavljanje kazalnika na okna."
 
 #. ../lisp/sawfish/wm/windows.jl
-#, fuzzy
 msgid "Whether to not avoid ignored windows by default."
-msgstr "Ali naj se ob povečevanju in zmanjševanju zaletim v prezrta okna."
+msgstr "Ali naj se okno privzeto ne izogne kateremukoli prezrtemu oknu."
 
 #. ../lisp/sawfish/wm/windows.jl
-#, fuzzy
 msgid "Whether to avoid any unspecified window by default."
-msgstr "Ali naj se ob povečevanju in zmanjševanju zaletim v prezrta okna."
+msgstr "Ali naj se okno privzeto izogne kateremukoli nedoločenemu oknu."
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Format to create unique window names."
-msgstr ""
+msgstr "Oblikuj za ustvarjanje enoznačnih imen oken."
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Focus desktop"
-msgstr "Fokusiraj namizje"
+msgstr "Žarišče namizja"
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Transfer input focus to the desktop window (if one exists)."
-msgstr "Prenesi vhodni fokus na namizno okno (če obstaja)."
+msgstr "Prenesi žarišče na namizno okno (v kolikor obstaja)."
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Delete window"
-msgstr "Zbriši okno"
+msgstr "Izbriši okno"
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Delete the window."
-msgstr "Zbriši okno."
+msgstr "Izbriši okno."
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Delete window safely"
-msgstr "Varno zbriši okno"
+msgstr "Varno izbriši okno"
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Delete the window, or beep if the window can't be closed safely."
-msgstr "Zbriši okno ali zapiskaj, če okno ne more biti varno zaprto."
+msgstr "Izbriši okno ali pa zapiskaj, če okna ni mogoče varno zapreti."
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Uniquify window name"
-msgstr "Nastavi enoznačno ime okna"
+msgstr "Enoznačno ime okna"
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Force the current window to have a unique title."
-msgstr "Prisili trenutno okno da ima unikaten naziv."
+msgstr "Vsili enoznačno ime trenutnemu oknu."
 
 #. ../lisp/sawfish/wm/windows.jl
-#, fuzzy
 msgid "Rename window"
-msgstr "Dvigni okno"
+msgstr "Preimenuj okno"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "keep-going"
-msgstr ""
+msgstr "nadaljuj"
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid "How to act when passing the first or last workspace."
-msgstr "Pokaži menu, ki vsebuje seznam vseh delovnih površin."
+msgstr "Kaj naj se zgodi pri prehodu prve in zadnje delovne površine."
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid ""
 "How to act when passing the first or last workspace, while moving\n"
 "a window"
-msgstr "Pokaži menu, ki vsebuje seznam vseh delovnih površin."
+msgstr ""
+"Kaj naj se zgodi pri prehodu prve in zadnje delovne površine med\n"
+"premikanjem okna."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Workspace names"
@@ -4465,19 +4176,16 @@ msgid "Preserve outermost empty workspaces in the pager."
 msgstr ""
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid "_Insert workspace"
-msgstr "Vstavi delovno površino"
+msgstr "_Vstavi delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid "Select _next workspace"
-msgstr "Izberi naslednjo delovno površino"
+msgstr "Izberi _naslednjo delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid "Select _previous workspace"
-msgstr "Izberi prejšnjo delovno površino"
+msgstr "Izberi _predhodno delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Merge with next"
@@ -4485,17 +4193,15 @@ msgstr "Združi z naslednjo"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Merge with previous"
-msgstr "Združi s prejšnjo"
+msgstr "Združi s predhodno"
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid "Move workspace _right"
-msgstr "Prestavi delovno površino desno"
+msgstr "Premakni delovno površino _desno"
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid "Move workspace _left"
-msgstr "Prestavi delovno površino levo"
+msgstr "Premakni delovno površino _levo"
 
 #. ../lisp/sawfish/wm/workspace.jl
 #, c-format
@@ -4504,19 +4210,19 @@ msgstr "prostor %d"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Popup workspace list"
-msgstr "Vzklični seznam delovnih površin"
+msgstr "Pojavni seznam delovnih površin"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Display the menu containing the list of all workspaces."
-msgstr "Pokaži menu, ki vsebuje seznam vseh delovnih površin."
+msgstr "Pokaži meni s seznamom vseh delovnih površin."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Popup window list"
-msgstr "Vzklični seznam oken"
+msgstr "Pojavni seznam oken"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Display the menu of all managed windows."
-msgstr "Pokaži menu vseh upravljanih oken."
+msgstr "Pokaži meni vseh upravljanih oken."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Next workspace"
@@ -4524,15 +4230,15 @@ msgstr "Naslednja delovna površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Display the next workspace."
-msgstr "Kaži naslednjo delovno površino"
+msgstr "Pokaži naslednjo delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Previous workspace"
-msgstr "Prejšnja delovna površino"
+msgstr "Predhodna delovna površina"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Display the previous workspace."
-msgstr "Kaži prejšnjo delovno površino"
+msgstr "Pokaži predhodno delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Send to next workspace"
@@ -4540,15 +4246,15 @@ msgstr "Pošlji na naslednjo delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Move the window to the next workspace."
-msgstr "Prestavi okno na naslednjo delovno površino."
+msgstr "Premakni okno na naslednjo delovno površino."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Send to previous workspace"
-msgstr "Pošlji na prejšnjo delovno površino"
+msgstr "Pošlji na predhodno delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Move the window to the previous workspace."
-msgstr "Prestavi okno na prejšnjo delovno površino."
+msgstr "Premakni okno na predhodno delovno površino."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Copy to next workspace"
@@ -4560,19 +4266,18 @@ msgstr "Kopiraj okno na naslednjo delovno površino."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Copy to previous workspace"
-msgstr "Kopiraj na prejšnjo delovno površino"
+msgstr "Kopiraj na predhodno delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Copy the window to the previous workspace."
-msgstr "Kopiraj okno na prejšnjo delovno površino."
+msgstr "Kopiraj okno na predhodno delovno površino."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Append workspace and send"
 msgstr "Pripni delovno površino in pošlji"
 
 #. ../lisp/sawfish/wm/workspace.jl
-msgid ""
-"Create a new workspace at the end of the list, and move the window to it."
+msgid "Create a new workspace at the end of the list, and move the window to it."
 msgstr "Ustvari novo delovno površino na koncu seznama in prestavi okno vanjo."
 
 #. ../lisp/sawfish/wm/workspace.jl
@@ -4580,37 +4285,36 @@ msgid "Prepend workspace and send"
 msgstr "Pripni delovno površino na začetek in pošlji"
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid ""
 "Create a new workspace at the start of the list, and move the\n"
 "window to it."
 msgstr ""
-"Ustvari novo delovno površino na začetku seznama in prestavi okno vanjo."
+"Ustvari novo delovno površino na začetku seznama in prestavi\n"
+"okno vanjo."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Merge next workspace"
-msgstr "Zlij naslednjo delovno površino"
+msgstr "Združi naslednjo delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid ""
 "Delete the current workspace. Its member windows are relocated to the next\n"
 "workspace."
 msgstr ""
-"Zbriši trenutno delovno povšino. Njena okna se prenesejo na naslednjo\n"
+"Izbriši trenutno delovno površino. Njena okna se prenesejo na naslednjo\n"
 "delovno površino."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Merge previous workspace"
-msgstr "Zlij prejšnjo delovno površino"
+msgstr "Združi predhodno delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid ""
 "Delete the current workspace. Its member windows are relocated to the\n"
 "previous workspace."
 msgstr ""
-"Zbriši trenutno delovno povšino. Njena okna se prenesejo na prejšnjo\n"
-"delovno površino."
+"Izbriši trenutno delovno površino. Okna te delovne površine bodo prenesena\n"
+" na predhodno delovno površino."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Insert workspace after"
@@ -4618,7 +4322,7 @@ msgstr "Vstavi delovno površino za"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Create a new workspace following the current workspace."
-msgstr "Ustvari novo delovno površino, ki naj sledi trenutni."
+msgstr "Ustvari novo delovno površino za trenutno."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Insert workspace before"
@@ -4626,79 +4330,75 @@ msgstr "Vstavi delovno površino pred"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Create a new workspace before the current workspace."
-msgstr "Ustvari novo delovno površino, ki naj bo pred trenutno."
+msgstr "Ustvari novo delovno površino pred trenutno."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Move workspace forwards"
-msgstr "Prestavi delovno površino naprej"
+msgstr "Premakni delovno površino naprej"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Move the current workspace one place to the right."
-msgstr "Prestavi trenutno delovno povšino en prostor desno."
+msgstr "Premakni trenutno delovno površino eno mesto desno."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Move workspace backwards"
-msgstr "Prestavi delovno površino nazaj"
+msgstr "Premakni delovno površino nazaj"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Move the current workspace one place to the left."
-msgstr "Prestavi trenutno delovno površino en prostor levo."
+msgstr "Premakni trenutno delovno površino eno mesto levo."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Delete empty workspaces"
-msgstr "Zbriši prazne delovne površine"
+msgstr "Izbriši prazne delovne površine"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Delete any workspaces that don't contain any windows."
-msgstr "Zbriši vse delovne površine, ki ne vsebujejo oken."
+msgstr "Izbriši vse delovne površine, ki ne vsebujejo oken."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Delete window instance"
-msgstr "Zbriši primerek okna"
+msgstr "Izbriši zagnano okno"
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid ""
 "Remove the copy of the window on the current workspace. If this is the\n"
 "last instance remaining, then delete the actual window."
 msgstr ""
-"Odstrani kopijo okna s trenutne delovne površine. Če je to zadnja \n"
-"preostal primerek, potem zbriši dejansko okno."
+"Odstrani kopijo okna s trenutne delovne površine. Če je to zadnja\n"
+"delovna površina, potem izbriši dejansko okno."
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid "Show desktop"
-msgstr "Fokusiraj namizje"
+msgstr "Pokaži namizje"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Hide all windows except the desktop window."
-msgstr ""
+msgstr "Skrij vsa okna razen namiznega okna."
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid "Hide desktop"
-msgstr "Fokusiraj namizje"
+msgstr "Skrij namizje"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Undoes the effect of the `show-desktop' command."
-msgstr ""
+msgstr "Razveljavi učinek ukaza `pokaži namizje'."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Activate workspace"
-msgstr "Aktiviraj delovno površino"
+msgstr "Pokaži delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Select the N'th workspace."
-msgstr "Izberi delovno površino št. N."
+msgstr "Izberi n-to delovno površino."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Send to workspace"
 msgstr "Pošlji na delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
-#, fuzzy
 msgid "Move the current window to the N'th workspace."
-msgstr "Kopiraj okno na delovno površino št. N."
+msgstr "Premakni trenutno okno na n-to delovno površino."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Copy to workspace"
@@ -4706,7 +4406,7 @@ msgstr "Kopiraj na delovno površino"
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Copy the current window to the N'th workspace."
-msgstr "Kopiraj okno na delovno površino št. N."
+msgstr "Kopiraj trenutno okno na n-to delovno površino."
 
 #. ../lisp/sawfish/wm/workspace.jl
 msgid "Select workspace interactively"
@@ -4716,12 +4416,12 @@ msgstr "Interaktivno izberi delovno površino"
 msgid "Prompt for a workspace and switch to it."
 msgstr "Vprašaj za delovno površino in preklopi nanjo."
 
+#~ msgid "State"
+#~ msgstr "Stanje"
 #~ msgid "and many others..."
 #~ msgstr "in mnogi drugi..."
-
 #~ msgid "Sawfish manages your windows extensibly."
 #~ msgstr "Sawfish upravlja z vašimi okni."
-
 #~ msgid "Sawfish homepage"
 #~ msgstr "Domača stran Sawfish"
 
@@ -4732,7 +4432,6 @@ msgstr "Vprašaj za delovno površino in preklopi nanjo."
 #, fuzzy
 #~ msgid "Whether to bump into windows on a different depth."
 #~ msgstr "Ali naj se ob povečevanju in zmanjševanju zaletim v prezrta okna."
-
 #~ msgid "Start a new xterm."
 #~ msgstr "Poženi nov xterm."
 
@@ -4741,37 +4440,28 @@ msgstr "Vprašaj za delovno površino in preklopi nanjo."
 #~ msgstr "Pogled"
 
 #, fuzzy
+#~ msgid "Amount to move the workspace."
+#~ msgstr "Pošlji na naslednjo delovno površino"
+
+#, fuzzy
 #~ msgid "Fullscreen"
 #~ msgstr "zaslon"
-
-#~ msgid "State"
-#~ msgstr "Stanje"
 
 #, fuzzy
 #~ msgid "Maximize unframe"
 #~ msgstr "Razpni okno"
 
 #, fuzzy
-#~ msgid "Maximize reframe"
-#~ msgstr "Razpet"
-
-#, fuzzy
 #~ msgid "The program used to play audio samples."
 #~ msgstr ""
 #~ "Program za igranje zvočnih vzorcev. Če ni nastavljeno bo uporabljena že "
 #~ "vgrajena ESD podpora."
-
-#, fuzzy
 #~ msgid "Number of steps for viewport scrolling."
-#~ msgstr "Število pikslov za premik kazalca v 'premakni-kazalec' ukazu."
-
-#, fuzzy
+#~ msgstr "Število korakov desenja vidnega polja."
 #~ msgid "Display workspace name"
-#~ msgstr "Imena delovnih površin"
-
+#~ msgstr "Pokaži imena delovnih površin"
 #~ msgid "Matched Windows"
 #~ msgstr "Ustrezajoča okna"
-
 #~ msgid "Invoke the user-customization system."
 #~ msgstr "Poženi sistem za prikrajanje nastavitev uporabniku."
 
@@ -4834,61 +4524,42 @@ msgstr "Vprašaj za delovno površino in preklopi nanjo."
 #, fuzzy
 #~ msgid "fake shadow light source"
 #~ msgstr "Naredi okno prezrto"
-
 #~ msgid "Gnome toggle skip winlist"
 #~ msgstr "Preklopi v seznamu oken GNOME"
-
 #~ msgid "Toggle the GNOME SKIP_WINLIST hint of the window."
 #~ msgstr "Preklopi GNOME SKIP_WINLIST namig okna."
-
 #~ msgid "Gnome set skip winlist"
 #~ msgstr "Postavi v seznam oken GNOME"
-
 #~ msgid "Set the GNOME SKIP_WINLIST hint of the window."
 #~ msgstr "Vključi GNOME SKIP_WINLIST namig okna."
-
 #~ msgid "Gnome clear skip winlist"
 #~ msgstr "Zbriši iz seznama oken GNOEE"
-
 #~ msgid "Unset the GNOME SKIP_WINLIST hint of the window."
 #~ msgstr "Izključi GNOME SKIP_WINLIST namig okna."
-
 #~ msgid "Gnome toggle skip tasklist"
 #~ msgstr "Preklopi v seznamu poslov GNOME"
-
 #~ msgid "Toggle the GNOME SKIP_TASKLIST hint of the window."
 #~ msgstr "Preklopi GNOME SKIP_TASKLIST namig okna."
-
 #~ msgid "Gnome set skip tasklist"
 #~ msgstr "Postavi v seznam poslov GNOME"
-
 #~ msgid "Set the GNOME SKIP_TASKLIST hint of the window."
 #~ msgstr "Vključi GNOME SKIP_TASKLIST namig okna."
-
 #~ msgid "Gnome clear skip tasklist"
 #~ msgstr "Zbriši iz seznama poslov GNOME"
-
 #~ msgid "Unset the GNOME SKIP_TASKLIST hint of the window."
 #~ msgstr "Izključi GNME SKIP_TASKLIST namig okna."
-
 #~ msgid "Gnome logout"
 #~ msgstr "Odjava iz GNOME"
-
 #~ msgid "Gnome www page"
 #~ msgstr "Spletna stran GNOME"
-
 #~ msgid "Display the WWW page of the GNOME project."
 #~ msgstr "Prikaži spletno stran projekta GNOME."
-
 #~ msgid "Gnome help browser"
 #~ msgstr "Brskalnik pomoči GNOME"
-
 #~ msgid "Launch the GNOME help browser."
 #~ msgstr "Poženi brskalnik pomoči GNOME."
-
 #~ msgid "Gnome about"
 #~ msgstr "O GNOME-u"
-
 #~ msgid "Launch the GNOME about dialog."
 #~ msgstr "Poženi pogovorno okno \"O GNOME\"."
 
@@ -4931,10 +4602,8 @@ msgstr "Vprašaj za delovno površino in preklopi nanjo."
 #~ msgstr ""
 #~ "Dvigni okno, ki je prejelo dogodek, nato znova sproži dogodke kazalca,\n"
 #~ "ki so povzročili ukaz."
-
 #~ msgid "GNOME WWW..."
 #~ msgstr "GNOME Splet..."
-
 #~ msgid "Gnome menus update"
 #~ msgstr "Obnovitev menujev GNOME"
 
@@ -5031,17 +4700,14 @@ msgstr "Vprašaj za delovno površino in preklopi nanjo."
 #~ msgstr ""
 #~ "Zbriši trenutno delovno povšino. Njena okna se prenesejo na naslednjo\n"
 #~ "delovno površino."
-
 #~ msgid "Select color"
 #~ msgstr "Izberi barvo"
-
 #~ msgid "Growing and packing of windows"
 #~ msgstr "Povečevanje in zmanjševanje oken"
 
 #, fuzzy
 #~ msgid "Shrinking and Yanking of windows"
 #~ msgstr "Povečevanje in zmanjševanje oken"
-
 #~ msgid "Arguments given to the `xterm' command."
 #~ msgstr "Argumenti podani k ukazu 'xterm'."
 
@@ -5052,7 +4718,6 @@ msgstr "Vprašaj za delovno površino in preklopi nanjo."
 #, fuzzy
 #~ msgid "Copy to ne_xt"
 #~ msgstr "Kopiraj naprej"
-
 #~ msgid ""
 #~ "Whether growing is considered to be maximization.  When you turn\n"
 #~ "this on, you can use `unmaximize-window' or something similar to get\n"
@@ -5061,12 +4726,10 @@ msgstr "Vprašaj za delovno površino in preklopi nanjo."
 #~ "Kadar je povečano okno obravnavano kot maximizirano.  Ko prižgete\n"
 #~ "to, lahko uporabite `odrazpni-okno' ali kaj podobnega,\n"
 #~ "da gre nazaj na izhodišno velikost."
-
 #~ msgid "Terminal"
 #~ msgstr "Terminal"
-
 #~ msgid "Error Handling"
 #~ msgstr "Obravnavanje napak"
-
 #~ msgid "Select Icon"
 #~ msgstr "Izberi ikono"
+

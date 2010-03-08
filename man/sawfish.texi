@@ -1,12 +1,10 @@
 \input texinfo  @c -*-Texinfo-*-
+
+@c To compile: makeinfo  -I . sawfish.texi -o sawfish.info
+
 @setfilename sawfish.info
 @settitle sawfish Programming Manual
 @footnotestyle end
-
-@set EDITION 0.15
-@set VERSION 1.6.0
-@set UPDATED 17 Oct 2009
-@set UPDATE-MONTH Oct 2009
 
 @ifinfo
 @dircategory Programming
@@ -14,11 +12,9 @@
 * sawfish: (sawfish).		sawfish programming manual
 @end direntry
 
-This is Edition @value{EDITION}, last updated @value{UPDATED}, of
-@cite{The sawfish Programming Manual}, for sawfish, Version
-@value{VERSION}.
+This is @cite{The sawfish Programming Manual}, for sawfish.
 
-Copyright 1999 John Harper.
+Copyright 1999 - 2003 John Harper, 2007 - 2010 Sawfish team.
 
 Permission is granted to make and distribute verbatim copies of
 this manual provided the copyright notice and this permission notice
@@ -41,12 +37,10 @@ notice identical to this one.
 @title sawfish
 @subtitle An Extensible X11 Window Manager
 @subtitle Programming Manual
-@subtitle Edition @value{EDITION}
-@subtitle @value{UPDATE-MONTH}
-@author John Harper
+@author John Harper, Sawfish team.
 @page
 @vskip 0pt plus 1filll
-Copyright @copyright{} 1999 John Harper.
+Copyright @copyright{} 1999 - 2003 John Harper, 2007 - 2010 Sawfish team.
 
 Permission is granted to make and distribute verbatim copies of
 this manual provided the copyright notice and this permission notice
@@ -64,8 +58,7 @@ notice identical to this one.
 This document describes the Lisp programming interface to
 @code{sawfish}, an extensible X11 window manager.
 
-This is Edition @value{EDITION} of its documentation,
-last updated @value{UPDATED} for Sawfish version @value{VERSION}.
+For edit history, see @file{ChangeLog} file.
 @end ifnottex
 
 @menu
@@ -679,10 +672,162 @@ Returns @code{t} if @var{arg} is a member of the window type, and has a
 client window associated with it.
 @end defun
 
+@menu
+Basics:
+* Window Attributes::
+* Getting Windows:: Get window by name, class, all, etc.
+* Window Property Lists::
+* Window Types::  Some windows have type, like transient.
+* Input Focus::
+* X Properties::
+* Window Groups::
+
+@noindent
+Operations on windows:
+* Activating Window:: Make a window ready for use.
+* Window Stacking::
+* Moving and Resizing Windows::
+* Showing and Hiding Windows::
+* Destroying Windows::
+* Shading Windows::
+* Maximizing Windows::
+* Cycling Between Windows::
+* Window Rules by Matching::
+* Animating Windows::
+* Iconifying Windows::
+
+@noindent
+Windows with special properties:
+* Window Stickiness::
+* Ignored Windows::
+* Avoided Windows::
+@end menu
+
+@node Window Attributes, Getting Windows, , Windows
+@section Window Attributes
+@cindex Window attributes
+@cindex Attributes, of windows
+@cindex Windows, attributes of
+
+Many attributes are described in the related sections.
+
+First, basic attributes, like name, class, id, etc.
+@defun window-name window
+Return the name associated with @var{window}.
+@end defun
+
+@defun window-full-name window
+Return the full-name associated with @var{window}. This may or may not
+be the same as the normal name.
+@end defun
+
+Sawfish provides functions to ensure that window names are unique.
+
+@defun uniquify-name proposal existing
+Uniquify the string @var{proposal} against the list of strings
+@var{existing}.  Uses the format string @code{uniquify-name-format} to
+generate unique names.
+@end defun
+
+@defvar uniquify-name-format
+Format to create unique window names.  Defaults to @code{"%s [%d]"}.
+@end defvar
+
+@deffn Function uniquify-window-name window
+@deffnx Command uniquify-window-name window
+Force @var{window} to have a unique title.
+@end deffn
+
+@defun rename-window win name
+Change the window's name to @var{name}. This works in practice, but
+technically ICCCM doesn't suppose window name changes.
+@end defun
+
+@defun window-class window
+Return the class that @var{window} belongs to as a string, or nil if
+@var{window} has no associated class.
+@end defun
+
+@defun window-id window
+If window object @var{window} has a client window associated with,
+return an integer defining its xid, otherwise return @code{nil}.
+@end defun
+
+@defun root-window-id
+Returns the numeric ID of the root window of the managed screen.
+@end defun
+
+@defun window-dimensions window
+Returns a cons cell @code{(@var{width} . @var{height})} defining the
+dimensions of the client window associated with object @var{window}.
+@end defun
+
+@defun window-position window
+Returns a cons-cell @code{(@var{x} . @var{y})} defining the position
+relative to the root window of @var{window}.
+@end defun
+
+@defun get-window-wm-protocols window
+Return a list of symbols defining the X11 window manager protocols
+supported by client @var{window}.
+@end defun
+
+@defun window-supports-wm-protocol-p window atom
+Return true if @var{window} includes @var{atom} in its
+@code{WM_PROTOCOLS} property.
+@end defun
+
+@noindent
+Listed here are window visibility predicates:
+@code{stacking-visibility}, @code{window-obscured} (@pxref{Stacking
+Visibility}), @code{window-visible-p} (@pxref{Showing and Hiding
+Windows}), @code{window-shaped-p} (@pxref{Shading Windows}),
+@code{window-iconified-p} (@pxref{Iconifying Windows}),
+@code{window-in-workspace-p} (@pxref{Workspaces and Windows}),
+@code{window-outside-viewport-p} (@pxref{Windows and Viewports}).
+
+@noindent
+Various predicates:
+@defun window-mapped-p window
+Return @code{t} if the client window associated with object
+@var{window} is mapped. (Note that this doesn't necessarily mean that
+it is visible.)
+@end defun
+
+@defun window-shaped-p window
+Return @code{t} if @var{window} is shaped (possibly not rectangular).
+@end defun
+
+@defun window-urgent-p window
+Return @code{t} if the ``Urgency'' hint of the window associated with
+@var{window} is set.
+@end defun
+
+@defun window-wants-input-p window
+@defunx window-really-wants-input-p window
+See @xref{Input Focus}.
+@end defun
+
+@node Getting Windows, Window Property Lists, Window Attributes, Windows
+@section Getting Windows
+@cindex Getting Windows
+
+First, functions which treat all windows.
+
 @defun managed-windows
 Returns a list containing all managed window objects, in the order that
 they were adopted by the window manager (first to last).
 @end defun
+
+@defun map-windows function
+Call @code{(@var{function} @var{window})} on all existing windows.
+Returns the value of the last @var{function} invocation.  If any
+@var{function} returns @code{nil}, @code{map-windows} returns
+@code{nil} immediately.
+@end defun
+
+@noindent
+Functions to get specific windows.
 
 @defun get-window-by-id xid
 Return a window object with id @var{xid}, or @code{nil}.
@@ -706,69 +851,12 @@ Return a window object with class matching regular expression
 @var{class}, or @code{nil}.
 @end defun
 
-@defun activate-window window
-Do everything necessary to make @var{window} active, including raising
-it, giving it focus, etc.  Certain steps may be skipped (e.g., giving
-focus) if the window doesn't allow that operation.
-@end defun
-
 @defun filter-windows pred
 Return the list of windows (mapped or unmapped) that match the
 predicate function @var{pred}.
 @end defun
 
-@defun map-windows function
-Call @code{(@var{function} @var{window})} on all existing windows.
-Returns the value of the last @var{function} invocation.  If any
-@var{function} returns @code{nil}, @code{map-windows} returns
-@code{nil} immediately.
-@end defun
-
-@defun window-class window
-Return the class that @var{window} belongs to as a string, or nil if
-@var{window} has no associated class.
-@end defun
-
-@defun get-window-wm-protocols window
-Return a list of symbols defining the X11 window manager protocols
-supported by client @var{window}.
-@end defun
-@defun window-supports-wm-protocol-p window atom
-Return true if @var{window} includes @var{atom} in its
-@code{WM_PROTOCOLS} property.
-@end defun
-
-@menu
-Basics:
-* Window Property Lists::
-* Window Types::
-* Window Attributes::
-* Input Focus::
-* X Properties::
-* Window Groups::
-
-@noindent
-Operations on windows:
-* Window Stacking::
-* Moving and Resizing Windows::
-* Showing and Hiding Windows::
-* Destroying Windows::
-* Shading Windows::
-* Maximizing Windows::
-* Cycling Between Windows::
-* Window Rules by Matching::
-* Animating Windows::
-* Iconifying Windows::
-
-@noindent
-Windows with special properties:
-* Window Stickiness::
-* Ignored Windows::
-* Avoided Windows::
-@end menu
-
-
-@node Window Property Lists, Window Types, , Windows
+@node Window Property Lists, Window Types, Getting Windows, Windows
 @section Window Property Lists
 @cindex  Window property lists
 @cindex Property lists, of windows
@@ -827,7 +915,7 @@ Remove @var{property} of @var{window}. Returns @code{t} for success,
 @code{nil} if the property did not exist.
 @end defun
 
-@node Window Types, Window Attributes, Window Property Lists, Windows
+@node Window Types, Input Focus, Window Property Lists, Windows
 @section Window Types
 @cindex Window types
 @cindex Types, of windows
@@ -844,8 +932,9 @@ window appears. Many windows do not have any types.
 a main application.  They tend to have less window decorations, and
 are intended to last a short time only.
 
-@defun window-transient-p arg
-Returns @code{t} if @var{arg} represents a transient window.
+@defun window-transient-p window
+Returns @code{nil} if @var{window} isn't marked as a transient window.
+Otherwise returns an integer, the xid of the parent window.
 @end defun
 
 @defun mark-window-as-transient w
@@ -968,146 +1057,7 @@ docks. Defaults to
 The stacking depth of dock windows.  Defaults to 0.
 @end defvar
 
-@node Window Attributes, Input Focus, Window Types, Windows
-@section Window Attributes
-@cindex Window attributes
-@cindex Attributes, of windows
-@cindex Windows, attributes of
-
-@defun window-name window
-Return the name associated with @var{window}.
-@end defun
-
-@defun window-full-name window
-Return the full-name associated with @var{window}. This may or may not
-be the same as the normal name.
-@end defun
-
-Sawfish provides functions to ensure that window names are unique.
-
-@defun uniquify-name proposal existing
-Uniquify the string @var{proposal} against the list of strings
-@var{existing}.  Uses the format string @code{uniquify-name-format} to
-generate unique names.
-@end defun
-
-@defvar uniquify-name-format
-Format to create unique window names.  Defaults to @code{"%s [%d]"}.
-@end defvar
-
-@deffn Function uniquify-window-name window
-@deffnx Command uniquify-window-name window
-Force @var{window} to have a unique title.
-@end deffn
-
-@defun rename-window win name
-Change the window's name to @var{name}. This works in practice, but
-technically ICCCM doesn't suppose window name changes.
-@end defun
-
-@defun window-icon-name window
-Return the icon name associated with @var{window}.
-@end defun
-
-@defun window-mapped-p window
-Return @code{t} if the client window associated with object
-@var{window} is mapped. (Note that this doesn't necessarily mean that
-it is visible.)
-@end defun
-
-@defun window-transient-p window
-Returns @code{nil} if @var{window} isn't marked as a transient window.
-Otherwise returns an integer, the xid of the parent window.
-@end defun
-
-@defun window-shaped-p window
-Return @code{t} if @var{window} is shaped (possibly not rectangular).
-@end defun
-
-@defun window-id window
-If window object @var{window} has a client window associated with,
-return an integer defining its xid, otherwise return @code{nil}.
-@end defun
-
-@defun root-window-id
-Returns the numeric ID of the root window of the managed screen.
-@end defun
-
-@defun window-group-id window
-If @var{window} is part of a group, return the X window id of the
-leader of that group.  Otherwise return @code{nil}.
-@end defun
-
-@defun window-wants-input-p window
-Return @code{t} when the client window associated with object
-@var{window} has asked for the input focus to be assigned to it when
-applicable (through the @code{input} field of its @code{WM_HINTS}
-property).
-@end defun
-
-@defun window-really-wants-input-p window
-Return @code{nil} if the client window associated with object
-@var{window} should never be focused, @code{t} otherwise.
-@end defun
-
-@defun window-dimensions window
-Returns a cons cell @code{(@var{width} . @var{height})} defining the
-dimensions of the client window associated with object @var{window}.
-@end defun
-
-@defun window-position window
-Returns a cons-cell @code{(@var{x} . @var{y})} defining the position
-relative to the root window of @var{window}.
-@end defun
-
-@defun window-size-hints window
-Return an alist defining the size-hints structure specified by the
-client window associated with @var{window}. Possible keys in the alist
-are @code{min-height}, @code{max-height}, @code{min-width},
-@code{max-width}, @code{height-inc}, @code{width-inc},
-@code{min-aspect}, @code{max-aspect}, @code{base-height},
-@code{base-width}, @code{user-position}, @code{program-position},
-@code{user-size}, @code{program-size}, @code{window-gravity},
-@code{border-size}.
-@end defun
-
-@defun stacking-visibility window
-Returns @code{unobscured} if @code{window} is unobscured,
-@code{fully-obscured} if one or more windows completely obscure
-@code{window}, or @code{partially-obscured} if one or more window
-partially obscure @code{window}.
-
-Deciding between fully and partially obscured can be expensive.  If
-@code{window-obscured} satisfies your needs, use that in preference to
-@code{stacking-visibility}.
-@end defun
-
-@defun window-obscured window
-Returns @code{nil} if @code{window} is unobscured, @code{t} if
-@code{window} is completely obscured by exactly one other window, or a
-list of windows that partially obscure @code{window}.
-
-If a list of partially obscuring windows is returned, taken together
-they may or may not fully obscure @code{window}.
-@end defun
-
-@deffn {Obsolete Function} window-visibility window
-Returns a symbol defining the current visibility of @var{window}.
-Possible returned symbols are @code{fully-obscured},
-@code{partially-obscured} or @code{unobscured}.
-
-@code{window-visibility} is deprecated.  It is unreliable when using
-the Composite extention, as every window is reported unobscured.  Use
-@code{window-obscured} and @code{stacking-visibility} instead.
-@end deffn
-
-@defun window-urgent-p window
-Return @code{t} if the ``Urgency'' hint of the window associated with
-@var{window} is set.
-@end defun
-
-
-@node Input Focus, X Properties, Window Attributes, Windows
+@node Input Focus, X Properties, Window Types, Windows
 @section Input Focus
 @cindex Input focus
 @cindex Keyboard focus
@@ -1126,6 +1076,21 @@ Returns the window object of the currently focused window, or
 Sets the focus to the client window associated with @var{window}.
 
 If @var{window} is @code{nil}, then no window will have the focus.
+@end defun
+
+@defun window-wants-input-p window
+If you're unsure, use @code{window-really-wants-input-p} function
+described below.
+
+Return @code{t} when the window @var{window} wants input focus in X
+sense, i.e. if it has asked for the input focus to be assigned to,
+through the @code{input} field of its @code{WM_HINTS} property.
+@end defun
+
+@defun window-really-wants-input-p window
+Like @code{window-wants-input-p}, but in addition, this function also
+takes into account user option provided by Sawfish, i.e. if the window
+has @code{never-focus} property or not.
 @end defun
 
 The window manager is responsible for switching the input focus from
@@ -1304,6 +1269,9 @@ When true, focusing a window doesn't change it's position in the stack of
 most-recently focused windows.
 @end defvar
 
+@noindent
+Other focus related functions:
+
 @defun window-in-cycle-p window &keyword ignore-cycle-skip
 Returns @code{t} if the window @var{window} should be included when
 cycling between windows.  Desktop windows and those with the
@@ -1336,7 +1304,8 @@ unclear.
 @defun select-window
 Waits for the user to left-click on a window, and returns that window.
 The mouse cursor changes shape, and all normal input events are
-suppressed until a window is selected.
+suppressed until a window is selected. For root window, @code{nil} is
+returned.
 @end defun
 
 @defvar select-window-cursor-shape
@@ -1428,7 +1397,7 @@ Arrange for function @var{fun} to be called with arguments
 to monitor.
 @end defun
 
-@node Window Groups, Window Stacking, X Properties, Windows
+@node Window Groups, Activating Window, X Properties, Windows
 @section Window Groups
 @cindex Groups, windows
 
@@ -1446,6 +1415,11 @@ These are anonymous user-defined groups.
 These are named user-defined groups.  Named user-defined groups are
 saved as part of window properties when saving sessions.
 @end table
+
+@defun window-group-id window
+If @var{window} is part of a group, return the X window id of the
+leader of that group.  Otherwise return @code{nil}.
+@end defun
 
 @defun window-group-ids
 Return the list of all group ids.
@@ -1600,22 +1574,55 @@ These operate like their single-window counterparts.
 This operates like its single-window counterpart.
 @end defun
 
-@node Window Stacking, Moving and Resizing Windows, Window Groups, Windows
+@node Activating Window, Window Stacking, Window Groups, Windows
+@section Activating Window
+@cindex Activating Window
+@cindex Activation, of a window
+
+When user wants to use a window, displaying, focusing, raising, etc,
+are necessary. Functions in this section do such jobs.
+
+@defun display-window window
+Roughly speaking, do everything necessary to make @var{window} ready
+for user.
+
+The operations are done in the following order. If the window is
+iconified, it gets un-iconified. The workspace and the viewport in
+which the window lies is selected. Unshade if necessary. (See
+@code{unshade-selected-windows} variable below.) Then call the
+@code{activate-window} function described below.
+
+It is defined in @code{sawfish.wm.util.display-window} module.
+@end defun
+
+@defun activate-window window
+Raise, focus, warp pointer if necessary, and mark the window as the
+top of window order. Don't focus if the window doesn't allow that
+operation.
+@end defun
+
+@defvr Customizable unshade-selected-windows
+When non-nil, unshade windows when selected.
+@end defvr
+
+@node Window Stacking, Moving and Resizing Windows, Activating Window, Windows
 @section Window Stacking
 @cindex Window stacking
 @cindex Stacking, of windows
 @cindex Windows, stacking
 
 The stacking order of the display defines the order in which windows
-are shown, from topmost to bottommost.  Sawfish maintains this list.
-Raising or lowering windows changes their positions in this list.
+are shown, from topmost to bottommost. It's Sawfish that maintains
+this list.  Raising or lowering windows changes their positions in
+this list.
 
 @menu
 * Stacking Order::
+* Stacking Visibility::
 * Raising and Lowering Windows::
 @end menu
 
-@node Stacking Order, Raising and Lowering Windows, Window Stacking, Window Stacking
+@node Stacking Order, Stacking Visibility, Window Stacking, Window Stacking
 @subsection Stacking Order
 
 @defun stacking-order
@@ -1686,7 +1693,45 @@ consistent state including window @var{w}. This is achieved by raising
 or lowering window W as appropriate.
 @end defun
 
-@node Raising and Lowering Windows,  , Stacking Order, Window Stacking
+@node Stacking Visibility,  Raising and Lowering Windows, Stacking Order, Window Stacking
+@subsection Stacking Visibility
+@cindex Visibility, stacking
+@cindex Stacking, visibility
+@cindex Covering, of windows
+
+There're functions which tell how the window is covered by others.
+
+@defun stacking-visibility window
+Returns @code{unobscured} if @code{window} is unobscured,
+@code{fully-obscured} if one or more windows completely obscure
+@code{window}, or @code{partially-obscured} if one or more window
+partially obscure @code{window}.
+
+Deciding between fully and partially obscured can be expensive.  If
+@code{window-obscured} satisfies your needs, use that in preference to
+@code{stacking-visibility}.
+@end defun
+
+@defun window-obscured window
+Returns @code{nil} if @code{window} is unobscured, @code{t} if
+@code{window} is completely obscured by exactly one other window, or a
+list of windows that partially obscure @code{window}.
+
+If a list of partially obscuring windows is returned, taken together
+they may or may not fully obscure @code{window}.
+@end defun
+
+@deffn {Obsolete Function} window-visibility window
+Returns a symbol defining the current visibility of @var{window}.
+Possible returned symbols are @code{fully-obscured},
+@code{partially-obscured} or @code{unobscured}.
+
+@code{window-visibility} is deprecated.  It is unreliable when using
+the Composite extention, as every window is reported unobscured.  Use
+@code{window-obscured} and @code{stacking-visibility} instead.
+@end deffn
+
+@node Raising and Lowering Windows,  , Stacking Visibility, Window Stacking
 @subsection Raising and Lowering Windows
 @cindex Windows, raising
 @cindex Windows, lowering
@@ -1735,9 +1780,10 @@ possibly associated windows to the bottom of their level, otherwise
 raise them to the top of their level.
 @end deffn
 
-@defvar user-raise-type
-Indicates which windows the @code{lower-window*}, @code{raise-window*}
-and @code{raise-lower-window*} functions affect.  This variable can be
+@defvr Customizable user-raise-type
+This user option indicates which windows the @code{lower-window*},
+@code{raise-window*} and @code{raise-lower-window*} functions affect.
+This variable can be
 
 @table @code
 @item none
@@ -1749,7 +1795,7 @@ This is the default.
 The specific argument window and all windows in its group are
 affected.
 @end table
-@end defvar
+@end defvr
 
 @defun maybe-raise-window w
 If window @var{w} supports the @code{_SAWFISH_WM_RAISE_WINDOW}
@@ -1762,6 +1808,9 @@ If window @var{w} supports the @code{_SAWFISH_WM_LOWER_WINDOW}
 protocol, ask it whether it wants to lower itself or not.  Otherwise,
 lower the window unconditionally.
 @end defun
+
+These two protocols were used in nautilus, but the current situation
+is unknown.
 
 Sawfish has more general operations that raising a window to the top
 or lowering it to the bottom.  It can place a window relative to one
@@ -1856,6 +1905,17 @@ The @var{hints} parameters is either the size hints alist to use, or
 to retrieve the window's hints.
 @end defun
 
+@defun window-size-hints window
+Return an alist defining the size-hints structure specified by the
+client window associated with @var{window}. Possible keys in the alist
+are @code{min-height}, @code{max-height}, @code{min-width},
+@code{max-width}, @code{height-inc}, @code{width-inc},
+@code{min-aspect}, @code{max-aspect}, @code{base-height},
+@code{base-width}, @code{user-position}, @code{program-position},
+@code{user-size}, @code{program-size}, @code{window-gravity},
+@code{border-size}.
+@end defun
+
 Usually, however, it is left to the user to configure windows. The
 following functions may be called interactively: their sole argument is
 then either the window that received the current event or the currently
@@ -1891,108 +1951,65 @@ resize that window.
 @end deffn
 
 @deffn Command double-window-size window
-Double the size of @var{window}
+@deffnx Command halve-window-size window
+Double / halve the size of @var{window}
 @end deffn
 
-@deffn Command halve-window-size window
-Halve the size of @var{window}
-@end deffn
-
-Sawfish supports increasing a windows size until it bumps into another
+Sawfish supports increasing the windows size until it touches another
 window. This is called ``grow''. ``Shrink'' achieves the opposite,
-i.e. it decreases a windows size, until it does no longer overlap any
-other window, or more precisely, until it overlaps with one less window.
+i.e. it decreases the windows size, until it does no longer overlap any
+other window. More precisely, the grow can be done repeatedly, each
+time until the edge meets another edge, and shrink is done so that
+it overlaps with one less window.
 
 @deffn Command grow-window-up window #!optional arg
-Grows @var{window} upwards until it "bumps into" another window.
-If the top edge was beyond the screen edge, it is brought back in.
-With a universal prefix @var{arg}, maximize upwards instead. With a numeric
-prefix @var{arg}, grow upwards by that many increments specified by
-window or pixels instead.
-@end deffn
-
-@deffn Command grow-window-down window #!optional arg
-Grows @var{window} downwards until it "bumps into" another window.
-See @code{grow-window-up}.
-@end deffn
-
-@deffn Command grow-window-left window #!optional arg
-Grows @var{window} left until it "bumps into" another window.
-See @code{grow-window-up}.
-@end deffn
-
-@deffn Command grow-window-right window #!optional arg
-Grows @var{window} right until it "bumps into" another window.
-See @code{grow-window-up}.
+@deffnx Command grow-window-down window #!optional arg
+@deffnx Command grow-window-left window #!optional arg
+@deffnx Command grow-window-right window #!optional arg
+Grows @var{window} upwards / downwards / left / right until it touches
+another window.  If that edge is beyond the screen edge, it is
+brought back in. With a universal prefix @var{arg}, maximize in that
+direction instead. With a numeric prefix @var{arg}, grow by that many
+increments specified by window or pixels instead.
 @end deffn
 
 @deffn Command shrink-window-up window
-Shrinks @var{window} by moving the lower edge upwards until it
-intersects with one window less than before.
-@end deffn
+@deffnx Command shrink-window-down window
+@deffnx Command shrink-window-left window
+@deffnx Command shrink-window-right window
+Shrinks @var{window} by moving one edge upwards / downwards / left /
+right until it intersects with one window less than before. (So,
+in @code{shrink-window-up} for example, the lower edge is moved.)
 
-@deffn Command shrink-window-down window
-Shrinks @var{window} by moving the upper edge downwards until it
-intersects with one window less than before.
-@end deffn
-
-@deffn Command shrink-window-left window
-Shrinks @var{window} by moving the right edge to the left until it
-intersects with one window less than before.
-@end deffn
-
-@deffn Command shrink-window-right window
-Shrinks @var{window} by moving the left edge to the right until it
-intersects with one window less than before.
+Window won't be made smaller than the minimum size, or
+@code{shrink-window-minimum-size}. More precisely, size truncation
+may make the window smaller than these values.
 @end deffn
 
 Moving counterparts, instead of resizing of ``grow'' and ``shrink'',
-are ``pack'' and ``yank''. So, ``pack'' moves until the window bumps
-into another, and ``yank'' moves until the overlap reduces.
+are ``pack'' and ``yank''. So, ``pack'' moves until the window touches
+another, and ``yank'' moves until the overlap reduces.
 
 @deffn Command pack-window-up window #! optional arg
-Moves @var{window} upwards until it "bumps into" another window.
-If the top edge was beyond the screen edge, it is moved back in.
-With a universal prefix @var{arg}, move upwards maximally instead.
-With a numeric prefix @var{arg}, move upwards by that many pixels instead.
-@end deffn
-
-@deffn Command pack-window-down #!optional arg
-Moves @var{window} downwards until it "bumps into" another window.
-See @code{pack-window-up}.
-@end deffn
-
-@deffn Command pack-window-left window #!optional arg
-Moves @var{window} left until it "bumps into" another window.
-See @code{pack-window-up}.
-@end deffn
-
-@deffn Command pack-window-right window #!optional arg
-Moves @var{window} right until it "bumps into" another window.
-See @code{pack-window-up}.
+@deffnx Command pack-window-down #!optional arg
+@deffnx Command pack-window-left window #!optional arg
+@deffnx Command pack-window-right window #!optional arg
+Moves @var{window} upwards / downwards / left /right until it touches
+another window.  If that edge is beyond the screen edge, it is moved
+back in.  With a universal prefix @var{arg}, move in that direction
+maximally instead.  With a numeric prefix @var{arg}, move by that many
+pixels instead.
 @end deffn
 
 @deffn Command yank-window-up window
-Yanks @var{window} upwards until it inserts with one window less than
-before.
+@deffnx Command yank-window-down window
+@deffnx Command yank-window-left window
+@deffnx Command yank-window-right window
+Yanks @var{window} upwards / downwards / left / right until it
+overlaps with one less window than before.
 @end deffn
 
-@deffn Command yank-window-down window
-Yanks @var{window} downwards until it inserts with one window less than
-before.
-@end deffn
-
-@deffn Command yank-window-left window
-Yanks @var{window} left until it inserts with one window less than
-before.
-@end deffn
-
-@deffn Command yank-window-right window
-Yanks @var{window} right until it inserts with one window less than
-before.
-@end deffn
-
-grow, pack, shrink and yank behavior can be customized through the
+Grow, pack, shrink and yank behavior can be customized through the
 following variables:
 
 @defvar grow-is-maximize
@@ -2034,8 +2051,8 @@ The default value is @code{10}.
 @end defvar
 
 @defvar yank-window-minimum-visible
-The minimum amount of window left visible, if yanked over the edge.
-The default value is @code{10}.
+The minimum amount of window left visible, if yanked over the screen
+edge. The default value is @code{10}.
 @end defvar
 
 @deffn Command move-window-center windows
@@ -2186,6 +2203,9 @@ then the window will appear in its shaded state.
 
 The dimensions of a window may be temporarily @dfn{maximized},
 stretching as far as possible within the screen in one or two dimensions.
+
+If you have multiple monitors, maximization is done within a head,
+unless stated explicitly that it's xinerama.
 
 @defun window-maximizable-p window &optional direcion hints
 Return @code{t} when @var{window} is maximizable. The window property
@@ -2815,6 +2835,10 @@ Return an image object representing the icon currently associated with
 @var{window}, or @code{nil} if there is no such image.
 @end defun
 
+@defun window-icon-name window
+Return the icon name associated with @var{window}.
+@end defun
+
 @node Window Stickiness, Ignored Windows, Iconifying Windows, Windows
 @section Window Stickiness
 @cindex Window stickiness
@@ -3084,6 +3108,11 @@ The first three arguments are analogous to the @code{defvar} special
 form, they declare a special variable stored in the symbol
 @var{variable}, whose value is set to @var{value} if the variable is
 currently unbound, with a documentation string @var{documentation}.
+
+In the configurator, gtk widget appears left to the docstring. But if
+the docstring ends with ``\\w'' (literally in the source; the first
+backslash for escaping the second), then the widget is put right to
+the text. This feature is supported by only some widgets.
 
 All other parameters are key-value pairs as with @code{defgroup}. The
 possible pairs are as follows:
@@ -3885,19 +3914,6 @@ window update functions will change it behind the scenes.
 @defvr {Window Property} ignored
 When set, the window is not given a frame.
 @end defvr
-
-It is possible to edit certain frame styles in place with
-@code{sawfish-themer}.
-
-@defun frame-style-editable-p style
-Returns @code{t} if @var{style} can be edited interactively,
-@code{nil} otherwise.
-@end defun
-
-@deffn {Command} edit-frame-style style
-Prompts for a frame style (defaulting to the value of @code{default-frame-style}),
-and runs @code{sawfish-themer-program} on it.
-@end deffn
 
 @defun reload-frame-style name
 Reloads the frame style @var{name} from disk if it is already known to
@@ -4711,9 +4727,17 @@ Remove the edge windows used to implement flipping.
 @cindex Multi-head environments
 @cindex Environments, multi-head
 @cindex Monitors, multiple
+@cindex Xinerama
 
-Sawfish has special functions to support environments with multiple
-monitors displaying a single logical screen (as provided by Xinerama).
+Sawfish supports multiple monitors displaying a single logical screen,
+as provided by Xinerama.
+
+A ``head'' means each physical monitor. When there're multiple heads,
+the word ``screen'' means the entire screen which is the combination
+of all heads. For example the function @code{screen-width} returns the
+width of the ``screen'' in this sense. A viewport contains the entire
+screen.  The only exception is that maximization is done within a
+head, unless stated explicitly that it's xinerama.
 
 @defun find-head x y
 Return a ID for the display head that point (@var{x}, @var{y}) is in.
@@ -4751,7 +4775,7 @@ window.  If @var{window} is supplied and @var{nil}, return
 @end defun
 
 @defun window-head-any-viewport window
-Like @code{current-head}, this will return the ID of the heand
+Like @code{current-head}, this will return the ID of the head
 containing the specified window.  But unlike @code{current-head},
 @code{window-head-any-viewport} returns the head that the window would
 be in if its viewport were the visible viewport.
@@ -6381,6 +6405,18 @@ example: @code{"/usr/share/sawfish/site-lisp"}. You can override it
 with the environment variable @code{SAWFISHSITELISPDIR}.
 @end defvar
 
+@defvar sawfish-user-lisp-directory
+The list of user's sawfish lisp directories. The default value is
+@code{($HOME/.sawfish/lisp)}. It is prepended to @code{load-path}, so
+that files under these directories are searched prior to
+@code{sawfish-lisp-lib-directory}.
+
+You can override the value with environment variable
+@code{SAWFISH_USER_LISP_DIR}. Paths are seperated by colon, like
+the @code{PATH} environmental variable. Example:
+@code{~/.sawfish/lisp-test:~/.sawfish/lisp}.
+@end defvar
+
 @defun exit-type
 If Sawfish is shutting down, this function returns one of the strings
 @code{"user-quit"}, @code{"user-restart"} or @code{"session-quit"}.
@@ -6996,10 +7032,6 @@ An optional, window-local, keymap. @xref{Keymaps}.
 @item focus-click-through
 When set, and click-to-focus mode is enabled, the click that focuses a
 window is passed through to the client window.
-
-@item ignore-window-input-hint
-When set the value of the window's input hint is ignored, i.e. the
-focus @emph{will} be given to the window when appropriate
 
 @item never-focus
 When set the window will @emph{never} be given the input focus

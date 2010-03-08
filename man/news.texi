@@ -1,5 +1,7 @@
 @c -*- texinfo -*-
 
+@c To compile: makeinfo --no-validate  --no-headers news.texi > NEWS
+
 @chapter News
 
 This lists the user-visible changes made to Sawfish, and which releases
@@ -7,11 +9,74 @@ they occurred between. For more detailed information see the
 @file{ChangeLog} file in the Sawfish source tree, or git log.
 (See Wiki page for how to access git repository.)
 
-@heading 1.6.2
+@heading 1.6.3 "Hava Nagila"
+
+@itemize @bullet
+
+@item The 1.6.3 release has some improvements.
+
+@itemize @minus
+@item Customizable lisp directory [Teika kazura]
+
+User can add lisp directories to be read with the environmental
+variable @code{SAWFISH_USER_LISP_DIR}. Its value is directories
+separated by colon, like @code{PATH}, and prepended to
+@code{load-path}. If not set, @file{~/.sawfish/lisp} is assumed.
+
+User can override system lisp files. For example, if there is
+@file{~/.sawfish/lisp/sawfish/wm/windows.jl}, then it is read as
+@code{sawfish.wm.windows}, instead of the installed one. In fact, it
+was possible for some lisp files, but now it's guaranteed for all
+files.  Of course, you can define new modules, too.
+
+@end itemize
+@item Bugfixes
+@itemize @minus
+@item Pressing the lock-button does the state-change of the window
+accordingly. [Fuchur]
+
+@item Unsupported option @code{ignore-window-input-hint} is deleted [Teika kazura] @*
+It has been invalid for long.
+@end itemize
+
+@item Other Changes
+@itemize @minus
+@item Info improvements [Teika kazura]
+
+``Windows'' chapter is partly revised. Function @code{display-window}
+is documented. Difference between @code{window-wants-input-p} and
+@code{window-really-wants-input-p} is described.
+
+In past few versions we made more changes which were not described in
+the news, including clarification in viewport and workspace, and window
+matching lisp functions.
+
+Added a faq item on multi-head and workspace.
+
+Edition number and the date of last change are dropped form the info.
+We now edit the info often, so they are not so much meaningful.
+@end itemize
+@end itemize
+
+@heading 1.6.2 "Mighty Disco King"
 
 @itemize @bullet
 
 @item The 1.6.2 release has some improvements.
+
+@item Bugfixes
+@itemize @minus
+@item Application menu is more robust now.  [Matthew Love, Christopher Bratusek]
+
+Application menu, introduced in 1.6.0, made Sawfish crash if
+@file{*.desktop} file had a malformed key value (say ; as first
+character or # somewhere inside), or it was unreadable. It is fixed.
+
+@item Minor fix of window placement by direction [Teika kazura]
+
+When the window placement mode is for example @code{east} and the window
+is wider than the screen, then the window was put wrongly. It is fixed.
+@end itemize
 
 @item New features
 @itemize @minus
@@ -26,12 +91,25 @@ exported.
 
 @item New command @code{jump-or-exec} [Christopher Bratusek]
 
-The thirdparty module jump-or-exec has been merged. It provides
-@code{jump-or-exec}, a command which may be used to focus a window,
-or if it does not exist, start the application. Unlike the original
-version this one also supports matching a window by it's WM_CLASS,
-which makes it more flexible for applications like musicplayer or
-browsers, which tend to change their WM_NAME relatively often.
+The user uploaded module ``jump-or-exec'' has been merged. It
+provides @code{jump-or-exec}, a command which may be used to focus a
+window, or if it does not exist, start the application. 
+
+Unlike the original version this one also supports matching a window
+by its class (returned by @code{window-class} function), which makes
+it more flexible for applications like music player or browsers, which
+tend to change their WM_NAME relatively often.
+
+For usage, see @file{lisp/sawfish/wm/commands/jump-or-exec.jl} file.
+@end itemize
+@item Misc
+@itemize @minus
+@item Improved ebuild and specfile [Christopher Bratusek] [Kim B. Heino]
+
+@item Updated documentation [Christopher Bratusek] [Teika Kazura]
+
+@item Removed @code{frame-style-editable-p} and all other remaining
+sawfish-themer fragments, as it's dead. [Christopher Bratusek]
 @end itemize
 @end itemize
 
