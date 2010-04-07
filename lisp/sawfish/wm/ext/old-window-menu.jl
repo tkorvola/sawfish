@@ -18,11 +18,17 @@
 ;; along with sawfish; see the file COPYING.  If not, write to
 ;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 
+;; This is the "old" window menu. By default, beos-window-menu is used
+;; instead. Maybe can be deleted.
+
+;; Usage: add (require 'sawfish.wm.ext.old-window-menu) in your rc file.
+
 (define-structure sawfish.wm.ext.old-window-menu
 
     (export old-window-menu)
 
     (open rep
+	  rep.util.utf8
 	  sawfish.wm.windows
 	  sawfish.wm.workspace
 	  sawfish.wm.misc
@@ -34,8 +40,8 @@
   (define (make-label w)
     (let ((name (window-name w)))
       (quote-menu-item (concat (and (window-get w 'iconified) ?\[)
-			       (if (> (length name) 20)
-				   (concat (substring name 0 20) "...")
+			       (if (> (utf8-string-length name) 20)
+				   (concat (utf8-substring name 0 20) "...")
 				 name)
 			       (and (window-get w 'iconified)  ?\])))))
 

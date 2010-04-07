@@ -62,15 +62,13 @@
 	  sawfish.wm.gaol
 	  sawfish.wm.session.init
 	  sawfish.wm.workspace
-	  sawfish.wm.util.display-window
 	  sawfish.wm.util.stacking
 	  sawfish.wm.frames
 	  sawfish.wm.misc
 	  sawfish.wm.focus
           sawfish.wm.viewport
           sawfish.wm.state.shading
-          sawfish.wm.stacking
-	  sawfish.wm.focus)
+          sawfish.wm.stacking)
 
   (define-structure-alias maximize sawfish.wm.state.maximize)
 

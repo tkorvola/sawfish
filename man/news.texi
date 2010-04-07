@@ -13,48 +13,103 @@ they occurred between. For more detailed information see the
 
 @itemize @bullet
 
-@item The 1.6.3 release has some improvements.
-
+@item Bugfixes
 @itemize @minus
+@item In tabbed-windows the left/right end is no longer outside the
+window, if that is too small [Fuchur]
+
+@item Unsupported option @code{ignore-window-input-hint} is deleted which has been invalid for long. [Teika kazura]
+
+@item Honor the user option @code{maximize-raises} in @code{maximize-window-fullscreen} and
+@code{maximize-window-fullxinerama}, too, not just in maximize-window
+[Nolan Leake]
+
+@item More robustness in applications menu [Teika Kazura]
+
+Before it broke for 'R' (statistics software), and whitespace handling
+didn't follow the specification. Phony constants are removed, too.
+@end itemize
+
+@item New Features
+@itemize @minus
+
+@item Tabbed windowing system improvements [Fuchur]
+@itemize +
+@item Support for transient tab-frames
+
+@item New frame classes:
+@itemize x
+@item tab-s (side tab)
+@item tab-ls (side tab, left/bottom end)
+@item tab-rs (side tab, right/top end)
+@end itemize
+
+@item Tabgroups now support a set of new properties and actions:
+@code{type}, @code{set-frame-style}, @code{fixed-position},
+@code{iconify}. In addition, new tabs gain those properties from their
+parent window.
+@end itemize
+@item New command @code{display-window-position} [Teika kazura]
+
+User chooses a window by cursor and click, and it prints its position
+and size in a popup. Also available as a function, defined in
+@code{sawfish.wm.util.display-wininfo}.
+
+@item New function @code{window-pid} [Teika kazura]
+
+It returns the process ID of a window. (@pxref{Window Attributes}
+
+@item Window instance name is now accessible [Teika kazura]
+
+Technically, the window class consists of ``instance'' and ``class'',
+but only the latter was returned previously by the function
+@code{window-class}. Now with the new optional argument, the instance
+is returned too. (@pxref{Window Attributes})
+
 @item Customizable lisp directory [Teika kazura]
 
 User can add lisp directories to be read with the environmental
 variable @code{SAWFISH_USER_LISP_DIR}. Its value is directories
 separated by colon, like @code{PATH}, and prepended to
 @code{load-path}. If not set, @file{~/.sawfish/lisp} is assumed.
+For example, if you define a module @code{sawfish.wm.super-hack}, then
+it can be read from @file{~/.sawfish/lisp/sawfish/wm/super-hack.jl}.
 
-User can override system lisp files. For example, if there is
-@file{~/.sawfish/lisp/sawfish/wm/windows.jl}, then it is read as
-@code{sawfish.wm.windows}, instead of the installed one. In fact, it
-was possible for some lisp files, but now it's guaranteed for all
-files.  Of course, you can define new modules, too.
-
-@end itemize
-@item Bugfixes
-@itemize @minus
-@item Pressing the lock-button does the state-change of the window
-accordingly. [Fuchur]
-
-@item Unsupported option @code{ignore-window-input-hint} is deleted [Teika kazura] @*
-It has been invalid for long.
+User can override system lisp files, too. For example, if there is
+@file{~/.sawfish/lisp/sawfish/wm/windows.jl}, then it defines
+@code{sawfish.wm.windows}, instead of the installed one. (But this can
+easily break your Sawfish startup.) In fact, it was possible for some
+lisp files, but now it's guaranteed for all files.
 @end itemize
 
 @item Other Changes
 @itemize @minus
 @item Info improvements [Teika kazura]
+@itemize +
 
-``Windows'' chapter is partly revised. Function @code{display-window}
+@item ``Windows'' chapter is partly revised. Function @code{display-window}
 is documented. Difference between @code{window-wants-input-p} and
 @code{window-really-wants-input-p} is described.
 
-In past few versions we made more changes which were not described in
-the news, including clarification in viewport and workspace, and window
-matching lisp functions.
+@item In past few versions we made more changes which were not described in
+the news, including clarification in viewport, workspace and event,
+and window matching lisp functions.
 
-Added a faq item on multi-head and workspace.
+@item Added a faq item on multi-head and workspace.
 
-Edition number and the date of last change are dropped form the info.
+@item Edition number and the date of last change are dropped from the info.
 We now edit the info often, so they are not so much meaningful.
+@end itemize
+
+@c The reason that this item is not categorized as ``bugfix'' is that
+@c 1. Lock-button, or more precisely 'fixed-position' property
+@c    lacks precise definition. It forbids moving, but resizing
+@c    is allowed. It also affects window placement, too.
+@c 2. Currently doc of window-state-change-hook is wrong, but
+@c    correction takes long.
+@item Pressing the lock-button does the state-change of the window
+accordingly. [Fuchur]@*
+No theme shipped with Sawfish does have the lock-button yet, though.
 @end itemize
 @end itemize
 
@@ -93,7 +148,7 @@ exported.
 
 The user uploaded module ``jump-or-exec'' has been merged. It
 provides @code{jump-or-exec}, a command which may be used to focus a
-window, or if it does not exist, start the application. 
+window, or if it does not exist, start the application.
 
 Unlike the original version this one also supports matching a window
 by its class (returned by @code{window-class} function), which makes

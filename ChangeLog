@@ -1,3 +1,59 @@
+2010-04-06  Teika Kazura <teika@lavabit.com>
+	* lisp/sawfish/wm/autoload.jl
+	* lisp/sawfish/wm/commands.jl
+	* lisp/sawfish/wm/util/gtkrc.jl
+	* man/news.texi
+	* man/sawfish.texi: Minor doc. News improvements. Minor typo fix.
+
+	* lisp/sawfish/wm/ext/old-window-menu.jl: Utf8 support in
+	old-window-menu.jl.
+
+2010-03-20  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/tabs/tab.jl
+	* lisp/sawfish/wm/tabs/tabgroup.jl: several additions, check man/news.texi [Fuchur]
+
+	* man/news.texi: updated
+
+2010-03-20  Teika Kazura <teika@lavabit.com>
+	* lisp/sawfish/wm/windows.jl
+	* man/news.texi
+	* man/sawfish.texi: Implemented 'spec' option for window-class.
+
+	* lisp/sawfish/wm/windows.jl
+	* man/news.texi
+	* man/sawfish.texi: Implemented 'window-pid'. Checked that even if
+	pid is not available it doesn't signal an error (with xv).
+
+	* README
+	* man/news.texi
+	* man/sawfish.texi
+	* src/keys.c: Doc. Info "Events" chapter improvements. News revision.
+
+2010-03-19  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/state/maximize.jl: make maximize-/-fullscreen/fullxinerama
+	                                     honor maximize-raises [Nolan Leake]
+
+	* lisp/sawfish/wm/ext/apps-menu.jl: more robustness
+
+2010-03-13  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/util/display-wininfo.jl: missing require
+
+2010-03-13  Teika Kazura <teika@lavabit.com>
+	* lisp/sawfish/wm/util/display-wininfo.jl
+	* man/news.texi
+	* man/sawfish.texi: 'display-window-position' command is implemented.
+
+	* lisp/sawfish/wm/state/maximize.jl: Deleted bogus exports.
+
+	* lisp/sawfish/wm/custom.jl
+	* lisp/sawfish/wm/stacking.jl: Fix of a semi-bug. (defgroup stacking)
+	is moved to custom.jl from stacking. Without this, adding 'tab' to
+	open clause of wm.frames breaks the startup. Read git commit
+	928355 log for the details.
+
+	* README
+	* lisp/sawfish/wm/ext/old-window-menu.jl: Minor doc change.
+
 2010-03-06  Teika Kazura <teika@lavabit.com>
 	* OPTIONS
 	* lisp/sawfish/wm/util/display-window.jl

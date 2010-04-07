@@ -676,7 +676,7 @@ client window associated with it.
 Basics:
 * Window Attributes::
 * Getting Windows:: Get window by name, class, all, etc.
-* Window Property Lists::
+* Window Property Lists:: Plist attached by Sawfish.
 * Window Types::  Some windows have type, like transient.
 * Input Focus::
 * X Properties::
@@ -711,7 +711,7 @@ Windows with special properties:
 
 Many attributes are described in the related sections.
 
-First, basic attributes, like name, class, id, etc.
+First, basic attributes, like name, class, ID, etc.
 @defun window-name window
 Return the name associated with @var{window}.
 @end defun
@@ -743,9 +743,16 @@ Change the window's name to @var{name}. This works in practice, but
 technically ICCCM doesn't suppose window name changes.
 @end defun
 
-@defun window-class window
-Return the class that @var{window} belongs to as a string, or nil if
-@var{window} has no associated class.
+@defun window-class window #!optional spec
+If the optional argument @var{spec} is @code{nil}, returns the class
+that @var{window} belongs to as a string, or nil if @var{window} has
+no associated class.
+
+ICCCM class consists of ``Instance'' and ``Class''. If @var{spec} is
+the symbol @code{cons}, then the cons of the form
+@code{(@var{instance} . @var{class})} is returned. If @var{spec} is
+the symbol @code{configurator}, then the string of the form
+``@var{instance}/@var{class}'' is returned.
 @end defun
 
 @defun window-id window
@@ -767,6 +774,14 @@ Returns a cons-cell @code{(@var{x} . @var{y})} defining the position
 relative to the root window of @var{window}.
 @end defun
 
+@defun display-window-position #!optional window
+Display @var{window}'s position and size in a popup. If the argument
+is @code{nil} or called as a command, user chooses the window by cursor
+and click.
+
+This function is defined in @code{sawfish.wm.util.display-wininfo}.
+@end defun
+
 @defun get-window-wm-protocols window
 Return a list of symbols defining the X11 window manager protocols
 supported by client @var{window}.
@@ -775,6 +790,10 @@ supported by client @var{window}.
 @defun window-supports-wm-protocol-p window atom
 Return true if @var{window} includes @var{atom} in its
 @code{WM_PROTOCOLS} property.
+@end defun
+
+@defun window-pid window
+Returns the window process ID, or nil if not available.
 @end defun
 
 @noindent
@@ -830,26 +849,26 @@ Returns the value of the last @var{function} invocation.  If any
 Functions to get specific windows.
 
 @defun get-window-by-id xid
-Return a window object with id @var{xid}, or @code{nil}.
+Return a window object with ID @var{xid}, or @code{nil}.
 @end defun
 
 @defun get-window-by-name name
-Return a window object with name @var{name}, or @code{nil}.
+Return a window object with name @var{name}, or @code{nil}.  Even if
+multiple windows are matched, one of them is returned.
 @end defun
 
 @defun get-window-by-name-re name
 Return a window object with name matching regular expression
-@var{name}, or @code{nil}.
+@var{name}, or @code{nil}. Even if multiple windows are matched,
+one of them is returned.
 @end defun
 
-@defun get-window-by-class class
-Return a window object with class @var{class}, or @code{nil}.
-@end defun
-
-@defun get-window-by-class-re class
-Return a window object with class matching regular expression
-@var{class}, or @code{nil}.
-@end defun
+@deffn Function: get-window-by-class class
+@deffnx Function: get-window-by-class-re class
+Same as the above, but the match is done against the window class.
+Here, the class does not include the ``instance''. (See @code{window-class} in
+@xref{Window Attributes}.)
+@end deffn
 
 @defun filter-windows pred
 Return the list of windows (mapped or unmapped) that match the
@@ -5135,30 +5154,35 @@ to it.
 @chapter Events
 @cindex Events
 
-Events refer to input events from X that the window manager receives,
-either for the root window, the window frames it creates, or grabbed
-from the client windows themselves. Each event induced by the mouse or
-keyboard has a Lisp representation.
+Lisp ``event'' object is a representation of input, regardless of actual
+or expected. If it's a keypress for example, it tells which key with
+which modifiers are pressed, and that's all. Please do not confuse it
+with X or other's event which is generated only after keypress or
+other ``event''.
+
+Each X input event induced by the mouse or the keyboard has a Lisp
+representation. X input events that Sawfish receives are either for
+the root window, the window frames it creates, or grabbed from the
+client windows themselves.
+
+Sawfish can respond to X events other than input, most often via
+hooks. (@pxref{Standard Hooks})
 
 @defun eventp object
-This function returns @code{t} if its argument is an input event.
+This function returns @code{t} if its argument is an event.
 @end defun
 
 @menu
-* Event Representation::        Objects versus string names
+* Event Name Representation::   Raw object versus string name
 * Event Modifiers::             Meta, Alt, Buttons
 * Event Actions::               Keys and Clicks
 * Event Matching::
-* Synthetic Events::            Creating events that seem real
+* Synthesis of Events::            Creating events that seem real
 @end menu
 
-@node Event Representation, Event Modifiers, Events, Events
-@section Event Representation
-
-Each input event is represented by a cons cell containing two
-integers, and these integers encode the event. The encoding is opaque;
-the only way to access an event meaningfully is via the functions
-provided.
+@node Event Name Representation, Event Modifiers, Events, Events
+@section Event Name Representation
+@cindex Name, of Event
 
 Each event has a string representation, called its ``name''.  Names
 consist of zero or more modifiers, followed by a key or mouse action
@@ -5169,14 +5193,14 @@ hyphens @samp{-}.  For example, hitting @key{x} while holding down the
 Emacs Lisp's notation.
 
 Functions are available to convert between the name of an event and the
-actual event itself, and vice versa.
+event object itself, and vice versa.
 
 @defun lookup-event event-name
 Create and return a new input event whose name is @var{event-name}.
 
 @lisp
 (lookup-event "C-x")
-    @result{} (120 . 65540)
+    @result{} (120 . 65540) ;; Internally, event is a pair of integers.
 
 (lookup-event "C-M-Button1-Click1")
     @result{} (1 . 131340)
@@ -5192,7 +5216,7 @@ This function returns a string naming the input event @var{event}.
 @end lisp
 @end defun
 
-@node Event Modifiers, Event Actions, Event Representation, Events
+@node Event Modifiers, Event Actions, Event Name Representation, Events
 @section Event Modifiers
 @cindex Event Modifiers
 @cindex Modifiers, for events
@@ -5229,7 +5253,8 @@ The hyper modifier
 
 @item Super
 @itemx s
-The super modifier; note that this is a lowercase @kbd{s}
+The super modifier; note that this is a lowercase @kbd{s}, in order to
+distiguish from shift
 
 @item Mod@var{k}
 The standard X modifiers, for @var{k} between 1 and 5
@@ -5355,7 +5380,7 @@ successive clicks.  Defaults to 250 milliseconds at startup; if
 @code{nil}, Sawfish uses 250 milliseconds.
 @end defvar
 
-@node Event Matching, Synthetic Events, Event Actions, Events
+@node Event Matching, Synthesis of Events, Event Actions, Events
 @section Event Matching
 @cindex Event Matching
 @cindex Matching, Events
@@ -5371,10 +5396,10 @@ Returns @code{t} if events @var{ev1} and @var{ev2} match, @code{nil}
 otherwise.
 @end defun
 
-@node Synthetic Events,  , Event Matching, Events
+@node Synthesis of Events,  , Event Matching, Events
 @section Synthetic Events
-@cindex Synthetic Events
-@cindex Events, Synthetic
+@cindex Synthesis of Events
+@cindex Events, Synthesis
 @cindex Events, Synthesizing
 
 It is possible to create an event inside Sawfish that mimics a real
@@ -5390,7 +5415,7 @@ The current pointer position becomes the position of the event.
 @var{Event} is either an event object, or the string representation of
 an event (such as @code{"A-f"} or @code{"C-M-Button3-Click2"}).
 Strings are parsed into event objects before any work is done.
-@xref{Event Representation}.
+@xref{Event Name Representation}.
 
 If @var{propagate} is true, the event will propagate up the window
 ancestor chain until it is handled.
@@ -5401,9 +5426,9 @@ ancestor chain until it is handled.
 @chapter Commands
 @cindex Commands
 
-A @dfn{command} is a Lisp function which may be called interactively,
-that is, as a result of being bound to an input event.  To support
-this, we mark them with metadata that the runtime system can query.
+A @dfn{command} is a Sawfish lisp notion which can be called from key
+or mouse input. Unlike emacs, a command is not always a Lisp
+function. See following setions for more.
 
 @menu
 * Old-style Command Definition::  Emacs-Lisp style
@@ -5630,23 +5655,27 @@ command.
 
 Sawfish defines several commands by default.
 
-@defun run-shell-command
-The command prompts the user for a string, and executes that string as
-under @code{system}.
-@end defun
+@deffn Command: run-shell-command
+Executes a shell command. This is a wrapper for @code{system}
+function, so in lisp code, use it instead. (@pxref{Shell Commands, ,
+,librep}.)
+@end deffn
 
-@defun quit
-@defunx restart
-@defunx destroy-window
-@defunx kill-client
-@defunx no-operation
+@deffn Command: quit
+@deffnx Command: restart
+Quits and restarts Sawfish. @xref{Sawfish Invocation Functions}.
+@end deffn
 
-Calls the function of the same name.  @code{destroy-window} and
-@code{kill-client} both take @code{%W} as argument.
+@deffn Command: destroy-window
+@deffnx Command: kill-client
+Command @code{destroy-window} calls the function of the same name, and
+command @code{kill-client} calls the function @code{x-kill-client}.
+Both take @code{%W} as argument. @xref{Destroying Windows}.
+@end deffn
 
-(Strictly speaking, @code{kill-client} calls @code{x-kill-client},
-and @code{no-operation} calls @code{nop}.)
-@end defun
+@deffn Command: no-operation
+Does nothing.
+@end deffn
 
 @node Keymaps, Event Loop, Commands, Top
 @chapter Keymaps
@@ -6417,6 +6446,11 @@ the @code{PATH} environmental variable. Example:
 @code{~/.sawfish/lisp-test:~/.sawfish/lisp}.
 @end defvar
 
+@defun quit
+@defunx restart
+Quits and restart Sawfish.
+@end defun
+
 @defun exit-type
 If Sawfish is shutting down, this function returns one of the strings
 @code{"user-quit"}, @code{"user-restart"} or @code{"session-quit"}.
@@ -6565,7 +6599,9 @@ order of elements is not preserved.
 @chapter External Applications
 @cindex External applications
 
-There're some functions and variables for invocation of external applications.
+There're some functions and variables for invocation of external
+applications. They're defined in @code{sawfish.wm.commands.launcher}
+module.
 
 @defvr {Customizable} xterm-program
 The program launched by the @code{xterm} function. Interpreted by shell.
