@@ -1,3 +1,55 @@
+2010-05-23  Christopher Roy Bratusek <zanghar@freenet.de>
+	* man/sawfish.texi
+	* src/events.c
+	* src/frames.c
+	* src/sawfish.h
+	* src/windows.c: added border_with and border_color frame-part attributes
+			 -- [Alexey I. Froloff]
+
+2010-05-16  Christopher Bratusek <zanghar@freenet.de>
+	* src/display.c: allow compilation with -DDEBUG
+
+	* man/news.texi: updated
+
+2010-05-15  Teika Kazura <teika@lavabit.com>
+	* man/news.texi: Added a link.
+
+2010-05-11  Teika Kazura <teika@lavabit.com>
+	* man/news.texi
+	* man/sawfish.texi
+	* src/display.c
+	* src/events.c
+	* src/functions.c
+	* src/sawfish_subrs.h: Complets the last RandR edit. At least it's
+	correct if you have only one screen, or if you use Xinerama.
+	Most importantly, screen size information is updated after
+	XRRScreenChangeNotifyEvent.
+	Other changes:
+	NULL display check of the RandR is changed to Sawfish conventional
+	way. (Just to be in accordance.) Minor memeory leak fix.
+	Doc.
+
+	* ChangeLog
+	* man/faq.texi
+	* man/news.texi
+	* man/sawfish.texi
+	* KEYBINDINGS
+	* src/keys.c: docs.
+
+2010-04-27  Christopher Bratusek <zanghar@freenet.de>
+	* configure.in: make xinerama an optional dependency
+			-- [modified patch from Gentoo]
+
+	* lisp/sawfish/wm/ext/apps-menu.jl: Allow whitespace and comments
+	                                    at the beginning of .desktop files.
+					    -- [Matthew Love, Teika Kazura]
+
+	* src/Makefile.in
+	* src/display.c
+	* src/events.c: add a way to response to XRandR changed events
+	                eg resolution changes via randr-change-notify-hook
+			-- [Daniel M. German]
+
 2010-04-06  Teika Kazura <teika@lavabit.com>
 	* lisp/sawfish/wm/autoload.jl
 	* lisp/sawfish/wm/commands.jl
@@ -33,7 +85,8 @@
 	* lisp/sawfish/wm/state/maximize.jl: make maximize-/-fullscreen/fullxinerama
 	                                     honor maximize-raises [Nolan Leake]
 
-	* lisp/sawfish/wm/ext/apps-menu.jl: more robustness
+	* lisp/sawfish/wm/ext/apps-menu.jl: Anti-brekage for "R".
+	Removal of phony constants. Some code refactoring. [Teika Kazura]
 
 2010-03-13  Christopher Bratusek <zanghar@freenet.de>
 	* lisp/sawfish/wm/util/display-wininfo.jl: missing require

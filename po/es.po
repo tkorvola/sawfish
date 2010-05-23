@@ -6,12 +6,13 @@
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004.
 # Jacinto Capote Robles <fastangel@gmail.com>, 2009.
 # Jorge González <jorgegonz@svn.gnome.org>, 2009, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: sawfish.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-21 18:05+0100\n"
-"PO-Revision-Date: 2010-03-15 19:34+0100\n"
+"PO-Revision-Date: 2010-05-01 09:49+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -304,6 +305,10 @@ msgid ""
 "With gradient mode vertical or diagonal only the first or last (reversed) 2 "
 "colors in the list are used."
 msgstr ""
+"modo gradiente\n"
+"\n"
+"Con el modo gradiente vertical o diagonal sólo se usan los dos primeros o "
+"últimos (invertido) colores en la lista."
 
 #. ../themes/mxflat/theme.jl
 msgid ""
@@ -312,6 +317,10 @@ msgid ""
 "The value here is the factor the calculated gradient image will be scaled "
 "down.  This increases speed but decreases quality."
 msgstr ""
+"calidad del gradiente (1 mejor - 20 peor)\n"
+"\n"
+"El valor aquí es el factor al que se reducirá de escala la imagen gradiente "
+"calculada. Esto aumenta la velocidad pero empeora la calidad."
 
 #. ../themes/mxflat/theme.jl
 msgid "rainbow"
@@ -527,19 +536,19 @@ msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid "menu icon scale (0 - 1000 pixel)"
-msgstr ""
+msgstr "escala de los iconos de menú (0 - 1000 píxeles)"
 
 #. ../themes/mxflat/theme.jl
 msgid "button distance (0 - 1000 pixel)"
-msgstr ""
+msgstr "distancia entre botones (0 - 1000 píxeles)"
 
 #. ../themes/mxflat/theme.jl
 msgid "buttons left offset (0 - 1000 pixel)"
-msgstr ""
+msgstr "desplazamiento izquierdo de los botones (0 - 1000 píxeles)"
 
 #. ../themes/mxflat/theme.jl
 msgid "buttons right offset (0 - 1000 pixel)"
-msgstr ""
+msgstr "desplazamiento derecho de los botones (0 - 1000 píxeles)"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
@@ -552,7 +561,7 @@ msgstr ""
 
 #. ../themes/mxflat/theme.jl
 msgid "title-height"
-msgstr ""
+msgstr "altura del título"
 
 #. ../themes/mxflat/theme.jl
 msgid "pixel"
@@ -753,6 +762,11 @@ msgid ""
 "When you active this you will be able to set custom button colors.  By "
 "default the button colors depend on the titlebar colors."
 msgstr ""
+"personalizar los colores de los botones\n"
+"\n"
+"Al activar esto podrá personalizar los colores de los botones. De forma "
+"predeterminada los colores de los botones dependen de los colores de la "
+"barra de título."
 
 #. ../themes/mxflat/theme.jl
 msgid "  focused button background color"
@@ -800,6 +814,9 @@ msgid ""
 "\n"
 "set the width border around the window."
 msgstr ""
+"anchura del borde (0 - 1000 píxeles)\n"
+"\n"
+"establecer la anchura del borde alrededor de la ventana."
 
 #. ../themes/mxflat/theme.jl
 msgid ""
@@ -828,6 +845,10 @@ msgid ""
 "(NOTE: this works but it is VERY cpu intensive and might slow down your "
 "computer noticably.  So turn it on at your own risk.)"
 msgstr ""
+"anchura del borde para ventanas con el foco (0 - 1000 píxeles)\n"
+"\n"
+"[NOTA: usa MUCHOS recursos del sistema y puede reducir considerablemente la "
+"velocidad de su equipo. Actívelo bajo su propia responsabilidad.)"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
@@ -909,9 +930,8 @@ msgid ""
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
-#, fuzzy
 msgid "fake shadow only on focused windows"
-msgstr "Imagen de la barra en ventanas sin foco."
+msgstr "sombra falsa sólo en las ventanas con el foco"
 
 #. ../themes/mxflat/theme.jl
 msgid "north"
@@ -1205,9 +1225,8 @@ msgstr "E_ncoger y estirar"
 
 #. ../lisp/sawfish/wm/commands/x-cycle.jl
 #. ../lisp/sawfish/wm/autoload.jl
-#, fuzzy
 msgid "Window Cycling"
-msgstr "Ignorar la lista de ventanas"
+msgstr "Cambio entre ventanas"
 
 #. ../lisp/sawfish/wm/tabs/tab.jl
 #. ../lisp/sawfish/wm/autoload.jl
@@ -1580,9 +1599,8 @@ msgid "Help about"
 msgstr "Ayuda acerca de"
 
 #. ../lisp/sawfish/wm/commands/launcher.jl
-#, fuzzy
 msgid "External Applications"
-msgstr "Muestra el menú de aplicaciones."
+msgstr "Aplicaciones externas"
 
 #. ../lisp/sawfish/wm/commands/launcher.jl
 msgid "The program launched by the `xterm' function. Interpreted by shell."
@@ -1606,14 +1624,12 @@ msgid "Command:"
 msgstr "Comando:"
 
 #. ../lisp/sawfish/wm/commands/launcher.jl
-#, fuzzy
 msgid "Browser"
 msgstr "Navegador"
 
 #. ../lisp/sawfish/wm/commands/launcher.jl
-#, fuzzy
 msgid "Start browser. Url is optional."
-msgstr "Iniciar un xterm nuevo."
+msgstr "Iniciar el navegador. El URL es opcional."
 
 #. ../lisp/sawfish/wm/commands/launcher.jl
 msgid "url:"
@@ -2210,6 +2226,7 @@ msgstr "Poner el espacio de trabajo de la ventana a lineal"
 #. ../lisp/sawfish/wm/commands/x-cycle.jl
 msgid "Display window names and icons while cycling through windows."
 msgstr ""
+"Mostrar los nombres e iconos de las ventanas al cambiar entre las ventanas."
 
 #. ../lisp/sawfish/wm/commands/x-cycle.jl
 msgid "Include iconified windows when cycling."
@@ -2414,7 +2431,7 @@ msgstr ""
 
 #. ../lisp/sawfish/wm/ext/error-handler.jl
 msgid "Beep when errors occur."
-msgstr ""
+msgstr "Pitar cuando suceda un error."
 
 #. ../lisp/sawfish/wm/ext/error-handler.jl
 msgid "nowhere"
@@ -2594,7 +2611,7 @@ msgstr "Enrollada"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Never iconify"
-msgstr ""
+msgstr "No iconizar nunca"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 #, fuzzy
@@ -2696,18 +2713,12 @@ msgid "Show full documentation in tooltips."
 msgstr ""
 
 #. ../lisp/sawfish/wm/ext/tooltips.jl
-#, fuzzy
 msgid "Number of milliseconds before displaying tooltips."
 msgstr ""
-"Retardo en milisegundos hasta que las ventanas enfocadas\n"
-"se envían a primer plano."
 
 #. ../lisp/sawfish/wm/ext/tooltips.jl
-#, fuzzy
 msgid "Number of milliseconds before removing tooltips."
 msgstr ""
-"Retardo en milisegundos hasta que las ventanas enfocadas\n"
-"se envían a primer plano."
 
 #. ../lisp/sawfish/wm/ext/tooltips.jl
 msgid "Font used to display tooltips, or nil for default."
@@ -2738,35 +2749,32 @@ msgid "_Forget saved state"
 msgstr "_Olvidar estado guardado"
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
-#, fuzzy
 msgid "_Clear window-istory"
-msgstr "_Enviar ventana a"
+msgstr "_Limpiar el histórico de ventanas"
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
-#, fuzzy
 msgid "_Save window-history"
-msgstr "_Enviar ventana a"
+msgstr "_Guardar el histórico de ventanas"
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
-#, fuzzy
 msgid "_Reload window-history"
-msgstr "Olvidar toda historia de ventana almacenada."
+msgstr "_Recargar el histórico de ventanas"
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Automatically remember window positions."
-msgstr ""
+msgstr "Recordar automáticamente las posiciones de las ventanas."
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Automatically remember window sizes."
-msgstr ""
+msgstr "Recordar automáticamente los tamaños de las ventanas."
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Automatically remember other window attributes."
-msgstr ""
+msgstr "Recordar automáticamente otros atributos de las ventnas."
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Don't automatically remember details of transient windows."
-msgstr ""
+msgstr "No recordar automáticamente los detalles de las ventanas transitorias."
 
 #. ../lisp/sawfish/wm/ext/window-history.jl
 msgid "Window history save position"
@@ -2895,30 +2903,28 @@ msgid "When true, pointer in/out events don't cause focus changes."
 msgstr ""
 
 #. ../lisp/sawfish/wm/frames.jl
-#, fuzzy
 msgid "Default frame style:"
-msgstr "Editar estilo de marco"
+msgstr "Estilo predeterminado del marco:"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Automatically reload themes when they are updated."
-msgstr ""
+msgstr "Recargar temas automáticamente al actualizarlos."
 
 #. ../lisp/sawfish/wm/frames.jl
-#, fuzzy
 msgid "Default font: \\w"
-msgstr "Por omisión"
+msgstr "Tipografía predeterminada: \\w"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Use custom font colors for frames"
-msgstr ""
+msgstr "Usar colores de tipografías personalizados para los marcos"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Font color for active frames"
-msgstr ""
+msgstr "Color de tipografía para marcos activos"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Font color for inactive frames"
-msgstr ""
+msgstr "Color de tipografía para marcos inactivos"
 
 #. ../lisp/sawfish/wm/frames.jl
 msgid "Edit frame style"
@@ -3011,11 +3017,11 @@ msgstr "_Apagar el sistema"
 
 #. ../lisp/sawfish/wm/integration/standalone.jl
 msgid "S_uspend System"
-msgstr ""
+msgstr "Suspender el sistema"
 
 #. ../lisp/sawfish/wm/integration/standalone.jl
 msgid "_Hibernate System"
-msgstr ""
+msgstr "_Hibernar el sistema"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "global-keymap"
@@ -3023,7 +3029,7 @@ msgstr "combinaciones-de-teclas-globales"
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "Keymap containing bindings active anywhere."
-msgstr ""
+msgstr "Mapa de teclado que contiene vínculos activos en cualquier sitio."
 
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "window-keymap"
@@ -3173,6 +3179,7 @@ msgstr ""
 #. ../lisp/sawfish/wm/keymaps.jl
 msgid "Modifier key(s) used for default shortcuts."
 msgstr ""
+"Teclas modificadoras usadas para las combinaciones de teclas predeterminadas."
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "Mi_nimize"
@@ -3664,6 +3671,7 @@ msgstr "En lista de _tareas"
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Lock position and size while windows are maximized."
 msgstr ""
+"Bloquear la posición y el tamaño cuando las ventanas están maximizadas."
 
 #. ../lisp/sawfish/wm/state/maximize.jl
 msgid "Maximize window"
@@ -3945,9 +3953,8 @@ msgid "Tab release window"
 msgstr "Borrar ventana"
 
 #. ../lisp/sawfish/wm/tabs/tabgroup.jl
-#, fuzzy
 msgid "Release active window from its group"
-msgstr "Restaura la ventana desde su estado de minimizada."
+msgstr "Librear la ventana activa de su grupo"
 
 #. ../lisp/sawfish/wm/tabs/tabgroup.jl
 #, fuzzy
@@ -3955,9 +3962,8 @@ msgid "Tab raise left window"
 msgstr "A primer plano ventana desde el fondo"
 
 #. ../lisp/sawfish/wm/tabs/tabgroup.jl
-#, fuzzy
 msgid "Raise left window in current group"
-msgstr "Traer a primer plano ventana y transitorios del fondo"
+msgstr "Traer a primer plano ventana izquierda en el grupo actual"
 
 #. ../lisp/sawfish/wm/tabs/tabgroup.jl
 #, fuzzy
@@ -3965,9 +3971,8 @@ msgid "Tab raise right window"
 msgstr "Traer ventana única al frente."
 
 #. ../lisp/sawfish/wm/tabs/tabgroup.jl
-#, fuzzy
 msgid "Raise right window in current group"
-msgstr "Traer a primer plano ventana y transitorios del fondo"
+msgstr "Traer a primer plano ventana derecha en el grupo actual"
 
 #. ../lisp/sawfish/wm/util/compat.jl
 msgid "Insert workspace"
@@ -4322,6 +4327,7 @@ msgstr "Deformación"
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Offset (%) from window edges when warping pointer."
 msgstr ""
+"Desplazamiento (%) desde los bordes de la ventana al deformar el puntero."
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Whether to enable warping the cursor to windows."

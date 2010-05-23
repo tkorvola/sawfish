@@ -9,6 +9,17 @@ they occurred between. For more detailed information see the
 @file{ChangeLog} file in the Sawfish source tree, or git log.
 (See Wiki page for how to access git repository.)
 
+@heading 1.6.4 "Frozen Flame"
+
+@itemize @bullet
+
+@item New Features
+@itemize @minus
+@item Added border_with and border_color frame-part attributes
+[Alexey I. Froloff]
+@end itemize
+@end itemize
+
 @heading 1.6.3 "Hava Nagila"
 
 @itemize @bullet
@@ -24,14 +35,23 @@ window, if that is too small [Fuchur]
 @code{maximize-window-fullxinerama}, too, not just in maximize-window
 [Nolan Leake]
 
-@item More robustness in applications menu [Teika Kazura]
+@item More robustness in applications menu [Teika Kazura, Matthew Love]
 
 Before it broke for 'R' (statistics software), and whitespace handling
-didn't follow the specification. Phony constants are removed, too.
+didn't follow the specification.
+
+Some *.desktop files are not ignored any more either, i.e., leading
+empty lines and comments are allowed.
+
+@item Allow compilation with -DDEBUG flag passed [Alexey I. Froloff]
 @end itemize
 
 @item New Features
 @itemize @minus
+
+@item XRandR events (eg resolution changes) call the new hook
+@code{randr-changed-notify-hook} [Daniel M. German] @*
+See @xref{RandR and Xinerama}.
 
 @item Tabbed windowing system improvements [Fuchur]
 @itemize +
@@ -89,7 +109,8 @@ lisp files, but now it's guaranteed for all files.
 
 @item ``Windows'' chapter is partly revised. Function @code{display-window}
 is documented. Difference between @code{window-wants-input-p} and
-@code{window-really-wants-input-p} is described.
+@code{window-really-wants-input-p} is described. Short description on
+the root window.
 
 @item In past few versions we made more changes which were not described in
 the news, including clarification in viewport, workspace and event,
@@ -110,6 +131,8 @@ We now edit the info often, so they are not so much meaningful.
 @item Pressing the lock-button does the state-change of the window
 accordingly. [Fuchur]@*
 No theme shipped with Sawfish does have the lock-button yet, though.
+
+@item Make xinerama an optional dependency [original patch from Gentoo]
 @end itemize
 @end itemize
 

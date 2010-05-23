@@ -76,7 +76,7 @@ For edit history, see @file{ChangeLog} file.
 * Window Frames::		Decorating windows
 * Viewports::			Subdivided desktop areas
 * Workspaces::			Multiple desktop areas
-* Multi-Head Environments::     Multiple monitors
+* RandR and Xinerama::          Many monitors and updates
 * Window Placement::            Controlling placement of new windows
 * Popup Menus::			Displaying menus
 * Events::			Input event types
@@ -671,6 +671,11 @@ them.
 Returns @code{t} if @var{arg} is a member of the window type, and has a
 client window associated with it.
 @end defun
+
+Since the root window is not a managed client window, it is not
+represented by a window object. Sometimes functions' arguments and
+return value treat the symbol @code{root} as the root window. Window
+hooks are so. But sometimes not.
 
 @menu
 Basics:
@@ -3625,6 +3630,12 @@ Defines the width of the frame part.
 @item (height . @var{value})
 Defines the height of the frame part.
 
+@item (border-width . @var{value})
+Defines window border width.
+
+@item (border-color . @var{value})
+Defines window border color.
+
 @item (keymap . @var{value})
 Defines the keymap to use when evaluating events originating in this
 frame part.
@@ -3654,10 +3665,14 @@ frame part.
 The values specified for the @code{background}, @code{foreground},
 @code{render-scale}, @code{font}, @code{left-edge}, @code{right-edge},
 @code{top-edge}, @code{bottom-edge}, @code{width}, @code{height},
-@code{cursor}, @code{below-client} and @code{hidden} attributes may
-actually be functions. In which case the function will be called (with
-a single argument, the window object) when the frame is constructed,
-the value returned will be used as the actual value of the attribute.
+@code{border-color}, @code{cursor}, @code{below-client} and
+@code{hidden} attributes may actually be functions. In which case the
+function will be called (with a single argument, the window object)
+when the frame is constructed, the value returned will be used as the
+actual value of the attribute.
+
+The values specified for the @code{border-width} and @code{border-color}
+are applied for the whole window instead of current frame part.
 
 The coordinate system used for specifying the part's position is
 relative to the window edge that the position is defined against.
@@ -4321,7 +4336,7 @@ When true, windows uniconify to the current viewport, rather than to
 the viewport they were iconified on.  Defaults to true.
 @end defvr
 
-@node Workspaces, Multi-Head Environments, Viewports, Top
+@node Workspaces, RandR and Xinerama, Viewports, Top
 @chapter Workspaces
 @cindex Workspaces
 @cindex Desktop workspaces
@@ -4741,21 +4756,43 @@ Add edge windows used to implement flipping.
 Remove the edge windows used to implement flipping.
 @end defun
 
-@node Multi-Head Environments, Window Placement, Workspaces, Top
-@chapter Multi-Head Environments
+@node RandR and Xinerama, Window Placement, Workspaces, Top
+@chapter RandR and Xinerama
+@cindex RandR
+@cindex Xrandr
+@cindex Xinerama
+
+Sawfish supports multiple monitors displaying a single logical screen.
+Partial support of RandR is done.
+
+@defun has-randr-p
+Returns @code{t} if RandR is supported.
+@end defun
+
+@menu
+* Multi-head Environment::
+* Screen Change Notification::
+@end menu
+
+@node Multi-head Environment, Screen Change Notification,, RandR and Xinerama
+@section Multi-head Environment
 @cindex Multi-head environments
 @cindex Environments, multi-head
 @cindex Monitors, multiple
-@cindex Xinerama
 
-Sawfish supports multiple monitors displaying a single logical screen,
-as provided by Xinerama.
+Functions which provide information on monitor geometries are
+available. On the other hand, few user interface functions take them
+into account, so for example, windows often appear across multiple
+monitors.
+
+Currently, monitor geometries are taken from Xinerama only. RandR
+support in this regard is yet to be done.
 
 A ``head'' means each physical monitor. When there're multiple heads,
 the word ``screen'' means the entire screen which is the combination
 of all heads. For example the function @code{screen-width} returns the
 width of the ``screen'' in this sense. A viewport contains the entire
-screen.  The only exception is that maximization is done within a
+screen. The only exception is maximizations which are done within a
 head, unless stated explicitly that it's xinerama.
 
 @defun find-head x y
@@ -4813,8 +4850,29 @@ containing the window @var{window}, or the pointer if @var{window} is
 false).  Returns @code{'(0 . 0)} if no such head can be identified.
 @end defun
 
+@node Screen Change Notification, , Multi-head Environment, RandR and Xinerama
+@section Screen Change Notification
+@cindex Screen change notification
+@cindex Change, of screen
 
-@node Window Placement, Popup Menus, Multi-Head Environments, Top
+If some changes happen to the screen, hot-plugging, removal, or
+resolution change, then you can receive the notification.
+
+One way is to use @code{configure-notify-hook}.(@pxref{X Hooks})
+Then the window argument is set to the symbol @code{root}. The other way
+is to use @code{randr-change-notify-hook} below. Both are called,
+but there's no guarantee of the order.
+
+Notice that both may be called several times for one change. For
+example, ``xrandr'' command invocation from shell triggers three
+calls of both hooks in an author's environment.
+
+@defvr {Hook} randr-change-notify-hook
+Called when screen configuration changes, via RandR extension support.
+When RandR is not supported, then this hook will never be called.
+@end defvr
+
+@node Window Placement, Popup Menus, RandR and Xinerama, Top
 @chapter Window Placement
 @cindex Placement of windows
 
@@ -5269,6 +5327,9 @@ A special modifier that matches key release events, not the default
 key press events.  Mouse events never have @key{Release} modifiers;
 they have separate actions instead.  @xref{Event Actions}.
 
+You have to set the variable @code{eval-key-release-events} to
+@code{non-nil} to use this modifier.
+
 @item Button@var{k}
 The @var{k}'th mouse button is currently pressed.
 
@@ -5698,8 +5759,8 @@ Installs zero or more key bindings into the keymap @var{keymap}, then
 returns @var{keymap}.
 
 Each binding is defined by two elements in the list of @var{bindings},
-the first defines the name of the input event (or the event itself) and
-the second defines the command to be associated with the event.
+the first defines the name of an event (or the event itself) and the
+second defines the command to be associated with the event.
 
 For example to bind two keys in the keymap @var{keymap}; the event
 @kbd{C-f} to the command @code{foo} and the event @kbd{C-b} to the
@@ -5710,6 +5771,9 @@ command @code{bar} the following form would be used,
  "C-f" 'foo
  "C-b" 'bar)
 @end lisp
+
+Currently, multiple keystrokes can't be bound with a single
+@code{bind-keys} call. Instead, bind an event to another keymap.
 @end defun
 
 @defun unbind-keys @var{keymap} &rest @var{keys}
@@ -6635,14 +6699,17 @@ the hooks mechanism. For more details on the hooks mechanism see
 
 As well as using the standard @code{call-hook} function, sawfish also
 provides the @code{call-window-hook} function. This is used to invoke
-hooks which refer to a single window. If the hook has a local value
-defined in the window's property list then this value is used, before
-the default value defined by the actual variable.
+hooks which refer to a single window. Such hook is called ``window
+hook''. If a window hook has a local value defined in the window's
+property list then this value is used, before the default value
+defined by the actual variable.
 
 @defun call-window-hook hook window &optional args hook-type
 Call @var{hook} for @var{window} with further arguments @var{args}. See
 @code{call-hook} for a description of @var{hook-type}. Each function in
 the hook is called with arguments @code{(@var{window} . @var{args})}.
+
+Root window is represented by the symbol @code{root}.
 @end defun
 
 The available hooks are listed below.
@@ -6859,6 +6926,11 @@ of configure request properties.  This alist may contain items
 and @code{(dimensions . @var{dimensions})}.
 @end defvr
 
+@defvr {Window Hook} configure-notify-hook
+Called when an X @code{ConfigureNotify} event is received, i.e.
+when window configuration request is complete.
+@end defvr
+
 @defvr {Window Hook} property-notify-hook
 Called whenever an X window property (not a Sawfish window property)
 changes.  In addition to the window, the hook is called with the
@@ -6866,7 +6938,7 @@ atom name and one of the symbols @code{new-value} or @code{deleted}.
 @end defvr
 
 @defvr {Window Hook} window-state-change-hook
-Called whenver certain window manager hints change for a window.
+Called whenever certain window manager hints change for a window.
 Currently only @code{urgency} is monitored.  The hint is an additional
 argument to the hook.
 @end defvr
@@ -6970,12 +7042,12 @@ possible.
 @end defvr
 
 @defvr {Hook} viewport-resized-hook
-Called when the number of rows and columns in each virtual workspace is
-changed.
+Hook called when the number of rows and columns in each
+workspace is changed.
 @end defvr
 
 @defvr {Hook} viewport-moved-hook
-Called when the origin of the viewport into the virtual workspace is
+Called when the origin of the viewport into the workspace is
 moved.
 @end defvr
 
