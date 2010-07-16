@@ -1,6 +1,90 @@
+2010-07-03  Teika kazura <teika@lavabit.com>
+	* configure.in
+	* man/news.texi
+	* man/sawfish.1
+	* src/events.c
+	* src/keys.c
+	* src/keys.h: Keyboard layout switching support.
+	In 5-button mode, event's state is masked to drop the key group, and
+	lower 13 = 8 + 5 bits are taken. (8 for modifiers, 5 for buttons.)
+	This fixes the bug that keyboard layout switching messed bindings.
+	5-button is now a command line option, not any more the build-time option.
+
+	* lisp/sawfish/wm/server.jl
+	* man/news.texi
+	* src/server.c: Errors of asynchronous connection are printed
+	to Sawfish's output.
+
+	* man/news.texi
+	* src/client.c: Polished news. A comment in source.
+
+2010-06-22  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/menus.jl: add a separator to the start of the root menu
+	                            the menu might disappear directly due to the
+				    dummy "Sawfish Rootmenu" headline, this border
+				    prevents that.
+
+2010-06-22  Teika kazura <teika@lavabit.com>
+	* man/news.texi
+	* src/functions.c: x-atom-name accepts full 32 unsigned
+	int. Previously only 30 bits are treated, if the architecture is
+	32-bit.
+
+	* lisp/sawfish/wm/server.jl
+	* man/news.texi: Prints backtrace for sawfish-client, too.
+	This makes sense if you're using librep >= 0.90.7. Harmless anyway.
+
+	* lisp/sawfish/cfg/main.jl.in
+	* lisp/sawfish/cfg/shell.jl
+	* man/news.texi: Made `sawfish-config' minimal, moving most the
+	contents to sawfish.cfg.shell.  This facilitates hacks.
+
+	* lisp/sawfish/wm/ext/error-handler.jl
+	* man/news.texi: Better error message.
+	Phrase "Sawfish error:" is prepended to error messages printed to
+	standard error.
+
+	* lisp/sawfish/wm/util/compat.jl
+	* man/news.texi: Restored two options from "obsolete" declaration.
+	They're workspace-boundary-mode and workspace-send-boundary-mode.
+
+	* lisp/sawfish/wm/commands.jl
+	* man/faq.texi
+	* man/news.texi: Manuals (1). All options are now described.
+
+	* CONTRIBUTING
+	* lisp/sawfish/wm/commands.jl
+	* lisp/sawfish/wm/ext/old-window-menu.jl
+	* man/faq.texi
+	* man/news.texi
+	* man/sawfish-client.1
+	* man/sawfish.texi
+	* src/display.c
+	* src/libclient.h: Doc.
+	Improvement of news and man on the new "border" feature.
+	Two new faq items.
+	Added Daniel M. German to "thanks" list.
+
+	* sawfish.ebuild.in: Declared that it is not an official one of
+	any distribution.
+
+	* sawfish-wm.desktop: Encoding fix in sawfish-wm.desktop.
+	Greek was broken.
+
+	* lisp/sawfish/wm/autoload.jl
+	* lisp/sawfish/wm/ext/3d-hack.jl: Not autoloaded any more.
+
 2010-05-28  Jeremy Hankins <nowan@nowan.org>
 	* lisp/sawfish/wm/util/prompt.jl: Fix compilation error
 	                 -- [Harald van Dijk]
+
+2010-05-23  Jeremy Hankins <nowan@nowan.org>
+	* lisp/sawfish/wm/util/prompt-extras.jl
+	* lisp/sawfish/wm/util/prompt-wm.jl
+	* lisp/sawfish/wm/util/prompt.jl: Changed the way prompt is called:
+		helper functions are now passed directly instead of implicitly
+		via let statements.  Also reverts the previous compilation error
+		fix, since it's no longer necessary.
 
 2010-05-23  Christopher Roy Bratusek <zanghar@freenet.de>
 	* man/sawfish.texi
