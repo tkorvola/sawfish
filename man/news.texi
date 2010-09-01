@@ -9,45 +9,73 @@ they occurred between. For more detailed information see the
 @file{ChangeLog} file in the Sawfish source tree, or git log.
 (See Wiki page for how to access git repository.)
 
-@heading 1.6.4 "Frozen Flame"
+@heading 1.7.0 "Frozen Flame"
 
 @itemize @bullet
 
-@item Notices
+@item Update requirements
+@itemize @minus
+
+@item librep 0.90.5 -> 0.90.7
+
+@item rep-gtk 0.90.2 -> 0.90.4
+@end itemize
+@item Notes
 @itemize @minus
 
 @item Prompt API change [Jeremy Hankins]
 
-If you have codes which utilize prompt, they are affected. When you
+If you have code which utilizes prompt, it is affected. When you
 call the function @code{prompt}, pass helper functions directly
-as the function's arguments. They used to be set to global variables.
+as the function's arguments. They used to be set as global variables.
 
-The change is straightforward, so you must be able to easily update
-your codes. See @code{sawfish.wm.util.prompt} for the details.
+The change is straightforward, so you should be able to easily update
+your code. See @code{sawfish.wm.util.prompt} for details.
 
-@item Mouse button support state
+@item Mouse-button support state
 
-Sawfish is claimed to support mouse buttons 1 - 9, but it is found
+Sawfish is claimed to support mouse-buttons 1 - 9, but it is known
 that drag of buttons 6 - 8 may not work. The button 9 doesn't work at
 all, so we withdraw it.
+
+@item Functions @code{maybe-raise-window} and @code{maybe-lower-window} are
+now obsolete. [Teika Kazura]
+
+Replace them with @code{raise-window*} and @code{lower-window*} defined
+in @code{sawfish.wm.util.stacking}. Only difference is that the obsolete
+version supports a nautilus feature which was dropped long ago.
 @end itemize
 
 @item Build and Installation
 @itemize @minus
-@item Configuration option @code{--with-nine-mousebuttons} is dropped.@*
+@item Configure-option @code{--with-nine-mousebuttons} is dropped.@*
 See the item ``Keyboard layout switching support'' below.
 @end itemize
 
 @item Bug Fixes
 @itemize @minus
-@item Keyboard layout switching support [Teika Kazura]
+@item Maximized windows wrongly covering other windows on startup [Jeremy Hankins]
 
-Previously, when you switch the keyboard layout, or more correctly
-the keyboard ``group'', which is mainly for multilinguals, keyboard
-and mouse bindings get messed.
+Sometimes maximized windows would overlap ``avoided'' windows (e.g.,
+the gnome-panel, or a trayer) on startup. Sawfish now waits until
+initialization is complete to maximize windows, preventing this
+problem.
 
-Now, this can be prevented by passing a new commandline option
-@code{--5-buttons} at Sawfish invocation.
+@item Viewport initialization bugfix [Jeremy Hankins]
+
+Under certain circumstances viewport slots were wrongly shifted when
+sawfish was restarted, ending up with some windows outside of the
+virtual desktop. This has been fixed.
+
+@item Keyboard-layout switching support [Teika Kazura]
+
+Previously, when you switched the keyboard-layout, or more correctly
+the keyboard-``group'', which is mainly for multilinguals, keyboard-
+and mouse-bindings got messed-up.
+
+Now, this can be prevented by passing a new commandline-option
+@code{--5-buttons} at Sawfish invocation. It is assumed that modifiers
+are common among keyboard groups.
 
 By doing so, you won't be able to bind Sawfish commands to mouse
 buttons 6 - 8. This may be fixed in future, but not now because
@@ -56,50 +84,142 @@ the current code for buttons 6 - 8 is hackish.
 @item Atom handling fix on 32-bit architecture. [Teika Kazura]
 
 Function @code{x-atom-name} now accepts all 32 bits. Previously only
-30 bits are treated, if the architecture is 32-bit.
+30 bits were treated, if the architecture was 32-bit.
 
-@item Two variables are restored from obsoleteness declaration.@*
-They're @code{workspace-boundary-mode} and @code{workspace-send-boundary-mode}.
+It used to cause ``Bad argument'' error, most notably on Java
+applications.
+
+@item De-obsoletion of two variables [Teika Kazura]
+
+User options @code{workspace-boundary-mode} and
+@code{workspace-send-boundary-mode} couldn't be set from the
+configurator, but this is fixed.
+
+@item Applications menu bugfix [Matthew Love]
+
+Correct alphabetic ordering of menu-entries is done. Previously they
+were sorted [A-Z][a-z] (first all upper- then all loser-case entries).
+
+Also the function for detecting the language has been improved. It
+now better follows the freedesktop.org specification.
+
+@item Edge-flip now still works after resolution-change. [Christopher Bratusek]
+
+@item Sawfish now starts up correctly when receiving a session-id or
+session-prefix from GNOME-Session [Christopher Bratusek]
+
+@item Draft animator bugfix. [Christopher Bratusek]
+
+The ``draft'' animator had two issues, on one hand the drawn numbers were
+always black (therefore possibly invisible), on the other hand those
+numbers weren't erased from the screen (unless you used a
+desktop-shell which on it's own refreshes the screen regularly). Both
+issues have been fixed by introducing the @code{x-draw-text} function.
+
+@item Command @code{xterm} fix [Teika kazura]@*
+It didn't run if the optional ``command'' argument was unset by the
+configurator, i.e. if it was an empty string.
 @end itemize
 
 @item New Features
 @itemize @minus
-@item New command line option @code{--5-buttons}@*
-See the item ``Keyboard layout switching support'' above.
+@item New commandline-option @code{--5-buttons}@*
+See the item ``Keyboard-layout switching support'' above.
 
-@item New frame parts @code{border-width} and @code{border-color}
+@item New frame-parts @code{border-width} and @code{border-color}
 [Alexey I. Froloff]
 
 A ``border'' of a window surrounds the window and all other frame
 parts. (@pxref{Frame Part Definition})
+
+@item @code{x-draw-text} function [Christopher Bratusek]
+
+This function is a replacement for @code{x-draw-string} currently
+only used in the draft-animator (to fix it's bugs). Generally, if
+you use a @code{display-message} like message, rely on @code{x-draw-string},
+but if you want to draw on the screen directly use @code{x-draw-text}.
+
+@item XFCE integration module [Christopher Bratusek]
+
+The XFCE integration module behaves just like the GNOME/KDE4 ones:
+it sets xterm-program/browser-program unless already set by user and
+it adds XFCE logout/help/customization menu-entries to the root-menu
+
+@item Apps-Menu improvements [Matthew Love]
+
+Our freedesktop.org menu-implementation does now honor the OnlyShowIn
+and NotShowIn fields. This is done via @code{desktop-environment} set
+in sawfish.wm.integration.* on startup.
+
+Furthermore the variable @code{apps-menu-ignore-no-display} is replaced
+by the variable @code{apps-menu-show-all}. The latter is more flexible:
+
+if @code{apps-menu-show-all} is set to 'nil, then: fields @code{Hidden},
+@code{NoDisplay}, @code{NotShowIn} and	@code{OnlyShowIn} are respected
+(a menu much like GNOMEs/KDEs is then generated by Sawfish).
+
+if @code{apps-menu-show-all} is set to 'maybe, then: fields @code{Hidden}
+and @code{NoDisplay} are ignored, but fields @code{OnlyShowIn} and
+@code{NotShowIn} are respected.
+
+if @code{apps-menu-show-all} is set to 't, then: fields @code{Hidden},
+@code{NoDisplay}, @code{NotShowIn} and @code{OnlyShowIn} are ignored
+(Sawfish lists all existing menu-entries)
 @end itemize
 
 @item Miscellaneous Changes
 @itemize @minus
 @item More error and backtrace printing [Teika Kazura]
 
-If you're using librep >= 0.90.7, then the backtrace is printed for
-sawfish-client, too. But it is printed to Sawfish's standard error,
-not to sawfish-client's, sorry.
+Due to librep >= 0.90.7, the backtrace is printed by default on error.
+It is printed for sawfish-client, too, but it's sent to Sawfish's
+standard error, not to sawfish-client's, sorry.
 
-Previously when you connect to Sawfish as a server asynchronously,
-then the error is not printed. Now it is printed to Sawfish's 
-output. (A client which connects synchronously receives the error
-message.) Practically, this means sawfish-pager's errors are printed
-to Sawfish's output. 
+Previously when you connected to Sawfish as a server asynchronously,
+then the error was not printed. Now it is printed to Sawfish's
+output. (In contrast, a client which connects synchronously receives
+the error message.) Practically, this means sawfish-pager's errors are
+printed to Sawfish's output.
 
 Phrase ``Sawfish error:'' is prepended to error messages which are
 printed to standard error.
 
-@item Added a borderline on the top of the root-menu, which
-prevents it from (accidently) immediately disappearing.
-[Christopher Bratusek]
+@item Root-Menu improvements [Christopher Bratusek]
 
-@item Module @code{3d-hack} is not autoloaded any more.
+All menu-entries do now have accelerators and the labels for the
+sawfish-help menu-entries have been improved.
 
-@item Doc improvements@*
-Faq items, on how to hide the mouse pointer, and on application execution.@*
+@item GNOME/KDE4 integration updates [Christopher Bratusek]
+
+All extra menu-entries for GNOME/KDE4 do now have accelerators. Entries
+for invoking @code{gnome-control-center} or @code{systemsettings} have been
+added. The way KDE4 is detected has been improved. Besides a new variable
+@code{desktop-environment} has been introduced, which might be checked to
+determine which one (gnome, kde, xfce or none) is running.
+
+@item Configurator invocation without running Sawfish [Teika Kazura]
+
+If you run the configurator but the Sawfish window manager is absent,
+then an alert window is displayed before abortion. The appearance is
+poor, though.
+
+@item Pointer warping in window cycling [Teika Kazura]
+
+In window cycling, some unnecessary pointer warping is avoided.
+Previously, the necessity of a warp was judged by the geometry before
+the raise was done. Now the updated one is used.
+
+@item Module @code{3d-hack} is not autoloaded anymore.
+
+@item Doc improvements
+
+FAQ items, on how to hide the mouse-pointer, and on application execution.@*
 Manuals (1) describe all options.
+
+Described functions @code{grab-keymap} and @code{ungrab-keymap}
+(@pxref{Keymaps}), @code{x-raise-window} and @code{x-lower-window}
+(@pxref{Raising and Lowering Windows}), @code{frame-state-mutex}
+(@pxref{Frame Functions}).
 
 @item @code{sawfish-config} is now minimal, moving most of the contents to @code{sawfish.cfg.shell} [Teika Kazura]
 
@@ -372,11 +492,12 @@ viewport when displaying all workspaces.
 @item Removed requirements: LibAudioFile and ESounD
 @item Mouse buttons 6 - 9 support is now optional
 
-Support for 6 - 9 mouse buttons is now optional. X.Org/XFree86 headers
-only define up to 5 buttons, and we use a working but somewhat hackish
-workaround for getting buttons 6 - 9 which is suspected to cause some
-problems with modifiers. Support for them is enabled by default. If
-you want to disable it, add the following flag to configure:
+(This item is no longer valid from 1.7.0.)  Support for 6 - 9 mouse
+buttons is now optional. X.Org/XFree86 headers only define up to 5
+buttons, and we use a working but somewhat hackish workaround for
+getting buttons 6 - 9 which is suspected to cause some problems with
+modifiers. Support for them is enabled by default. If you want to
+disable it, add the following flag to configure:
 
 @code{--without-nine-mousebuttons}
 @c Well, ``code'' gives ugly (back)quote, but otherwise the first hyphen is dropped.
@@ -701,9 +822,10 @@ buttons or frames to their theme in charge. There are no user visible changes.
 
 @item Startup window placement improvement [Jeremy Hankins]
 
-At Sawfish startup including restart, maximized windows and
-position specified windows used to mess up viewport, appearing
-in wrong viewports. It's fixed now.
+(Later this item was found wrong. The true fix was done in 1.7.0.)  At
+Sawfish startup including restart, maximized windows and position
+specified windows used to mess up viewport, appearing in wrong
+viewports. It's fixed now.
 
 @item Renamed @code{after-add-window} to @code{maxmize-after-add-window} @*
 This function is only used in a hook [Teika Kazura]

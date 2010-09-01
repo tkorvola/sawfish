@@ -62,11 +62,11 @@ and *.desktop files. If you set `apps-menu', then it won't happen anyway.")
     "Your own applications menu entries. It is followed by auto generated
 applications menu.")
 
-  (defvar apps-menu-ignore-no-display nil
+  (defvar apps-menu-show-all nil
     "Some entries are hidden from the menu, especially GNOME Apps like
 eog, nautilus or evince. If you want to have them added to your menu,
 set this to non-nil.")
-
+  
   (defvar desktop-directory '("/usr/share/applications")
     "List of directories to look for *.desktop files.")
 
@@ -158,23 +158,26 @@ set this to non-nil.")
 	(substring string 0 (match-start))
       string))
 
-  ;; This is wrong.  Read the desktop entry spec to see how it should
-  ;; be done.  It's complicated.
+  (defmacro simplify-mlang (mlang mlevel)
+    `(and
+      ,(if (or (= 0 mlevel) (not mlevel))
+	   `(or (string-looking-at "([a-z]*)(_?)([A-Z]*?)(@)([A-Z]*[a-z]*)?" ,mlang)
+		(string-looking-at "([a-z]*)(_..)|([a-z]*)?" ,mlang)
+		(string-looking-at "([a-z]*)?" ,mlang))
+	 (if (= 1 mlevel)
+	     `(string-looking-at "([a-z]*)(_?)([A-Z]*?)(@)([A-Z]*[a-z]*)?" ,mlang)
+	   (if (= 2 mlevel)
+	       `(string-looking-at "([a-z]*)(_..)|([a-z]*)?" ,mlang)
+	     (if (= 3 mlevel)
+		 `(string-looking-at "([a-z]*)?" ,mlang)))))
+      (expand-last-match "\&")))
+
   (define (find-lang-string)
-    (define (simplify mlang)
-      ;; N.B.: returns nil if mlang is "C" or "POSIX",
-      ;; "fi" if it is "finnish", "sw" if it is "swedish"
-      ;; Swedes can set locale to "sv_SE" or start learning Swahili.
-      (and (string-looking-at "([a-z][a-z])(_..)?" mlang)
-	   (expand-last-match "\\0")))
-    (or
-     (let loop ((lang-vars '("LC_ALL" "LC_MESSAGES" "LANG")))
-	  (and lang-vars
-	       (let ((mlang (getenv (car lang-vars))))
-		 (if mlang (simplify mlang)
-		   (loop (cdr lang-vars))))))
-     ;; Kluge to keep braindead code from breaking.
-     "xx"))
+    (let loop ((lang-vars '("LC_ALL" "LC_MESSAGES" "LANG")))
+	 (and lang-vars
+	      (let ((mlang (getenv (car lang-vars))))
+		(if mlang (simplify-mlang mlang 0)
+		  (loop (cdr lang-vars)))))))
 
   ;; The Master Category List
 
@@ -220,18 +223,15 @@ set this to non-nil.")
       ("Exiles" . ("Exile"))))
 
   ;; Get the correct Name entry based on language settings
-  ;; This is wrong.  Read the desktop entry spec to see how it should
-  ;; be done.  It's complicated.
-  (define (find-lang-in-desktop-file fdo-list)
-    (or (and apps-menu-lang
-	     (or (assoc (concat name-string apps-menu-lang "]")
-			fdo-list)
-		 (and (> (length apps-menu-lang) 2)
-		      (assoc (concat name-string
-				     (substring apps-menu-lang 0 2)
-				     "]")
-			     fdo-list))))
-	(assoc "Name" fdo-list)))
+  (define (determine-desktop-name fdo-list)
+    (or (when apps-menu-lang
+	  (let ((mlang-1 (concat name-string (simplify-mlang apps-menu-lang 1) "]"))
+		(mlang-2 (concat name-string (simplify-mlang apps-menu-lang 2) "]"))
+		(mlang-3 (concat name-string (simplify-mlang apps-menu-lang 3) "]")))
+	    (or (cdr (assoc mlang-1 fdo-list))
+		(cdr (assoc mlang-2 fdo-list))
+		(cdr (assoc mlang-3 fdo-list)))))
+	(cdr (assoc "Name" fdo-list))))
 
   ;; Functions for categories
   (define (fix-sub-cats cat-list loc-list)
@@ -255,7 +255,7 @@ set this to non-nil.")
 
   ;; Determine the best :| category to use. This will further be
   ;; converted with fix-cats.
-  (define (determine-category line)
+  (define (determine-desktop-category line)
     (let loop ((cat-list (string-split ";" line))
 	       this-cat)
 	 (if (cdr cat-list)
@@ -276,7 +276,9 @@ set this to non-nil.")
   (define (alphabetize-entries saw-menu)
     (if saw-menu
 	(cons (cons (car (car saw-menu))
-		    (sort (cdr (car saw-menu)) string<))
+		    (sort (cdr (car saw-menu)) 
+			  (lambda (a b) 
+			    (string< (string-downcase (car a)) (string-downcase (car b))))))
 	      (alphabetize-entries (cdr saw-menu)))))
 
   (define (fdo-exile fdo-list)
@@ -319,45 +321,83 @@ exile it."
 	  (fdo-exile fdo-list)
 	fdo-list)))
 
+  (define (determine-desktop-exec fdo-list)
+    "Determine the correct `(system exec)' function from the given fdo alist"
+    (if (string= (cdr (assoc "Terminal" fdo-list))
+		 "true")
+	(list 'system
+	      (concat xterm-program " -e "
+		      (trim-percent (cdr (assoc "Exec" fdo-list)))
+		      " &"))
+      (list 'system
+	    (concat (trim-percent (cdr (assoc "Exec" fdo-list)))
+		    " &"))))
+
+  (define (desk-file->fdo-list desk-file)
+    (when (desktop-file-p desk-file)
+       (let ((fdo-list (fdo-check-exile (parse-desktop-file desk-file))))
+	 (let ((a (assoc "NoDisplay" fdo-list))
+	       (b (assoc "OnlyShowIn" fdo-list))
+	       (c (assoc "NotShowIn" fdo-list))
+	       (d (assoc "Hidden" fdo-list)))
+	   ;; 't
+	   (setq fdo-list (append fdo-list (cons (cons "apps-menu-display?" "true"))))
+	   ;; 'maybe
+	   (when (eq apps-menu-show-all 'maybe)
+	     (when b
+	       (if (string-match (concat (quote-regexp desktop-environment) "*")
+				 (string-downcase (cdr b)))
+		   (rplacd (assoc "apps-menu-display?" fdo-list) "true")
+		 (rplacd (assoc "apps-menu-display?" fdo-list) "false")))
+	     (when c
+	       (if (string-match (concat (quote-regexp desktop-environment) "*")
+				 (string-downcase (cdr c)))
+		   (rplacd (assoc "apps-menu-display?" fdo-list) "false")
+		 (rplacd (assoc "apps-menu-display?" fdo-list) "true"))))
+	   ;; 'nil
+	   (when (or (eq apps-menu-show-all 'nil) (not apps-menu-show-all))
+	     (when a
+	       (if (string-match "[Ff]" (cdr a))
+		   (rplacd (assoc "apps-menu-display?" fdo-list) "true")
+		 (rplacd (assoc "apps-menu-display?" fdo-list) "false")))
+	     (when d
+	       (if (string-match "[Ff]" (cdr d))
+		   (rplacd (assoc "apps-menu-display?" fdo-list) "true")
+		 (rplacd (assoc "apps-menu-display?" fdo-list) "false")))
+	     (when b
+	       (if (string-match (concat (quote-regexp desktop-environment) "*")
+				 (string-downcase (cdr b)))
+		   (rplacd (assoc "apps-menu-display?" fdo-list) "true")
+		 (rplacd (assoc "apps-menu-display?" fdo-list) "false")))
+	     (when c
+	       (if (string-match (concat (quote-regexp desktop-environment) "*")
+				 (string-downcase (cdr c)))
+		   (rplacd (assoc "apps-menu-display?" fdo-list) "false")
+		 (rplacd (assoc "apps-menu-display?" fdo-list) "true")))))
+	   fdo-list)))
+
   ;; generate a sawfish menu entry from a .desktop file
-  (define (generate-menu-entry desk-file)
+  (define (generate-menu-entry fdo-list)
     "Generate a menu entry to run the program specified in the the
 desktop file `desk-file'."
-    (when (and (not (file-directory-p desk-file))
-	       (desktop-file-p desk-file))
-      (let ((fdo-list (fdo-check-exile (parse-desktop-file desk-file))))
-	(if apps-menu-ignore-no-display
-	    (let ((a (assoc "NoDisplay" fdo-list)))
-	      (if a (rplacd a "false")
-		(setq fdo-list (cons (cons "NoDisplay" "false")
-				     fdo-list)))))
-	(if (not (string= (cdr (assoc "NoDisplay" fdo-list)) "true"))
-	    (list
-	     (determine-category
-	      (cdr (assoc "Categories" fdo-list)))
-	     (cdr (find-lang-in-desktop-file fdo-list))
-	     (if (string= (cdr (assoc "Terminal" fdo-list))
-			  "true")
-		 (list 'system
-		       (concat xterm-program " -e "
-			       (trim-percent (cdr (assoc "Exec" fdo-list)))
-			       " &"))
-	       (list 'system
-		     (concat (trim-percent (cdr (assoc "Exec" fdo-list)))
-			     " &"))))))))
+    (when (and fdo-list
+	       (string= (cdr (assoc "apps-menu-display?" fdo-list)) "true"))
+      (list
+       (determine-desktop-category
+	(cdr (assoc "Categories" fdo-list)))
+       (determine-desktop-name fdo-list)
+       (determine-desktop-exec fdo-list))))
 
   (define (generate-apps-menu)
     "Returns the list of applications menu which can be used for `apps-menu'."
     (unless apps-menu-lang
       (setq apps-menu-lang (find-lang-string)))
     (setq local-menu nil)
-    (if (< (length apps-menu-lang) 2)
-	(setq apps-menu-lang "xx"))
     (let ((desk-files (flatten (map-dir-files desktop-directory))))
       (mapc (lambda (x)
 	      (setq local-menu
 		    (append local-menu
-			    (list (generate-menu-entry x))))) desk-files)
+			    (list (generate-menu-entry (desk-file->fdo-list x)))))) desk-files)
       (if apps-menu-alphabetize
 	  (alphabetize-entries (fix-cats desktop-cat-alist))
 	(fix-cats desktop-cat-alist))))

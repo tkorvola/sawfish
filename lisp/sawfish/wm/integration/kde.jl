@@ -30,7 +30,9 @@
 
   (define-structure-alias kde-int sawfish.wm.integration.kde)
 
-  (define-special-variable want-poweroff-menu nil)
+  (defvar-setq want-poweroff-menu nil)
+  (defvar-setq desktop-environment "kde")
+  (defvar-setq desktop-directory '("/usr/share/applications/" "/usr/share/applications/kde4/"))
 
   ;; invoke the KDE terminal instead of xterm
   (unless (variable-customized-p 'xterm-program)
@@ -45,13 +47,15 @@
     (when menu
       (nconc menu `(()
 		    (,(_ "_KDE Help") (system "khelpcenter &"))
-		    (,(_ "KDE Website") (browser "http://www.kde.org"))))))
+		    (,(_ "KDE _Website") (browser "http://www.kde.org"))))))
 
   ;; add kde-logout menu item
   (let ((menu (assoc (_ "Sessi_on") root-menu))
         (kde-logout-cmd "qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout"))
     (when menu
       (nconc menu `(()
+                    (,(_ "_Customize KDE") (system "systemsettings &"))
+                    ()
                     (,(_ "_Logout from KDE")
                      (system ,(concat kde-logout-cmd " 1 0 -1 &")))
                     (,(_ "_Reboot from KDE")

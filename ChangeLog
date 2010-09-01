@@ -1,3 +1,174 @@
+2010-08-26  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/ext/apps-menu.jl: more power for our fdo-menu.
+	The variable apps-menu-ignore-no-display is replaced by
+	apps-menu-show-all (check OPTIONS or NEWS) [Matthew Love]
+
+2010-08-24  Christopher Bratusek <zanghar@freenet.de>
+	* src/flippers.c: plug a memory-leak
+
+2010-08-22  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/integration/kde.jl: append /usr/share/applications/kde4
+	to desktop-directory, so that kde4-only menu-entries show up
+
+	* lisp/sawfish/wm/ext/apps-menu.jl: make the apps-menu honor NotShowIn
+	and OnlyShowIn values. Some refinements [Matthew Love]
+
+2010-08-21  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/cfg/shell.jl: improved look of the error-dialog
+	-- (improved spacing, window-title, window-icon, line-wrapping)
+
+	* lisp/sawfish/wm/ext/apps-menu.jl: improved the way the apps-menu
+	detected the language to use. It now better follows the fdo spec
+	-- [Matthew Love]
+
+	* lisp/sawfish/wm/integration/standalone.jl: header update
+
+	* lisp/sawfish/wm/integration/gnome.jl
+	* lisp/sawfish/wm/integration/kde.jl: accelerators for all
+	menu-entries in kde-int and gnome-int. added GNOME-CC and KDE4
+	SystemSettings menu-entries in session-menu
+
+	* lisp/sawfish/wm/defaults.jl: added XFCE detection, improved KDE4
+	detection
+
+	* lisp/sawfish/wm/integration/xfce.jl: added xfce integration-module
+
+	* lisp/sawfish/wm/menus.jl: added accelerators for all menu-entries,
+	betters strings for sawfish-help menu-entries
+
+	* lisp/sawfish/wm/menus.jl: revert ba60d1e51c6420a3e3d07b1417d9d4ee30cf849a
+
+	* lisp/sawfish/wm/integration/gnome.jl
+	* lisp/sawfish/wm/integration/kde.jl
+	* lisp/sawfish/wm/integration/standalone.jl
+	* lisp/sawfish/wm/integration/xfce.jl: added `desktop-environment' variable
+	which might be used by DE-dependent scripts to check which one is running
+	or `none'
+
+	* configure.in: bump minimum rep-gtk to 0.90.4
+
+	* man/news.texi: updated
+
+2010-08-21  Teika kazura <teika@lavabit.com>
+	* README.IMPORTANT
+	* lisp/sawfish/wm.jl
+	* lisp/sawfish/wm/commands.jl
+	* lisp/sawfish/wm/frames.jl
+	* man/news.texi
+	* man/sawfish.texi: Doc, including news improvements.
+
+	* src/keys.c
+	* src/keys.h
+	* src/main.c: Dropped button9 support. It has been broken.
+	Proof: in src/keys.h,
+        Button9Mask = 1 << 16 = EV_TYPE_KEY = 0x10000;
+
+	* lisp/sawfish/cfg/shell.jl
+	* man/news.texi: When configurator is executed and Sawfish WM is
+	not run, prints a message window.  No care is taken for its
+	appearance.
+
+	* lisp/sawfish/wm/commands/x-cycle.jl
+	* man/news.texi: Minor warp fix in x-cycle. This reduces warping
+	for some cases.  Previously, the necessity of a warp is judged by
+	the geometry before the raise is done. Now the updated one is
+	used.
+
+	* lisp/sawfish/wm/commands/raise-commands.jl
+	* lisp/sawfish/wm/ext/auto-raise.jl
+	* lisp/sawfish/wm/util/compat.jl
+	* lisp/sawfish/wm/util/stacking.jl
+	* man/news.texi
+	* man/sawfish.texi: Functions maybe-raise-window and
+	maybe-lower-window are now obsolete.
+	They're now aliases to raise-window* and lower-window*. The only
+	difference is that the obsolete version supports a nautilus
+	feature which was dropped long ago.
+
+	* lisp/sawfish/wm/commands/launcher.jl
+	* man/news.texi: Command `xterm' bugfix.
+	It didn't run if the optional argument as a command is not set.
+
+2010-08-19  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/ext/apps-menu.jl: correctly alphabetize menu-entries.
+	Previously they were sorted [A-Z][a-z] (first all upper- then all loser-case
+	entries), now it's done properly [aA-zZ]. [Matthew Love]
+
+2010-08-18  Christopher Bratusek <zanghar@freenet.de>
+	* src/x.c
+	* lisp/sawfish/wm/util/window-outline.jl: added x-draw-text function for properly
+	drawing strings in the draft animator. Fixes the issues where the numbers drawn
+	by it had the wrong color (might have been invisible) and that they didn't get erased
+
+	* man/news.texi
+	* man/sawfish.texi: updated
+
+2010-08-15  Christopher Bratusek <zanghar@freenet.de>
+	* man/news.texi: wording & co
+
+	* man/sawfish.1: add --5-buttons to SYNOPSIS
+
+2010-08-14  Jeremy Hankins <nowan@nowan.org>
+	* lisp/sawfish/wm/state/maximize.jl
+	* lisp/sawfish/wm/util/edges.jl
+	* lisp/sawfish/wm/util/workarea.jl: Fixed bug where maximized
+		  windows could overlap avoided windows on restart.
+
+2010-08-13  Christopher Bratusek <zanghar@freenet.de>
+	* src/flippers.c
+	* lisp/sawfish/wm/ext/edge-flip.jl: make edge-flipping work after
+	resolution-change
+
+	* lisp/sawfish/wm.jl: revert commit 379750f67d7227499a93b35dfa8c138d4ca5606f
+	fixes sawfish not starting up when receiving a session-id
+
+2010-08-13  Jeremy Hankins <nowan@nowan.org>
+	* lisp/sawfish/wm/viewport.jl: Fixed viewport init bug.
+
+2010-07-31  Teika kazura <teika@lavabit.com>
+	* KEYBINDINGS
+	* lisp/sawfish/wm.jl
+	* lisp/sawfish/wm/ext/edge-flip.jl
+	* lisp/sawfish/wm/ext/match-window.jl
+	* man/faq.texi
+	* man/news.texi
+	* man/sawfish.texi
+	* man/user-doc.texi
+	* src/frames.c
+	* src/keys.c
+	* src/sawfish.h
+	* src/sawfish_subrs.h: Doc
+	Polished news.
+	Corrected edge-flip docs.
+	Supplemented lacking description of subrs: (un)grab-keymap,
+	x-raise-window, x-lower-window, and frame-state-mutex.
+	In sawfish.texi, all "#!optional" are put into @t{..}.
+	Comments.
+
+2010-07-30  Christopher Bratusek <zanghar@freenet.de>
+	* src/main.c: add --5-buttons to sawfish --help
+
+2010-07-24  Christopher Bratusek <zanghar@freenet.de>
+	* debian/source/format: set 3.0 (native) source format
+
+	* man/news.texi
+	* configure.in: bump version to 1.7.0
+
+2010-07-20  Christopher Bratusek <zanghar@freenet.de>
+	* config.h.in: updated
+
+	* configure.in: bump minimum librep to 0.90.7
+
+	* lisp/sawfish/wm/integration/gnome.jl
+	* lisp/sawfish/wm/integration/kde.jl
+	* themes/Elberg-tabbed/INSTALL
+	* themes/get-S-tabbed/INSTALL
+	* screenshotter/prep_config.sh
+	* README.IMPORTANT
+	* OPTIONS: syntax-update for librep 0.90.7
+
+	* man/news.texi: updated
+
 2010-07-03  Teika kazura <teika@lavabit.com>
 	* configure.in
 	* man/news.texi

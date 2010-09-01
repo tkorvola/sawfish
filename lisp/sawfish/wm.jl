@@ -113,6 +113,8 @@
 		   sawfish.wm.state.transient
 		   sawfish.wm.state.ignored))
 
+;; Bindings in these modules are exported by sawfish.wm on behalf of
+;; them.
 (export-bindings (parse-interface
 		  '(compound-interface
 		    (structure-interface sawfish.wm.colors)
@@ -147,13 +149,19 @@
   (sawfish-load-all "sawfish/wm/autoload")
   (sawfish-load-all (concat "os-" (symbol-name operating-system))))
 
-;; do user-level initialization
-(load "sawfish/wm/user")
-
 (let ((session-id     (get-command-line-option "--sm-client-id" t))
       (session-prefix (get-command-line-option "--sm-prefix" t)))
 
-  ;; now connect with the session manager; gsm requires that apps don't
+  ;; Now connect with the session manager; gsm requires that apps don't
   ;; connect until they're ready to handle the later priority levels
+
+  ;; NB: Even if you want to defer sm-init after sawfish.wm.user,
+  ;; initialization of related command line arguments has to be done
+  ;; here. Read also the comment below.
   (when (and (not batch-mode) (getenv "SESSION_MANAGER"))
     (sm-init session-id session-prefix)))
+
+;; do user-level initialization
+;; This swallows all command line arguments, including those starting
+;; with "--".
+(load "sawfish/wm/user")

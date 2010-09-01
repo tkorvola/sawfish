@@ -20,10 +20,12 @@
 
 (define-structure sawfish.wm.ext.edge-flip
 
-    (export edge-flip-for-edge
+    (export edge-flip-enable
+	    restart-flippers
+	    ;; These three functions are not for API, but let's keep 'em.
+	    edge-flip-for-edge
 	    edge-flip-synthesize
-	    edge-flip-while-moving
-	    edge-flip-enable)
+	    edge-flip-while-moving)
 
     (open rep
 	  rep.system
@@ -81,11 +83,19 @@
   (defvar after-edge-flip-hook '()
     "Hook called immediately after edge-flipping.")
 
+  (define (restart-flippers)
+    (if edge-flip-enabled
+      (progn
+        (disable-flippers)
+        (create-flippers)
+        (enable-flippers))))
+
   (define (edge-flip-enable)
     (if (and edge-flip-enabled (not edge-flip-only-when-moving))
 	(progn
 	  (require 'sawfish.wm.util.flippers)
-	  (enable-flippers))
+	  (enable-flippers)
+	  (add-hook 'randr-change-notify-hook restart-flippers))
       (when (featurep 'sawfish.wm.util.flippers)
 	(disable-flippers))))
 

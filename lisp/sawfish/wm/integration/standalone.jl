@@ -1,4 +1,4 @@
-;; standalone.jl - For those who don't have GNOME / KDE
+;; standalone.jl - For those who don't have GNOME, XFCE or KDE
 
 ;; Copyright (C) 2009 Christopher Roy Bratusek <zanghar@freenet.de>
 
@@ -29,6 +29,8 @@
         sawfish.wm.commands)
 
   (define-structure-alias standalone-int sawfish.wm.integration.standalone)
+
+  (defvar-setq desktop-environment "none")
 
   (defvar want-poweroff-menu t
     "Add poweroff menu if you don't use GNOME / KDE.")
