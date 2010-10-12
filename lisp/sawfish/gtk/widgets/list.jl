@@ -25,7 +25,7 @@
     (open rep
           gui.gtk-2.gtk
           sawfish.gtk.widget
-          sawfish.gtk.widget-dialog)
+          sawfish.gtk.widgets.simple-dialog)
 
   ;; (list SPEC-OR-FUNCTION [TITLE])
 
@@ -49,9 +49,9 @@
 						  title))
 		   (gtk-clist-new 1)))
 	  (scroller (gtk-scrolled-window-new))
-	  (add (gtk-button-new-with-label (_ "Add...")))
-	  (delete (gtk-button-new-with-label (_ "Delete")))
-	  (edit (gtk-button-new-with-label (_ "Edit...")))
+	  (add (gtk-button-new-from-stock "gtk-add"))
+	  (delete (gtk-button-new-from-stock "gtk-delete"))
+	  (edit (gtk-button-new-from-stock "gtk-edit"))
 	  (outer-box (gtk-hbox-new nil box-spacing))
 	  (button-box (gtk-vbox-new nil box-spacing))
 	  (other-box (gtk-vbox-new nil box-spacing))

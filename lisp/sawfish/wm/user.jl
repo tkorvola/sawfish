@@ -39,6 +39,7 @@
     ((open rep
 	   rep.regexp
 	   rep.system
+	   rep.structures
 	   rep.io.files
 	   rep.io.processes
 	   sawfish.wm
@@ -48,9 +49,21 @@
 	   sawfish.wm.ext.error-handler
 	   sawfish.wm.ext.apps-menu
 	   sawfish.wm.frames
-	   sawfish.wm.integration.standalone
-	   sawfish.wm.commands.poweroff)
+	   sawfish.wm.menus)
+     (access sawfish.wm.integration.kde
+	     sawfish.wm.integration.gnome
+	     sawfish.wm.integration.xfce)
+
      (set-binds))
+
+  ;; "none" looks ugly, but if you are to change it to "", fix
+  ;; apps-menu, too, or it will break. 
+  (defvar desktop-environment "none"
+    "Running desktop environment, detected by Sawfish.
+Possible values are \"kde\", \"gnome\", \"xfce\", or \"none\".")
+
+  (defvar want-poweroff-menu t
+    "Add poweroff menu if you don't use GNOME / KDE / XFCE.")
 
   (setq *user-structure* 'user)
 
@@ -69,23 +82,38 @@
       (error
        (error-handler-function (car data) (cdr data)))))
 
-  ;; they're probably not going to leave us in an unusable state
+  (define (rename-old-stuff)
+    (when (and (file-directory-p "~/.sawmill")
+	       (not (file-exists-p "~/.sawfish")))
+      (rename-file "~/.sawmill" "~/.sawfish")
+      (message "Renamed directory ~/.sawmill -> ~/.sawfish")
+      (make-symlink "~/.sawmill" ".sawfish")
+      (message "Created .sawmill symlink (delete if unwanted)"))
+
+    (when (and (file-exists-p "~/.sawmillrc")
+	       (not (file-exists-p "~/.sawfishrc")))
+      (rename-file "~/.sawmillrc" "~/.sawfishrc")
+      (message "Renamed file ~/.sawmillrc -> ~/.sawfishrc"))
+    )
+
+  ;; Detect desktop environment
+  (define (detect-desktop-environment)
+    (or (sawfish.wm.integration.gnome#detect-gnome)
+	(sawfish.wm.integration.kde#detect-kde)
+	(sawfish.wm.integration.xfce#detect-xfce))
+    )
+
+  ;; Don't signal an error even if user "require" them. These modules
+  ;; existed in the past.
+  (provide 'sawfish-defaults)
+  (provide 'sawfish.wm.defaults)
+
+;;; From here, executed at startup.
+
+  ;; load ~/.sawfish/rc
   (unless (get-command-line-option "--no-rc")
     (condition-case error-data
 	(progn
-	  ;; try to rename ~/.sawmill to ~/.sawfish
-	  (when (and (file-directory-p "~/.sawmill")
-		     (not (file-exists-p "~/.sawfish")))
-	    (rename-file "~/.sawmill" "~/.sawfish")
-	    (message "Renamed directory ~/.sawmill -> ~/.sawfish")
-	    (make-symlink "~/.sawmill" ".sawfish")
-	    (message "Created .sawmill symlink (delete if unwanted)"))
-
-	  (when (and (file-exists-p "~/.sawmillrc")
-	             (not (file-exists-p "~/.sawfishrc")))
-	    (rename-file "~/.sawmillrc" "~/.sawfishrc")
-	    (message "Renamed file ~/.sawmillrc -> ~/.sawfishrc"))
-
 	  ;; First the site-wide stuff
 	  (load-all "site-init" (lambda (f) (safe-load f nil t)))
 
@@ -94,25 +122,25 @@
 	      (safe-load "rep-defaults" t))
 
 	  (unless batch-mode
-	    (let ((rc-file-exists-p (lambda (f)
-				      (or (file-exists-p f)
-					  (file-exists-p (concat f ".jl"))
-					  (file-exists-p (concat f ".jlc"))))))
-	      ;; load these before customized settings
-	      (load "sawfish/wm/defaults" t)
+	    (rename-old-stuff)
+	    ;; detect DE before loading rc
+	    (detect-desktop-environment)
 
-	      ;; then the customized options
-	      (condition-case data
-		  (custom-load-user-file)
-		(error
-		 (format (stderr-file) "error in custom file--> %S\n" data)))
+	    ;; then the customized options
+	    (condition-case data
+		(custom-load-user-file)
+	      (error
+	       (format (stderr-file) "error in custom file--> %S\n" data)))
 
-	      ;; then the sawfish specific user configuration
-	      (let loop ((rest rc-files))
-                   (when rest
-                     (if (rc-file-exists-p (car rest))
-                         (safe-load (car rest) t t t)
-                       (loop (cdr rest))))))))
+	    ;; then the sawfish specific user configuration
+	    (let loop ((rest rc-files))
+		 (when rest
+		   (if (file-exists-p (car rest))
+		       ;; Print stack trace on error during exeuction
+		       ;; of ~/.sawfish/rc
+		       (let ((%in-condition-case nil))
+			 (safe-load (car rest) t t t))
+		     (loop (cdr rest)))))))
       (error
        (format (stderr-file) "error in local config--> %S\n" error-data))))
 
@@ -133,9 +161,6 @@
 
   (unless (and (boundp 'window-menu) window-menu)
     (require 'sawfish.wm.ext.beos-window-menu))
-
-  ;; load the new WM-spec code by default now
-  (load-module 'sawfish.wm.state.wm-spec)
 
   ;; Use all arguments which are left.
   (let ((do-load (lambda (name)

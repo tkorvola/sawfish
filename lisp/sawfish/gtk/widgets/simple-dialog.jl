@@ -1,4 +1,4 @@
-;; nokogiri-no-gnome.jl -- workaround lack of GNOME widgets -*- lisp -*-
+;; simple-dialog.jl
 ;;
 ;; Copyright (C) 2000 John Harper <john@dcs.warwick.ac.uk>
 ;;
@@ -18,37 +18,28 @@
 ;; along with sawfish; see the file COPYING.  If not, write to
 ;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 
-(define-structure sawfish.gtk.stock
+;;; History
+;; This file was delete once by mistake, in the commit dbe8c2235, and
+;; it had been called "lisp/sawfish/gtk/stock.jl.gtk".
+;; Re-added in the commit ce7e6c, as "lisp/sawfish/gtk/stock.jl".
+;; Then renamed again in commit a22557030.
 
-    (export stock-button
-            simple-dialog
-            about-dialog
-            make-url-widget)
+(define-structure sawfish.gtk.widgets.simple-dialog
+
+    (export simple-dialog
+            widget-dialog)
 
     (open rep
           gui.gtk-2.gtk
           sawfish.gtk.widget)
-
-  ;; same as in gnome now
-  (define (stock-button type)
-    (gtk-button-new-from-stock
-     (case type
-       ((ok) "gtk-ok")
-       ((cancel) "gtk-cancel")
-       ((revert) "gtk-revert-to-saved")
-       ((apply) "gtk-apply")
-       ((yes) "gtk-yes")
-       ((no) "gtk-no")
-       ((close) "gtk-close")
-       ((help) "gtk-help"))))
 
   (define (simple-dialog title widget #!optional ok-callback main-window)
 
     (let ((window (gtk-window-new 'toplevel))
 	  (vbox (gtk-vbox-new nil box-spacing))
 	  (hbbox (gtk-hbutton-box-new))
-	  (ok (stock-button 'ok))
-	  (cancel (and ok-callback (stock-button 'cancel))))
+	  (ok (gtk-button-new-from-stock "gtk-ok"))
+	  (cancel (and ok-callback (gtk-button-new-from-stock "gtk-cancel"))))
 
       (define (on-cancel)
 	(gtk-widget-destroy window))
@@ -85,23 +76,20 @@
 
       window))
 
-  (define (about-dialog title version copyright
-			authors comments #!key logo extra)
-    (declare (unused logo))
-    (let* ((box (gtk-vbox-new nil 4))
-	   (text-view (gtk-text-view-new))
-	   (text-buffer (gtk-text-view-get-buffer text-view)))
-      (define (insert s)
-	(gtk-text-buffer-insert-at-cursor text-buffer s (length s)))
-      (insert (format nil "%s %s\n" title version))
-      (insert (format nil "%s\n\n" copyright))
-      (when authors
-	(insert "Authors:\n")
-	(mapc (lambda (x) (insert (format nil "    %s\n" x))) authors))
-      (insert (format nil "\n%s\n" comments))
-      (gtk-text-view-set-editable text-view nil)
-      (gtk-container-add box text-view)
-      (when extra
-	(gtk-box-pack-end box extra))
-      (gtk-widget-show-all box)
-      (simple-dialog "About" box))))
+  (define (widget-dialog title spec callback
+			 #!optional initial-value main-window)
+
+    (let* ((widget (make-widget spec))
+	   (vbox (gtk-vbox-new nil box-spacing))
+	   (hbox (gtk-hbox-new nil 0)))
+
+      (when initial-value
+	(widget-set widget initial-value))
+
+      (gtk-box-pack-start hbox (gtk-label-new title))
+      (gtk-container-add vbox hbox)
+      (gtk-container-add vbox (widget-gtk-widget widget))
+      (gtk-widget-show-all vbox)
+      (simple-dialog title vbox
+		     (lambda () (callback (widget-ref widget)))
+		     main-window))))

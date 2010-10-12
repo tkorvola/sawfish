@@ -23,14 +23,14 @@
     (export define-layout-type
 	    layout-slots
 	    document-slot
-	    remove-newlines
 	    make-label)
 
     ((open rep
 	   gui.gtk-2.gtk
 	   rep.regexp
 	   sawfish.cfg.slot
-	   sawfish.gtk.widget)
+	   sawfish.gtk.widget
+	   sawfish.cfg.utils)
      (access rep.structures))
 
   (define widget-ptr nil)
@@ -143,14 +143,6 @@
 	      (setq hbox (add-tooltip hbox))
 	      (gtk-widget-show-all hbox)
 	      hbox))))))
-
-  (define (remove-newlines string)
-    (let loop ((point 0)
-	       (out '()))
-	 (if (string-match "\n" string point)
-	     (loop (match-end)
-		   (list* #\space (substring string point (match-start)) out))
-	   (apply concat (nreverse (cons (substring string point) out))))))
 
   (define (make-label text)
     (let ((label (gtk-label-new text)))

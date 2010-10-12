@@ -1,3 +1,205 @@
+2010-09-25  Teika kazura <teika@lavabit.com>
+	* lisp/sawfish/wm/ext/old-window-menu.jl: Resurrected. It was
+	removed in commit cf79775e.
+
+	* lisp/sawfish/gtk/widgets/scheme-boolean.jl: Reverted the last
+	commit b961a052fced. (Retaining bugfix.)
+
+ 	* lisp/sawfish/gtk/widgets/simple-dialog.jl
+	* man/news.texi
+	* man/sawfish-config.1: News & doc. See git commit 5fafc9680e log
+	for the details.
+
+2010-09-23  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/commands/viewport-extras.jl: export `move-viewport-next'
+	and `move-viewport-previous' (both required for pager 0.7.5)
+
+2010-09-21  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/gtk/widgets/scheme-boolean.jl: fixed loading widget-dialog,
+	it's now in simple-dialog. Also change the behaviour a bit: Previously the
+	buttons label changed from "Yes" to "No" depending on state, now it's only
+	"Enable", this to improve window-matcher appearance (scheme-boolean is only
+	used in window-matcher and an revised version (with real fix) will come with
+	Sawfish 3.0.0).
+
+	* debian/sawfish-data.install.in: remove monitor.png from here, too.
+
+	* lisp/sawfish/wm/ext/edge-flip.jl: some comments on upcoming changes
+	in 2.90.0 cycle
+
+	* lisp/sawfish/wm/ext/infinite-desktop.jl: improved name of the functions.
+	some comments on upcoming changes in 2.90.0 cycle. export
+	`infinite-desktop-enable' (so that it can be enabled via sawfishrc, too)
+
+2010-09-21  Teika kazura <teika@lavabit.com>
+	* lisp/sawfish/wm/keymaps.jl
+	* lisp/sawfish/wm/windows.jl: window-property 'never-delete'
+	spec change.
+	It was only used in delete-window-safely. But now, this property
+	is valid for some others too, but only when they are called
+	interactively. This allows user to choose the mouse binding of
+	"close-button".
+        The key binding of "close-button" is reverted to 'delete-window',
+	the previous.
+
+2010-09-19  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/ext/old-window-menu.jl: removed. it has been replaced
+	by beos-window-menu in version 0.28.1
+
+	* lisp/sawfish/wm/ext/3d-hack.jl: removed.
+
+	* lisp/sawfish/cfg/Makefile.in
+	* lisp/sawfish/gtk/Makefile.in
+	* po/POTFILES.in
+	* po/sawfish.pot: updated
+
+	* lisp/sawfish/gtk/widgets/simple-dialog.jl: fix in it's define-structure
+
+	* lisp/sawfish/cfg/utils.jl: added. contains `remove-newlines' and
+	`beautify-symbol-name' functions.
+
+	* lisp/sawfish/cfg/layout.jl
+	* lisp/sawfish/cfg/widgets/command.jl
+	* lisp/sawfish/cfg/widgets/keymap.jl
+	* lisp/sawfish/cfg/widgets/match-window.jl: removed multiple definitons
+	of `remove-newlines' and `beautify-symbol-name' functions. Modules now
+	use sawfish.cfg.utils instead.
+
+	* lisp/sawfish/gtk/widgets/list.jl: use the nicer gtk-stock-buttons rather
+	than plain ones
+
+	* lisp/sawfish/cfg/shell.jl: the shadow-type of the root-container was
+	changed from out to etched-in. The command-line option --single-level
+	was removed, as it was broken and somewhat useless. Early GNOME-ControlCenter
+	did use capplets to start configuration. Capplets aren't in use for years
+	anymore and have been removed from Sawfish 1.5.0. Now some remaining
+	fragments from SawfishConfig are removed, too, with them the --socket-id
+	command-line option. Set window-icon to "sawfish-config"
+
+	* lisp/sawfish/cfg/sawfish-config.png: default window-icon for SawfishConfig
+	If it doesn't show up, run `gtk-update-icon-cache /usr/share/icons/hicolor/'
+	first and restart SawfishConfig, it will be displayed then.
+
+	* lisp/sawfish/cfg/monitor.png: removed. was used by the capplets and those
+	where removed a long time ago.
+
+2010-09-18  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/gtk/widgets/simple-dialog.jl: renamed sawfish.gtk.stock
+	to sawfish.gtk.widgets.simple-dialog as the functions `about-dialog'
+	-(replaced by native gtk-about-dialog) and `stock-button' (replaced by
+	native gtk-button-new-from-stock) have been removed and `simple-dialog'
+	is the only remaining function. A wrong export has been removed, too.
+
+	* lisp/sawfish/gtk/Makefile.in
+	* lisp/sawfish/cfg/shell.jl
+	* lisp/sawfish/cfg/apply.jl
+	* lisp/sawfish/cfg/widgets/keymap.jl
+	* lisp/sawfish/cfg/widgets/match-window.jl
+	* lisp/sawfish/gtk/widget-dialog.jl: updated for above change
+
+	* lisp/sawfish/gtk/widget-dialog.jl
+	* lisp/sawfish/gtk/widgets/simple-dialog.jl: merged widget-dialog.jl
+	into simple-dialog.jl
+
+	* lisp/sawfish/gtk/widget-test.jl: removed, since it is heavily broken
+
+2010-09-17  Christopher Brautsek <zanghar@freenet.de>
+	* lisp/sawfish/wm/ext/match-window.jl
+	* lisp/sawfish/wm/windows.jl: added `never-delete' window-matcher.
+	Window matched by this can't be deleted by the `delete-window-safely'
+	function, only by `delete-window' (which equals to `xkill').
+
+	* lisp/sawfish/wm/ext/match-window.jl
+	* lisp/sawfish/wm/commands/move-resize.jl: added `fixed-size' window-matcher.
+	Window matched by this can't be resized by the `resize-window-interactively',
+	`halve-window-size' or `double-window-size' functions, but by maximize-*.
+
+	* lisp/sawfish/wm/keymaps.jl: by default the close-buttons calls `delete-window-safely'
+	rather than `delete-window'.
+
+2010-09-16  Teika kazura <teika@lavabit.com>
+	* lisp/sawfish/wm/commands/grow-pack.jl
+	* lisp/sawfish/wm/ext/window-history.jl
+	* lisp/sawfish/wm/state/wm-spec.jl
+	* man/news.texi
+	* themes/mxflat/theme.jl: Minor doc, including news.
+
+	* lisp/sawfish/wm/defaults.jl
+	* lisp/sawfish/wm/user.jl: Cleanups around user.jl.
+        Deleted fake support of ~/.sawfish/rc{,.jl,.jlc}. A file with a
+	suffix was never read, but the code was in the guise of supporting
+	them.
+	Renaming of "sawmill" is not done when batch-mode. The code is
+	pushed into a function.
+	Deleted (require 'sawfish.wm.ext.error-handler) from
+	`defaults.jl'. It is now meaningless because it's already opened
+	by user.jl.
+
+	* lisp/sawfish/wm/user.jl: Print stack trace on error during
+	~/.sawfish/rc execution.
+
+	* OPTIONS
+	* lisp/sawfish/wm/defaults.jl
+	* lisp/sawfish/wm/integration/gnome.jl
+	* lisp/sawfish/wm/integration/kde.jl
+	* lisp/sawfish/wm/integration/standalone.jl
+	* lisp/sawfish/wm/integration/xfce.jl
+	* lisp/sawfish/wm/menus.jl
+	* lisp/sawfish/wm/user.jl
+	* man/news.texi
+	* man/sawfish.texi: Desktop environmet detection cleanup.
+	defaults.jl is deleted.
+	DE detection are done by each module, e.g. kde detection is done
+	in kde.jl
+	defvar of `desktop-environment' and `want-poweroff-menu' are
+	centralized to .jl
+	Each DE support module doesn't defvar them, but simple setq.
+	standalone.jl is deleted. Adding poweroff menu is moved to menus.jl
+	Doc.
+
+	* lisp/sawfish/wm.jl
+	* lisp/sawfish/wm/user.jl: Cleanup; loading of wm-spec
+	is moved to wm.jl
+
+2010-09-11  Teika kazura <teika@lavabit.com>
+	* configure.in
+	* man/news.texi: Librep version re-bump. 0.90.7 -> 0.91.0
+
+	* CONTRIBUTING
+	* OPTIONS
+	* lisp/sawfish/gtk/stock.jl
+	* lisp/sawfish/wm.jl
+	* lisp/sawfish/wm/commands.jl
+	* lisp/sawfish/wm/commands/describe.jl
+	* lisp/sawfish/wm/customize.jl
+	* lisp/sawfish/wm/frames.jl
+	* lisp/sawfish/wm/util/nokogiri.jl
+	* lisp/sawfish/wm/windows.jl
+	* man/news.texi
+	* man/sawfish.1
+	* man/sawfish.texi
+	* src/functions.c
+	* src/x.c
+	* themes/mxflat/README: doc. Typo fixes for x-draw-text. Session
+	management command line options are listed in "sawfish.1".
+	Added history on lisp/sawfish/gtk/stock.jl. Update on bug reporting
+	instruction. Sort of news items by importance. Others.
+
+	* po/gl.po
+	* po/it.po
+	* po/ro.po
+	* po/tr.po: Switched to utf-8.
+
+	* debian/sawfish.el:
+	* sawfish.el: Moved sawfish.el to the top dir, and updated.
+	Read news.texi for changes.
+
+	* TODO
+	* lisp/sawfish/cfg/WISHLIST: WISHLIST is merged to TODO. Some
+	items in TODO are in bugzilla too, but the latter contained
+	some extra info. Now TODO records it, too.
+	Cleanup of redundant or obsolete items.
+
 2010-08-26  Christopher Bratusek <zanghar@freenet.de>
 	* lisp/sawfish/wm/ext/apps-menu.jl: more power for our fdo-menu.
 	The variable apps-menu-ignore-no-display is replaced by

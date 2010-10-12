@@ -114,6 +114,8 @@
             (transients-above (choice all parents none))
             (ignore-stacking-requests boolean)
 	    (auto-gravity boolean)
+	    (never-delete boolean)
+	    (fixed-size boolean)
 	    )))
 
   ;; alist of (PROPERTY . FEATURE) mapping properties to the lisp

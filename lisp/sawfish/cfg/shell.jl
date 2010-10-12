@@ -29,7 +29,6 @@
 	  rep.io.files
 	  rep.io.streams
 	  rep.io.timers
-	  sawfish.gtk.stock
 	  sawfish.gtk.widget
 	  sawfish.cfg.i18n
 	  sawfish.cfg.group
@@ -40,7 +39,6 @@
 	  sawfish.cfg.wm)
 
   (defvar *nokogiri-flatten-groups* nil)
-  (defvar *nokogiri-single-level* nil)
 
   (define main-window)
   (define group-tree-widget)
@@ -51,24 +49,20 @@
   (define ok-widget)
   (define revert-widget)
 
-  (define (initialize-shell #!optional socket-id)
+  (define (initialize-shell)
     (let ((vbox (gtk-vbox-new nil box-spacing))
 	  (hbox (gtk-hbutton-box-new))
-	  (s-scroller (and (not socket-id) (gtk-scrolled-window-new)))
+	  (s-scroller (gtk-scrolled-window-new))
 	  root-container)
 
-      (setq main-window (if socket-id
-			    (gtk-plug-new socket-id)
-			  (gtk-window-new 'toplevel)))
-      (if socket-id
-	  (progn
-	    (gtk-window-set-default-size main-window 400 300)
-	    (setq root-container main-window))
+      (setq main-window (gtk-window-new 'toplevel))
+
 	(gtk-window-set-resizable main-window t)
+	(gtk-window-set-icon-name main-window "sawfish-config")
 	(gtk-window-set-default-size main-window 550 400)
 	(setq root-container (gtk-frame-new))
-	(gtk-frame-set-shadow-type root-container 'out)
-	(gtk-container-add main-window root-container))
+	(gtk-frame-set-shadow-type root-container 'etched-in)
+	(gtk-container-add main-window root-container)
 
       (setq slot-box-widget (gtk-vbox-new nil box-spacing))
 
@@ -81,7 +75,6 @@
       (let ((group (get-group top-group)))
 	(fetch-group group)
 	(if (and (not *nokogiri-flatten-groups*)
-		 (not *nokogiri-single-level*)
 		 (group-sub-groups group))
 	    (let ((paned (gtk-hpaned-new))
 		  (g-scroller (gtk-scrolled-window-new)))
@@ -96,34 +89,27 @@
 						     group-tree-widget))
 	  (gtk-container-add vbox (or s-scroller slot-box-widget))))
 
-      (unless socket-id
-	(setq ok-widget (stock-button 'close))
-	(setq revert-widget (stock-button 'revert))
+
+	(setq ok-widget (gtk-button-new-from-stock "gtk-close"))
+	(setq revert-widget (gtk-button-new-from-stock "gtk-undo"))
 	(gtk-window-set-title main-window (_ "Sawfish Configurator"))
 	(gtk-widget-set-name main-window (_ "Sawfish Configurator"))
 	(gtk-window-set-wmclass main-window "sawfish-configurator"
-                                "Sawfish-Configurator"))
+                                "Sawfish-Configurator")
 
-      (g-signal-connect main-window "delete_event"
-                        (if (not socket-id) on-quit capplet-delete-event))
+      (g-signal-connect main-window "delete_event" on-quit)
 
-      (unless socket-id
 	(gtk-box-set-spacing hbox button-box-spacing)
 	(gtk-button-box-set-layout hbox 'end)
 	(gtk-box-pack-end vbox hbox)
 	(g-signal-connect ok-widget "clicked" on-ok)
 	(g-signal-connect revert-widget "clicked" on-revert)
 	(gtk-container-add hbox revert-widget)
-	(gtk-container-add hbox ok-widget))
+	(gtk-container-add hbox ok-widget)
 
       (gtk-container-add root-container vbox)
       (gtk-widget-show-all main-window)
       (set-button-states)
-
-      (when socket-id
-	(setq *nokogiri-apply-immediately* nil)
-	(set-input-handler standard-input capplet-input)
-	(add-hook '*nokogiri-slot-changed-hook* capplet-state-changed))
 
       (if group-tree-widget
 	  (progn
@@ -216,10 +202,7 @@
       (when slots
 	(let ((layout (layout-slots (group-layout group) slots)))
 	  (add-active-slots slots)
-	  (if (not *nokogiri-single-level*)
-	      (gtk-notebook-append-page
-	       book layout (gtk-label-new (_ (group-real-name group))))
-	    (gtk-box-pack-start book layout))
+          (gtk-box-pack-start book layout)
 	  (when (gtk-container-p layout)
 	    (gtk-container-set-border-width layout box-border))))
       (mapc (lambda (sub)
@@ -229,12 +212,7 @@
 		  (iter book sub slots))))
 	    (get-sub-groups group)))
 
-    (let ((notebook (if (not *nokogiri-single-level*)
-			(let ((x (gtk-notebook-new)))
-			  (gtk-notebook-set-scrollable x 1)
-			  (gtk-notebook-popup-enable x)
-			  x)
-		      (gtk-vbox-new nil 0))))
+    (let ((notebook (gtk-vbox-new nil 0)))
       (iter notebook group (get-slots group))
       (gtk-widget-show notebook)
       (gtk-container-add slot-box-widget notebook)))
@@ -268,7 +246,7 @@
     (let ((window (gtk-window-new 'toplevel))
 	  (vbox (gtk-vbox-new nil box-spacing))
 	  (label (gtk-label-new "Sawfish's configurator needs a running Sawfish. Aborting."))
-	  (button (stock-button 'ok))
+	  (button (gtk-button-new-from-stock "gtk-ok"))
 	  (func (lambda () (throw 'quit 1))))
       (gtk-window-set-title window "SawfishConfig error")
       (gtk-window-set-icon-name window "gtk-info")
@@ -296,9 +274,7 @@
 usage: sawfish-config [OPTIONS...]\n
 where OPTIONS are any of:\n
   --group=GROUP-NAME
-  --flatten
-  --single-level
-  --socket-id=WINDOW-ID\n")
+  --flatten\n")
       (throw 'quit 0))
 
     (let ((group (get-command-line-option "--group" t)))
@@ -309,17 +285,12 @@ where OPTIONS are any of:\n
     (when (get-command-line-option "--flatten")
       (setq *nokogiri-flatten-groups* t))
 
-    (when (get-command-line-option "--single-level")
-      (setq *nokogiri-single-level* t))
-
     (setq interrupt-mode 'exit)
     (i18n-init)
     (add-widget-prefix 'sawfish.cfg.widgets)
 
     (initialize-configs)
-    (let* ((id (get-command-line-option "--socket-id" t))
-	   (socket-id (when id (string->number id))))
-      (initialize-shell socket-id))
+    (initialize-shell)
 
     (catch 'nokogiri-exit
       (recursive-edit))
@@ -327,33 +298,4 @@ where OPTIONS are any of:\n
 
   (add-hook '*nokogiri-slot-changed-hook* set-button-states t)
   (add-hook '*nokogiri-group-selected-hook* add-group-widgets)
-  (add-hook '*nokogiri-group-deselected-hook* remove-group-widgets)
-
-;;; capplet interfacing
-
-  ;; called when there's input available on stdin
-  (define (capplet-input)
-    (let ((tem (read-line standard-input)))
-      (condition-case nil
-	  (progn
-	    (cond ((string-match "apply" tem) (on-apply))
-		  ((string-match "revert" tem) (on-revert))
-		  ((string-match "ok" tem) (on-ok))
-		  ((string-match "cancel" tem) (on-cancel)))
-	    (write standard-output ?\001)
-	    (flush-file standard-output))
-	(end-of-stream))))
-
-  (define (capplet-delete-event)
-    (gtk-widget-hide main-window)
-    (make-timer on-quit 10)
-    ;; return t so no destroy - if the timer fires we'll destroy then
-    t)
-
-  (define (capplet-state-changed)
-    (write standard-output ?c)
-    (flush-file standard-output))
-
-  (define (capplet-no-group)
-    (write standard-output ?g)
-    (flush-file standard-output)))
+  (add-hook '*nokogiri-group-deselected-hook* remove-group-widgets))
