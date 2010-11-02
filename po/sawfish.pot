@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-28 15:41+0200\n"
+"POT-Creation-Date: 2010-10-21 18:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -351,19 +351,17 @@ msgid ""
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
-#, c-format
 msgid ""
-"unfocused/highlighted titlebar colors saturation (0 - 100% of the focused "
-"color)\n"
+"unfocused/highlighted titlebar colors saturation (0 - 100 percent of the "
+"focused color)\n"
 "\n"
 "The saturation of a color is a measurement of the color intensity"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
-#, c-format
 msgid ""
-"unfocused/highlighted titlebar colors brightness (0 - 100% of the focused "
-"color)"
+"unfocused/highlighted titlebar colors brightness (0 - 100 percent of the "
+"focused color)"
 msgstr ""
 
 #. ../themes/mxflat/theme.jl
@@ -886,42 +884,34 @@ msgstr ""
 msgid "fake shadow only on focused windows"
 msgstr ""
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "north"
 msgstr ""
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "east"
 msgstr ""
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "south"
 msgstr ""
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "west"
 msgstr ""
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "north-east"
 msgstr ""
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "north-west"
 msgstr ""
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "south-east"
 msgstr ""
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "south-west"
 msgstr ""
@@ -2033,16 +2023,6 @@ msgstr ""
 msgid "Move the window group `slide-window-increment' pixels downwards."
 msgstr ""
 
-#. ../lisp/sawfish/wm/commands/toggle-or-exec.jl
-msgid "Toggle or exec"
-msgstr ""
-
-#. ../lisp/sawfish/wm/commands/toggle-or-exec.jl
-msgid ""
-"Jump to a window matched by regular expression RE, or start\n"
-"program otherwise. Turn the window into an drop-down-window"
-msgstr ""
-
 #. ../lisp/sawfish/wm/commands/viewport-extras.jl
 msgid "Move viewport next"
 msgstr ""
@@ -2207,7 +2187,6 @@ msgstr ""
 msgid "Move/Resize"
 msgstr ""
 
-#. ../lisp/sawfish/wm/ext/match-window.jl
 #. ../lisp/sawfish/wm/custom.jl
 msgid "Placement"
 msgstr ""
@@ -2326,46 +2305,6 @@ msgstr ""
 msgid "Display all errors that have occurred to the screen."
 msgstr ""
 
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "Hot Spots"
-msgstr ""
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "Milliseconds to delay before activating hot-spot."
-msgstr ""
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the left-edge."
-msgstr ""
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the top-left-corner."
-msgstr ""
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the top-edge."
-msgstr ""
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the top-right-corner."
-msgstr ""
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the right-edge."
-msgstr ""
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the bottom-right-corner."
-msgstr ""
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the bottom-edge."
-msgstr ""
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the bottom-left-corner."
-msgstr ""
-
 #. ../lisp/sawfish/wm/ext/infinite-desktop.jl
 msgid "Infinite Desktop"
 msgstr ""
@@ -2450,6 +2389,10 @@ msgid "Fixed position"
 msgstr ""
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
+msgid "Fixed size"
+msgstr ""
+
+#. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Sticky"
 msgstr ""
 
@@ -2502,6 +2445,10 @@ msgid "Shaded"
 msgstr ""
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
+msgid "Shade hover"
+msgstr ""
+
+#. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Never iconify"
 msgstr ""
 
@@ -2546,10 +2493,6 @@ msgid "Window name"
 msgstr ""
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
-msgid "Shade hover"
-msgstr ""
-
-#. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Transients above"
 msgstr ""
 
@@ -2566,7 +2509,7 @@ msgid "Never delete"
 msgstr ""
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
-msgid "Fixed size"
+msgid "Geometry"
 msgstr ""
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
@@ -3111,27 +3054,23 @@ msgid "In _group"
 msgstr ""
 
 #. ../lisp/sawfish/wm/menus.jl
-msgid "_Send window to"
+msgid "_Workspace"
 msgstr ""
 
 #. ../lisp/sawfish/wm/menus.jl
-msgid "_Previous workspace"
+msgid "Move to _Previous workspace"
 msgstr ""
 
 #. ../lisp/sawfish/wm/menus.jl
-msgid "_Next workspace"
+msgid "Move to _Next workspace"
 msgstr ""
 
 #. ../lisp/sawfish/wm/menus.jl
-msgid "C_opy window to"
+msgid "Copy to P_revious workspace"
 msgstr ""
 
 #. ../lisp/sawfish/wm/menus.jl
-msgid "P_revious workspace"
-msgstr ""
-
-#. ../lisp/sawfish/wm/menus.jl
-msgid "Ne_xt workspace"
+msgid "Copy to Ne_xt workspace"
 msgstr ""
 
 #. ../lisp/sawfish/wm/menus.jl
@@ -3344,18 +3283,6 @@ msgstr ""
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "S_awfishConfig"
-msgstr ""
-
-#. ../lisp/sawfish/wm/placement/dockapp.jl
-msgid "Dockapps"
-msgstr ""
-
-#. ../lisp/sawfish/wm/placement/dockapp.jl
-msgid "Dockapp placement origin: \\w"
-msgstr ""
-
-#. ../lisp/sawfish/wm/placement/dockapp.jl
-msgid "Dockapp placement direction: \\w"
 msgstr ""
 
 #. ../lisp/sawfish/wm/placement/stagger.jl
@@ -4198,7 +4125,7 @@ msgid "Warping"
 msgstr ""
 
 #. ../lisp/sawfish/wm/windows.jl
-msgid "Offset (%) from window edges when warping pointer."
+msgid "Offset (percent) from window edges when warping pointer."
 msgstr ""
 
 #. ../lisp/sawfish/wm/windows.jl

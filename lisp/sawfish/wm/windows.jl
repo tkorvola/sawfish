@@ -82,7 +82,7 @@
   (defgroup warp "Warping" :group misc)
 
   (defcustom warp-to-window-offset (cons -1 -1)
-    "Offset (%) from window edges when warping pointer."
+    "Offset (percent) from window edges when warping pointer."
     :type (pair (number 1) (number 1))
     :group (misc warp))
 
@@ -252,9 +252,9 @@ supported by client window W."
 	   (data (and prop (eq (car prop) 'ATOM) (nth 2 prop))))
       (when data
 	(let loop ((i 0))
-             (cond ((= i (length data)) nil)
-                   ((eq (aref data i) atom) t)
-                   (t (loop (1+ i))))))))
+	  (cond ((= i (length data)) nil)
+		((eq (aref data i) atom) t)
+		(t (loop (1+ i))))))))
 
 ;;; warping
 
@@ -542,11 +542,12 @@ STATES has been changed. STATES may also be a single symbol."
            state-changes)))
 
   (define (rename-window-func window new-name)
-    "Renames the WINDOW to NEW-NAME."
-    (set-x-text-property window 'WM_NAME (vector new-name))
-    (set-x-text-property window '_NET_WM_NAME (vector new-name))
-    (set-x-text-property window 'WM_ICON_NAME (vector new-name))
-    (set-x-text-property window '_NET_WM_ICON_NAME (vector new-name)))
+      (set-x-text-property window 'WM_NAME (vector new-name))
+      (set-x-text-property window 'WM_ICON_NAME (vector new-name))
+      ;; XXX doesn't have any effect?
+      (set-x-text-property window '_NET_WM_VISIBLE_NAME (vector new-name))
+      (set-x-text-property window '_NET_WM_NAME (vector new-name))
+      (set-x-text-property window '_NET_WM_ICON_NAME (vector new-name)))
 
   (define (rename-window-interactive w)
     (require 'sawfish.wm.util.prompt)

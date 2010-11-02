@@ -9,10 +9,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sawfish\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-28 15:41+0200\n"
-"PO-Revision-Date: 2010-09-30 14:03+0100\n"
+"POT-Creation-Date: 2010-10-21 18:17+0200\n"
+"PO-Revision-Date: 2010-10-22 19:59+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -371,20 +372,18 @@ msgstr ""
 "Vrednost spreminja odtenek barve v stopinjah (0 - 360) glede na barvni krog. Vrednost 180 stopinj, na primer, prikaže nasprotno barvo."
 
 #. ../themes/mxflat/theme.jl
-#, c-format
 msgid ""
-"unfocused/highlighted titlebar colors saturation (0 - 100% of the focused color)\n"
+"unfocused/highlighted titlebar colors saturation (0 - 100 percent of the focused color)\n"
 "\n"
 "The saturation of a color is a measurement of the color intensity"
 msgstr ""
-"nasičenost barv poudarjene nazivne vrstice, ki ni v žarišču (0 - 100% od vrednosti barve okna v žarišču)\n"
+"nasičenost barv poudarjene nazivne vrstice, ki ni v žarišču (od 0 - 100 odstotkov od vrednosti barve okna v žarišču)\n"
 "\n"
 "Nasičenost barve je merilo barvne moči."
 
 #. ../themes/mxflat/theme.jl
-#, c-format
-msgid "unfocused/highlighted titlebar colors brightness (0 - 100% of the focused color)"
-msgstr "svetlost barv poudarjene nazivne vrstice, ki ni v žarišču (0 - 100% od vrednosti barve okna v žarišču)"
+msgid "unfocused/highlighted titlebar colors brightness (0 - 100 percent of the focused color)"
+msgstr "svetlost barv poudarjene nazivne vrstice, ki ni v žarišču (od 0 - 100 odstotkov  vrednosti barve okna v žarišču)"
 
 #. ../themes/mxflat/theme.jl
 msgid ""
@@ -960,42 +959,34 @@ msgstr ""
 msgid "fake shadow only on focused windows"
 msgstr "lažno senčenje le pri oknih v žarišču"
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "north"
 msgstr "zgoraj"
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "east"
 msgstr "desno"
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "south"
 msgstr "spodaj"
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "west"
 msgstr "levo"
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "north-east"
 msgstr "zgoraj-desno"
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "north-west"
 msgstr "zgoraj-levo"
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "south-east"
 msgstr "spodaj-desno"
 
-#. ../lisp/sawfish/wm/placement/dockapp.jl
 #. ../themes/mxflat/theme.jl
 msgid "south-west"
 msgstr "spodaj-levo"
@@ -2170,18 +2161,6 @@ msgstr "Drsenje skupine navzdol"
 msgid "Move the window group `slide-window-increment' pixels downwards."
 msgstr "Premakni skupino oken za `slide-window-increment' navzdol."
 
-#. ../lisp/sawfish/wm/commands/toggle-or-exec.jl
-msgid "Toggle or exec"
-msgstr "Preklop ali izvajanje"
-
-#. ../lisp/sawfish/wm/commands/toggle-or-exec.jl
-msgid ""
-"Jump to a window matched by regular expression RE, or start\n"
-"program otherwise. Turn the window into an drop-down-window"
-msgstr ""
-"Skoči na okno, ki je skladno z logičnim izrazom RE ali pa začni\n"
-"ustrezen program. Okno naj se spremeni v spustno okno."
-
 #. ../lisp/sawfish/wm/commands/viewport-extras.jl
 msgid "Move viewport next"
 msgstr "Premakni vidno polje naprej"
@@ -2345,7 +2324,6 @@ msgstr "Razno"
 msgid "Move/Resize"
 msgstr "Premakni/spremeni velikost"
 
-#. ../lisp/sawfish/wm/ext/match-window.jl
 #. ../lisp/sawfish/wm/custom.jl
 msgid "Placement"
 msgstr "Postavitev"
@@ -2466,46 +2444,6 @@ msgstr "Pokaži napake"
 msgid "Display all errors that have occurred to the screen."
 msgstr "Na zaslonu pokaži vse napake, ki so se zgodile."
 
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "Hot Spots"
-msgstr "Vroče točke"
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "Milliseconds to delay before activating hot-spot."
-msgstr "Čas zamika pred pred udejanjenjem vroče točke v milisekundah"
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the left-edge."
-msgstr "Program se zažene z dotikom levega robu."
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the top-left-corner."
-msgstr "Program se zažene z dotikom zgornjega levega robu."
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the top-edge."
-msgstr "Program se zažene z dotikom zgornjega robu."
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the top-right-corner."
-msgstr "Program se zažene z dotikom zgornjega desnega robu."
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the right-edge."
-msgstr "Program se zažene z dotikom desnega robu."
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the bottom-right-corner."
-msgstr "Program se zažene z dotikom spodnjega desnega robu."
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the bottom-edge."
-msgstr "Program se zažene z dotikom spodnjega robu."
-
-#. ../lisp/sawfish/wm/ext/hot-spots.jl
-msgid "The program launched when hitting the bottom-left-corner."
-msgstr "Program se zažene z dotikom spodnjega levega robu."
-
 #. ../lisp/sawfish/wm/ext/infinite-desktop.jl
 msgid "Infinite Desktop"
 msgstr "Neskončno namizje"
@@ -2588,6 +2526,10 @@ msgid "Fixed position"
 msgstr "Določen položaj"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
+msgid "Fixed size"
+msgstr "Nespremenljiva velikost"
+
+#. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Sticky"
 msgstr "Lepljiv"
 
@@ -2640,6 +2582,10 @@ msgid "Shaded"
 msgstr "Senčeno"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
+msgid "Shade hover"
+msgstr "Odstrani senčenje pri prehodu miške"
+
+#. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Never iconify"
 msgstr "Nikoli ne pomanjšaj v ikono"
 
@@ -2684,10 +2630,6 @@ msgid "Window name"
 msgstr "Ime okna"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
-msgid "Shade hover"
-msgstr "Odstrani senčenje pri prehodu miške"
-
-#. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Transients above"
 msgstr "Podrejena okna zgoraj"
 
@@ -2704,8 +2646,8 @@ msgid "Never delete"
 msgstr "Nikoli ne izbriši"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
-msgid "Fixed size"
-msgstr "Nespremenljiva velikost"
+msgid "Geometry"
+msgstr "Geometrija"
 
 #. ../lisp/sawfish/wm/ext/match-window.jl
 msgid "Other"
@@ -3276,28 +3218,24 @@ msgid "In _group"
 msgstr "V _skupini"
 
 #. ../lisp/sawfish/wm/menus.jl
-msgid "_Send window to"
-msgstr "P_ošlji okno na"
+msgid "_Workspace"
+msgstr "_Delovna površina"
 
 #. ../lisp/sawfish/wm/menus.jl
-msgid "_Previous workspace"
-msgstr "_Predhodna delovna površina"
+msgid "Move to _Previous workspace"
+msgstr "Premakni na _predhodno delovno površino"
 
 #. ../lisp/sawfish/wm/menus.jl
-msgid "_Next workspace"
-msgstr "_Naslednja delovna površina"
+msgid "Move to _Next workspace"
+msgstr "Premakni na _naslednjo delovno površino"
 
 #. ../lisp/sawfish/wm/menus.jl
-msgid "C_opy window to"
-msgstr "_Kopiraj na"
+msgid "Copy to P_revious workspace"
+msgstr "Kopiraj na p_redhodno delovno površino"
 
 #. ../lisp/sawfish/wm/menus.jl
-msgid "P_revious workspace"
-msgstr "_Predhodna delovna površina"
-
-#. ../lisp/sawfish/wm/menus.jl
-msgid "Ne_xt workspace"
-msgstr "_Naslednja delovna površina"
+msgid "Copy to Ne_xt workspace"
+msgstr "Kopiraj na n_aslednjo delovno površino"
 
 #. ../lisp/sawfish/wm/menus.jl
 msgid "_Grow & Pack"
@@ -3510,18 +3448,6 @@ msgstr "Pokaži meni seznama oken."
 #. ../lisp/sawfish/wm/menus.jl
 msgid "S_awfishConfig"
 msgstr "_Sawfish nastavitve"
-
-#. ../lisp/sawfish/wm/placement/dockapp.jl
-msgid "Dockapps"
-msgstr "Sidrni programi"
-
-#. ../lisp/sawfish/wm/placement/dockapp.jl
-msgid "Dockapp placement origin: \\w"
-msgstr "Izvor postavitve sidrnih programov: \\w"
-
-#. ../lisp/sawfish/wm/placement/dockapp.jl
-msgid "Dockapp placement direction: \\w"
-msgstr "Smer postavitve sidrnih programov: \\w"
 
 #. ../lisp/sawfish/wm/placement/stagger.jl
 msgid "Distance between successive placements in `stagger' placement mode."
@@ -4410,8 +4336,8 @@ msgid "Warping"
 msgstr "Postavljanje kazalnika"
 
 #. ../lisp/sawfish/wm/windows.jl
-msgid "Offset (%) from window edges when warping pointer."
-msgstr "Odmik (%) od robov okna med postavljanjem kazalnika."
+msgid "Offset (percent) from window edges when warping pointer."
+msgstr "Odmik (v odstotkih) od robov okna med postavljanjem kazalnika."
 
 #. ../lisp/sawfish/wm/windows.jl
 msgid "Whether to enable warping the cursor to windows."
@@ -4734,54 +4660,85 @@ msgstr "Interaktivni izbor delovne površine"
 msgid "Prompt for a workspace and switch to it."
 msgstr "Vprašaj za delovno površino in nato nanjo preklopi."
 
+#~ msgid "Toggle or exec"
+#~ msgstr "Preklop ali izvajanje"
+#~ msgid ""
+#~ "Jump to a window matched by regular expression RE, or start\n"
+#~ "program otherwise. Turn the window into an drop-down-window"
+#~ msgstr ""
+#~ "Skoči na okno, ki je skladno z logičnim izrazom RE ali pa začni\n"
+#~ "ustrezen program. Okno naj se spremeni v spustno okno."
+#~ msgid "Hot Spots"
+#~ msgstr "Vroče točke"
+#~ msgid "Milliseconds to delay before activating hot-spot."
+#~ msgstr "Čas zamika pred pred udejanjenjem vroče točke v milisekundah"
+#~ msgid "The program launched when hitting the left-edge."
+#~ msgstr "Program se zažene z dotikom levega robu."
+#~ msgid "The program launched when hitting the top-left-corner."
+#~ msgstr "Program se zažene z dotikom zgornjega levega robu."
+#~ msgid "The program launched when hitting the top-edge."
+#~ msgstr "Program se zažene z dotikom zgornjega robu."
+#~ msgid "The program launched when hitting the top-right-corner."
+#~ msgstr "Program se zažene z dotikom zgornjega desnega robu."
+#~ msgid "The program launched when hitting the right-edge."
+#~ msgstr "Program se zažene z dotikom desnega robu."
+#~ msgid "The program launched when hitting the bottom-right-corner."
+#~ msgstr "Program se zažene z dotikom spodnjega desnega robu."
+#~ msgid "The program launched when hitting the bottom-edge."
+#~ msgstr "Program se zažene z dotikom spodnjega robu."
+#~ msgid "The program launched when hitting the bottom-left-corner."
+#~ msgstr "Program se zažene z dotikom spodnjega levega robu."
+#~ msgid "_Send window to"
+#~ msgstr "P_ošlji okno na"
+#~ msgid "_Previous workspace"
+#~ msgstr "_Predhodna delovna površina"
+#~ msgid "_Next workspace"
+#~ msgstr "_Naslednja delovna površina"
+#~ msgid "C_opy window to"
+#~ msgstr "_Kopiraj na"
+#~ msgid "P_revious workspace"
+#~ msgstr "_Predhodna delovna površina"
+#~ msgid "Ne_xt workspace"
+#~ msgstr "_Naslednja delovna površina"
+#~ msgid "Dockapps"
+#~ msgstr "Sidrni programi"
+#~ msgid "Dockapp placement origin: \\w"
+#~ msgstr "Izvor postavitve sidrnih programov: \\w"
+#~ msgid "Dockapp placement direction: \\w"
+#~ msgstr "Smer postavitve sidrnih programov: \\w"
 #~ msgid "Add..."
 #~ msgstr "Dodaj ..."
-
 #~ msgid "Delete"
 #~ msgstr "Izbriši"
-
 #~ msgid "Edit..."
 #~ msgstr "Uredi ..."
-
 #~ msgid "Delete the window."
 #~ msgstr "Izbriši okno."
-
 #~ msgid "3d hack"
 #~ msgstr "3d hack"
-
 #~ msgid "Default frame style:"
 #~ msgstr "Privzet slog okvirjev:"
-
 #~ msgid "Edit frame style"
 #~ msgstr "Uredi slog okvirja"
-
 #~ msgid "_FAQ..."
 #~ msgstr "_FAQ..."
-
 #~ msgid "_News..."
 #~ msgstr "_Novice ..."
-
 #~ msgid "_WWW page..."
 #~ msgstr "_Spletišče ..."
-
 #~ msgid "_Manual..."
 #~ msgstr "P_riročnik ..."
-
 #~ msgid "Edit theme..."
 #~ msgstr "Uredi temo..."
-
 #~ msgid "Lock position and size while windows are maximized."
 #~ msgstr "Zakleni položaj in velikost med razpenjanjem okna."
-
 #~ msgid "Unshade selected windows."
 #~ msgstr "Odstrani senčenje izbranih oken."
-
 #~ msgid "Display the workspace/viewport containing the window W."
 #~ msgstr "Pokaži delovno površino ali vidno polje, ki vsebuje okno W."
-
 #~ msgid "Display the workspace containing the window W, then focus on W."
 #~ msgstr ""
 #~ "Pokaži delovno površino, ki vsebuje okno W in ga nato postavi v žarišče."
-
 #~ msgid "Give focus to windows even when they haven't asked for it."
 #~ msgstr "Postavi okno v žarišče, tudi če okno tega ne zahteva."
+

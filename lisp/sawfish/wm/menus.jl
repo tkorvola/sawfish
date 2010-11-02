@@ -88,26 +88,34 @@ before killing it.")
   (defvar window-ops-menu
     `((,(_ "Mi_nimize") iconify-window
        (insensitive . ,(lambda (w)
-                         (not (window-iconifiable-p w)))))
+                         (not (or (window-iconifiable-p w)
+				  (not (window-get w 'never-iconify)))))))
       (,(lambda (w)
           (if (window-maximized-p w)
               (_ "Unma_ximize")
             (_ "Ma_ximize"))) maximize-window-toggle
             (insensitive . ,(lambda (w)
                               (not (or (window-maximized-p w)
-                                       (window-maximizable-p w))))))
-      (,(_ "_Move") move-window-interactively)
-      (,(_ "_Resize") resize-window-interactively)
-      (,(_ "_Close") delete-window)
+                                       (window-maximizable-p w)
+				       (not (window-get w 'never-maximize)))))))
+      (,(_ "_Move") move-window-interactively
+       (insensitive . ,(lambda (w)
+			 (window-get w 'fixed-position))))
+      (,(_ "_Resize") resize-window-interactively
+       (insensitive . ,(lambda (w)
+			 (window-get w 'fixed-size))))
+      (,(_ "_Close") delete-window
+       (insensitive . ,(lambda (w)
+			 (window-get w 'never-delete))))
       ()
       (,(_ "_Toggle") . window-ops-toggle-menu)
       (,(_ "In _group") . window-group-menu)
-      (,(_ "_Send window to")
-       (,(_ "_Previous workspace") send-to-previous-workspace)
-       (,(_ "_Next workspace") send-to-next-workspace))
-      (,(_ "C_opy window to")
-       (,(_ "P_revious workspace") copy-to-previous-workspace)
-       (,(_ "Ne_xt workspace") copy-to-next-workspace))
+      (,(_ "_Workspace")
+       (,(_ "Move to _Previous workspace") send-to-previous-workspace)
+       (,(_ "Move to _Next workspace") send-to-next-workspace)
+       ()
+       (,(_ "Copy to P_revious workspace") copy-to-previous-workspace)
+       (,(_ "Copy to Ne_xt workspace") copy-to-next-workspace))
       (,(_ "_Grow & Pack")
        (,(_ "Grow left") grow-window-left)
        (,(_ "Grow right") grow-window-right)
@@ -171,7 +179,7 @@ before killing it.")
 
   (define (add-poweroff-menu)
     "Add poweroff related menu items to Session sub-menu."
-    (require 'sawfish.wm.commands.poweroff)
+    (user-require 'sawfish.wm.commands.poweroff)
     (let ((menu (assoc (_ "Sessi_on") root-menu)))
       (when menu
 	(nconc menu `(()
@@ -385,13 +393,13 @@ before killing it.")
     (let ((item (list* label command
 		       (and predicate (list (cons 'check predicate))))))
       (let loop ((rest window-ops-toggle-menu))
-         (cond
-          ((null rest)
-           (setq window-ops-toggle-menu (nconc window-ops-toggle-menu
-                                               (list item))))
-          ((eq (cadar rest) command)
-           (rplaca rest item))
-          (t (loop (cdr rest)))))))
+	(cond
+	 ((null rest)
+	  (setq window-ops-toggle-menu (nconc window-ops-toggle-menu
+					      (list item))))
+	 ((eq (cadar rest) command)
+	  (rplaca rest item))
+	 (t (loop (cdr rest)))))))
 
 ;;; customize menu
 
