@@ -1,3 +1,94 @@
+2010-11-27  Teika kazura <teika@lavabit.com>
+	* lisp/sawfish/wm/commands.jl
+	* man/news.texi: Minor bugfix of interactive "call-command".
+	It used to print an error message when you cancel an interactive
+	call of `call-command' with the escape key, but it doesn't any
+	more.
+
+	* OPTIONS
+	* lisp/sawfish/wm/commands.jl
+	* lisp/sawfish/wm/util/nokogiri.jl
+	* man/news.texi
+	* man/sawfish.texi: New function `report-commands'.
+
+	* man/sawfish.texi: Revised "commands" section a bit.
+
+	* lisp/sawfish/wm/commands.jl
+	* man/news.texi
+	* man/sawfish.texi
+	* sawfish.el: Dropped two outdated featuers in command definition.
+	Function 'define-command-args' is deleted. In 'define-command',
+	'doc-key' arg is dropped.
+
+2010-11-13  Teika kazura <teika@lavabit.com>
+	* lisp/sawfish/wm/commands/x-cycle.jl
+	* man/news.texi: cycle-among-groups bugfix.
+	Previously, when window-cycle is limited to the same workspace or
+	viewport, then not all window groups were not cycled.
+
+	* OPTIONS
+	* lisp/sawfish/wm/focus.jl
+	* man/news.texi
+	* man/sawfish.texi: Minor bugfix.
+	`focus-ignore-pointer-events' was customizable, but not now.
+	This variable is used internally, and introduced in commit 1c544853.
+	Sometime it was turned to a defcustom, but it confuses users. So now a plain defvar.
+
+	* man/sawfish.texi
+	* po/README: Minor doc.
+
+	* po/*: Added a note to translators.
+
+2010-11-10  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/windows.jl: make get-window-by-role return nil if matching using a
+				      regex, rather than throwing an error
+				      reduce rename-window-func to props that actually work
+
+2010-11-09  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/windows.jl: added window-role function
+				      merged get-window-by-name-re into get-window-by-name
+				      added possibility to get-window-by-name to check on icon-name
+				      merged get-window-by-class-re into get-window-by-class
+				      added get-window-by-role
+				      added dummy get-window-by-class-re for compat
+				      added dummy get-window-by-name-re for compat
+
+	* lisp/sawfish/wm/commands/jump-or-exec.jl: updated
+
+2010-11-06  Teika kazura <teika@lavabit.com>
+	* man/news.texi
+	* sawfish.el: supports let-loop indent.
+
+	* lisp/sawfish/gtk/widget.jl
+	* lisp/sawfish/wm/commands.jl
+	* lisp/sawfish/wm/custom.jl
+	* lisp/sawfish/wm/state/wm-spec.jl
+	* lisp/sawfish/wm/util/ping.jl: Corrected indents of 'let' using
+	new sawfish.el.
+
+	* lisp/sawfish/wm/integration/kde.jl
+	* lisp/sawfish/wm/user.jl
+	* man/news.texi: Bugfix: It was impossible for users to override
+	`kde-desktop-directories'.
+
+	* lisp/sawfish/wm/autoload.jl
+	* lisp/sawfish/wm/keymaps.jl
+	* lisp/sawfish/wm/menus.jl
+	* lisp/sawfish/wm/util/compat.jl
+	* man/news.texi: Renamed popup-window-menu to popup-window-ops-menu.
+	Old name is supported, too.
+
+	* OPTIONS
+	* lisp/sawfish/wm/menus.jl
+	* man/news.texi
+	* man/sawfish.texi
+	* po/README
+	* sawfish.spec.in: Doc.
+	Section of "popup menu" is rewritten.
+	"commandp" doc correction; t can be returned only for symbols.
+	Minor po/README update.
+	RPM spec file is declared to be unofficial.
+
 2010-10-23  Christopher Bratusek <zanghar@freenet.de>
 	* lisp/sawfish/wm/windows.jl: remove desktop check from rename-window-func
 

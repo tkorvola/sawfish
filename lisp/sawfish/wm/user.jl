@@ -146,9 +146,14 @@ Possible values are \"kde\", \"gnome\", \"xfce\", or \"none\".")
       (error
        (format (stderr-file) "error in local config--> %S\n" error-data))))
 
+  (when (equal desktop-environment "kde")
+    (sawfish.wm.integration.kde#kde-late-init))
+
   ;; generate apps-menu from *.desktop files
+  ;; initialize the screen-edges
   (unless batch-mode
-    (init-apps-menu))
+    (init-apps-menu)
+    (edges-activate t))
 
   ;; apply customized font-colors
   (if use-custom-font-color

@@ -21,7 +21,6 @@
 (define-structure sawfish.wm.commands
 
     (export define-command
-	    define-command-args
 	    autoload-command
 	    command-ref
 	    command-type
@@ -31,6 +30,7 @@
 	    prefix-numeric-argument
 	    commandp
 	    command-documentation
+	    report-commands
 
 	    ;; autoloaded from with-output.jl
 	    call-command-with-output-to-screen
@@ -51,6 +51,13 @@
 	  sawfish.wm.events
 	  sawfish.wm.windows.subrs
 	  sawfish.wm.util.with-output)
+
+  (defvar customize-command-classes '(default)
+    "In configurator \"binding\" section, show commands of
+these classes. For possible keys, see `command-classes-all'".)
+
+  (defvar command-classes-all '(default advanced viewport deprecated)
+    "List of all command classes.")
 
   (defvar pre-command-hook '()
     "Hook called before calling each command.")
@@ -79,15 +86,13 @@ evaluated.")
   (define autoloader (make-autoloader getter setter))
   (define real-getter (autoloader-ref getter))
 
-  (define (apply-command-keys name #!key spec type doc doc-key class)
+  (define (apply-command-keys name #!key spec type doc class)
     (when spec
       (put name 'command-spec spec))
     (when type
       (put name 'custom-command-args type))
     (when doc
       (put name 'command-doc doc))
-    (when doc-key
-      (put name 'command-doc-key doc-key))
     (when class
       (put name 'command-class class)))
 
@@ -98,10 +103,6 @@ be used to define the arguments expected by the command. (an
 interactive specification and a custom-type specification respectively)."
     (setter name fun)
     (apply apply-command-keys name keys))
-
-  ;; obsolete, use define-command
-  (define (define-command-args name spec)
-    (put name 'custom-command-args spec))
 
   (define (autoload-command name module . keys)
     "Record that loading the module called MODULE (a symbol) will provde a
@@ -163,7 +164,7 @@ command called NAME (optionally whose arguments have custom-type TYPE)."
 
 	    ((commandp name)
 	     ;; a named command
-	     (command-ref name)			;so spec is loaded
+	     (command-ref name) ;so spec is loaded
 	     (let ((spec (command-spec name))
 		   args)
 	       (when spec
@@ -218,22 +219,22 @@ command called NAME (optionally whose arguments have custom-type TYPE)."
 			    (setq point (+ point 2)))
 			(setq code (aref spec point))
 			(setq point (1+ point)))
-			(let ((end (if (string-match "(\n|$)" spec point)
-				       (match-start)
-				     (length spec))))
-			  (unless (= point end)
-			    (setq prompt (substring spec point end)))
-			    (setq point (1+ end)))
-			(let (arg)
-			  (let-fluids ((arg-can-be-nil nil))
-			    (setq arg (if local
-					  (local-codes code prompt)
-					(global-codes code prompt)))
-			    (when (and (not (fluid arg-can-be-nil))
-				       (null arg))
-			      (error "Null argument to command: %s"
-				     name)))
-			    (loop (cons arg args) point)))))))
+		      (let ((end (if (string-match "(\n|$)" spec point)
+				     (match-start)
+				   (length spec))))
+			(unless (= point end)
+			  (setq prompt (substring spec point end)))
+			(setq point (1+ end)))
+		      (let (arg)
+			(let-fluids ((arg-can-be-nil nil))
+			  (setq arg (if local
+					(local-codes code prompt)
+				      (global-codes code prompt)))
+			  (when (and (not (fluid arg-can-be-nil))
+				     (null arg))
+			    (error "Null argument to command: %s"
+				   name)))
+			(loop (cons arg args) point)))))))
 	  ((functionp spec) (spec))
 	  ((consp spec) (user-eval spec))))
 
@@ -268,6 +269,7 @@ command called NAME (optionally whose arguments have custom-type TYPE)."
        (prompt-for-function prompt))
 
       ((#\C)
+       (fluid-set arg-can-be-nil t)
        (require 'sawfish.wm.util.prompt)
        (prompt-for-command prompt))
 
@@ -347,8 +349,6 @@ command called NAME (optionally whose arguments have custom-type TYPE)."
   (define (command-documentation name)
     "Return the documentation associated with the command called NAME."
     (cond ((get name 'command-doc))
-	  ((get name 'command-doc-key)
-	   (doc-file-ref (get name 'command-doc-key)))
 	  (t
 	   (let ((value (command-ref name)))
 	     ;; assume that the command has the same name as
@@ -359,6 +359,29 @@ command called NAME (optionally whose arguments have custom-type TYPE)."
 		 (and (closurep value) (closure-name value)
 		      (documentation (intern (closure-name value))
 				     nil value)))))))
+
+  (define (report-commands #!optional type all)
+    "Returns the list of commands. Each element is the symbol of
+a command name, and they're sorted alphabetically.
+
+The optional argument TYPE is for internal use. When it's non-nil,
+(command-name #:type type-param) is returned for commands with
+\"type\", instead of a symbol.
+
+If the optional argument ALL is nil, returns commands only user wants,
+i.e. those specified by `customize-command-class' are included. Else,
+all commands are returned."
+    (let ((classes (if all
+		       command-classes-all
+		     customize-command-classes)))
+      (mapcar (lambda (sym)
+		(let ((params (command-type sym)))
+		  (if (and type params)
+		      (list sym #:type params)
+		    sym)))
+	      (sort (apropos "" (lambda (x)
+				  (and (commandp x)
+				       (memq (command-class x) classes))))))))
 
 ;;; some default commands
 

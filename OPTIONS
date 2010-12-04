@@ -56,7 +56,7 @@
 ;;    "Show variable names of each customization option.")
 
 ;;  (defvar-setq customize-command-classes '(default)
-;;    "In configurator \"binding\" section, also include commands of these
+;;    "In configurator \"binding\" section, show commands of these
 ;;  classes. Possible keys are default, advanced, viewport, and deprecated.")
 
 ;; focus options
@@ -71,9 +71,6 @@
 ;;  (defvar-setq focus-dont-push nil
 ;;    "When true, focusing a window doesn't change it's position in the
 ;;stack of most-recently focused windows.")
-
-;;  (defvar-setq focus-ignore-pointer-events nil
-;;    "When true, pointer in/out events don't cause focus changes.")
 
 ;;  (defvar-setq focus-windows-when-mapped t
 ;;    "Focus application windows when they first appear.")
@@ -178,8 +175,10 @@
 ;:  applications menu.")
 
 ;; (defvar-setq apps-menu-show-all nil
-;;    "Some entries are hidden from the menu, especially GNOME Apps like
-;;     eog, nautilus or evince. Settings this variable to 'nil will generate
+;;    "Some entries are hidden from the menu, for example GNOME specific
+;;     applications like eog, nautilus or evince.
+;;
+;;     Settings this variable to 'nil will generate
 ;;     a menu that honours NoDisplay, Hidden OnlyShowIn and NotShowIn fields.
 ;;     In other words it generates the same menu like GNOME or KDE.
 ;;     If this variable is set to 'maybe the NoDisplay and Hidden fields are
@@ -667,10 +666,10 @@
 ;; (defvar-setq infinite-desktop-p t
 ;;   "\"Infinite desktop\", or smooth viewport motion with mouse (Conflicts edge-flipping).")
 
-;; (defvar-setq infinite-desktop.move-distance 64
+;; (defvar-setq infinite-desktop-move-distance 64
 ;;   "Amount to move the viewport when the pointer hits the screen edge.")
 
-;; (defvar-setq infinite-desktop.move-cursor-distance 32
+;; (defvar-setq infinite-desktop-move-cursor-distance 32
 ;;   "Amount to pull back the cursor after moving the viewport.")
 
 ;; poweroff options

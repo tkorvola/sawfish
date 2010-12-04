@@ -32,6 +32,7 @@
 	    maybe-lower-window)
 
     (open rep
+	  sawfish.wm.menus
 	  sawfish.wm.misc
 	  sawfish.wm.custom
 	  sawfish.wm.commands
@@ -61,6 +62,7 @@
   (define maybe-raise-window raise-window*)
   (define maybe-lower-window lower-window*)
 
+  (define popup-window-menu popup-window-ops-menu)
 ;;; obsolete commands
 
   (define (define-commands index)
@@ -83,7 +85,13 @@
     (define-commands i))
 
   (define-command 'insert-workspace (command-ref 'insert-workspace-after)
+    #:doc "Obsolete. Renamed to insert-workspace-after."
     #:class 'deprecated)
+
+  (define-command 'popup-window-menu (command-ref 'popup-window-ops-menu)
+    #:doc "Obsolete. Renamed to popup-window-ops-menu."
+    #:class 'deprecated
+    #:spec "%W")
 
 ;;; obsolete options
 
@@ -100,7 +108,7 @@
           warp-to-window-y-offset uniquify-name-format
           transients-get-focus decorate-transients
           raise-windows-on-uniconify uniconify-to-current-workspace
-          iconify-ignored
+          iconify-ignored focus-ignore-pointer-events
           focus-windows-on-uniconify transients-are-group-members
           raise-selected-windows warp-to-selected-windows
           menus-include-shortcuts configure-auto-gravity

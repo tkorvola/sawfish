@@ -25,9 +25,8 @@
      ;; this module re-exports them for convenience.
      (structure-interface sawfish.wm.windows.subrs)
      (export get-window-by-name
-	     get-window-by-name-re
 	     get-window-by-class
-	     get-window-by-class-re
+	     get-window-by-role
 	     window-really-wants-input-p
 	     window-transient-p
 	     mark-window-as-transient
@@ -38,6 +37,7 @@
 	     window-in-cycle-p
 	     window-class
 	     window-pid
+	     window-role
 	     warp-cursor-to-window
 	     activate-window
 	     constrain-dimension-to-hints
@@ -60,7 +60,11 @@
 	     call-after-property-changed
 	     call-after-state-changed
 	     rename-window-func
-	     rename-window-interactive))
+	     rename-window-interactive
+	     
+	     ;; dummy
+	     get-window-by-class-re
+	     get-window-by-name-re))
 
     (open rep
 	  rep.system
@@ -124,29 +128,48 @@
 
 ;;; finding windows, reading properties
 
-  (define (get-window-by-name name)
-    "Find a window object whose window-name is NAME. Returns nil if no such
-window is found."
-    (car (filter-windows (lambda (w)
-			   (string= (window-name w) name)))))
+  (define (get-window-by-name name #!key regex icon)
+    "Find a window object whose window-name is NAME. If REGEX is set then find
+a window object whose window-name matches NAME. If ICON is set then window-icon-name
+is being checked instead. Returns nil if no such window is found."
+    (if icon 
+        (if regex
+	    (car (filter-windows (lambda (w)
+				   (string-match name (window-icon-name w)))))
+	  (car (filter-windows (lambda (w)
+				 (string= (window-icon-name w) name)))))
+      (if regex
+          (car (filter-windows (lambda (w)
+			         (string-match name (window-name w)))))
+        (car (filter-windows (lambda (w)
+  			       (string= (window-name w) name)))))))
 
   (define (get-window-by-name-re name)
-    "Find a window object whose window-name matches the regexp NAME.
-Returns nil if no such window is found."
-    (car (filter-windows (lambda (w)
-			   (string-match name (window-name w))))))
+    (get-window-by-name name #:regex t))
 
-  (define (get-window-by-class class)
-    "Find a window object whose window-class is CLASS. Returns nil if no such
-window is found."
-    (car (filter-windows (lambda (w)
-			   (string= (window-class w) class)))))
+  (define (get-window-by-class class #!key regex)
+    "Find a window object whose window-class is CLASS. If REGEX is set then find
+a window object whose window-class matches CLASS. Returns nil if no such window
+is found."
+    (if regex
+        (car (filter-windows (lambda (w)
+			       (string-match class (window-class w)))))
+      (car (filter-windows (lambda (w)
+  			     (string= (window-class w) class))))))
 
   (define (get-window-by-class-re class)
-    "Find a window object whose window-class matches the regexp CLASS.
-Returns nil if no such window is found."
-    (car (filter-windows (lambda (w)
-			   (string-match class (window-class w))))))
+    (get-window-by-class class #:regex t))
+
+  (define (get-window-by-role role #!key regex)
+    "Find a window object whose window-role is ROLE. If REGEX is set then
+find a window object whose window-role matches ROLE. Returns nil if no such
+window is found."
+    (if regex
+        (car (filter-windows (lambda (w)
+			       (when (window-role w)
+				 (string-match role (window-role w))))))
+      (car (filter-windows (lambda (w)
+			    (string= (window-role w) role))))))
 
   (define (window-really-wants-input-p w)
     "Return nil if window W should never be focused."
@@ -234,6 +257,11 @@ is returned."
     "Returns the window pid, or nil if not available."
     (when (caddr (get-x-property win '_NET_WM_PID))
       (aref (caddr (get-x-property win '_NET_WM_PID)) 0)))
+
+  (define (window-role win)
+    "Returns the window role, or nil if not available."
+    (when (get-x-text-property win 'WM_WINDOW_ROLE)
+      (aref (get-x-text-property win 'WM_WINDOW_ROLE) 0)))
 
   (define (get-window-wm-protocols w)
     "Return a list of symbols defining the X11 window manager protocols
@@ -543,11 +571,7 @@ STATES has been changed. STATES may also be a single symbol."
 
   (define (rename-window-func window new-name)
       (set-x-text-property window 'WM_NAME (vector new-name))
-      (set-x-text-property window 'WM_ICON_NAME (vector new-name))
-      ;; XXX doesn't have any effect?
-      (set-x-text-property window '_NET_WM_VISIBLE_NAME (vector new-name))
-      (set-x-text-property window '_NET_WM_NAME (vector new-name))
-      (set-x-text-property window '_NET_WM_ICON_NAME (vector new-name)))
+      (set-x-text-property window 'WM_ICON_NAME (vector new-name)))
 
   (define (rename-window-interactive w)
     (require 'sawfish.wm.util.prompt)

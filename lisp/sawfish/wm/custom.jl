@@ -286,11 +286,11 @@ of choices."
       (setq full-group (list full-group)))
     (let loop ((group full-group)
 	       (parent custom-groups))
-         (if (null group)
-             parent
-           (loop (cdr group)
-                 (or (assq (car group) (cddr parent))
-                     (error "No such group: %S" full-group))))))
+      (if (null group)
+	  parent
+	(loop (cdr group)
+	      (or (assq (car group) (cddr parent))
+		  (error "No such group: %S" full-group))))))
 
   (define (custom-add-to-group cell full-group)
     (when (and (symbolp full-group) (not (null full-group)))
@@ -497,6 +497,7 @@ the user."
   (defgroup placement "Placement" :group misc)
   (defgroup stacking "Stacking" :group misc)
   (defgroup workspace "Workspaces")
+  (defgroup edge-actions "Edge Actions")
 
 ;;; loading user's customisations
 

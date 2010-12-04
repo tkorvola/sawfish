@@ -41,6 +41,17 @@ access git repository.)
 
 @itemize @bullet
 
+@item Notice
+@itemize @minus
+@item Renamed function @code{popup-window-menu} to @code{popup-window-ops-menu} [Teika kazura]
+
+Both the function and the command are renamed. The old name is still supported,
+but it's recommended to update your configuration.
+
+@item User option @code{focus-ignore-pointer-events} is deleted. [Teika kazura]@*
+In fact, it's for internal use, and should not have been a user option. Use your favorite focus mode instead.
+@end itemize
+
 @item Bug fixes
 @itemize @minus
 
@@ -52,6 +63,20 @@ invoked, if run without any desktop environment. Fixed it.
 @item Correctly build SawfishPager [Christopher Bratusek]
 
 It is ensured that SawfishPager builds correctly, by improving @file{sawfish.pc} file.
+
+@item KDE *.desktop files location [Teika Kazura]
+
+Previously, user's change of the variable
+@code{kde-desktop-directories} was ignored, but this is fixed.
+
+@item Window cycle among groups [Teika Kazura]
+
+Some windows were skipped in window cycles among groups. This is fixed.
+
+@item Cancellation of @code{call-command} [Teika kazura]
+
+It used to print an error message when you cancel an interactive call of
+@code{call-command} with the escape key, but it doesn't any more.
 @end itemize
 @item Misc Changes
 @itemize @minus
@@ -77,11 +102,20 @@ property of a window.
 @item Before you run @file{po/make-pot} to generate @file{sawfish.pot}, you
 now have to do @code{make all} at the top directory. Previously it was
 possible to produce wrong @file{sawfish.pot}.
-@item Banished some bogus items in @file{sawfish.pot}
 @item The Spanish translation has been updated [gnome-es translation-team]
+@item Updated @file{sawfish.pot} and subsequently all @file{*.po}. Banished some bogus items in @file{sawfish.pot}. (Developer's personal extensios had sneaked into.)
 @end itemize
 
-@item Emacs sawfish-mode now indents let-fluids correctly [Teika Kazura]
+@item New function @code{report-commands} [Teika kazura]@*
+It returns the list of all commands. (@pxref{Operations on Commands}).
+
+@item Emacs sawfish-mode now indents @code{let-fluids} and let-loop correctly [Teika Kazura]
+
+@item Documentations [Teika kazura]
+@itemize
+@item Section on popup menus is rewritten. (@pxref{Popup Menus})
+@item Correction: The function @code{commandp} can only take symbols as its argument. (@pxref{Operations on Commands})
+@end itemize
 
 @item SawfishConfig ``Window rules'' section changes [Teika Kazura]
 
@@ -90,7 +124,10 @@ Category @code{Placement} is renamed to @code{Geometry}.  The item
 @code{fixed-size} to @code{geometry}.
 
 @item Spec-File compatibility for RHEL 6beta [Kim B. Heino]
+@item Deletion of outdated features in command definition [Teika Kazura]
 
+Function @code{define-command-args} is deleted. In @code{define-command}
+function, the keyword argument @code{doc-key} is dropped.
 @end itemize
 @end itemize
 

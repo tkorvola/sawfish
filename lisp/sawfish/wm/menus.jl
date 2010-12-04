@@ -23,7 +23,7 @@
     (export menu-start-process
 	    menu-stop-process
 	    popup-menu
-	    popup-window-menu
+	    popup-window-ops-menu
 	    popup-window-list-menu
 	    popup-root-menu
 	    popup-apps-menu
@@ -86,6 +86,9 @@ before killing it.")
   (define menu-timer nil)
 
   (defvar window-ops-menu
+    ;; Mysterious underscore "_" before a string offers (human
+    ;; langugage) translation. The one inside of a string is
+    ;; a shortcut key.
     `((,(_ "Mi_nimize") iconify-window
        (insensitive . ,(lambda (w)
                          (not (or (window-iconifiable-p w)
@@ -147,9 +150,13 @@ before killing it.")
 
   (defvar window-ops-toggle-menu '())
 
+  ;; Window list menu
   (defvar window-menu nil)
 
   (defvar root-menu
+    ;; Mysterious underscore "_" before a stringoffers (human
+    ;; langugage) translation. The one inside of a string
+    ;; specifies shortcut key.
     `((,(_ "Sawfish Rootmenu"))
       ()
       (,(_ "_Windows") . window-menu)
@@ -251,6 +258,7 @@ before killing it.")
   (define (nicknamep arg) (fixnump arg))
   (define (nickname-ref nick) (table-ref nickname-table nick))
 
+  ;; Currently only use is to pass the window object.
   (define menu-args (make-fluid '()))
   (define where-is-fun (make-fluid '()))
 
@@ -310,6 +318,7 @@ before killing it.")
 	  (current-event-window orig-win))
 	(cond ((commandp result)
 	       (call-command result))
+	      ;; This supports (define (func) (interactive) ...)
 	      ((functionp result)
 	       (result))
 	      ((consp result)
@@ -364,7 +373,7 @@ before killing it.")
            (setq menu-active nil)
            (apply signal error-data))))))
 
-  (define (popup-window-menu w)
+  (define (popup-window-ops-menu w)
     "Display the menu listing all window operations."
     (let-fluids ((menu-args (list w)))
        (popup-menu window-ops-menu)))
@@ -382,7 +391,7 @@ before killing it.")
     (popup-menu apps-menu))
 
   ;;###autoload
-  (define-command 'popup-window-menu popup-window-menu #:spec "%W")
+  (define-command 'popup-window-ops-menu popup-window-ops-menu #:spec "%W")
   (define-command 'popup-root-menu popup-root-menu)
   (define-command 'popup-apps-menu popup-apps-menu)
   (define-command 'popup-window-list-menu popup-window-list-menu)
