@@ -1,3 +1,34 @@
+2010-12-20  Christopher Bratusek <zanghar@freenet.de>
+	* ChangeLog
+	* ChangeLog.TNG: merged
+
+	* man/news.texi: typo fixes
+			 updates
+
+2010-12-18  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/tabs/tabgroup.jl: fixed a regression that made all
+	windows in the group {un,}sticky when one became [fuchur]
+
+2010-12-17  Christopher Bratusek <zanghar@freenet.de>
+	* debian/control.in: make debian packaging scripts compatible with
+	Debian/Experimental
+
+2010-12-09  Christopher Bratusek <zanghar@freenet.de>
+	* configure.in
+	* lisp/sawfish/cfg/Makefile.in: fix installation for non-root-users by
+	not hardcoding /usr for icons and kde4-prefix [Stefano Sabatini]
+
+	* lisp/sawfish/wm/edge/actions.jl
+	* lisp/sawfish/wm/edge/viewport-drag.jl
+	* lisp/sawfish/wm/edge/hot-spots.jl
+	* lisp/sawfish/wm/edge/flip.jl: renamed functions and variables so that
+	they are easier to understand (activate/call/init confusion is gone now)
+	- options none and hot-spot merged together (none/hot-spot)
+	- code-cleanup in hot-spots
+	- corrected copyright header of viewport-drag
+	- some doc / indention fixes 
+	-- Teika Kazura
+
 2010-11-27  Teika kazura <teika@lavabit.com>
 	* lisp/sawfish/wm/commands.jl
 	* man/news.texi: Minor bugfix of interactive "call-command".
@@ -20,6 +51,28 @@
 	Function 'define-command-args' is deleted. In 'define-command',
 	'doc-key' arg is dropped.
 
+2010-11-20  Christopher Bratusek <zanghar@freent.de>
+	* lisp/sawfish/wm.jl: load & export edge-actions from here
+
+	* lisp/sawfish/wm/user.jl: init flippers from here automatically
+
+	* lisp/sawfish/wm/edge/hot-spots.jl: improved fallback values for
+	actions (no error messages with latest edge-actions)
+
+	* lisp/sawfish/wm/edge/actions.jl: removed edge-actions-enabled option
+					   simplified the code a bit
+					   combined actions for left & right edge
+					   combined actions for top & bottom edge
+					   also delay Hot-Spots for corners
+					   string-change for delay option
+					   changed in the action delay:
+					   	- Viewport-Drag = no delay
+						- Hot-Spot = half delay
+						- Edge-Flip = full delay
+
+2010-11-13  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/edge/hot-spots.jl: simplified hot-spots (now only takes funcs)
+
 2010-11-13  Teika kazura <teika@lavabit.com>
 	* lisp/sawfish/wm/commands/x-cycle.jl
 	* man/news.texi: cycle-among-groups bugfix.
@@ -39,6 +92,22 @@
 
 	* po/*: Added a note to translators.
 
+2010-11-12  Christopher Bratusek <zanghar@freenet.de>
+	* themes/Elberg-tabbed/theme.jl
+	* themes/get-S-tabbed/theme.jl: updated
+
+2010-11-11  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/tabs/tabgroup.jl: reframe windows from here [fuchur]
+					    remember title-position on uniconify [fuchur]
+					    reset tab-adjustments of themes (if required) [fuchur]
+					    small fixes [fuchur]
+
+	* lisp/sawfish/wm/frames.jl: call window-state-changed-hook while reframing a window,
+	updating the title-position [fuchur]
+
+	* themes/Elberg-tabbed/theme.jl
+	* themes/get-S-tabbed/theme.jl: updated
+
 2010-11-10  Christopher Bratusek <zanghar@freenet.de>
 	* lisp/sawfish/wm/windows.jl: make get-window-by-role return nil if matching using a
 				      regex, rather than throwing an error
@@ -54,6 +123,28 @@
 				      added dummy get-window-by-name-re for compat
 
 	* lisp/sawfish/wm/commands/jump-or-exec.jl: updated
+
+2010-11-08  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/DarkTab/theme.jl: small fix in right tabbar [fuchur]
+					    change default values for font colors [fuchur]
+					    added possibilty to change button-width [fuchur]
+
+2010-11-07  Christopher Bratusek <zanghar@freent.de>
+	* lisp/sawfish/wm/DarkTab/theme.jl: make right tabbar look like others [fuchur]
+
+2010-11-06  Christopher Bratusek <zanghar@freenet.de>
+	* src/flippers.c: build into sawfish and rename module to sawfish.wm.edge.subrs
+
+	* src/main.c
+	* src/Makefile.in
+	* lisp/sawfish/wm/edge/util.jl: updated
+
+	* lisp/sawfish/wm/edge/actions.jl: customizable actions for while-moving-hook
+	-- actions for when the pointer hits the edge and when a moving window hits the
+	   edge can now be setup differently (while-moving actions don't delay!)
+					   simplified edge-action-init function
+
+	* lisp/sawfish/wm/DarkTab/*: improved DarkTab theme [fuchur]
 
 2010-11-06  Teika kazura <teika@lavabit.com>
 	* man/news.texi
@@ -88,6 +179,152 @@
 	"commandp" doc correction; t can be returned only for symbols.
 	Minor po/README update.
 	RPM spec file is declared to be unofficial.
+
+2010-11-05  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/tabs/tab.jl: small fix for margin-l [fuchur]
+
+	* themes/DarkTab/*: added DarkTab theme by fuchur
+
+	* lisp/sawfish/wm/user.jl: set DarkTab as default theme
+
+	* themes/Makefile.in: updated
+
+2010-11-04  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/autoload.jl: removed tab-system from autoload [fuchur]
+
+	* lisp/sawfish/wm/tabs/tab.jl: added set-tab-adjustments function
+				       remove defcustoms
+				       renamed several classes [fuchur]
+				       removed cursor, x/y-justify from classes [fuchur]
+				       removed keymap from classes [fuchur]
+
+	* lisp/sawfish/wm/tabs/tabgroup.jl: add settings for state-changed title-position [fuchur]
+					    raise all windows automatically if one window in the
+					    tabgroup gets focus [fuchur] -- temporarly removed
+					    make all windows automatically sticky if one window in
+					    the tabgroup gets sticky [fuchur]
+					    improved hooks (faster tabgroups) [fuchur]
+					    some preparative work and small fixes [fuchur]
+
+	* lisp/sawfish/wm/keymaps.jl
+	* lisp/sawfish/wm/frames.jl: add keymaps and bindings for tabbar-horizontal and
+	tabbar-vertical [fuchur]
+
+	* lisp/sawfish/wm/focus.jl: add tab-raise-on-hver here (needs fixing, though) [fuchur]
+				    -- improved setter func
+
+	* lisp/sawfish/wm/gaol.jl: add sawfish.wm.tabs.tab to gaol'd modules [fuchur]
+
+	* lisp/sawfish/wm/ext/match-window.jl
+	* lisp/sawfish/wm/ext/window-history.jl: add title-position window matcher
+						 add title-position to remembered properties
+
+	* themes/Elberg-tabbed/theme.jl
+	* themes/get-S-tabbed/theme.jl: major rework for above changes [fuchur]
+
+	* lisp/sawfish/wm/edge/infinite-desktop
+	* lisp/sawfish/wm/edge/viewport-drag.jl: renamed module (and remaining functions)
+						 added structure-alias
+
+	* lisp/sawfish/wm/edge/actions.jl: updated for above change
+
+	* lisp/sawfish/wm/tabs/util.jl: removed => check new tabs-ng branch
+
+2010-11-02  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/edge/flip.jl: removed all defcustoms
+					removed now unused variables
+					removed most functions (only before-flip, after-flip
+					and edge-flip-activate remain)
+					changed the way it's activated
+					removed the delay timer
+
+	* lisp/sawfish/wm/edge/hot-spots.jl: removed all defcustoms
+					     renamed hot-spot-call to hot-spot-activate
+					     removed hot-spot-hook function
+					     changed the way it's activated
+					     removed the delay timer
+
+	* lisp/sawfish/wm/edge/infinite-desktop.jl: removed most defcustoms (only for distances are
+	left and moved from "Edge Flip/Infinite Desktop" to "Edge Actions" group in SawfishConfig)
+						    began to rename to viewport-drag
+						    removed infinite-desktop-enable
+						    renamed infinite-desktop-hook to infinite-desktop-activate
+						    changed the way it's activated
+
+	* lisp/sawfish/wm/edge/actions.jl: added edge-actions (unified edge-flip, hot-spots and
+	viewport-drag (ex infinite-desktop)). Each edge can now have a different action. Currently
+	there are: - hot-spot
+		   - flip-workspace
+		   - flip-viewport
+		   - viewort-drag
+		   - none
+	corners are preserved to hot-spot. edge-action is also responsible for properly activating
+	the eges and adding the required hooks to make flip and viewpor-drag work while moving a window
+	too. Now only one timer is being used to delay the activation (same for all actions now).
+	All configuration options now reside in the "Edge Actions" group in SawfishConfig.
+
+2010-10-28  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/edge/infinite-desktop.jl: make infinite-desktop work while moving a window
+
+2010-10-26  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/commands/jump-or-exec.jl: added toggle-or-exec wrapper
+	                                            updated introduction part
+
+2010-10-25  Christopher Bratusek <zanghar@freenet.de>
+	* lisp/sawfish/wm/ext/match-window.jl: add iconify-on-leave window-matcher
+
+	* lisp/sawfish/wm/commands/jump-or-exec.jl: syntax change (read the introduction in the file)
+	                                            merged toggle-or-exec into it
+
+	* lisp/sawfish/wm/edge/flip.jl
+	* lisp/sawfish/wm/edge/hot-spots.jl
+	* lisp/sawfish/wm/edge/infinite-desktop.jl: don't auto-enable infinit-desktop by just loading the module
+	                                            export hook-functions and also check on window-class before
+						    calling `onfocused' function
+
+2010-10-24  Christopher Bratusek <zanghar@freenet.de>
+	* src/flippers.c: add recreate-flippers function
+			  don't auto-enable flippers when loading
+			  renamed module to sawfish.wm.edge.flippers
+
+	* lisp/sawfish/wm/ext/edge-flip.jl: open sawfish.wm.util.flippers
+	                                    remove the eval-when-compile call
+					    removed three unneeded exports
+					    remove restart-flippers
+
+	* lisp/sawfish/wm/ext/infinite-desktop.jl
+	* lisp/sawfish/wm/edge/infinite-desktop.jl: moved file
+
+	* lisp/sawfish/wm/ext/edge-flip.jl
+	* lisp/sawfish/wm/edge/flip.jl: moved file
+
+	* lisp/sawfish/wm/edge/util.jl: added. flippers-activate (=> user-modules
+	should use THIS, not recreate-flippers (as it handles the hooks))
+	                                added get-active-corner function
+					added get-active-edge function
+					added defcustom for hot-spots-area here
+					 -- (as it's used by get-active-corner)
+
+	* OPTIONS
+	* src/fake-libexec
+	* lisp/Makefile.in
+	* src/Makefile.in: updated
+
+	* lisp/sawfish/wm/edge/infinite-desktop.jl: renamed infinite-desktop.move-distance to
+	infinite-desktop-move-distance and renamed infinite-desktop.move-cursor-distance to
+	infinite-desktop-move-cursor-distance (note `.' VS `-')
+	                                            improved infinite-desktop-enable
+						    ported get-active-edge function
+						    no longer depends on edge.flip
+
+	* README.IMPORTANT: updated
+
+	* configure.in: display a red warning
+
+	* lisp/sawfish/wm/edge/flip.jl: move add-hook calls to edge-flip-enable
+
+	* lisp/sawfish/wm/edge/hot-spots.jl: added hot-spots version 2.0.0
+	                                     no longer depends on edge.flip
 
 2010-10-23  Christopher Bratusek <zanghar@freenet.de>
 	* lisp/sawfish/wm/windows.jl: remove desktop check from rename-window-func
