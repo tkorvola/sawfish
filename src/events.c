@@ -69,7 +69,8 @@ static bool pointer_is_grabbed;
 
 static XID event_handler_context;
 
-static Atom xa_sawfish_timestamp;
+static Atom xa_sawfish_timestamp = None, xa_targets, xa_multiple, xa_timestamp,
+    xa_version, xa_atom_pair;
 
 /* is there xrand support? */
 static int has_randr = FALSE;
@@ -1277,6 +1278,112 @@ mapping_notify (XEvent *ev)
 }
 
 static void
+selection_clear (XEvent *ev)
+{
+    XSelectionClearEvent *scev = &ev->xselectionclear;
+    if (scev->selection == xa_wm_sn && scev->window == no_focus_window)
+	Fquit ();
+}
+
+static bool
+convert_selection (Window requestor, Atom target, Atom property)
+{
+    if (property == None)
+	return FALSE;
+    if (target == xa_targets)
+    {
+	long targets[4];
+	targets[0] = xa_targets;
+	targets[1] = xa_multiple;
+	targets[2] = xa_timestamp;
+	targets[3] = xa_version;
+	XChangeProperty(dpy, requestor, property, XA_ATOM, 32, PropModeReplace,
+			(unsigned char *)targets, 4);
+	return TRUE;
+    }
+    else if (target == xa_multiple)
+    {
+	Atom act_type;
+	int act_format;
+	bool good = FALSE;
+	unsigned char *pdata;
+	unsigned long n_items, bytes_left;
+	    
+	if (XGetWindowProperty(dpy, requestor, property, 0, 256,
+			       False, xa_atom_pair, &act_type, &act_format,
+			       &n_items, &bytes_left, &pdata) == Success)
+	{
+	    if (act_type == xa_atom_pair && act_format == 32
+		&& bytes_left <= 0 && n_items % 2 == 0)
+	    {
+		long *atoms = (long *) pdata;
+		int i;
+		bool some_failed = FALSE;
+		for (i = 0; i != n_items; i += 2)
+		    if (!convert_selection(requestor, atoms[i], atoms[i + 1]))
+		    {
+			some_failed = TRUE;
+			atoms[i + 1] = None;
+		    }
+		if (some_failed)
+		    XChangeProperty(dpy, requestor, property, xa_atom_pair, 32,
+				    PropModeReplace, pdata, n_items);
+		good = TRUE;
+	    }
+	    XFree(pdata);
+	}
+	return good;
+    }
+    else if (target == xa_timestamp)
+    {
+	long t = startup_time;
+	XChangeProperty(dpy, requestor, property, XA_INTEGER, 32,
+			PropModeReplace, (unsigned char *) &t, 1);
+	return TRUE;
+    }
+    else if (target == xa_version)
+    {
+	long version[2];
+	version[0] = 2;
+	version[1] = 0;
+	XChangeProperty(dpy, requestor, property, XA_INTEGER, 32,
+			PropModeReplace, (unsigned char *) version, 2);
+	return TRUE;
+    }
+    else
+	return FALSE;
+}
+
+static void
+selection_request (XEvent *ev)
+{
+    XSelectionRequestEvent *req = &ev->xselectionrequest;
+    XSelectionEvent reply;
+    reply.type = SelectionNotify;
+    reply.requestor = req->requestor;
+    reply.selection = req->selection;
+    reply.target = req->target;
+    /* Refuse by default. */
+    reply.property = None;
+    reply.time = req->time;
+    if (req->selection == xa_wm_sn && req->owner == no_focus_window
+	&& (req->time == CurrentTime || req->time >= startup_time))
+    {
+	Atom prop = req->property;
+	if (prop == None && req->target != xa_multiple)
+	    prop = req->target;
+	if (convert_selection(req->requestor, req->target, prop))
+	    reply.property = prop;
+    }
+    else
+        fprintf(stderr, "Selection request for %s, %s.\n",
+		XGetAtomName(dpy, req->selection),
+		req->time == CurrentTime ? "CurrentTime"
+		: req->time < startup_time ? "early" : "normal time");
+    XSendEvent(dpy, req->requestor, False, 0, (XEvent *) &reply);
+}
+
+static void
 shape_notify (XEvent *ev)
 {
     XShapeEvent *sev = (XShapeEvent *)ev;
@@ -1368,10 +1475,12 @@ get_server_timestamp (void)
 
     /* XXX There must be an easier method.. */
     while (XCheckWindowEvent (dpy, w, PropertyChangeMask, &ev)) ;
-    XSelectInput (dpy, w, PropertyChangeMask | KeyPressMask);
+    XSelectInput (dpy, w, PropertyChangeMask | NO_FOCUS_EVENTS);
+    if (xa_sawfish_timestamp == None)
+	xa_sawfish_timestamp = XInternAtom (dpy, "_SAWFISH_TIMESTAMP", False);
     XChangeProperty (dpy, w, xa_sawfish_timestamp,
 		     XA_STRING, 8, PropModeReplace, (unsigned char *)"foo", 3);
-    XSelectInput (dpy, w, KeyPressMask);
+    XSelectInput (dpy, w, NO_FOCUS_EVENTS);
     XWindowEvent (dpy, w, PropertyChangeMask, &ev);
 
     return ev.xproperty.time;
@@ -1761,6 +1870,8 @@ events_init (void)
     event_handlers[ReparentNotify] = reparent_notify;
     event_handlers[CreateNotify] = create_notify;
     event_handlers[CirculateNotify] = circulate_notify;
+    event_handlers[SelectionClear] = selection_clear;
+    event_handlers[SelectionRequest] = selection_request;
     event_handlers[MappingNotify] = mapping_notify;
 
 #ifdef DEBUG
@@ -1899,6 +2010,11 @@ events_init (void)
     if(!batch_mode_p ())
     {
 	xa_sawfish_timestamp = XInternAtom (dpy, "_SAWFISH_TIMESTAMP", False);
+	xa_targets = XInternAtom (dpy, "TARGETS", False);
+	xa_multiple = XInternAtom (dpy, "MULTIPLE", False);
+	xa_timestamp = XInternAtom (dpy, "TIMESTAMP", False);
+	xa_version = XInternAtom (dpy, "VERSION", False);
+	xa_atom_pair = XInternAtom (dpy, "ATOM_PAIR", False);
 	last_event_time = get_server_timestamp ();
     }
 }
