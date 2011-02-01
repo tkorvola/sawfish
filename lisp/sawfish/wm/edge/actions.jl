@@ -20,7 +20,7 @@
 
 (define-structure sawfish.wm.edge.actions
 
-    (export edges-activate)
+    (export activate-edges)
 
     (open rep
 	  rep.system
@@ -39,20 +39,20 @@
     :group edge-actions
     :type (choice none/hot-spot viewport-drag flip-workspace flip-viewport))
 
-  (defcustom left-right-edge-move-action 'none/hot-spot
+  (defcustom left-right-edge-move-action 'none
     "Action for the left and right screen-edge while moving a window."
     :group edge-actions
-    :type  (choice none/hot-spot viewport-drag flip-workspace flip-viewport))
+    :type  (choice none viewport-drag flip-workspace flip-viewport))
 
   (defcustom top-bottom-edge-action 'none/hot-spot
     "Action for the top and bottom screen-edge."
     :group edge-actions
     :type (choice none/hot-spot viewport-drag flip-workspace flip-viewport))
 
-  (defcustom top-bottom-edge-move-action 'none/hot-spot
+  (defcustom top-bottom-edge-move-action 'none
     "Action for the top and bottom screen-edge while moving."
     :group edge-actions
-    :type  (choice none/hot-spot viewport-drag flip-workspace flip-viewport))
+    :type  (choice none viewport-drag flip-workspace flip-viewport))
 
   (define (edge-action-call func edge)
     (case func
@@ -87,16 +87,16 @@
 		 (eq edge 'bottom))
 	     (edge-action-call top-bottom-edge-move-action edge)))))
 
-  (define (edges-activate init)
+  (define (activate-edges init)
     (if init
 	(progn
-	  (flippers-activate t)
+	  (activate-flippers t)
 	  (unless (in-hook-p 'enter-flipper-hook edge-action-hook-func)
 	    (add-hook 'enter-flipper-hook edge-action-hook-func))
 	  ;; While the pointer is grabbed, window enter/leave events
 	  ;; are not generated.
 	  (unless (in-hook-p 'while-moving-hook edge-action-move-hook-func)
 	    (add-hook 'while-moving-hook edge-action-move-hook-func)))
-      (flippers-activate nil)
+      (activate-flippers nil)
       (remove-hook 'enter-flipper-hook edge-action-hook-func)
       (remove-hook 'while-moving-hook edge-action-move-hook-func))))

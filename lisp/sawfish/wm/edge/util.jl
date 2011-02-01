@@ -22,7 +22,7 @@
 
     (compound-interface
      (structure-interface sawfish.wm.edge.subrs)
-     (export flippers-activate
+     (export activate-flippers
 	     get-active-corner
 	     get-active-edge))
 
@@ -35,22 +35,20 @@
 
   (define-structure-alias edge-util sawfish.wm.edge.util)
 
-  (define (flippers-activate enable)
+  (define (activate-flippers enable)
     (if enable
         (progn
 	  (recreate-flippers)
-	  (unless (in-hook-p 'after-restacking-hook flippers-after-restacking)
-	    (add-hook 'after-restacking-hook flippers-after-restacking))
+	  (unless (in-hook-p 'after-restacking-hook raise-flippers)
+	    (add-hook 'after-restacking-hook raise-flippers))
 	  (unless (in-hook-p 'randr-change-notify-hook recreate-flippers)
 	    (add-hook 'randr-change-notify-hook recreate-flippers)))
-      (disable-flippers)
-      (if (in-hook-p 'after-restacking-hook flippers-after-restacking)
-	  (remove-hook 'after-restacking-hook flippers-after-restacking))
-      (if (in-hook-p 'randr-change-notify-hook recreate-flippers)
-	  (remove-hook 'randr-change-notify-hook recreate-flippers))))
+      (destroy-flippers)
+      (remove-hook 'after-restacking-hook raise-flippers)
+      (remove-hook 'randr-change-notify-hook recreate-flippers)))
 
-  (defcustom hot-spots-area 50
-    "Lenght in px (in both x and y direction) wich is used as hot-spots-area."
+  (defcustom hot-spots-corner-lenght 50
+    "Lenght in px (in both x and y direction) wich is used for the hot-spot corners."
     :type number
     :range (5 . 500)
     :group edge-actions)
@@ -58,28 +56,28 @@
   (define (get-active-corner)
     (let ((cursor-x (car (query-pointer)))
 	  (cursor-y (cdr (query-pointer))))
-      (cond ((or (and (< cursor-x hot-spots-area)
+      (cond ((or (and (< cursor-x hot-spots-corner-lenght)
 		      (<= cursor-y 1))
 		 (and (<= cursor-x 1)
-		      (< cursor-y hot-spots-area)))
+		      (< cursor-y hot-spots-corner-lenght)))
 	     'top-left)
 
-	    ((or (and (> cursor-x (- (screen-width) hot-spots-area))
+	    ((or (and (> cursor-x (- (screen-width) hot-spots-corner-lenght))
 		      (<= cursor-y 1))
 		 (and (>= cursor-x (- (screen-width) 1))
-		      (< cursor-y hot-spots-area)))
+		      (< cursor-y hot-spots-corner-lenght)))
 	     'top-right)
 
-	    ((or (and (> cursor-x (- (screen-width) hot-spots-area))
+	    ((or (and (> cursor-x (- (screen-width) hot-spots-corner-lenght))
 		      (>= cursor-y (- (screen-height) 1)))
 		 (and (>= cursor-x (- (screen-width) 1))
-		      (> cursor-y (- (screen-height) hot-spots-area))))
+		      (> cursor-y (- (screen-height) hot-spots-corner-lenght))))
 	     'bottom-right)
 
-	    ((or (and (< cursor-x hot-spots-area)
+	    ((or (and (< cursor-x hot-spots-corner-lenght)
 		      (>= cursor-y (- (screen-height) 1)))
 		 (and (<= cursor-x 1)
-		      (> cursor-y (- (screen-height) hot-spots-area))))
+		      (> cursor-y (- (screen-height) hot-spots-corner-lenght))))
 	     'bottom-left))))
 
   (define (get-active-edge)

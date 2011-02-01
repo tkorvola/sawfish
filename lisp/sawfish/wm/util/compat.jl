@@ -20,16 +20,20 @@
 
 (define-structure sawfish.wm.util.compat
 
-    (export show-message
-	    ws-copy-window
-	    ws-move-window
-	    ws-insert-workspace
-	    ws-remove-workspace
-	    custom-set-color
+    (export custom-set-color
 	    custom-set-font
 	    custom-set-frame-style
+	    get-window-by-class-re
+	    get-window-by-name-re
 	    maybe-raise-window
-	    maybe-lower-window)
+	    maybe-lower-window
+	    popup-window-menu
+	    rename-window-func
+	    show-message
+	    ws-copy-window
+	    ws-insert-workspace
+	    ws-move-window
+	    ws-remove-workspace)
 
     (open rep
 	  sawfish.wm.windows
@@ -65,6 +69,12 @@
 
   (define popup-window-menu popup-window-ops-menu)
   (define rename-window-func rename-window)
+
+  (define (get-window-by-class-re class)
+    (get-window-by-class class #:regex t))
+
+  (define (get-window-by-name-re name)
+    (get-window-by-name name #:regex t))
 
 ;;; obsolete commands
 
@@ -129,7 +139,11 @@
           infinite-desktop.stop-at-workspace-borders
 	  edge-flip-enabled edge-flip-type edge-flip-only-when-moving
 	  infinite-desktop-p infinite-desktop.move-distance
-	  infinite-desktop.move-cursor-distance ))
+	  infinite-desktop.move-cursor-distance
+	  tab-left-dec-width tab-right-dec-width
+	  tab-left-margin tab-right-margin
+	  tab-left-margin-transient tab-right-margin-transient
+	  ))
 
 ;;; obsolete custom setters
 
