@@ -64,6 +64,11 @@ Possible values are \"kde\", \"gnome\", \"xfce\", or \"none\".")
   (defvar want-poweroff-menu t
     "Add poweroff menu if you don't use GNOME / KDE / XFCE.")
 
+  (defvar after-init-hook nil
+    "Hook to be run after initialisation.
+Can be used to repair damage done in user.jl after reading
+.sawfish/rc.")
+
   (setq *user-structure* 'user)
 
   ;; frame-style loaded if user hasn't set their own
@@ -190,7 +195,9 @@ Possible values are \"kde\", \"gnome\", \"xfce\", or \"none\".")
 	(do-load arg))
        ((member arg '("-q" "--quit"))
 	(throw 'quit 0))
-       (t (do-load arg))))))
+       (t (do-load arg)))))
+
+  (call-hook 'after-init-hook))
 
 ;; prevent this file being loaded as a module
 nil
