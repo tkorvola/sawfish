@@ -59,7 +59,8 @@
 	     avoided-windows
 	     call-after-property-changed
 	     call-after-state-changed
-	     rename-window))
+	     rename-window
+	     toggle-fixed-postion))
 
     (open rep
 	  rep.system
@@ -159,7 +160,7 @@ window is found."
 			       (when (window-role w)
 				 (string-match role (window-role w))))))
       (car (filter-windows (lambda (w)
-			    (string= (window-role w) role))))))
+			     (string= (window-role w) role))))))
 
   (define (window-really-wants-input-p w)
     "Return nil if window W should never be focused."
@@ -317,6 +318,9 @@ specified by the user."
 ;;; resizing windows in accordance with their size hints
 
   (define (constrain-dimension-to-hints x dimension hints)
+    ;; User asks the value DIMENSION as a window dimension.
+    ;; X is either 'x or 'y.
+    ;; Return value is the DIMENSION constrained by HINTS.
     (let ((base (cdr (assq (if (eq dimension 'x)
 			       'base-width 'base-height) hints)))
 	  (minimum (cdr (assq (if (eq dimension 'x)
@@ -569,7 +573,14 @@ STATES has been changed. STATES may also be a single symbol."
   (define-command 'rename-window rename-window
     #:spec "%W\nsEnter new window name:")
 
-  ;;; gaollable functions
+  (define (toggle-fixed-postion w)
+    "Toggle the window property `fixed-position'."
+     (if (window-get w 'fixed-position)
+	 (window-put w 'fixed-position nil)
+       (window-put w 'fixed-position t))
+     (call-window-hook 'window-state-change-hook w (list '(fixed-position))))
+  (define-command 'toggle-fixed-postion toggle-fixed-postion #:spec "%W")
+;;; gaollable functions
 
   (gaol-add window-really-wants-input-p window-class window-avoided-p
 	    call-after-property-changed call-after-state-changed
@@ -580,4 +591,5 @@ STATES has been changed. STATES may also be a single symbol."
 	    window-transient-p window-urgent-p window-shaped-p window-visible-p
 	    window-framed-p window-id window-group-id window-size-hints
 	    call-window-hook input-focus window-icon-image map-windows
-	    filter-windows))
+	    filter-windows current-event-window window-put
+	    move-window-to resize-window-to))

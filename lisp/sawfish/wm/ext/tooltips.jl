@@ -119,8 +119,7 @@
 	(add-hook 'pre-command-hook remove-tooltip))))
 
   (define (remove-tooltip)
-    (when (in-hook-p 'pre-command-hook remove-tooltip)
-      (remove-hook 'pre-command-hook remove-tooltip))
+    (remove-hook 'pre-command-hook remove-tooltip)
     (when tooltips-displayed
       (display-message nil)
       (setq tooltips-displayed nil))
@@ -194,11 +193,12 @@
 	  items)
       (when (symbolp keymap)
 	(setq keymap (symbol-value keymap)))
-      (map-keymap (lambda (cell)
-		    (setq items (cons (cons (event-name (cdr cell))
-					    (command-info (car cell))) items)))
-		  keymap)
-      (display-tooltip (tooltips-format (nreverse items)))))
+      (when (cdr keymap)
+	(map-keymap (lambda (cell)
+		      (setq items (cons (cons (event-name (cdr cell))
+					      (command-info (car cell))) items)))
+		    keymap)
+	(display-tooltip (tooltips-format (nreverse items))))))
 
   (define (tooltips-fp-enter win fp)
     (declare (unused win))

@@ -72,7 +72,7 @@ Can be used to repair damage done in user.jl after reading
   (setq *user-structure* 'user)
 
   ;; frame-style loaded if user hasn't set their own
-  (define fallback-frame-style 'DarkTab)
+  (define fallback-frame-style 'StyleTab)
 
   (define rc-files '("~/.sawfishrc" "~/.sawfish/rc"))
 
@@ -118,6 +118,7 @@ Can be used to repair damage done in user.jl after reading
 ;;; From here, executed at startup.
 
   ;; load ~/.sawfish/rc
+  (setq error-destination 'init)
   (unless (get-command-line-option "--no-rc")
     (condition-case error-data
 	(progn
@@ -196,7 +197,10 @@ Can be used to repair damage done in user.jl after reading
        ((member arg '("-q" "--quit"))
 	(throw 'quit 0))
        (t (do-load arg)))))
-
+  
+  (when (eq error-destination 'init)
+    (setq error-destination 'standard-error))
+    
   (call-hook 'after-init-hook))
 
 ;; prevent this file being loaded as a module

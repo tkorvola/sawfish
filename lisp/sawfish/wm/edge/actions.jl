@@ -1,4 +1,4 @@
-;; edge-action.jl -- Edges taken to another dimension
+;; edge/actions.jl -- Sets up central user interface of edge-actions
 
 ;; Copyright (C) 2010 Christopher Roy Bratusek <zanghar@freenet.de>
 
@@ -50,7 +50,7 @@
     :type (choice none/hot-spot viewport-drag flip-workspace flip-viewport))
 
   (defcustom top-bottom-edge-move-action 'none
-    "Action for the top and bottom screen-edge while moving."
+    "Action for the top and bottom screen-edge while moving a window."
     :group edge-actions
     :type  (choice none viewport-drag flip-workspace flip-viewport))
 
@@ -62,7 +62,9 @@
        (edge-flip-invoke edge 'workspace))
       ((flip-viewport)
        (edge-flip-invoke edge 'viewport))
-      (t (hot-spot-invoke edge))))
+      ((none/hot-spot)
+       (hot-spot-invoke edge))
+      (t nil)))
 
   ;; Entry point without dragging 
   (define (edge-action-hook-func)

@@ -36,7 +36,6 @@
 	     apply-frame-style
 	     apply-frame-style-and-save
 	     window-type
-         adjustment-title
 	     set-window-type
 	     push-window-type
 	     pop-window-type
@@ -327,12 +326,10 @@ generate.")
 		  (reload-frame-style style))))
 	    frame-style-files)))
 
-  (define (adjustment-title w)
-    (call-window-hook 'window-state-change-hook w (list '(title-position))))
-
 ;;; applying frame styles to windows
 
   (define (reframe-window w)
+    (require 'sawfish.wm.tabs.tabgroup)
     (adjustment-title w)
     (if (window-get w 'ignored)
 	(progn
@@ -665,10 +662,10 @@ generate.")
 			       (cursor . ,(cursor-for-frame-part 'title))))
 
   (define-frame-class 'tabbar-horizontal `((keymap . tabbar-keymap)
-			       (cursor . ,(cursor-for-frame-part 'title))))
+					   (cursor . ,(cursor-for-frame-part 'title))))
 
   (define-frame-class 'tabbar-vertical `((keymap . tabbar-keymap)
-			       (cursor . ,(cursor-for-frame-part 'title))))
+					 (cursor . ,(cursor-for-frame-part 'title))))
 
   (mapc (lambda (x)
 	  (define-frame-class x `((cursor . ,(cursor-for-frame-part x))
@@ -683,7 +680,8 @@ generate.")
 	    def-frame-class define-frame-class after-setting-frame-option
 	    frame-part-get frame-part-put frame-part-window frame-part-x-window
 	    frame-part-position frame-part-dimensions frame-part-state
-	    map-frame-parts refresh-frame-part refresh-window rebuild-frame-part)
+	    map-frame-parts refresh-frame-part refresh-window rebuild-frame-part
+	    reload-frame-style)
 
   (add-hook 'add-window-hook reframe-window t)
   (add-hook 'shape-notify-hook reframe-window t)
