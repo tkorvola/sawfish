@@ -330,7 +330,7 @@ generate.")
 
   (define (reframe-window w)
     (require 'sawfish.wm.tabs.tabgroup)
-    (adjustment-title w)
+    (adjust-title w)
     (if (window-get w 'ignored)
 	(progn
 	  (window-put w 'current-frame-style nil)
@@ -593,6 +593,7 @@ generate.")
         (setcdr item (delete-if (lambda (it) (eq (car it) key))
                                 (cdr item))))))
 
+  ;; Example:
   ;; (def-frame-class shade-button '((cursor . foo) ...)
   ;;   (bind-keys shade-button-keymap
   ;;     "Button1-Off" 'toggle-window-shaded))

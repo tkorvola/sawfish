@@ -9,6 +9,8 @@ between. For more detailed information see the @file{ChangeLog} file
 in the Sawfish source tree, or git log.  (See the Wiki on how to
 access git repository.)
 
+Each release lists incompatible changes at its top.
+
 @c @heading x.y.z ``Code name''
 @c @itemize @bullet
 
@@ -37,35 +39,39 @@ access git repository.)
 @c @end itemize
 @c @end itemize
 
-@heading 1.8.0 "Unity Without Words"
+@heading 1.8.0 "思いやり (Omoiyari)"
 
 @itemize @bullet
 
-@item Notes
+@item Incompatible changes
 @itemize @minus
 @item Infinite-desktop and edge-flip needs updates.
 
-Open the configurator -> ``Edge Actions''. Changes must be easy.  (Set
+Open the configurator -> ``Edge Actions''. Changes will be easy. (Set
 4 pull-downs, and you're done mostly. ``Infinite-desktop'' is renamed to
 ``viewport-drag''.) For more options, see ``Edge Actions'' below.
 
-If your @file{~/.sawfish/rc} opens related modules, delete them. These
-modules are renamed, and you don't have to manually load them any
+If your @file{~/.sawfish/rc} opens related modules, delete those references.
+These modules are renamed, and you don't have to manually load them any
 more.
 
-@item Function renames [Teika kazura]
+@item Renamed functions [Teika kazura]
 @itemize
-@item Popup of operations-menu on a window, from @code{popup-window-menu} to @code{popup-window-ops-menu} (both the function and command). Old names are still available.
-@item Window rename, from @code{rename-window-func} to @code{rename-window}. (Old name is still avialable.) The function @code{rename-window-interactive} is deleted. Use @code{(call-command 'rename-window)} instead.
+@item Popup of operations-menu on a window, renamed from @code{popup-window-menu} to @code{popup-window-ops-menu} (both the function and command). Old names are still available.
+@item Renamed window rename, from @code{rename-window-func} to @code{rename-window}. (Old name is still avialable.) The function @code{rename-window-interactive} is deleted. Use @code{(call-command 'rename-window)} instead.
 @end itemize
 
 Even if the old names still remain, it is highly recommended to update.
 
 @item Syntax-change in @code{jump-or-exec} [Christopher Bratusek]
 
-The @code{class} and @code{onfocused} parameters are now keys, so pass them as
-#:class ''value'' or #:onfocused ''value''. Check @file{jump-or-exec.jl} for
-more detailed examples.
+The previous @code{class} and @code{onfocused} parameters are now
+keys, and pass them as ``#:match-class t/nil'' or ``#:onfocused
+value''. Note that @code{match-class} is @emph{boolean}; To pass a
+class, set @code{#:match-class t} and pass the class name to the
+argument @code{regex}. (@pxref{Application Invocation})
+
+@item Apps-menu options @code{apps-menu-show-all} is deleted. See below for more.
 
 @item User option @code{focus-ignore-pointer-events} is deleted. [Teika kazura]@*
 In fact, it's for internal use, and should not have been a user option. Use your favorite focus mode instead.
@@ -81,7 +87,7 @@ All are collected under @file{sawfish/wm/animation}. @code{window-anim.jl} -> @c
 @item Fixed installation for non-root users [Stefano Sabatini]
 
 Previously when installing to a private directory as an ordinary user, the installation failed, because some files
-were forced to be installed in /usr. This is fixed now. 
+were forced to be installed in /usr. This is fixed now.
 
 @item Session files installation [Christopher Bratusek]
 
@@ -95,7 +101,7 @@ Now you can choose which session files (default: all) to install with these conf
 
 
 @item Spec-File compatibility for RHEL 6 beta [Kim B. Heino]
-@item Debian-Scripts compatibility for Debian/Experimental [Christopher Bratusek]
+@item Debian-Scripts (mostly) updated to the new specification [Christopher Bratusek]
 @end itemize
 @item Bug fixes
 @itemize @minus
@@ -119,6 +125,12 @@ Sawfish wrongly reported a focus change during a grab as
 
 Some windows were skipped in window cycles among groups. This is fixed.
 
+@item No more crash at loading wrong theme code [Teika Kazura]
+
+From Sawfish-1.7.0, Sawfish used to crash when a theme with wrong code
+is loaded, but it's fixed. It's not complete, and for example some
+mxflat options make Sawfish crash.
+
 @item Cancellation of @code{call-command} [Teika kazura]
 
 It used to print an error message when you cancel an interactive call of
@@ -139,11 +151,11 @@ mouse pointer hits a screen-edge. It includes former ``edge-flip'' and
 feature ``hot-spot''.
 
 Edge-flip and viewport-drag can be configured from the
-configurator ``Edge Actions'' group. Options must be easy to
+configurator ``Edge Actions'' group. Options are easy to
 understand.
 
 ``Hot-spot'' lets you assign an action to each screen-edge and
--corner. An action has to be a function, and can be set in
+-corner. An action has to be a lisp function, and can be set in
 @file{~/.sawfish/rc}, like this:
 
 @lisp
@@ -151,7 +163,7 @@ understand.
   (lambda () (display-message "hello world")))
 @end lisp
 
-Hot-spot variable names consist of position (e.g. top-left or bottom) + ``edge''/''corner'' + ``function''. A lisp expression will be evaluated in the @code{user} module.
+Hot-spot variable names consist of position (e.g. top-left or bottom) + ``edge''/''corner'' + ``function''.
 
 Other related changes are:
 @itemize *
@@ -210,11 +222,20 @@ Many improvements in tab system are done. For example, stickiness change
 on a window applies to all other windows in the same tab group, though
 maybe not yet complete. (Please tell us things you noticed.)
 
-When you use a tab capable theme (Elberg-Tabbed or Get-S-Tabbed), you
+When you used a tab capable theme (Elberg-Tabbed or Get-S-Tabbed), you
 had to manually adjust positions by pixel, but it's not necessary any
 more.
 
 When a lot of windows are open, they should now be more responsive.
+
+@item Application menu is fully customizable [Matthew Love]
+
+With the new option @code{apps-menu-filter}, you can fully customize
+the application menu. For the full description, see @xref{Applications
+Menu}.
+
+It replaces former options like @code{apps-menu-show-all} or
+@code{apps-menu-ignore-no-display}.
 
 @item Per-window animation mode [Teika kazura]
 
@@ -234,6 +255,19 @@ For the details, see @xref{Window Attributes}, and @xref{Getting Windows}.
 @item Added functions @code{window-role} and @code{get-window-by-role} (return NET_WM_ROLE) 
 @item Deleted @code{get-window-by-name-re} and @code{get-window-by-class-re}. Use instead @code{get-window-by-name} or @code{get-window-by-class} with the new boolean option @code{#:regex}. (The old name is still supported.)
 @item added @code{#:icon} switch to @code{get-window-by-name} to get a window via NET_WM_ICON_NAME (can be used with #:regex switch, too)
+
+@item Commands to resize a window [Christopher Bratusek, Teika kazura]
+
+Four new commands to resize a window where you can specify
+the size by pixels are there. You're either prompted to type in
+the new size, or you can preset it in the configurator.
+
+For the new command @code{resize-window-to-preset-size}, first you
+specify a size in the configurator. The focused window will be resized
+to that preset size on invocation. There're also commands to change
+only one of the height and width.
+
+@code{resize-window-prompt} prompts you to enter the new size.
 @end itemize
 
 @item Window-operation menu improvements [Christopher Bratusek]
@@ -254,7 +288,7 @@ now have to do @code{make all} at the top directory. Previously it was
 possible to produce wrong @file{sawfish.pot}.
 @item Translation updates: Spanish [gnome-es team], German [gnome-de team],
 Simplified-Chinese [gnome-zh_CN team, Wang Lei], Norwegian/bokmål [gnome-no
-team] French [gnome-fr team], and Slovenian [gnome-sl team].
+team] French [gnome-fr team], Czech [gnome-cs team] and Slovenian [gnome-sl team].
 @item Updated @file{sawfish.pot} and subsequently all @file{*.po}. Banished some bogus items in @file{sawfish.pot}.
 (Developer's personal extensions had sneaked in.)
 @end itemize
@@ -429,7 +463,8 @@ Applications menu now looks more like that of GNOME / KDE / XFCE if
 one is running. (further improvements are planned)
 
 The user option @code{apps-menu-ignore-no-display} is now gone
-and replaced by @code{apps-menu-show-all}.
+and replaced by @code{apps-menu-show-all}. [Note: After Sawfish-1.8.0, 
+this option is superseded by @code{apps-menu-filter}.]
 
 If @code{apps-menu-show-all} is @code{nil} (default), the menu
 looks much like that of GNOME / KDE / Xfce, by hiding some

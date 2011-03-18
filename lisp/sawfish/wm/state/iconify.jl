@@ -83,6 +83,9 @@
     :type (choice none transients group)
     :group min-max)
 
+  (defvar iconify-window-hook nil)
+  (defvar uniconify-window-hook nil)
+
   (define (window-iconified-p w) (window-get w 'iconified))
 
   (define (window-iconifiable-p w)
@@ -266,4 +269,12 @@ all workspaces and viewports."
   (add-hook 'map-notify-hook ws-set-client-state t)
   (call-after-state-changed '(iconified) ws-set-client-state)
 
-  (add-window-menu-toggle (_ "_Sticky") 'toggle-window-sticky window-sticky-p))
+  (add-window-menu-toggle (_ "_Sticky") 'toggle-window-sticky window-sticky-p)
+
+  (define (iconify-on-leave-fun w mode)
+    (when (and (eq mode 'normal)
+	       (windowp w)
+	       (window-get w 'iconify-on-leave))
+      (iconify-window w)))
+
+  (add-hook 'leave-notify-hook iconify-on-leave-fun))
