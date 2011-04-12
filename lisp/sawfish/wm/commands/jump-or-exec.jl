@@ -48,8 +48,9 @@
 	  (curwin (input-focus)))
       (cond ((and onfocused
 		  curwin
-		  (if match-class
-		      (string-match regex (window-class curwin))
+		  (if (and match-class
+		           (window-class curwin))
+			     (string-match regex (window-class curwin))
 		    (string-match regex (window-name curwin))))
 	     ;; Exec "onfocused"
 	     (cond ((commandp onfocused)
@@ -65,7 +66,7 @@
 	    ((commandp prog) (call-command prog))
 	    (t (user-eval prog)))))
 
-  (define-command 'jump-or-exec jump-or-exec #:class 'default)
+  (define-command 'jump-or-exec jump-or-exec)
 
   (define (toggle-or-exec regex prog #!key match-class)
     (jump-or-exec regex prog

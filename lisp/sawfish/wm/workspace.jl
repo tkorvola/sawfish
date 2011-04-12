@@ -149,7 +149,8 @@ a window"
   (define last-interesting-workspace nil)
 
   (defvar static-workspace-menus
-    `((,(_ "_Insert workspace") insert-workspace-after)
+    `((,(_ "_Insert workspace (before current)") insert-workspace-before)
+      (,(_ "_Insert workspace (after current)") insert-workspace-after)
       ()
       (,(_ "Select _next workspace") next-workspace)
       (,(_ "Select _previous workspace") previous-workspace)
@@ -393,20 +394,20 @@ a window"
 	      (- last-interesting-workspace first-space)))))
 
   ;; insert a new workspace (returning its index) so that the workspace
-  ;; before it has index BEFORE
-  (define (insert-workspace #!optional before)
-    (unless before
-      (setq before current-workspace))
+  ;; before it has index AFTER
+  (define (insert-workspace #!optional after)
+    (unless after
+      (setq after current-workspace))
     (map-windows
      (lambda (w)
        (transform-window-workspaces (lambda (space)
-				      (if (> space before)
+				      (if (> space after)
 					  (1+ space)
 					space)) w)))
-    (when (> current-workspace before)
+    (when (> current-workspace after)
       (setq current-workspace (1+ current-workspace)))
     (call-hook 'workspace-state-change-hook)
-    (1+ before))
+    (1+ after))
 
   ;; merge workspace INDEX with workspace INDEX+1
   (define (remove-workspace #!optional index)
@@ -769,9 +770,9 @@ window to it."
 	   w orig-space (1- (car limits)) was-focused)))))
 
   (define-command 'append-workspace-and-send append-workspace-and-send
-    #:spec "%W\nt" #:class 'advanced)
+    #:spec "%W\nt")
   (define-command 'prepend-workspace-and-send prepend-workspace-and-send
-    #:spec "%W\nt" #:class 'advanced)
+    #:spec "%W\nt")
 
   (define (merge-next-workspace)
     "Delete the current workspace. Its member windows are relocated to the next
@@ -784,9 +785,9 @@ previous workspace."
     (remove-workspace (1- current-workspace)))
 
   (define-command 'merge-next-workspace merge-next-workspace
-    #:class 'advanced)
+   )
   (define-command 'merge-previous-workspace merge-previous-workspace
-    #:class 'advanced)
+   )
 
   (define (insert-workspace-after)
     "Create a new workspace following the current workspace."
@@ -799,9 +800,9 @@ previous workspace."
     (select-workspace (- current-workspace 2)))
 
   (define-command 'insert-workspace-after insert-workspace-after
-    #:class 'advanced)
+   )
   (define-command 'insert-workspace-before insert-workspace-before
-    #:class 'advanced)
+   )
 
   (define (move-workspace-forwards #!optional count)
     "Move the current workspace one place to the right."
@@ -812,9 +813,9 @@ previous workspace."
     (move-workspace current-workspace (- (or count 1))))
 
   (define-command 'move-workspace-forwards move-workspace-forwards
-    #:class 'advanced)
+   )
   (define-command 'move-workspace-backwards move-workspace-backwards
-    #:class 'advanced)
+   )
 
   (define (select-workspace-from-first count)
     (select-workspace (workspace-id-from-logical count)))
@@ -855,7 +856,7 @@ previous workspace."
 	(setq first-interesting-workspace last-interesting-workspace))))
 
   (define-command 'delete-empty-workspaces delete-empty-workspaces
-    #:class 'advanced)
+   )
 
   (define (delete-window-instance w)
     "Remove the copy of the window on the current workspace. If this is the
