@@ -1,3 +1,77 @@
+2011-06-26  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/integration/gnome.jl
+	* lisp/sawfish/wm/integration/kde.jl
+	* lisp/sawfish/wm/integration/xfce.jl: added menu-entries for locking
+	the screen
+
+2011-06-16  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/integration/xfce.jl: added hibernate and suspend
+	entries to xfce-integration module
+
+2011-05-21  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* debian/changelog
+	* debian/rules
+	* debian/postinst
+	* debian/sawfish-data.postinst
+	* Makefile.in: make packaging scripts work
+
+2011-05-05  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/commands/jump-or-exec.jl: reverted 2 commits
+
+	* lisp/sawfish/wm/windows.jl: more robustness for get-window-by
+	-name, -class, -role
+
+	* **/Makefile.in: remove VPATH to appease makepp [Daniel Pfeiffer]
+
+2011-04-26  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/autoload.jl: removed maybe-raise-tab
+	from autoload, aswell as viewport-linear stuff
+
+2011-04-16  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* configure.in: bump minimum rep to 0.92.0
+
+2011-04-15  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* sawfish.desktop
+	* sawfish-wm.desktop
+	* sawfish-ksm.desktop: unified order
+	                       spec compliance
+			       -- Kim B. Heino
+
+2011-04-14  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* configure.in
+	* Makefile.in
+	* sounds/Makefile.in
+	* themes/Makefile.in: remove version from install-paths
+
+	* debian/**: merged more stuff from Ian Zimmermann
+
+2011-04-13  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* Makefile.in: added debclean rule
+	               improved distclean rule
+		       improved gitclean rule
+
+	* config.h.in: removed from GIT
+
+	* config.guess
+	* config.sub: added
+
+	* Makedefs.in
+	* Makefile.in
+	* build-info
+	* sawfish.pc.in
+	* configure.in: removed architecture from install-paths
+
+	* sounds/Makefile.in
+	* src/Makefile.in: minor clean-ups -- Ian Zimmermann
+
+	* debian/**: merged scripts from Ian Zimmermann 
+
+2011-04-12  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* Makefile.in: don't remove NEWS upon clean or distclean
+
+	* configure.in
+	* sawfish.pc.in: improved pkg-config file (dependencies)
+
 2011-04-11  Christopher Roy Bratusek <nano@tuxfamily.org>
 	* man/sawfish.texi: updated EA docs
 	                    updated copyright year

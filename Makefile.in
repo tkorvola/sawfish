@@ -11,7 +11,7 @@
 #
 # sawfish is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
@@ -23,7 +23,6 @@ include ./Makedefs
 top_builddir=.
 top_srcdir=@top_srcdir@
 srcdir=@srcdir@
-VPATH=@srcdir@
 
 SUBDIRS = @SUBDIRS@
 
@@ -34,8 +33,8 @@ all : build.h DOC
 
 # this depends on config.status so it's rebuilt if configure is re-run
 build.h : build-info config.status
-	$(SHELL) $< $(host_type) $(version)$(subversion) \
-	  '$(sawfishdir)' '$(lispdir)' '$(sawfishexecdir)' '$(localedir)'
+	$(SHELL) $< $(version)$(subversion) '$(sawfishdir)' \
+		'$(lispdir)' '$(sawfishexecdir)' '$(localedir)'
 
 install : all installdirs
 	for dir in $(SUBDIRS); do \
@@ -58,7 +57,7 @@ install : all installdirs
 	fi
 
 installdirs : mkinstalldirs
-	$(SHELL) $< $(DESTDIR)$(sawfishdir)/$(version) \
+	$(SHELL) $< $(DESTDIR)$(sawfishdir) \
 	  $(DESTDIR)$(bindir) $(DESTDIR)$(sawfishexecdir) \
 	  $(DESTDIR)$(GNOMEDIR)/share/gnome/wm-properties \
 	  $(DESTDIR)$(datadir)/applications/ \
@@ -70,7 +69,7 @@ uninstall :
 	for dir in $(SUBDIRS); do \
 	  ( cd $$dir && $(MAKE) $@ ) || exit 1; \
 	done
-	rm -rf $(DESTDIR)$(sawfishdir)/$(version)
+	rm -rf $(DESTDIR)$(sawfishdir)
 	rm -f $(DESTDIR)$(libdir)/pkgconfig/sawfish.pc
 	if test $(XDM_SESSION) = "yes"; then \
 		rm -f $(DESTDIR)$(datadir)/xsessions/sawfish.desktop; \
@@ -92,21 +91,25 @@ clean :
 	-for dir in $(SUBDIRS); do \
 	  [ -d $$dir ] && ( cd $$dir && $(MAKE) $@ ) || exit 1; \
 	done
-	rm -f *~ NEWS DOC* TAGS build.h
+	rm -f *~ DOC* TAGS build.h
 
 distclean :
 	-for dir in $(SUBDIRS); do \
 	  [ -d $$dir ] && ( cd $$dir && $(MAKE) $@ ) || exit 1; \
 	done
 	rm -f config.cache config.h config.log config.status Makedefs Makefile
-	rm -f *~ NEWS DOC* TAGS build.h sawfish.pc
+	rm -f *~ DOC* TAGS build.h sawfish.pc
+
+debclean : distclean
+	rm -f sawfish*.ebuild sawfish.spec libtool ltmain.sh config.h.in NEWS
+	rm -f configure m4/*
 
 gitclean : distclean
 	rm -f aclocal.m4 configure
-	rm -rf autom4te.cache
+	rm -rf autom4te.cache m4/
+	rm -f libtool ltmain.sh
 	rm -f sawfish.spec sawfish*.ebuild
 	-fakeroot debian/rules clean
-
 
 TAGS :
 	etags --language=c `find $(srcdir) -name '*.[ch]' -print` \

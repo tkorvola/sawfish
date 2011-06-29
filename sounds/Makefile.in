@@ -24,10 +24,8 @@ include ../Makedefs
 top_builddir=..
 top_srcdir=@top_srcdir@
 srcdir=@srcdir@
-VPATH=@srcdir@:@top_srcdir@
 
-sitesoundsdir := ${sawfishdir}/sounds
-soundsdir := ${sawfishdir}/${version}/sounds
+soundsdir := ${sawfishdir}/sounds
 
 all :
 
@@ -36,8 +34,8 @@ install : all installdirs
 	  $(INSTALL_DATA) $$f $(DESTDIR)$(soundsdir); \
 	done
 
-installdirs : mkinstalldirs
-	$(SHELL) $< $(DESTDIR)$(soundsdir) $(DESTDIR)$(sitesoundsdir)
+installdirs : $(top_srcdir)/mkinstalldirs
+	$(SHELL) $< $(DESTDIR)$(soundsdir)
 
 uninstall :
 	rm -rf $(DESTDIR)$(soundsdir)
@@ -47,7 +45,7 @@ clean :
 
 distclean : gitclean
 
-gitlean : clean
+gitclean : clean
 	rm -f Makefile
 
 .PHONY : all install uninstall clean gitclean
