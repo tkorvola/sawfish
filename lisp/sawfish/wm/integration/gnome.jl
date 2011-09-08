@@ -1,6 +1,6 @@
 ;; gnome.jl -- GNOME integration
 
-;; Copyright (C) 2000 John Harper <john@dcs.warwick.ac.uk>
+;; Copyright (C) 2010 Christopher Roy Bratusek <nano@tuxfamily.org>
 
 ;; This file is part of sawfish.
 
@@ -56,6 +56,7 @@
       (when (setq menu (assoc (_ "Sessi_on") root-menu))
 	(nconc menu `(()
 		      (,(_ "_Customize GNOME") (system "gnome-control-center &"))
+		      (,(_ "_Edit GNOME menu") (system "alacarte &"))
 		      ()
 		      (,(_ "L_ock screen from GNOME")
 			(system "gnome-screensaver-command -l &"))

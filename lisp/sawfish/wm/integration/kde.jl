@@ -1,6 +1,6 @@
 ;; kde-int.jl -- KDE integration
 
-;; Copyright (C) 2000 John Harper <john@dcs.warwick.ac.uk>
+;; Copyright (C) 2010 Christopher Roy Bratusek <nano@tuxfamily.org>
 
 ;; This file is part of sawfish.
 
@@ -63,15 +63,23 @@
 	(setq kde-logout-cmd "qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout")
 	(nconc menu `(()
 		      (,(_ "_Customize KDE") (system "systemsettings &"))
+		      (,(_ "_Edit KDE menu") (system "kmenuedit &"))
 		      ()
 		      (,(_ "L_ock screen from KDE")
 			(system "qdbus org.kde.krunner /ScreenSaver Lock &"))
+		      (,(_ "S_witch User from KDE")
+			(system "qdbus org.kde.krunner /App switchUser &"))
+		      ()
 		      (,(_ "_Logout from KDE")
 		       (system ,(concat kde-logout-cmd " 1 0 -1 &")))
 		      (,(_ "_Reboot from KDE")
 		       (system ,(concat kde-logout-cmd " 1 1 -1 &")))
 		      (,(_ "_Shutdown from KDE")
-		       (system ,(concat kde-logout-cmd " 1 2 -1 &"))))))))
+		       (system ,(concat kde-logout-cmd " 1 2 -1 &")))
+		      (,(_ "S_uspend from KDE")
+			(system "qdbus org.kde.kded /org/freedesktop/PowerManagement Suspend &"))
+		      (,(_ "_Hibernate from KDE")
+			(system "qdbus org.kde.kded /org/freedesktop/PowerManagement Hibernate &")))))))
   
   ;; Returns nil if kde is not found.
   ;; If detected, returns t, and do also kde support init.
