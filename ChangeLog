@@ -1,3 +1,37 @@
+2011-10-04  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/ext/shade-stack.jl: added shade-stack feature.
+	Original code by: Luke Gorrie. Changes compared to original:
+		- module format // defun -> define
+		- renamed already-stacked to window-shade-stacked-p
+		- fixed bug were stacking couldn't be done,
+		  caused by inexact instead of exact integers
+
+2011-09-24  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* src/display.c: use XKB [Michal Maruska]
+
+	* src/pixmap-cache.c: - append_to_age_list rather than prepend
+			      - extend pixmap-cache-control to return more info
+			      - pixmap-cache-images: return the list of all
+			      images in cache
+			      -- [Michal Maruska]
+
+	* src/events.c: - simplify property_notify
+			- apply property change only if window has 'refresh
+			property
+			- avoid Xmap for gone windows
+			- possible segfault fix in leave_notify
+			-- [Michal Maruska]
+
+2011-09-16  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* src/display.c: when making X request, we might receive, and select
+	will stuck. This is prevented now. [Michal Maruska]
+
+	* src/display.c: drop unused prog_name from display.c [Michal Maruska]
+
+	* src/windows.c: mark mapped_not_override_p static [Michal Maruska]
+
+	* src/windows.c: better place for XAddToSaveSet [Michal Maruska]
+
 2011-09-08  Christopher Roy Bratusek <nano@tuxfamily.org>
 	* src/display.c: Fix a bug in manager selection handling. Set all
 	required fields of the client message event. Call XSync before
@@ -29,11 +63,6 @@
 
 2011-07-11  Christopher Roy Bratusek <nano@tuxfamily.org>
 	* lisp/sawfish/wm/windows.jl: fixed warping to a shaded window
-
-2011-07-06  Christopher Roy Bratusek <nano@tuxfamily.org>
-	* lisp/sawfish/wm/tabs/tab.jl
-	* themes/Elberg-tabbed/theme.jl
-	* themes/StyleTab/theme.jl: simplified set-tab-adjustments
 
 2011-06-26  Christopher Roy Bratusek <nano@tuxfamily.org>
 	* lisp/sawfish/wm/integration/gnome.jl

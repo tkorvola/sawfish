@@ -93,7 +93,7 @@ struct prop_handler {
 /* utilities */
 
 /* Returns true if we should manage window ID */
-bool
+static bool
 mapped_not_override_p (Window id)
 {
     XWindowAttributes wa;
@@ -308,6 +308,7 @@ install_window_frame (Lisp_Window *w)
 
 	XSelectInput (dpy, w->frame, FRAME_EVENTS);
 
+        XAddToSaveSet (dpy, w->id);
 	before_local_map (w);
 	XReparentWindow (dpy, w->id, w->frame, -w->frame_x, -w->frame_y);
 	w->reparented = TRUE;
@@ -317,7 +318,6 @@ install_window_frame (Lisp_Window *w)
 	if (queued_focus_id == w->id)
 	    queued_focus_id = w->frame;
 
-	XAddToSaveSet (dpy, w->id);
 	restack_frame_parts (w);
 	reset_frame_parts (w);
 
@@ -1609,7 +1609,8 @@ manage_windows (void)
     int revert_to;
 
     Fgrab_server ();
-
+    /* avoid Unmap events */
+    XSelectInput (dpy, root_window, ROOT_EVENTS & ~SubstructureNotifyMask);
     XGetInputFocus (dpy, &focus, &revert_to);
     if (focus == PointerRoot)
     {
@@ -1639,9 +1640,9 @@ manage_windows (void)
 	    fake.xmaprequest.window = children[i];
 	    /* Make sure the window is initially unmapped. We expect to
 	       get map-notify events when we later remap it.. #67601 */
-	    XUnmapWindow (dpy, children[i]);
+	    // XUnmapWindow (dpy, children[i]);
 	    map_request (&fake);
-	    w = find_window_by_id (children[i]);
+	    // w = find_window_by_id (children[i]);
 	}
     }
     initialising = FALSE;
@@ -1657,6 +1658,7 @@ manage_windows (void)
 	    focus_on_window (w);
     }
 
+    XSelectInput (dpy, root_window, ROOT_EVENTS);
     Fungrab_server ();
     Fcall_hook (Qafter_initialization_hook, Qnil, Qnil);
 }
