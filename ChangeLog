@@ -1,3 +1,23 @@
+2012-01-19  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/integration/razor.jl: fix razor-power calls
+
+2012-01-14  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* sawfish.spec: sync spec-file with Fedora [Kim B. Heino]
+
+2012-01-04  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/integration/razor.jl: add integration-module for
+	Razor-Qt
+
+	* lisp/sawfish/wm/user.jl: same
+
+2011-12-27  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/integration/mate.jl: add integration-module for MATE
+
+	* lisp/sawfish/wm/user.jl: same
+
+	* lisp/sawfish/wm/ext/single-window-mode.jl: properly call
+	maximize-window-fullscreen
+
 2011-10-04  Christopher Roy Bratusek <nano@tuxfamily.org>
 	* lisp/sawfish/wm/ext/shade-stack.jl: added shade-stack feature.
 	Original code by: Luke Gorrie. Changes compared to original:
