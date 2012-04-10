@@ -50,23 +50,25 @@
 	   sawfish.wm.edge.conf
 	   sawfish.wm.edge.actions
 	   sawfish.wm.frames
-	   sawfish.wm.menus)
+	   sawfish.wm.menus
+	   sawfish.wm.commands.launcher)
      (access sawfish.wm.integration.kde
 	     sawfish.wm.integration.gnome
 	     sawfish.wm.integration.xfce
 	     sawfish.wm.integration.mate
-	     sawfish.wm.integration.razor)
+	     sawfish.wm.integration.razor
+	     sawfish.wm.integration.lxde)
 
      (set-binds))
 
   ;; "none" looks ugly, but if you are to change it to "", fix
-  ;; apps-menu, too, or it will break. 
+  ;; apps-menu, too, or it will break.
   (defvar desktop-environment "none"
     "Running desktop environment, detected by Sawfish.
-Possible values are \"kde\", \"gnome\", \"mate\", \"xfce\", \"razor\" or \"none\".")
+Possible values are \"kde\", \"gnome\", \"mate\", \"xfce\", \"razor\", \"lxde\" or \"none\".")
 
   (defvar want-poweroff-menu t
-    "Add poweroff menu if you don't use GNOME / KDE / XFCE.")
+    "Add poweroff menu if you don't use GNOME / KDE / XFCE / Razor-Qt / LXDE.")
 
   (defvar after-init-hook nil
     "Hook to be run after initialisation.
@@ -113,7 +115,8 @@ Can be used to repair damage done in user.jl after reading
 	(sawfish.wm.integration.mate#detect-mate)
 	(sawfish.wm.integration.kde#detect-kde)
 	(sawfish.wm.integration.xfce#detect-xfce)
-	(sawfish.wm.integration.razor#detect-razor))
+	(sawfish.wm.integration.razor#detect-razor)
+	(sawfish.wm.integration.lxde#detect-lxde))
     )
 
   ;; Don't signal an error even if user "require" them. These modules
@@ -160,6 +163,15 @@ Can be used to repair damage done in user.jl after reading
 
   (when (equal desktop-environment "kde")
     (sawfish.wm.integration.kde#kde-late-init))
+
+  (if (equal filemanager "")
+      (let ((menu root-menu))
+        (nconc menu `(()
+                      (,(_ "_Kill Window") (system "xkill &")))))
+    (let ((menu root-menu))
+      (nconc menu `(()
+                    (,(_ "_Open Home") (filemanager "~"))
+                    (,(_ "_Kill Window") (system "xkill &"))))))
 
   ;; generate apps-menu from *.desktop files
   (unless batch-mode
