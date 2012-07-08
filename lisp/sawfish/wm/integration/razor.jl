@@ -16,7 +16,8 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301 USA.
 
 (define-structure sawfish.wm.integration.razor
 
@@ -65,7 +66,8 @@
       ;; add some Razor-Qt menu-entries
       (when (setq menu (assoc (_ "_Help") root-menu))
 	(nconc menu `(()
-		      (,(_ "Razor-Qt _Website") (browser "http://www.razor-qt.org")))))
+		      (,(_ "Razor-Qt _Website") (browser "http://www.razor-qt.org"))
+		      (,(_ "About Razor-Qt") (system "razor-about &")))))
 
       ;; add razor-logout and customize menu-entries
       (when (setq menu (assoc (_ "Sessi_on") root-menu))

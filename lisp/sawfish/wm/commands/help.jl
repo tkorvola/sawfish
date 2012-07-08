@@ -16,7 +16,8 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301 USA.
 
 (define-structure sawfish.wm.commands.help
 
@@ -49,9 +50,7 @@
   (define (show-homepage) (browser "http://sawfish.wikia.com/"))
 
   (define (show-about)
-    (system (format nil "%s >/dev/null 2>&1 </dev/null &"
-		    (expand-file-name "sawfish-about"
-				      sawfish-exec-directory))))
+    (system "sawfish-about >/dev/null 2>&1 </dev/null &"))
 
   ;;###autoload
   (define-command 'help:show-faq show-faq)

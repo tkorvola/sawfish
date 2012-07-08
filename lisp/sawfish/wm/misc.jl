@@ -16,7 +16,8 @@
 ;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor, 
+;; Boston, MA 02110-1301 USA.
 
 (declare (in-module sawfish.wm.misc))
 
@@ -70,6 +71,16 @@ to grab the keyboard then THUNK won't be called."
 	  (thunk))
       (when (zerop (setq grab-counter (1- grab-counter)))
 	(ungrab-keyboard)))))
+
+(define (call-with-pointer-grabbed thunk)
+  (when (grab-pointer)
+    (unwind-protect
+        (progn
+	  (setq grab-counter (1+ grab-counter))
+	  (thunk))
+      (when (zerop (setq grab-counter (1- grab-counter)))
+	(ungrab-pointer)))))
+
 
 (define (call-with-error-handler thunk)
   (condition-case data
@@ -200,7 +211,7 @@ by concatenating the sequence of strings SEQ."
 ;; exports
 
 (export-bindings
- '(with-server-grabbed call-with-server-ungrabbed
+ '(with-server-grabbed call-with-server-ungrabbed call-with-pointer-grabbed
                        call-with-keyboard-grabbed call-with-error-handler
                        make-directory-recursively locate-file
                        clamp clamp* uniquify-list screen-dimensions

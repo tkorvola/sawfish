@@ -16,7 +16,8 @@
 ;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor, 
+;; Boston, MA 02110-1301 USA.
 
 ;; Commentary:
 
@@ -178,16 +179,32 @@ Can be used to repair damage done in user.jl after reading
     (init-apps-menu))
 
   ;; initialize edges, unless disabled
-  (if (and (not batch-mode)
+  (when (and (not batch-mode)
 	   edge-actions-enabled)
       (activate-edges t))
 
-  ;; apply customized font-colors
-  (if use-custom-font-color
-      (update-frame-font-color))
+  ;; apply customized frame-fonts
+  (when use-custom-font
+    (update-frame-font))
 
-  (if want-poweroff-menu
-      (add-poweroff-menu))
+  ;; apply customized font-colors
+  (when use-custom-font-color
+    (update-frame-font-color))
+
+  ;; apply customized cursor-shapes
+  (when use-custom-button-cursor-shape
+    (update-button-cursor-shape))
+
+  ;; apply customized border-width/color
+  (when use-custom-border
+    (update-border-color-width))
+
+  ;; apply customized text-position
+  (when use-custom-text-position
+    (update-text-position))
+
+  (when want-poweroff-menu
+    (add-poweroff-menu))
 
   ;; use a default theme if none given
   (unless (or batch-mode default-frame-style)
@@ -218,7 +235,26 @@ Can be used to repair damage done in user.jl after reading
        ((member arg '("-q" "--quit"))
 	(throw 'quit 0))
        (t (do-load arg)))))
-  
+
+  (unless batch-mode
+    (add-hook 'before-restart-hook
+      (lambda () (let ((sc (get-window-by-class
+			     "Sawfish-Configurator" #:regex t)))
+		   (when sc
+		     (delete-window-safely sc)
+		     (system "touch ~/.restart_sc &")))))
+
+    (add-hook 'before-exit-hook
+      (lambda () (let ((sc (get-window-by-class
+			     "Sawfish-Configurator" #:regex t)))
+		   (when sc
+		     (delete-window-safely sc)))))
+
+    (when (file-exists-p "~/.restart_sc")
+      (system "sawfish-config &")
+      (delete-file "~/.restart_sc")))
+
+
   (when (eq error-destination 'init)
     (setq error-destination 'standard-error))
     

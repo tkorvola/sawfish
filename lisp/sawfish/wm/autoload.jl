@@ -16,7 +16,7 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 ;; to rebuild this file, load a tags file containing all lisp files
 ;; into Jade, then run:
@@ -193,4 +193,5 @@
 (autoload-command 'send-to-workspace-left 'sawfish.wm.ext.workspace-grid)
 (autoload-command 'send-to-workspace-right 'sawfish.wm.ext.workspace-grid)
 (autoload-command 'jump-or-exec 'sawfish.wm.commands.jump-or-exec)
+(autoload-command 'tile-windows 'sawfish.wm.edge.tile)
 ;;; ::autoload-end::

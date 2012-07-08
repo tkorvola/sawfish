@@ -16,53 +16,34 @@
 ;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 (define-structure sawfish.gtk.widgets.file
 
     (export )
 
     (open rep
+	  rep.io.files
           gui.gtk-2.gtk
           sawfish.gtk.widget)
 
   (define (make-file-item changed-callback)
-    (let* ((box (gtk-hbox-new nil box-spacing))
-	   (entry (gtk-entry-new))
-	   (button (gtk-button-new-with-label (_ "Browse..."))))
-      (gtk-container-set-border-width box box-border)
-      (gtk-box-pack-start box entry)
-      (gtk-box-pack-start box button)
+    (let* ((button (gtk-file-chooser-button-new '() 'open)))
+
       (when changed-callback
 	(g-signal-connect
-	 entry "changed" (make-signal-callback changed-callback)))
-      (g-signal-connect
-       button "clicked"
-       (lambda ()
-	 (let ((filesel (gtk-file-selection-new (_ "Select file"))))
-	   (gtk-file-selection-set-filename filesel (gtk-entry-get-text entry))
-	   (g-signal-connect
-	    (gtk-file-selection-ok-button filesel) "clicked"
-	    (lambda ()
-	      (gtk-entry-set-text
-	       entry (gtk-file-selection-get-filename filesel))
-	      (gtk-widget-destroy filesel)))
-	   (g-signal-connect
-	    (gtk-file-selection-cancel-button filesel) "clicked"
-	    (lambda () (gtk-widget-destroy filesel)))
-	   (g-signal-connect filesel "delete_event"
-                             (lambda () (gtk-widget-destroy filesel)))
-	   (gtk-widget-show filesel)
-	   (gtk-grab-add filesel))))
-      (gtk-widget-show box)
+	 button "file-set" (make-signal-callback changed-callback)))
+
+      (gtk-widget-show button)
+
       (lambda (op)
 	(case op
 	  ((set) (lambda (x)
-		   (gtk-entry-set-text entry (and (stringp x) x))))
+		   (gtk-file-chooser-select-filename button (or (and (file-exists-p x) x) ""))))
 	  ((clear) (lambda ()
-		     (gtk-entry-set-text entry "")))
-	  ((ref) (lambda () (gtk-entry-get-text entry)))
-	  ((gtk-widget) box)
+		     (gtk-file-chooser-select-filename button "")))
+	  ((ref) (lambda () (gtk-file-chooser-get-filename button)))
+	  ((gtk-widget) button)
 	  ((validp) (lambda (x) (stringp x)))))))
 
   (define-widget-type 'file make-file-item))

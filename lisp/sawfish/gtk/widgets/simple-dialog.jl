@@ -16,7 +16,8 @@
 ;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301 USA.
 
 ;;; History
 ;; This file was delete once by mistake, in the commit dbe8c2235, and
@@ -49,7 +50,7 @@
 	(gtk-widget-destroy window))
 
       (gtk-window-set-title window title)
-      (gtk-window-set-wmclass window "ok_cancel_dialog" "Nokogiri")
+      (gtk-window-set-wmclass window "SimpleDialog" "SawfishConfig")
       (gtk-container-set-border-width window box-border)
       (when main-window
 	(gtk-window-set-transient-for window main-window))

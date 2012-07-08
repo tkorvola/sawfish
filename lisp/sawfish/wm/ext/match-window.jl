@@ -16,7 +16,8 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301 USA.
 
 ;; Commentary:
 
@@ -74,7 +75,7 @@
 	       (new-workspace boolean)
 	       (new-viewport boolean)
 	       (viewport (pair (number 1) (number 1)))
-	       (depth (number -16 16 0))
+	       (depth (range (-16 . 16) 0))
 	       (placement-weight (number 0))
 	       (fixed-position boolean)
 	       (fixed-size boolean)
@@ -109,6 +110,7 @@
             (ignored boolean)
             (group ,(lambda ()
                       `(symbol ,@(delete-if-not symbolp (window-group-ids)))))
+            (tab-group string)
             (ungrouped boolean)
             (cycle-skip boolean)
             (window-list-skip boolean)
@@ -119,6 +121,7 @@
             (ignore-stacking-requests boolean)
 	    (auto-gravity boolean)
 	    (never-delete boolean)
+	    (never-expose boolean)
 	    )))
 
   ;; alist of (PROPERTY . FEATURE) mapping properties to the lisp
@@ -274,7 +277,7 @@
       (remove-window-matcher-core (list (cons rules (car props)))
 				  (cdr props)))
     )
-  
+
   (define (remove-window-matcher-core rules props)
     (let
 	((remove-from (lambda (slot)
@@ -445,7 +448,7 @@
   (define-match-window-setter 'dimensions
     (lambda (w prop value)
       (declare (unused prop))
-      (resize-window-with-hints w (car value) (cdr value))))
+      (resize-window-with-hints* w (car value) (cdr value))))
 
   (define-match-window-setter 'viewport
     (lambda (w prop value)
@@ -515,6 +518,11 @@
             (set-screen-viewport col row)
             (set-window-viewport w col row))))))
 
+  (define-match-window-setter 'tab-group
+    (lambda (w prop value)
+      (declare (unused prop))
+      (when value
+        (window-put w 'tab-group (intern value)))))
 
   (define-match-window-setter 'window-name
     (lambda (w prop value)
@@ -535,7 +543,7 @@
 	    ((eq value 'fullscreen)
 	     (window-put w 'queued-fullscreen-maximize t))
 	    ((eq value 'full-xinerama)
-	     (window-put w 'queued-fullxinerama-maximize))
+	     (window-put w 'queued-fullxinerama-maximize t))
 	    )))
 
   (define-match-window-setter 'keymap-trans

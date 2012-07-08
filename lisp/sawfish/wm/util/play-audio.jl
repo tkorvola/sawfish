@@ -16,7 +16,8 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor, 
+;; Boston, MA 02110-1301 USA.
 
 (define-structure sawfish.wm.util.play-audio
 
@@ -43,7 +44,7 @@
 playing *.wav file.
   You can't set any arguments to pass from this variable. If you want
 to give arguments or redirect output, write a wrapper program."
-    :type program
+    :type file
     :group audio)
 
   ;; currently running audio process

@@ -16,7 +16,8 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301 USA.
 
 (define-structure sawfish.wm.edge.conf
 
@@ -28,6 +29,9 @@
 
   (define-structure-alias edge-conf sawfish.wm.edge.conf)
 
+  (defvar before-edge-action-hook nil)
+  (defvar after-edge-action-hook nil)
+
   (defcustom edge-actions-enabled nil
     "Activate edges to perform various actions."
     :group edge-actions
@@ -37,22 +41,26 @@
   (defcustom left-right-edge-action 'none/hot-spot
     "Action for the left and right screen-edge."
     :group edge-actions
-    :type (choice none/hot-spot viewport-drag flip-workspace flip-viewport))
+    :type (choice none/hot-spot viewport-drag flip-workspace
+		  flip-viewport expose-windows show-desktop))
 
-  (defcustom left-right-edge-move-action 'none
+  (defcustom left-right-edge-move-action 'none/hot-move
     "Action for the left and right screen-edge while moving a window."
     :group edge-actions
-    :type  (choice none viewport-drag flip-workspace flip-viewport))
+    :type  (choice none/hot-move viewport-drag flip-workspace
+		   flip-viewport expose-windows expand-window maximize-window))
 
   (defcustom top-bottom-edge-action 'none/hot-spot
     "Action for the top and bottom screen-edge."
     :group edge-actions
-    :type (choice none/hot-spot viewport-drag flip-workspace flip-viewport))
+    :type (choice none/hot-spot viewport-drag flip-workspace
+		  flip-viewport expose-windows show-desktop))
 
-  (defcustom top-bottom-edge-move-action 'none
+  (defcustom top-bottom-edge-move-action 'none/hot-move
     "Action for the top and bottom screen-edge while moving a window."
     :group edge-actions
-    :type  (choice none viewport-drag flip-workspace flip-viewport))
+    :type  (choice none/hot-move viewport-drag flip-workspace
+		   flip-viewport expose-windows expand-window maximize-window))
 
   (defcustom edge-flip-delay 250
     "Delay (in milliseconds) of flipping of viewport / workspace."
@@ -69,8 +77,7 @@
   (defcustom hot-spots-corner-length 50
     "The size portion of the screen-border recognized as \"corners\",
 in pixels. Applies to both x and y direction."
-    :type number
-    :range (5 . 500)
+    :type (range (5 . 500))
     :group edge-actions)
 
   (defcustom viewport-drag-distance 64

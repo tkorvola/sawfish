@@ -16,7 +16,8 @@
 
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor, 
+;; Boston, MA 02110-1301 USA.
 
 (define-structure sawfish.wm.keymaps
 
@@ -216,6 +217,22 @@
 						  "Button4-Off" 'raise-window
 						  "Button5-Off" 'lower-window)
     "Keymap of \"raise/lower\" button. Mouse-bindings only."
+    :group bindings
+    :type keymap)
+
+  (defcustom next-workspace-button-keymap (bind-keys (make-keymap)
+					    "Button3-Off" 'send-to-previous-workspace
+					    "Button2-Click" 'popup-workspace-list
+					    "Button1-Off" 'send-to-next-workspace)
+    "Keymap of \"next-workspace\" button. Mouse-bindings only."
+    :group bindings
+    :type keymap)
+
+  (defcustom previous-workspace-button-keymap (bind-keys (make-keymap)
+					    "Button3-Off" 'send-to-next-workspace
+					    "Button2-Click" 'popup-workspace-list
+					    "Button1-Off" 'send-to-previous-workspace)
+    "Keymap of \"previous-workspace\" button. Mouse-bindings only."
     :group bindings
     :type keymap)
 
