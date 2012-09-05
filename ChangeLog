@@ -1,3 +1,89 @@
+2012-09-04  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/state/transient.jl: make decorate-transients a
+	defcustom.
+
+	* lisp/sawfish/wm/tabs/tab.jl: improve check-win. Always rebuild list
+	of marked windows when a marked window is closed. [fuchur]
+
+	* lisp/sawfish/wm/tabs/tabgroup.jl: add frame-style-tabs-support-p.
+	Only allow tabbing a window, if the frame-style of the parent window
+	has support for tabs [note that in Sawfish different windows can have
+	different frame-styles!] [fuchur]
+
+	* themes/StyleTab/theme.jl: updated for latest tab changes [fuchur]
+
+	* themes/Elberg-tabbed/theme.jl: support for tab-system as of 1.9.1
+	[fuchur]
+
+	* themes/gradient-tabbed/theme.jl: support for tab-system as of 1.9.1
+	[fuchur]
+
+	* lisp/sawfish/wm/keymaps.jl: improved default keymap for titlebar and
+	tabbar [fuchur]
+
+2012-08-31  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/tabs/tab.jl: add support for coloring a window-title
+	in a different color, when a window is marked for tabbing [fuchur]
+
+	* themes/StyleTab/theme.jl: color window-title in a different color,
+	when a window is marked for tabbing [fuchur]
+
+	* themes/StyleTab/{Default,Glass,Reduce,Smoothly,WixDa}: updated
+	image-sets for StyleTab [fuchur]
+
+	* man/news.texi: updated
+
+	* Makefile.in: also remove NEWS and config.h.in upon gitclean
+
+	* install-sh: updated to 2011-01-19.21
+
+2012-08-30  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/tabs/tabgroup.jl: support for sticky-workspace and
+	sticky-viewport in tabs. [fuchur]
+
+2012-08-29  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/tabs/tab.jl: remember default cursor [fuchur]
+
+	* lisp/sawfish/wm/tabs/tabgroup.jl: when one of the tabbed windows is
+	sticky and moved by selecting the first tab, it causes a crash. This
+	is fixed now. [fuchur]
+
+2012-08-28  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/tabs/tab.jl: allow a whole tabgroup to be added to
+	another tabgroup (or a single) window. [fuchur]
+
+	* lisp/sawfish/wm/keymaps.jl: bind tabgroup-add-to-group to
+	'C-Button2-Off' in titlebar/tabbar-keymap. [fuchur]
+
+	* lisp/sawfish/wm/tabs/tabgroup.jl: various bugfixes in raising,
+	stickying, move-resizeing and tab-index. [fuchur]
+
+	* lisp/sawfish/wm/tabs/tab.jl
+	* lisp/sawfish/wm/tabs/tabgroup.jl: only allow
+	'_NET_WM_WINDOW_TYPE_NORMAL to be marked as a tabbed window. [fuchur]
+
+	* man/news.texi: update
+
+2012-08-27  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* Makedefs.in: include $(repexecdir)/rules.mk as first,
+	so that --prefix & co. from configure don't get overwritten.
+	[Allin Cottrell]
+
+	* man/news.texi: update
+
+2012-08-23  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/util/marks.jl: removed [fuchur]
+
+	* lisp/sawfish/wm/tabs/tab.jl: implement mark-window here,
+	fix an issue that tab didn't work anymore then a window
+	selected for tabbing doesn't exist before tabbing was done.
+	Change cursor shape when operating with tabs [fuchur]
+
+	* man/news.texi: update
+
+2012-07-11  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* debian/*.links: removed, fixed building on Debian Unstable
+
 2012-07-07  Christopher Roy Bratusek <nano@tuxfamily.org>
 	* lisp/sawfish/wm/integration/razor-qt.jl: add 'razor-about' to help
 	sub-menu

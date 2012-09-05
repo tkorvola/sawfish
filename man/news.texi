@@ -39,21 +39,67 @@ Each release lists incompatible changes at its top.
 @c @end itemize
 @c @end itemize
 
+@heading 1.XX "XXX"
+@itemize @bullet
+
+@item Bug Fixes
+@itemize @minus
+@item Always rebuild the list of marked winows in tabs when closing a marked window. [fuchur]
+
+@item Only allow a window to be tabbed, if the parent window's framestyle has support for tabs.
+(Note that in Sawfish different windows can have diffrent framestyles) [fuchur]
+@end itemize
+@item Miscellaneous Changes
+@itemize @minus
+@item Make @code{decorate-transients} a UI option (in appearance group) [Christopher Bratusek]
+
+@item Updated @code{Elberg-tabbed} and @code{gradient-tabbed} for tab-system as of Sawfish 1.9.1 [fuchur]
+
+@item Improved default keymap for @code{titlebar} and @code{tabbar}. [fuchur]
+@end itemize
+@end itemize
 @heading 1.9.1 "Voyager"
 @itemize @bullet
 
 @item Bug Fixes
 @itemize @minus
 @item @code{dimension} window-matcher does now properly restore the window's size [Robert Zenz]
-@end itemize
 
+@item When destroying a window marked for tabbing, before tabbing was done, tabbing didn't
+work anymore until Sawfish restarted. This is fixed now. [fuchur]
+
+@item In @file{Makedefs.in} source @code{$(repexecdir)/rules.mk} as first, so that @code{--prefix}
+and co. from @code{configure} won't get overwritten. [Allin Cottrell]
+
+@item In @code{tabs} some minor issues have been fixed, like correct @code{raise} or @code{sticky}
+tabs, and some issue with @code{move-resize} tabs. [fuchur]
+
+@item Only allow '_NET_WM_WINDOW_TYPE_NORMAL to be marked as a tabbed window. [fuchur]
+@end itemize
+@item New Features
+@itemize @minus
+@item In tabbed-windowing it is now possible to add a whole tab-group to another tab-group, or a
+single window. By default the keybinding is @code{C-Button2-Off}. [fuchur]
+
+@item Tabs now support @code{viewport-sticky} and @code{workspace-sticky}. [fuchur]
+
+@item Tabs now support coloring the window-title in a different color, for windows, which are
+marked for tabbing. Currently only @code{StyleTab} uses this feature. [fuchur]
+@end itemize
 @item Miscellaneous Changes
 @itemize @minus
 @item In razor-qt integration module add @code{About Razor-Qt} help entry [Christopher Bratusek]
 
 @item Replace @code{gdk_pixbuf_unref} by @code{g_object_unref} [Togan Muftuoglu]
 
-@item Fix the address if FSF in all relevant files [Togan Muftuoglu]
+@item Fix the address of FSF in all relevant files [Togan Muftuoglu]
+
+@item Change cursor shape when working with tabs [fuchur]
+
+@item Removed @code{sawfish.wm.util.marks}, now implemented in @code{sawfish.wm.tabs.tab}. [fuchur]
+
+@item Fix debian packaging scripts for Debian/Unstable, update install-sh to 2011-01-19.21,
+also remove NEWS and config.h.in upon @code{make gitclean}.[Christopher Bratusek]
 @end itemize
 @end itemize
 @heading 1.9.0 "Next Dimensional World"

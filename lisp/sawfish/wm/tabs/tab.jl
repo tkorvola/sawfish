@@ -16,7 +16,7 @@
 ;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 51 Franklin Street, Fifth Floor, 
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301 USA.
 
 (define-structure sawfish.wm.tabs.tab
@@ -30,9 +30,9 @@
 	  sawfish.wm.commands
 	  sawfish.wm.frames
 	  sawfish.wm.tabs.tabgroup
-	  sawfish.wm.util.marks
+      sawfish.wm.cursors
 	  sawfish.wm.windows
-          sawfish.wm.gaol)
+      sawfish.wm.gaol)
 
   (define-structure-alias tab sawfish.wm.tabs.tab)
 
@@ -40,6 +40,9 @@
   ;; - make calculations work with tiny windows, should fixed
   ;; - hide some frame parts on leftmost and rightmost tabs, should fixed
   ;; - add a drag-n-drop way to group windows by tabs
+
+  (define select-cursor (default-cursor))
+  (define marked-window nil)
 
   (define tabbar-left-dec-width)
   (define tabbar-right-dec-width)
@@ -155,8 +158,8 @@
   (define-frame-class 'tabbar-horizontal-right-edge
     `((left-edge . ,tab-right-dec-pos)) t)
 
-  ;; new classes tabs on side : tabbar-vertical-top-edge tabbar-vertical tabbar-vertical-bottom-edge 
-  ;; 
+  ;; new classes tabs on side : tabbar-vertical-top-edge tabbar-vertical tabbar-vertical-bottom-edge
+  ;;
   (define-frame-class 'tabbar-vertical-top-edge
     `((bottom-edge . ,tab-top-dec-pos)) t)
 
@@ -166,19 +169,61 @@
 
   (define-frame-class 'tabbar-vertical-bottom-edge
     `((bottom-edge . ,tab-bottom-edge)) t)
-  
+
+  (define (emit-marked-hook w)
+    (call-window-hook 'window-state-change-hook w (list '(marked))))
+
   ;; This function is for interactive use. Use tab-group-window for lisp.
   (define (tab-add-to-group win)
     "Add a window to a tabgroup. Apply this command on a window, then
 on another. The first window will be added to the tabgroup containig
 the second."
-    (if (marked-windows)
-        (progn
-          (apply-on-marked-windows (lambda (w) (tab-group-window w win)))
-          (unmark-all-windows))
-      (mark-window win)))
+    (when (net-wm-window-type-normal-p win)
+      (if marked-window
+          (progn
+            (mapcar (lambda (w) 
+                      (window-put w 'marked nil)
+                      (emit-marked-hook w)
+                      (tab-group-window w win)) marked-window)
+            (default-cursor select-cursor)
+            (window-put win 'marked nil)
+            (setq marked-window nil))
+        (window-put win 'marked t)
+        (default-cursor (get-cursor 'clock))
+        (setq marked-window (cons win)))
+      (emit-marked-hook win)))
 
-  (define-command 'tab-add-to-group tab-add-to-group #:spec "%W"))
+  (define-command 'tab-add-to-group tab-add-to-group #:spec "%W")
+
+  (define (tabgroup-add-to-group win)
+    "Add a tabgroup to a tabgroup. Apply this command on a window
+from the tabgroup, then on another. The tabgroup will be added to
+the tabgroup containig the second."
+    (when (net-wm-window-type-normal-p win)
+      (if marked-window
+          (progn
+            (setq marked-window (tab-group-window-index (car marked-window)))
+            (tab-add-to-group win))
+        (default-cursor (get-cursor 'clock))
+        (setq marked-window (tab-group-window-index win))
+        (mapcar (lambda (w) 
+                  (window-put w 'marked t)
+                  (emit-marked-hook w)) marked-window))))
+
+  (define-command 'tabgroup-add-to-group tabgroup-add-to-group #:spec "%W")
+
+  (define (check-win)
+    (if (car marked-window)
+        (let ((m-list marked-window))
+          (setq marked-window nil)
+          (mapcar (lambda (w)
+                    (if (window-id w)
+                        (setq marked-window (append marked-window (cons w nil))))) m-list)
+          (when (not (car marked-window))
+            (default-cursor select-cursor)
+            (setq marked-window nil)))))
+
+  (add-hook 'destroy-notify-hook check-win))
 
 ;;(require 'x-cycle)
 ;;(define-cycle-command-pair
