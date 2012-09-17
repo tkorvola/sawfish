@@ -1,3 +1,162 @@
+2012-09-16  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* next-lisp/Undo-viewport.jl
+	* next-lisp/sawflibs
+	* next-lisp/sawflibs/readme.org
+	* next-lisp/sawflibs/tile
+	* next-lisp/sawflibs/tile/col.jl
+	* next-lisp/sawflibs/tile/tall.jl
+	* next-lisp/sawflibs/tile/tiler.jl
+	* next-lisp/sawflibs/tile/utils.jl
+	* next-lisp/sawflibs/tile.jl
+	* next-lisp/sawflibs/utils.jl
+	* next-lisp/undo.jl
+	* next-lisp/uptimes.jl: added stuff marked for inclusion into Sawfish.
+	NOTE: none of those modules is yet ready!
+
+	* AUTOSTART
+	* KEYBINDINGS
+	* OPTIONS
+	* XSettings: moved into doc/
+
+	* man/Makefile.in: build FAQ and USERDOC in ../doc/, do gitclean for docs
+	here rather than in Makefile.in
+
+	* sawfish.pc.in
+	* sawfish.spec.in
+	* sawfish.ebuild.in
+	* sawfish.desktop
+	* sawfish-ksm.desktop
+	* sawfish-session.desktop
+	* sawfish-wm.desktop: moved into data/
+
+	* sawfish.doap: removed (a relict from git.gnome.org)
+
+	* debian/clean: removed (no longer needed)
+
+	* debian/rules: call distclean rather than debclean
+
+	* Makefile.in: remove debclean rule (no longer needed), improved distclean
+	and gitclean rules, added export rule
+
+	* themes/Makefile.in: improved distclean rule
+
+	* debian/rules
+	* data/sawfish.ebuild.in
+	* data/sawfish.spec.in
+	* configure.in: updated for above changes
+
+2012-09-13  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/frames.jl: fixed cursor definitions in defcustoms
+	(replace ll_angel with correct ll_angle, sb_bottom_arrow by
+	sb_down_arrow and sb_top_arrow by sb_up_arrow). Set maximium width for
+	custom-border-width in SawfishConfig to 10 [fuchur]
+
+	* configure.in: bump version to 1.9.90
+
+	* man/news.texi: updated
+
+	* lisp/sawfish/wm/autoload.jl: removed non-existent entry
+
+	* lisp/sawfish/wm/user.jl: give root window 'WINDOW_MANAGER property
+	with value "sawfish" on startup
+
+2012-09-12  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/user.jl: simplified sawfish.wm.prg.* startup
+
+	* man/news.texi: updated
+
+2012-09-11  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/prg/xsettingsd.jl: use xsettingsd-config in
+	start-xsettingsd
+
+	* lisp/sawfish/wm/prg/pancake.jl: pancake module, handles a pancake
+	instance during a sawfish session.
+
+	* lisp/sawfish/wm/prg/fehlstart.jl: fehlstart module, handles a
+	fehlstart instance during a sawfish session.
+
+	* man/news.texi
+	* AUTOSTART: updated
+
+	* lisp/sawfish/gtk/widgets/image.jl: make 'image widget more robust
+
+	* lisp/sawfish/wm/ext/wallpaper.jl: improved wallpaper setter. Option
+	for setting on start added
+
+	* lisp/sawfish/wm/user.jl: handle autostart for fehlstart, pancake and
+	wallpaper
+
+	* lisp/sawfish/wm/menus.jl: make "Sawfish Rootmenu" label an
+	insensitive menu-item, so that clicking it while the root-menu pops-up
+	doesn't make the menu dissapear immediately in some cases
+
+2012-09-09  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/prg/trayer.jl: a dozen of defcustoms
+
+	* lisp/sawfish/wm/prg/xgamma.jl
+	* lisp/sawfish/wm/prg/xmobar.jl
+	* lisp/sawfish/wm/prg/xmodmap.jl
+	* lisp/sawfish/wm/prg/xsettingsd.jl: some :depends in defcustoms
+
+	* AUTOSTART: updated for trayer
+
+	* lisp/sawfish/wm/user.jl: updated
+
+2012-09-08  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* configure.in: bump required librep to 0.92.3 (sawfish.wm.prg.*
+	requires new 'program-exists-p' from 'rep.util.misc'.
+
+	* lisp/Makefile.in: add sawfish/wm/prg subdir
+
+	* lisp/sawfish/wm/prg/trayer.jl: trayer module. handles a trayer
+	instance during a sawfish session.
+
+	* lisp/sawfish/wm/prg/xmobar.jl: xmobar module, handles a xmobar
+	instance during a sawfish session.
+
+	* man/news.texi: updated
+
+	* lisp/sawfish/wm/xmodmap.jl: xmodmap module, supports loading a
+	modmap file, saving original state and restoring original state
+
+	* lisp/sawfish/wm/xsettingsd.jl: xsettigsd module, handles a
+	xsettingsd instance during a sawfish session
+
+	* lisp/sawfish/wm/xgamma.jl: xgamma module, allows changing gamma
+	settings from sawfishrc
+
+	* AUTOSTART: doc file that explains use of sawfish.wm.prg.* modules
+
+	* XSettings: example configuration file for xsettingsd
+
+	* lisp/sawfish/wm/user.jl: handle loading/auto-starts of
+	sawfish.wm.prg.* modules
+
+2012-09-06  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/state/transient.jl: :after-set for
+	decorate-transients
+
+	* lisp/sawfish/wm/menus.jl: make menus-include-shortcuts a defcustom
+	again.
+
+	* lisp/sawfish/wm/util/nokogiri.jl: make customize-show-symbols a
+	defcustom again.
+
+	* lisp/sawfish/wm/util/compat.jl: remove menus-include-shortcuts,
+	customize-show-symbols from compat list to make defcustom work.
+
+	* lisp/sawfish/wm/menus.jl: use resize-window-prompt in
+	window-ops-menu, as resize-window-to-dimensions has been removed more
+	than a year ago -.-
+
+	* lisp/sawfish/wm/commands/move-resize.jl: completely new
+	resize-window-prompt func. now displays old width and old height
+	before prompting and checks whether given values actually are numbers.
+
+2012-09-05  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/util/compat.jl: remove decorate-transients from compat
+	list (defcustom works now)
+
 2012-09-04  Christopher Roy Bratusek <nano@tuxfamily.org>
 	* lisp/sawfish/wm/state/transient.jl: make decorate-transients a
 	defcustom.
@@ -96,7 +255,7 @@
 	* lisp/sawfish/wm/ext/match-window.jl: call resize-window-with-hints*
 	rather than resize-window-with-hints (fixes 'dimensions matcher)
 	[Robert Zenz]
-	
+
 	* src/images.c: replace gdk_pixbuf_unref with g_object_unref [Togan Muftouglu]
 
 	* src/windows.c: proper return in fake-release-window [Togan Muftouglu]

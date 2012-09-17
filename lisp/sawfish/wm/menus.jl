@@ -55,8 +55,10 @@
   ;; Suppress annoying compiler warnings
   (eval-when-compile (require 'rep.io.timers))
 
-  (defvar menus-include-shortcuts nil
-    "Display key-binding information in menu items.")
+  (defcustom menus-include-shortcuts nil
+    "Display key-binding information in menu items."
+    :group misc
+    :type boolean)
 
   (defvar menu-program (expand-file-name "sawfish-menu" sawfish-exec-directory)
     "Location of the program implementing sawfish's menu interface.")
@@ -108,7 +110,7 @@ before killing it.")
       (,(_ "_Resize") resize-window-interactively
        (insensitive . ,(lambda (w)
 			 (window-get w 'fixed-size))))
-      (,(_ "_Resize to") resize-window-to-dimensions
+      (,(_ "_Resize to") resize-window-prompt
        (insensitive . ,(lambda (w)
 			 (window-get w 'fixed-size))))
       (,(_ "_Close") delete-window
@@ -161,7 +163,7 @@ before killing it.")
     ;; Mysterious underscore "_" before a stringoffers (human
     ;; langugage) translation. The one inside of a string
     ;; specifies shortcut key.
-    `((,(_ "Sawfish Rootmenu"))
+    `((,(_ "Sawfish Rootmenu") nil (insensitive . t))
       ()
       (,(_ "_Windows") . window-menu)
       (,(_ "Work_spaces") . workspace-menu)

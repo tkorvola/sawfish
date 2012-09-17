@@ -27,9 +27,9 @@ AC_CONFIG_MACRO_DIR([m4])
 AM_PROG_LIBTOOL
 
 dnl Release versioning info
-version="1.9.1"
+version="1.9.90"
 subversion=""
-codename="Voyager"
+codename="Strike A Pose"
 
 VERSION=${version}
 
@@ -217,7 +217,7 @@ else FONT_LOADER="X.Org"
 fi
 
 dnl Check for librep
-REP_MIN_VER="0.92.1"
+REP_MIN_VER="0.92.3"
 
 PKG_CHECK_MODULES(LIBREP, librep >= ${REP_MIN_VER}
 		  ,REP_EXECDIR="`pkg-config --variable=repcommonexecdir librep`"
@@ -414,9 +414,9 @@ dnl Build all files
 AC_CONFIG_FILES([
 Makedefs
 Makefile
-sawfish.ebuild
-sawfish.pc
-sawfish.spec
+data/sawfish.ebuild
+data/sawfish.pc
+data/sawfish.spec
 lisp/Makefile
 lisp/sawfish/cfg/Makefile
 lisp/sawfish/gtk/Makefile
@@ -431,7 +431,8 @@ themes/Makefile
 
 AC_OUTPUT
 
-mv sawfish.ebuild sawfish-$version.ebuild
+mv data/sawfish.ebuild sawfish-$version.ebuild
+mv data/sawfish.spec sawfish.spec
 
 REP_VERSION="`pkg-config --modversion librep`"
 REP_GTK_VERSION="`pkg-config --modversion rep-gtk`"

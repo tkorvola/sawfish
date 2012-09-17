@@ -16,7 +16,7 @@
 ;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with sawfish; see the file COPYING.  If not, write to
-;; the Free Software Foundation, 51 Franklin Street, Fifth Floor, 
+;; the Free Software Foundation, 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301 USA.
 
 ;; Commentary:
@@ -52,7 +52,15 @@
 	   sawfish.wm.edge.actions
 	   sawfish.wm.frames
 	   sawfish.wm.menus
-	   sawfish.wm.commands.launcher)
+	   sawfish.wm.commands.launcher
+	   sawfish.wm.ext.wallpaper
+	   sawfish.wm.prg.fehlstart
+	   sawfish.wm.prg.pancake
+	   sawfish.wm.prg.trayer
+	   sawfish.wm.prg.xgamma
+	   sawfish.wm.prg.xmobar
+	   sawfish.wm.prg.xmodmap
+	   sawfish.wm.prg.xsettingsd)
      (access sawfish.wm.integration.kde
 	     sawfish.wm.integration.gnome
 	     sawfish.wm.integration.xfce
@@ -80,6 +88,10 @@ Can be used to repair damage done in user.jl after reading
 
   ;; frame-style loaded if user hasn't set their own
   (define fallback-frame-style 'StyleTab)
+
+  ;; give root-window 'WINDOW_MANAGER property with value sawfish
+  (unless batch-mode
+    (set-x-text-property 'root 'WINDOW_MANAGER (vector "sawfish")))
 
   (define rc-files '("~/.sawfishrc" "~/.sawfish/rc"))
 
@@ -254,6 +266,25 @@ Can be used to repair damage done in user.jl after reading
       (system "sawfish-config &")
       (delete-file "~/.restart_sc")))
 
+  ;; auto-start handling
+  (unless batch-mode
+    (when init-xgamma
+      (add-hook 'after-initialization-hook (lambda () (xgamma-set-from-cfg t t t)) t))
+    (when init-wallpaper
+      (add-hook 'after-initialization-hook set-wallpaper t))
+    (when init-fehlstart
+      (add-hook 'after-initialization-hook start-fehlstart t))
+    (when init-pancake
+      (add-hook 'after-initialization-hook start-pancake t))
+    (when init-trayer
+      (add-hook 'after-initialization-hook start-trayer t))
+    (when init-xmobar
+      (add-hook 'after-initialization-hook start-xmobar t))
+    (when init-xmodmap
+      (add-hook 'after-initialization-hook load-xmodmap t)
+      (add-hook 'before-restart-hook restore-keymap t))
+    (when init-xsettingsd
+      (add-hook 'after-initialization-hook start-xsettingsd t)))
 
   (when (eq error-destination 'init)
     (setq error-destination 'standard-error))
