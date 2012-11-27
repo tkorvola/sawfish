@@ -67,6 +67,7 @@
 	  sawfish.wm.frames
 	  sawfish.wm.misc
 	  sawfish.wm.focus
+          sawfish.wm.stacking
           sawfish.wm.viewport
           sawfish.wm.state.shading)
 
@@ -96,6 +97,9 @@ that dimension.")
 
   ;; called when a window is un-maximized, args (W #!optional DIRECTION)
   (defvar window-unmaximized-hook nil)
+
+  ;; value to add to window-depth when window becomes fullscreen
+  (defvar window-fullscreen-depth-offset 4)
 
 ;;; handling maximized state
 
@@ -554,13 +558,15 @@ unmaximized."
                     (head-dims (head-dimensions head)))
 	       (save-unmaximized-geometry w)
 	       (window-put w 'unmaximized-type (window-type w))
+               (window-put w 'unmaximized-depth (window-depth w))
 	       (push-window-type w 'unframed 'sawfish.wm.state.maximize)
 	       (move-resize-window-to w
                                       (+ (car head-offset) (car vp-offset))
                                       (+ (cdr head-offset) (cdr vp-offset))
                                       (car head-dims) (cdr head-dims))
-	       (when maximize-raises
-	         (raise-window* w))
+               (set-window-depth w (+ window-fullscreen-depth-offset
+                                      (window-depth w)))
+	       (raise-window* w)
 	       (window-put w 'maximized-fullscreen t)
 	       (window-put w 'maximized-vertically t)
 	       (window-put w 'maximized-horizontally t)
@@ -570,6 +576,7 @@ unmaximized."
 				 w (list '(maximized))))))
 
 	  ((and (not state) (window-maximized-fullscreen-p w))
+           (set-window-depth w (window-get w 'unmaximized-depth))
 	   (unmaximize-window w 'fullscreen))))
 
   (define (maximize-window-fullscreen-toggle w)
