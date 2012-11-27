@@ -468,9 +468,11 @@
       ((init)
        (window-put w 'depth depth))
       ((add remove)
-       (set-window-depth w (if (eq mode 'add) depth 0)))
+       (unless (window-maximized-fullscreen-p w)
+	 (set-window-depth w (if (eq mode 'add) depth 0))))
       ((toggle)
-       (set-window-depth w (if (= (window-depth w) depth) 0 depth)))
+       (unless (window-maximized-fullscreen-p w)
+	 (set-window-depth w (if (= (window-depth w) depth) 0 depth))))
       ((get)
        (= (window-depth w) depth))))
 
