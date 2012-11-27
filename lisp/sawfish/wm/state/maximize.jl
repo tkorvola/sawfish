@@ -67,6 +67,7 @@
 	  sawfish.wm.frames
 	  sawfish.wm.misc
 	  sawfish.wm.focus
+          sawfish.wm.stacking
           sawfish.wm.viewport
           sawfish.wm.state.shading
           sawfish.wm.stacking)
