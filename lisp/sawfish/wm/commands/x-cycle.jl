@@ -82,6 +82,8 @@
 	  sawfish.wm.workspace
 	  sawfish.wm.viewport
 	  sawfish.wm.util.stacking
+	  sawfish.wm.state.iconify
+	  sawfish.wm.state.maximize
 	  sawfish.wm.events
 	  sawfish.wm.util.decode-events
 	  sawfish.wm.util.groups
@@ -180,8 +182,8 @@
       (unless win
         (throw 'x-cycle-exit t))
       (if (fluid x-cycle-current)
-          (when (or (window-get (fluid x-cycle-current) 'iconified)
-                    (not (window-appears-in-workspace-p
+	  (when (or (window-iconified-p (fluid x-cycle-current))
+		    (not (window-appears-in-workspace-p 
                           (fluid x-cycle-current) current-workspace)))
             (hide-window (fluid x-cycle-current)))
         ;; first call, push the currently focused window onto
@@ -194,15 +196,15 @@
       (when (fluid x-cycle-stacking)
         (restack-windows (fluid x-cycle-stacking))
         (fluid-set x-cycle-stacking nil))
-      (if (fluid x-cycle-current)
-          (setq win (forwards win (fluid x-cycle-current) count))
-        (setq win (car win)))
+      (setq win (if (fluid x-cycle-current)
+		    (forwards win (fluid x-cycle-current) count)
+		  (car win)))
       (fluid-set x-cycle-current win)
       (when (not (window-get win 'sticky))
         (select-workspace (nearest-workspace-with-window
                            win current-workspace)))
       (move-viewport-to-window win)
-      (when (window-get win 'iconified)
+      (when (window-iconified-p win)
         (show-window win))
       (when cycle-raise-windows
         (fluid-set x-cycle-stacking (stacking-order))
@@ -217,27 +219,14 @@
 
   (define (cycle-begin windows step)
     "Cycle through all windows in order of recent selections."
-    (let ((tail-command nil)
-	  (grab-win (input-focus)))
+    (let ((tail-command nil))
       (let-fluids ((x-cycle-current nil)
 		   (x-cycle-stacking nil)
 		   (x-cycle-windows windows)
 		   (x-cycle-active t))
 
-        (define (unmap-fun w)
-          (when (eq w grab-win)
-            (setq grab-win nil)
-            (or (grab-keyboard nil nil t)
-                (throw 'x-cycle-exit nil))
-            (allow-events 'sync-keyboard)))
-
         (define (enter-fun space)
-          (declare (unused space))
-          (when grab-win
-            (setq grab-win nil)
-            (or (grab-keyboard nil nil t)
-                (throw 'x-cycle-exit nil))
-            (allow-events 'sync-keyboard)))
+          (declare (unused space)))
 
         (define (unbound-fun)
           (let* ((event (current-event))
@@ -274,7 +263,6 @@
                (focus-dont-push t)
                (disable-auto-raise t)
                (tooltips-enabled nil)
-               (unmap-notify-hook (cons unmap-fun unmap-notify-hook))
                (enter-workspace-hook (cons enter-fun enter-workspace-hook))
                (unbound-key-hook (list unbound-fun)))
 
@@ -283,7 +271,7 @@
                    this-command))
 
           ;; grab synchronously, so that event replaying works
-          (when (grab-keyboard grab-win nil t)
+          (when (grab-keyboard nil nil t)
             (unwind-protect
                 (progn
                   (catch 'x-cycle-exit
