@@ -14,8 +14,7 @@
           rep.data.tables
           sawfish.wm.windows
           sawfish.wm.tile.utils
-          sawfish.wm.state.ignored
-	  sawfish.wm.ext.expose)
+          sawfish.wm.state.ignored)
 
   (define %tilers '())
   (define %sizes (make-table eq-hash eq))
@@ -99,7 +98,7 @@
 
   (define (tileable-window-p w)
     (and (tiling-auto-p (tiling (window-workspace w)) w)
-         (not (window-never-expose-p w))
+         (not (window-never-tile-p w))
 	 (not (window-ignored-p w))
 	 (not (dock-window-p w))
          (eq (window-type w) 'default)))

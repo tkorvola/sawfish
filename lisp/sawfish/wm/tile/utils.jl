@@ -18,13 +18,13 @@
             align-workspace-windows
             notify
             take
-            group-by)
+            group-by
+	    window-never-tile-p)
     (open rep
           rep.io.timers
           sawfish.wm.stacking
           sawfish.wm.state.ignored
 	  sawfish.wm.state.iconify
-	  sawfish.wm.ext.expose
 	  sawfish.wm.windows
 	  sawfish.wm.frames
 	  sawfish.wm.placement
@@ -34,15 +34,19 @@
 
   (define (window-workspace w) (car (window-get w 'workspaces)))
 
+  (define (window-never-tile-p w) (window-get w 'never-tile))
+
   (define (tileable-workspace-windows #!optional ignore)
     (remove-if (lambda (w)
 		 (or (equal w ignore)
 		     (dock-window-p w)
 		     (window-iconified-p w)
 		     ;; window-matcher
-		     (window-never-expose-p w)
+		     (window-never-tile-p w)
 		     ;; for pager and stuff
 		     (not (window-visible-p w))
+		     ;; no dialogs
+		     (not (eq (window-type w) 'default))
 		     (window-ignored-p w)))
                (window-order current-workspace)))
 
