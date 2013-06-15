@@ -554,7 +554,7 @@ unmaximized."
 	   (when (window-maximizable-p w)
              (let* ((viewport (window-viewport w))
                     (vp-offset (viewport-offset-coord viewport))
-                    (head (window-head-any-viewport w))
+                    (head (or (window-head-any-viewport w) 0))
                     (head-offset (head-offset head))
                     (head-dims (head-dimensions head)))
 	       (save-unmaximized-geometry w)
