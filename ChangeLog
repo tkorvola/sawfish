@@ -1,3 +1,95 @@
+2013-09-21  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/prg/compton.jl: improve translucency for
+	shadow settings [fuchur]
+
+	* lisp/sawfish/wm/tabs/tabgroup.jl: make all inactive tabs
+	shaded [fuchur]
+
+	* themes/StyleTab/theme.jl: update for recent changes [fuchur]
+
+2013-09-17  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/prg/compton.jl: improve support for xinerama setups
+	[fuchur]
+
+2013-09-16  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/prg/compton.jl: fixup support for
+	xinerama shadow cropping, improve support for tabs [fuchur]
+
+	* lisp/sawfish/wm/tabs/tabgroup.jl: add tab-group-windows-hook,
+	returning all windows in the current tabgroup [fuchur]
+
+2013-09-14  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/prg/compton.jl: improved working with shadows,
+	don't draw shadows for tabbed windows by default, but provide an
+	option to force to do so. Also add options to only draw shadows
+	for specific window-types. Added no-shadows window-matcher. [fuchur]
+
+2013-09-12  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/prg/compton.jl: added full featured integration
+	of the compton compositing manager
+
+	* lisp/sawfish/wm/user.jl: load sawfish.wm.prg.compton
+
+	* lisp/sawfish/wm/ext/match-window.jl
+	* lisp/sawfish/wm/state/transient.jl: make 'focus-when-mapped matcher
+	chooseable from 'never 'maybe and 'always. 'never is suggested for
+	KDE users to prevent notification popups to take focus from currently
+	active window (and possibly loosing keyboard input) [fuchur]
+
+	* doc/AUTOSTART
+	* man/news.texi: updated
+
+	* lisp/sawfish/wm/tabs/tabgroup.jl
+	* lisp/sawfish/wm/match-window.jl: add force-tab window-matcher,
+	forcing a window to be tabbed [fuchur]
+
+	* lisp/sawfish/wm/workspace.jl: remember window properties after
+	switching workspaces (especially unmaximize-geometry and such) [fuchur]
+
+	* lisp/sawfish/wm/ext/match-window.jl: add window-type window-matcher.
+	This allows you to change the _NET_WM_TYPE of a window. Specification
+	explicitly state that the client is not allowed to do so. Still, we
+	provide this ability in case of bogus applications or testing purposes,
+	it is neither desired nor required for normal work. [fuchur]
+
+2013-05-02  Vedat Hallac <vedat@hallac.net>
+	* lisp/sawfish/gtk/widget.jl: fix make-choice-item to properly support
+	crux theme settings
+
+2013-04-26  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* web/*.{html,png}: add files from http://sawfish.tuxfamily.org/
+
+	* .tx/config: updated transifex config
+
+	* po/ru.po: updated russian translation (Alexey516)
+
+	* po/pt_BR.po: updated brazilian portuguese translation (Sandro)
+
+2013-04-25  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* debian/changelog
+	* configure.in: bump version to 1.9.91 "Steam Train"
+
+	* man/news.texi: update
+
+2013-04-16  Jose Antonio Ortega Ruiz <jao@gnu.org>
+	* lisp/sawfish/wm/tile/tiler.jl: make never-tile window-matcher work
+	properly, notify user when switching tiling-mode
+
+	* lisp/sawfish/wm/tile/column.jl: #:resize predicate (whether windows
+	should be resized to fit into columns)
+
+2013-04-16  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* lisp/sawfish/wm/tile/tiler.jl: fix erroring when destroying last
+	tileabe window
+
+2013-04-15  Jose Antonio Ortega Ruiz <jao@gnu.org>
+	* lisp/sawfish/wm/tile/tall.jl: #:right predicate (locate
+	master-window on the right instead of left), #:master predicate (set
+	what window can be the master-window in tall tiling)
+
+2013-04-02  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* debian/control: make package sawfish depend on rep and rep-gtk
+
 2013-03-30  Christopher Roy Bratusek <nano@tuxfamily.org>
 	* lisp/sawfish/wm/ext/expose.jl: remove. We now have sawfish.wm.tile.*
 
@@ -18,11 +110,16 @@
 	* lisp/sawfish/wm/tile/tile.jl: export increase-max-cols, decrease-max-cols,
 	  window-never-expose-p
 
+	* lisp/sawfish/wm/tile/tall.jl: don't error in tall-rotate-left and
+	  tall-rotate-right if there are not enough windows for rotation
+
 	* README: fixed my mail address
 
 	* configure.in: small capitalization string-change
 
 	* man/news.texi: update + changed tiling example.
+
+	* lisp/sawfish/wm/tile/readme.org: update
 
 2013-03-21  Robert Zenz <Bobby@bonsaimind.org>
 	* themes/mxflat/theme.jl: Fixed $height-content and

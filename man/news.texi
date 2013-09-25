@@ -39,7 +39,7 @@ Each release lists incompatible changes at its top.
 @c @end itemize
 @c @end itemize
 
-@heading 1.9.90 "Strike A Pose"
+@heading 1.10 "Soundtropolis"
 @itemize @bullet
 
 @item Updated or New dependencies
@@ -49,16 +49,19 @@ Each release lists incompatible changes at its top.
 
 @item Bug Fixes
 @itemize @minus
-@item Always rebuild the list of marked winows in tabs when closing a marked window. [fuchur]
+@item Always rebuild the list of marked windows in tabs when closing a marked window. [fuchur]
+
+@item In @code{sawfish-config} fix the @code{make-choice-item} to properly support settings for
+the @code{Crux} theme. [Vedat Hallac]
 
 @item Only allow a window to be tabbed, if the parent window's framestyle has support for tabs.
-(Note that in Sawfish different windows can have diffrent framestyles) [fuchur]
+(Note that in Sawfish different windows can have different framestyles) [fuchur]
 
 @item @code{window-ops-menu} was still calling @code{resize-window-to-dimension} that didn't exist
 anymore since Sawfish 1.7. Use @code{resize-window-prompt} instead. [Christopher Bratusek]
 
 @item Make "Sawfish Rootmenu" label an insensitive menu-item, so that clicking it while the root-menu
-pops-up doesn't make the menu dissapear immediately. [Christopher Bratusek]
+pops up doesn't make the menu disappear immediately. [Christopher Bratusek]
 
 @item In SawfishConfig you can select different cursor shapes for different buttons. Some of the
 definitions have been wrong and could crash Sawfish when choosing them. This is fixed now. [fuchur]
@@ -70,35 +73,53 @@ at 32767. Originally reported with Firefox and Thunderbird 17.0 [Michael Pantele
 @item Fixed grabbing key-bindings in SawfishConfig. [Christopher Bratusek]
 
 @item Fixed non-working @code{$height-content} and @code{$width-content} in the mxflat theme [Robert Zenz]
+
+@item Fixed remembering all window properties after switching workspaces [fuchur]
 @end itemize
+
 @item New Features
 @itemize @minus
 @item Tiling. [Jose A. Ortega Ruiz] [Christopher Bratusek]
-Currently this module is under testing. There are still minor hickups, but both @code{tall-tile}
+here are still minor hickups, but both @code{tall-tile}
 and @code{col-tile} are working (see also @file{lisp/sawfish/wm/tile/readme.org}):
 
-@code{tall-tile}: one big window on the left, small windows on the right
+@code{tall-tile}: one big (master) window on the left, small windows on the right
+
 @code{col-tile}: tile windows as columns (recommended for multi-head configurations)
 
 @lisp
-;; Tiling
+;; Example Tiling configuration in Sawfish's resource file
 (require 'sawfish.wm.tile.tile)
-(tall-tiling 0 #:width 1.75 #:top 0 #:bottom 0 #:gap 3 #:max 3)
-(col-tiling 0 #:top 0 #:bottom 0 #:gap 3 #:cols 3)
+(tall-tiling 0 #:width 1.75 #:top 0 #:bottom 0 #:gap 3 #:max 3 #:right nil #:resize t)
+(col-tiling 0 #:top 0 #:bottom 0 #:gap 3 #:cols 3 #:resize t)
 (bind-keys global-keymap
 	   "C-S-KP_Add" 'increase-max-windows
 	   "C-S-KP_Subtract" 'decrease-max-windows
 	   "C-M-KP_Add" 'increase-cols
 	   "C-M-KP_Subtract" 'decrease-cols
+	   "C-M-Right" 'tall-rotate-right
+	   "C-M-Left" 'tall-rotate-left
 	   "C-F11" 'next-tiling)
 @end lisp
+
+@item Added full compton integration (including autostarting compton with Sawfish).
+Compton is a fork of xcompmgr with many bug fixes and many improvements compared to
+the original.
+
+Using @code{sawfish-config} it is also possible to change most compton options directly
+from within Sawfish. [fuchur]
+
+@item Make @code{focus-when-mapped} window-matcher chooseable from 'never 'maybe and
+'always. 'never is suggested for KDE users to be applied to Plasma in order to prevent
+notification popups to take focus from currently active window (and possibly loosing
+keyboard input) [fuchur]
 
 @item Completeley revised @code{resize-window-prompt}. Now display window's name and old width
 (respectively old height) when prompt for new values. Shows an information, if one of the given
 values is not actually a number. [Christopher Bratusek]
 
-@item External Application modules. Those modules allow handling, setting-up external application
-during a sawfish session. See @file{AUTOSTART} for additional notes on them.
+@item External Application modules. Those modules allow handling, setting-up and starting external
+applications during a sawfish session. See @file{doc/AUTOSTART} for additional notes on them.
 @itemize ++
 @item @code{trayer} module. Handles a @code{trayer} (a system-tray) instance during a sawfish session.
 [Christopher Bratusek]
@@ -106,9 +127,10 @@ during a sawfish session. See @file{AUTOSTART} for additional notes on them.
 @item @code{xmobar} module. Handles a @code{xmobar} (an on-screen, very flexible bar, monitoring
 whatever you like) instance during a sawfish session. [Christopher Bratusek]
 
-@item @code{xmodmap} module. Allows reading @file{~/.Xmodmap} on startup of Sawfish. [Christopher Bratusek]
+@item @code{xmodmap} module. Allows reading @file{~/.Xmodmap} on startup of Sawfish. Useful only if
+using Sawfish standalone without a session-manager that already does this. [Christopher Bratusek]
 
-@item @code{xsettingsd} module. Handles a @code{xsettingsd} (a daemon implementing XSettings to provide GTK+
+@item @code{xsettingsd} module. Handles a @code{xsettingsd} (a daemon implementing XSettings to provide GTK+2
 application with information like what theme to use))instance during a sawfish session. [Christopher Bratusek]
 
 @item @code{xgamma} module. Allows changing display's gamma settings on startup of Sawfish. [Christopher Bratusek]
@@ -119,11 +141,22 @@ instance during a sawfish session. [Christopher Bratusek]
 @item @code{pancake} module. Handles a @code{pancake} (a simple desktop panel with pager, window-list,
 taskbar, tray) instance during a sawfish session [Christopher Bratusek]
 @end itemize
+
+@item Added @code{force-tab} window-matcher, forcing a window to be tabbed. [fuchur]
+
+@item Added @code{window-type} window-matcher. This allows you to change the @code{_NET_WM_TYPE} of a window.
+Specifications explicitly state that the client (Sawfish in this case) is not allowed to do so. Still, we provide
+this ability in case of bogus applications and testing purposes, it is neither desired nor required for normal work. [fuchur]
+
+@item Added @code{tab-group-windows-hook}, triggered when changing or creating a tabgroup, returning all windows
+contained in the current tabgroup. [fuchur]
+
 @end itemize
 @item Removed Features
 @itemize @minus
 @item Removed @code{sawfish.wm.ext.expose} in favour of much more advanced tiling-functions. [Christopher Bratusek]
 @end itemize
+
 @item Miscellaneous Changes
 @itemize @minus
 @item Updated @code{Elberg-tabbed} and @code{gradient-tabbed} for tab-system as of Sawfish 1.9.1 [fuchur]
@@ -138,6 +171,8 @@ These options are now adjustable from @code{sawfish-config} again. [Christopher 
 
 @item Give the @code{root-window} the property @code{'WINDOW_MANAGER} on startup with value @code{sawfish}.
 [Christopher Bratusek]
+
+@item Updated @code{ru} and @code{pt_BR} translations via transifex.
 @end itemize
 @end itemize
 @heading 1.9.1 "Voyager"

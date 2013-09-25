@@ -6,8 +6,7 @@
             tileable-windows
             next-tiling
             setting
-            set-setting
-	    tileable-window-p)
+            set-setting)
 
     (open rep
           rep.system
@@ -46,20 +45,14 @@
     (list (lambda ()
             (restore-windows current-workspace))))
 
-  (define (register-workspace-tiler ws tiler args auto #!optional name)
+  (define (register-workspace-tiler ws tiler args auto #!optional name picker)
     (let ((curr (assoc ws %tilers))
-          (new (list tiler args auto name)))
+          (new (list tiler args auto name picker)))
       (if (null curr)
           (setq %tilers (cons (list ws new null-tiler) %tilers))
         (setcdr curr (cons new (cdr curr))))))
 
-  (define (next-tiling)
-    (interactive)
-    (when (rotate-tiling)
-      (restore-sizes current-workspace)
-      (tile-workspace)))
-
-  (define (rotate-tiling #!optional ws)
+    (define (rotate-tiling #!optional ws)
     (let ((ts (assoc (or ws current-workspace) %tilers)))
       (when (> (length ts) 2)
         (setcdr ts `(,@(cddr ts) ,(cadr ts))))))
@@ -79,29 +72,48 @@
 
   (define (tiling-name ti) (nth 3 ti))
 
+  (define (tiling-master-picker ti)
+    (or (nth 4 ti) (lambda (w) #t)))
+
+  (define (tileable-window-p w)
+    (and w
+	 (tiling-auto-p (tiling (window-workspace w)) w)
+         (not (window-never-tile-p w))
+	 (not (window-ignored-p w))
+	 (not (dock-window-p w))
+         (eq (window-type w) 'default)))
+
   (define (tileable-windows #!optional ignore)
-    (let ((ws (tileable-workspace-windows ignore))
-          (tp (nth 2 (tiling))))
-      (if (functionp tp) (filter tp ws) ws)))
+    (filter tileable-window-p (tileable-workspace-windows ignore)))
 
   (define (current-tiler-name) (tiling-name (tiling)))
+
+  (define (pick ti master ignore)
+    (let ((test (tiling-master-picker ti)))
+      (or (and master (not (eq master ignore)) (test master) master)
+          (let ((wl (tileable-workspace-windows ignore)))
+            (or (car (filter test wl))
+                (and (tileable-window-p master) master)
+                (car wl))))))
 
   (define (tile-workspace #!optional new-window destroyed-window)
     (interactive)
     (let ((ti (tiling)))
       (when ti
-	((tiling-tiler ti) new-window destroyed-window))))
+	((tiling-tiler ti) (pick ti new-window destroyed-window)
+                           destroyed-window))))
+
+  (define (next-tiling)
+    (interactive)
+    (when (rotate-tiling)
+      (restore-sizes current-workspace)
+      (tile-workspace))
+    (let ((cn (current-tiler-name)))
+      (if cn (notify "Current tiler: %s" cn) (notify "No active tiler"))))
 
   (define (untile-window w)
     (interactive "%f")
     (when (restore-window w) (tile-workspace nil w)))
-
-  (define (tileable-window-p w)
-    (and (tiling-auto-p (tiling (window-workspace w)) w)
-         (not (window-never-tile-p w))
-	 (not (window-ignored-p w))
-	 (not (dock-window-p w))
-         (eq (window-type w) 'default)))
 
   (define (add-autotile w)
     (save-size w)
