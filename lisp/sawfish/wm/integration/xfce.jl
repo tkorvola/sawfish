@@ -61,23 +61,20 @@
       (when (setq menu (assoc (_ "Sessi_on") root-menu))
 	(nconc menu `(()
 		      (,(_ "_Customize XFCE") (system "xfce4-settings-manager &"))
-		      ;; Since XFCE 4.6 there's no stand-alone editor anymore.
-		      ;; So what to choose? Alacarte (GNOME) or LXMed (LXDE)?
-		      ;; I'd say alacarte here...
-		      (,(_ "_Edit XFCE Menu") (system "alacarte &"))
+		      (,(_ "_Edit XFCE Menu") (system "menulibre &"))
 		      ()
 		      (,(_ "L_ock from XFCE")
 			(system "xflock4 &"))
 		      (,(_ "_Logout from XFCE")
-		       (system "xfce4-session-logout --logout &"))
+		       (system "xfce4-session-logout --logout -f &"))
 		      (,(_ "_Reboot from XFCE")
-		       (system "xfce4-session-logout --reboot &"))
+		       (system "xfce4-session-logout --reboot -f &"))
 		      (,(_ "_Shutdown from XFCE")
-		       (system "xfce4-session-logout --halt &"))
+		       (system "xfce4-session-logout --halt -f &"))
 		      (,(_ "_Hibernate from XFCE")
-			(system "xfce4-session-logout --hibernate &"))
+			(system "xfce4-session-logout --hibernate -f &"))
 		      (,(_ "S_uspend from XFCE")
-			(system "xfce4-session-logout --suspend &")))))))
+			(system "xfce4-session-logout --suspend -f &")))))))
 
   ;; Returns nil if xfce is not found.
   ;; If detected, returns t, and do also xfce support init.

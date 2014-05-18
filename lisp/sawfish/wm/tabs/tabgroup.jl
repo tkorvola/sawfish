@@ -73,11 +73,14 @@ Returning all windows in the current tabgroup")
     (window-get w 'tabbed))
 
   (define (frame-style-tabs-support-p w)
+    "Returns t if the framestyle from W supports tabs.
+Also need the currect settings in the theme.jl from the theme."
     (setq tab-theme-name nil)
     (call-window-hook 'window-state-change-hook w (list '(tab-theme-name)))
     (eq (window-get w 'current-frame-style) tab-theme-name))
   
   (define (net-wm-window-type-normal-p w)
+    "Returns t if _NET_WM_WINDOW_TYPE by W is true or W has window-property 'force-tab"
     (or (window-get w 'force-tab)
         (if (get-x-property w '_NET_WM_WINDOW_TYPE)
             (equal (aref (nth 2 (get-x-property w '_NET_WM_WINDOW_TYPE)) 0) '_NET_WM_WINDOW_TYPE_NORMAL))))
@@ -106,7 +109,7 @@ Returning all windows in the current tabgroup")
       group))
 
   (define (tab-find-window win)
-    "Return the group containing win."
+    "Return the group containing WIN."
     (let loop ((gr tab-groups))
       (cond
        ((null gr)
@@ -118,7 +121,7 @@ Returning all windows in the current tabgroup")
         (loop (cdr gr))))))
 
   (define (tab-window-group-index win)
-    "Return the index of the group containing win."
+    "Return the index of the group containing WIN."
     (let loop ((index 0))
       (cond
        ((eq index (length tab-groups))
@@ -130,12 +133,13 @@ Returning all windows in the current tabgroup")
         (loop (+ index 1))))))
 
   (define (tab-group-window-index win)
-    "Return the windows of the group containing win."
+    "Return the windows of the group containing WIN."
     (let* ((index (tab-window-group-index win))
            (wins (tab-group-window-list (nth index tab-groups))))
       wins))
 
   (define (tab-rank elem list)
+    "Returns the nth position from elem (tab) in a list (tabbar)"
     (if (eq elem (car list))
         0
       (+ 1 (tab-rank elem (cdr list)))))
@@ -288,6 +292,7 @@ sticky, unsticky, fixed-position."
     ;; don't add a window as tab, if it already
     ;; exists on another workspace or window type
     ;; is not a "normal" window (e.g. dock panel ...)
+    ;; and framestyle supported tabs
     (when (and (not (cdr (window-get win 'workspaces)))
                (net-wm-window-type-normal-p w)
                (net-wm-window-type-normal-p win)
@@ -405,6 +410,85 @@ sticky, unsticky, fixed-position."
 
   (define-command 'tab-raise-right-window tab-raise-right-window)
 
+  (define (move-tab w pos)
+    "Move tab W to pos"
+    (when (window-tabbed-p w)
+      (let* ((wins (tab-group-window-index w))
+            (rank (tab-rank w wins))
+            (list-end (nthcdr rank wins))
+            (list-start wins)
+            right left current new-list)
+        (mapcar (lambda (w)
+                  (setq list-start (remove w list-start))) list-end)
+        (when (eq pos 'next)
+          (if (not (nth (+ rank 1) wins))
+              (tab-move-to-beginning w)
+            (setq list-end (remove w list-end))
+            (setq right (nth (+ rank 1) wins))
+            (setq list-end (remove (nth (+ rank 1) wins) list-end))         
+            (setq current (list w))
+            (if (consp list-start)
+                (setq new-list (append new-list list-start)))
+            (if right
+                (setq new-list (append new-list (list right))))
+            (if (consp current)
+                (setq new-list (append new-list current)))
+            (if (consp list-end)
+                (setq new-list (append new-list list-end)))
+            (setq all-wins (nthcdr 0 new-list))
+            (after-move-resize w)))
+        (when (eq pos 'prev)
+          (setq left (last list-start))  
+          (if (not left)
+              (tab-move-to-end w)
+          (setq list-start (remove left list-start))
+            (setq list-end (nthcdr (+ rank 1) wins))
+            (setq current (list w))
+            (if (consp list-start)
+                (setq new-list (append new-list list-start)))
+            (if (consp current)
+                (setq new-list (append new-list current)))
+            (if left
+                (setq new-list (append new-list (list left))))
+            (if (consp list-end)
+                (setq new-list (append new-list list-end)))
+            (setq all-wins (nthcdr 0 new-list))
+            (after-move-resize w))))))
+
+  (define (tab-move-to-right w)
+    "Move tab to right in the tabbar."
+    (move-tab w 'next))
+
+  (define-command 'tab-move-to-right tab-move-to-right #:spec "%f")
+
+  (define (tab-move-to-left w)
+    "Move tab to left in the tabbar."
+    (move-tab w 'prev))
+  
+  (define-command 'tab-move-to-left tab-move-to-left #:spec "%f")
+
+  (define (move-tab-edge w pos)
+    "Move tab W to pos"
+    (when (window-tabbed-p w)
+      (let ((tabs (remove w (tab-group-window-index w))))
+        (if (eq pos 'end)
+            (setq all-wins (append tabs (cons w nil))))
+        (if (eq pos 'beg)
+            (setq all-wins (append (cons w nil) tabs)))
+        (after-move-resize w))))
+
+  (define (tab-move-to-end w)
+    "Move tab to the end in the tabbar."
+    (move-tab-edge w 'end))
+
+  (define-command 'tab-move-to-end tab-move-to-end #:spec "%f")
+
+  (define (tab-move-to-beginning w)
+    "Move tab to the beginning in the tabbar."
+    (move-tab-edge w 'beg))
+
+  (define-command 'tab-move-to-beginning tab-move-to-beginning #:spec "%f")
+
   (define (map-other-grouped-windows win func)
     ""
     (mapcar func
@@ -417,7 +501,7 @@ sticky, unsticky, fixed-position."
       (before-move-resize win)))
 
   (define (before-move-resize win)
-    "Releas win from the tabgroup and iconify the rest from the group."
+    "Releas WIN from the tabgroup and iconify the rest from the group."
     (let* ((default-window-animator 'none)
            (index (tab-window-group-index win))
            (wins (tab-group-window-index win))
@@ -434,7 +518,7 @@ sticky, unsticky, fixed-position."
     (setq tab-refresh-lock t))
 
   (define (after-move-resize win)
-    "Add all tabs to the tabgroup from win. (Releas and iconify by before-move-resize)"
+    "Add all tabs to the tabgroup from WIN. (Releas and iconify by before-move-resize)"
     (setq tab-refresh-lock nil)
     (let* ((default-window-animator 'none)
            (wins all-wins)
@@ -467,7 +551,7 @@ sticky, unsticky, fixed-position."
     (setq last-unmap-id (window-id win)))
 
   (define (in-tab-group win)
-    "Add a new window as tab if have one (the first created if more as one)
+    "Add a new window WIN as tab if have one (the first created if more as one)
 of the windows the same 'tab-group property"
      (when (window-get win 'tab-group)
        (setq in-tab-group-name (append in-tab-group-name (cons (cons (window-id win) (window-get win 'tab-group)))))
@@ -483,7 +567,7 @@ of the windows the same 'tab-group property"
           (in-tab-group win)))))
 
   (define (remove-from-tab-group win)
-    "Remove window from in-tab-group-name alist if it have a 'tab-group property"
+    "Remove WIN from in-tab-group-name alist if it have a 'tab-group property"
     (when (window-get win 'tab-group)
       (setq in-tab-group-name (remove (assoc last-unmap-id in-tab-group-name) in-tab-group-name))))
 

@@ -1,3 +1,68 @@
+2014-04-09  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* sawfish/lisp/sawfish/wm/integration/xfce.jl
+	* sawfish/lisp/sawfish/wm/integration/mate.jl:
+	  use menulibre instead of alacarte for XFCE and MATE [fuchur]
+
+	* sawfish/lisp/sawfish/wm/integration/xfce.jl:
+	  don't let xfce-session save the session [fuchur]
+
+	* themes/StyleTab/theme.jl:
+	  mirror/copy/flip images to speed up start of StyleTab [fuchur]
+	
+	* themes/StyleTab/Default
+	* themes/StyleTab/Glass
+	* themes/StyleTab/Reduce
+	* themes/StyleTab/Smoothly
+	* themes/StyleTab/WixDa:
+	  update images [fuchur]
+
+	* themes/StyleTab/Flat:
+	  add Flat to StyleTab [fuchur]
+
+	* themes/StyleTab/README:
+	  updated
+
+	* man/news.texi: updated
+
+2014-04-06  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* po/de.po: update german translation [fuchur]
+
+	* lisp/sawfish/wm/tabs/tabgroup.jl
+	* lisp/sawfish/wm/keymaps.jl: add ability to move tabs around
+	  in the titlebar [fuchur]
+
+	* themes/StyleTab/theme.jl: improve icon sizes [fuchur]
+
+	* themes/StyleTab/theme.jl
+	* themes/StyleTab/Default
+	* themes/StyleTab/Glass
+	* themes/StyleTab/Reduce
+	* themes/StyleTab/Smoothly
+	* themes/StyleTab/WixDa: improve speed and decrease
+	  memory usage of StyleTab by mirroring images [fuchur]
+
+	* man/news.texi: updated
+
+2014-01-24  Christopher Roy Bratusek <nano@tuxfamily.org>
+	* po/de.po: update german translation [fuchur]
+
+	* lisp/sawfish/wm/commands/move-resize.jl:
+	  Add defcustom marked-cursor-shape [fuchur]
+
+	* lisp/sawfish/wm/commands/groups.jl
+	* lisp/sawfish/wm/commands/help.jl
+	* lisp/sawfish/wm/prg/compton.jl
+	* lisp/sawfish/wm/state/iconify.jl
+	* lisp/sawfish/wm/commands/poweroff.jl
+	* lisp/sawfish/wm/commands/raise-commands.jl
+	* lisp/sawfish/wm/custom.jl: add/improve doc strings [fuchur]
+
+	* lisp/sawfish/wm/keymaps.jl
+	* lisp/sawfish/wm/tabs/tab.jl
+	* lisp/sawfish/wm/tabs/tabgroup.jl: Rename tab-add-to-group to
+	  tab-window-add-to-tabgroup and  tabgroup-add-to-group to
+	  tab-tabgroup-add-to-tabgroup. Improve doc strings [fuchur]
+
 2013-09-30  Christopher Roy Bratusek <nano@tuxfamily.org>
 	* configure.in: bump version to 1.10.1 "Our Disco Is Louder Than
 	Yours"
