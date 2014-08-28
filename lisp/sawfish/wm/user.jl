@@ -55,7 +55,10 @@
 	   sawfish.wm.commands.launcher
 	   sawfish.wm.ext.wallpaper
 	   sawfish.wm.prg.compton
+	   sawfish.wm.prg.diodon
 	   sawfish.wm.prg.fehlstart
+	   sawfish.wm.prg.idesk
+	   sawfish.wm.prg.nm-applet
 	   sawfish.wm.prg.pancake
 	   sawfish.wm.prg.trayer
 	   sawfish.wm.prg.xgamma
@@ -181,12 +184,19 @@ Can be used to repair damage done in user.jl after reading
   (when (equal desktop-environment "kde")
     (sawfish.wm.integration.kde#kde-late-init))
 
-  (when want-extra-menu-entries
-    (let ((menu root-menu))
-      (nconc menu `(()))
-      (unless (equal filemanager "")
-        (nconc menu `((,(_ "_Open Home") (filemanager "~")))))
-      (nconc menu `((,(_ "_Kill Window") (system "xkill &"))))))
+  (unless batch-mode
+    (when want-extra-menu-entries
+      (let ((menu root-menu))
+        (user-require 'sawfish.wm.ext.run-application)
+        (nconc menu `(()))
+	(unless (equal xterm-program "")
+	  (nconc menu `((,(_ "Open _Terminal") (xterm)))))
+        (unless (equal filemanager-program "")
+          (nconc menu `((,(_ "_Open Home") (filemanager "~")))))
+	(unless (equal browser-program "")
+	  (nconc menu `((,(_ "Open _Browser") (browser)))))
+	(nconc menu `((,(_ "_Run Application") (run-application))))
+        (nconc menu `((,(_ "_Kill Window") (system "xkill &")))))))
 
   ;; generate apps-menu from *.desktop files
   (unless batch-mode
@@ -286,7 +296,13 @@ Can be used to repair damage done in user.jl after reading
       (add-hook 'after-initialization-hook load-xmodmap t)
       (add-hook 'before-restart-hook restore-keymap t))
     (when init-xsettingsd
-      (add-hook 'after-initialization-hook start-xsettingsd t)))
+      (add-hook 'after-initialization-hook start-xsettingsd t))
+    (when init-nm-applet
+      (add-hook 'after-initialization-hook start-nm-applet t))
+    (when init-diodon
+      (add-hook 'after-initialization-hook start-diodon t))
+    (when init-idesk
+      (add-hook 'after-initialization-hook start-idesk t)))
 
   (when (eq error-destination 'init)
     (setq error-destination 'standard-error))

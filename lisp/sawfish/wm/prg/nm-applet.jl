@@ -1,6 +1,6 @@
-;; fehlstart.jl -- fehlstart integration
+;; nm-applet.jl -- network manager applet integration
 
-;; Copyright (C) 2012 Christopher Roy Bratusek <nano@tuxfamily.org>
+;; Copyright (C) 2014 Christopher Roy Bratusek <nano@jpberlin.de>
 
 ;; This file is part of sawfish.
 
@@ -19,10 +19,10 @@
 ;; the Free Software Foundation, 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301 USA.
 
-(define-structure sawfish.wm.prg.fehlstart
+(define-structure sawfish.wm.prg.nm-applet
 
-  (export start-fehlstart
-          stop-fehlstart)
+  (export start-nm-applet
+          stop-nm-applet)
 
   (open rep
         rep.system
@@ -33,26 +33,26 @@
         sawfish.wm.misc
 	sawfish.wm.custom)
 
-  (define-structure-alias fehlstart sawfish.wm.prg.fehlstart)
+  (define-structure-alias nm-applet sawfish.wm.prg.nm-applet)
 
-  (define %fehlstart-proc nil)
+  (define %nm-applet-proc nil)
 
-  (defcustom init-fehlstart nil
-    "Whether to start fehlstart with Sawfish."
+  (defcustom init-nm-applet nil
+    "Whether to start nm-applet with Sawfish."
     :type boolean
     :group (misc apps))
 
-  (define (start-fehlstart )
-    "Start fehlstart. If a fehlstart process already exists, it's beeing killed."
-    (if (program-exists-p "fehlstart")
+  (define (start-nm-applet)
+    "Start nm-applet. If a nm-applet process already exists, it's beeing killed."
+    (if (program-exists-p "nm-applet")
         (progn
-	  (when %fehlstart-proc (kill-process %fehlstart-proc))
-          (setq %fehlstart-proc (make-process))
-          (start-process %fehlstart-proc "fehlstart"))
-      (display-message (format nil "fehlstart executable not found in PATH."))))
+	  (when %nm-applet-proc (kill-process %nm-applet-proc))
+          (setq %nm-applet-proc (make-process))
+          (start-process %nm-applet-proc "nm-applet"))
+      (display-message (format nil "nm-applet executable not found in PATH."))))
 
-  (define (stop-fehlstart)
-    "Stop fehlstart, if running."
-    (when %fehlstart-proc
-      (kill-process %fehlstart-proc)
-      (setq %fehlstart-proc nil))))
+  (define (stop-nm-applet)
+    "Stop nm-applet, if running."
+    (when %nm-applet-proc
+      (kill-process %nm-applet-proc)
+      (setq %nm-applet-proc nil))))

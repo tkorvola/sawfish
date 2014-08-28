@@ -21,7 +21,13 @@
 
 (define-structure sawfish.wm.tabs.tab
 
-    (export set-tab-adjustments)
+    (export tab-pos 
+            tabbar-left-margin
+            tabbar-left-margin-transient
+            tabbar-right-margin
+            tabbar-right-margin-transient
+            tab-window-add-to-tabgroup
+            set-tab-adjustments)
 
     (open rep
 	  rep.system
@@ -202,10 +208,10 @@ the tabgroup containig the second."
     (when (net-wm-window-type-normal-p win)
       (if marked-window
           (progn
-            (setq marked-window (tab-group-window-index (car marked-window)))
+            (setq marked-window (tab-group-windows (car marked-window)))
             (tab-window-add-to-tabgroup win))
         (default-cursor (get-cursor marked-cursor-shape))
-        (setq marked-window (tab-group-window-index win))
+        (setq marked-window (tab-group-windows win))
         (mapcar (lambda (w) 
                   (window-put w 'marked t)
                   (emit-marked-hook w)) marked-window))))

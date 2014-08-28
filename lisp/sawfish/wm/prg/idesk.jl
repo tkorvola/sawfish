@@ -1,6 +1,6 @@
-;; fehlstart.jl -- fehlstart integration
+;; idesk.jl -- idesk (desktop icon manager) integration
 
-;; Copyright (C) 2012 Christopher Roy Bratusek <nano@tuxfamily.org>
+;; Copyright (C) 2014 Christopher Roy Bratusek <nano@jpberlin.de>
 
 ;; This file is part of sawfish.
 
@@ -19,10 +19,10 @@
 ;; the Free Software Foundation, 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301 USA.
 
-(define-structure sawfish.wm.prg.fehlstart
+(define-structure sawfish.wm.prg.idesk
 
-  (export start-fehlstart
-          stop-fehlstart)
+  (export start-idesk
+          stop-idesk)
 
   (open rep
         rep.system
@@ -33,26 +33,26 @@
         sawfish.wm.misc
 	sawfish.wm.custom)
 
-  (define-structure-alias fehlstart sawfish.wm.prg.fehlstart)
+  (define-structure-alias idesk sawfish.wm.prg.idesk)
 
-  (define %fehlstart-proc nil)
+  (define %idesk-proc nil)
 
-  (defcustom init-fehlstart nil
-    "Whether to start fehlstart with Sawfish."
+  (defcustom init-idesk nil
+    "Whether to start idesk with Sawfish."
     :type boolean
     :group (misc apps))
 
-  (define (start-fehlstart )
-    "Start fehlstart. If a fehlstart process already exists, it's beeing killed."
-    (if (program-exists-p "fehlstart")
+  (define (start-idesk)
+    "Start idesk. If a idesk process already exists, it's beeing killed."
+    (if (program-exists-p "idesk")
         (progn
-	  (when %fehlstart-proc (kill-process %fehlstart-proc))
-          (setq %fehlstart-proc (make-process))
-          (start-process %fehlstart-proc "fehlstart"))
-      (display-message (format nil "fehlstart executable not found in PATH."))))
+	  (when %idesk-proc (kill-process %idesk-proc))
+          (setq %idesk-proc (make-process))
+          (start-process %idesk-proc "idesk"))
+      (display-message (format nil "idesk executable not found in PATH."))))
 
-  (define (stop-fehlstart)
-    "Stop fehlstart, if running."
-    (when %fehlstart-proc
-      (kill-process %fehlstart-proc)
-      (setq %fehlstart-proc nil))))
+  (define (stop-idesk)
+    "Stop idesk, if running."
+    (when %idesk-proc
+      (kill-process %idesk-proc)
+      (setq %idesk-proc nil))))

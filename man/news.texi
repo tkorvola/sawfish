@@ -39,27 +39,65 @@ Each release lists incompatible changes at its top.
 @c @end itemize
 @c @end itemize
 
-@heading 1.10.1 "Our Disco Is Louder Than Yours"
+@heading 1.11 "Apollo"
 @itemize @bullet
 
 @item Bug Fixes
 @itemize @minus
 
-@item When installing manpages the @code{mandir} from configure is now honoured [Christopher Bratusek]
+@item Fix possibly wrong @code{input-focus} from @code{enter-*} focus-modes in tabbed-windowing. [fuchur]
 
-@item Fix handling symbol-type defcustoms in sawfish-xgettext, preventing generation of new sawfish.pot [Christopher Bratusek]
+@item Properly support tabbed-windowing when tiling is active aswell. [fuchur]
+
+@item Several fixes for the @code{wallpaper} module regarding wrong values or non-existent files. [Christopher Bratusek]
+
+@item When calling the @code{stop} function from @code{sawfish.wm.prg} fehlstart, trayer, pancake, xmobar and xsettingsd modules calling @code{start} afterwards in the same session failed. This is fixed now. [Christopher Bratusek]
+
+@item When installing manpages the @code{mandir} from configure is now honoured. [Christopher Bratusek]
+
+@item Fix handling symbol-type defcustoms in sawfish-xgettext, preventing generation of new sawfish.pot. [Christopher Bratusek]
+
+@item Fixed that @code{Open Home} was shown in the root menu even if @code{filemanager-program} was unset. [Christopher Bratusek]
 @end itemize
 
 @item New Features
 @itemize @minus
 
-@item Add ability to move tabs around in the titlebar [fuchur]
+@item @code{CTWM} like interactive window placement. Previously pressing any button while interactively placing a window would place it. @code{Sawfish} now mimics @code{CTWM}s behaviour: pressing button 1 will just place the window, button 2 will allow dragging to resize the window and place it when the button releases, button 3 will place the window and attempt to fill it to the screen bottom. [Maxime Soulé]
 
-@item Add @code{marked-cursor-shape} defcustom (used when marking windows for tabbing) [fuchur]
+@item New EdgeActions for when moving windows. [Christopher Bratusek]
+@itemize x
+
+@item @code{kill} Kill a window when moved to the given edge
+
+@item @code{iconify} Iconify a window when moved to the given edge
+
+@item @code{move-window-viewport} Move window to the next viewport in the direction of moving against the edge
+
+@item @code{move-window-workspace} Move window to the previous workspace when hitting left or top edge and to the next workspace when hitting right or bottom edge.
+@end itemize
+
+@item Separate left/right and top/bottom edges in SawfishConfig, allowing for individual actions on each edge. [Christopher Bratusek]
+
+@item Add ability to move tabs around in the titlebar. [fuchur]
+
+@item Add @code{run-application} by Sergey I. Sharybin, with several improvements and better integration into Sawfish. Also add 'Run Application' entry at the bottom of the root menu. [Christopher Bratusek]
+
+@item Add @code{sawfish.wm.prg.nm-applet}, simple auto-starter for the @code{Network Manager Applet}. [Christopher Bratusek]
+
+@item Add @code{sawfish.wm.prg.diodon}, simple auto-starter for the @code{Diodon Clipboard Manager}. [Christopher Bratusek]
+
+@item Add @code{sawfish.wm.prg.idesk}, simple auto-starter for the @code{Idesk Desktop Icon Manager}. [Christopher Bratusek]
 @end itemize
 
 @item Miscellaneous Changes
 @itemize @minus
+
+@item Improve @code{cabinet} window-switcher. Code-cleanup, bug fixes, blacklisting applications (mostly panels, pagers) and icon for missing window-icons. [fuchur]
+
+@item Enable @code{shade-hover} and @code{auto-raise} in SawfishConfig, utilize them in tabbed-windowing. [fuchur]
+
+@item Add @code{marked-cursor-shape} defcustom (used when marking windows for tabbing). [fuchur]
 
 @item Improve icon size in StyleTab, add @code{Flat} style. Also improve speed and decrease memory usage by mirroring images [fuchur]
 
@@ -67,11 +105,21 @@ Each release lists incompatible changes at its top.
 
 @item Do not let @code{xfce-session} save the session (by adding @code{-f} flag in XFCE integration) [fuchur]
 
-@item Add update german translation [fuchur]
+@item Add @code{Open Terminal} and @code{Open Browser} to the root menu (if @code{xterm-program} or @code{browser-program} are set) [Christopher Bratusek]
+
+@item Tweak default compton settings. [fuchur]
 
 @item Improve doc strings in many modules [fuchur]
 
 @item Add @code{html} target to man/Makefile, creating html-documentation [Christopher Bratusek]
+
+@item Add @code{make-changelog} script by Marcus D. Hanwell (generates ChangeLog from git log) [Christopher Bratusek]
+
+@item Updated german translation. [fuchur] [Christopher Bratusek]
+
+@item Updated RPM spec file. [Kim B. Heino]
+
+@item Updated Debian packaging scripts. [Christopher Bratusek]
 @end itemize
 @end itemize
 

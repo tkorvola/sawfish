@@ -1,6 +1,6 @@
-;; fehlstart.jl -- fehlstart integration
+;; diodon.jl -- diodon clipboard manager integration
 
-;; Copyright (C) 2012 Christopher Roy Bratusek <nano@tuxfamily.org>
+;; Copyright (C) 2014 Christopher Roy Bratusek <nano@jpberlin.de>
 
 ;; This file is part of sawfish.
 
@@ -19,10 +19,10 @@
 ;; the Free Software Foundation, 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301 USA.
 
-(define-structure sawfish.wm.prg.fehlstart
+(define-structure sawfish.wm.prg.diodon
 
-  (export start-fehlstart
-          stop-fehlstart)
+  (export start-diodon
+          stop-diodon)
 
   (open rep
         rep.system
@@ -33,26 +33,26 @@
         sawfish.wm.misc
 	sawfish.wm.custom)
 
-  (define-structure-alias fehlstart sawfish.wm.prg.fehlstart)
+  (define-structure-alias diodon sawfish.wm.prg.diodon)
 
-  (define %fehlstart-proc nil)
+  (define %diodon-proc nil)
 
-  (defcustom init-fehlstart nil
-    "Whether to start fehlstart with Sawfish."
+  (defcustom init-diodon nil
+    "Whether to start diodon with Sawfish."
     :type boolean
     :group (misc apps))
 
-  (define (start-fehlstart )
-    "Start fehlstart. If a fehlstart process already exists, it's beeing killed."
-    (if (program-exists-p "fehlstart")
+  (define (start-diodon)
+    "Start diodon. If a diodon process already exists, it's beeing killed."
+    (if (program-exists-p "diodon")
         (progn
-	  (when %fehlstart-proc (kill-process %fehlstart-proc))
-          (setq %fehlstart-proc (make-process))
-          (start-process %fehlstart-proc "fehlstart"))
-      (display-message (format nil "fehlstart executable not found in PATH."))))
+	  (when %diodon-proc (kill-process %diodon-proc))
+          (setq %diodon-proc (make-process))
+          (start-process %diodon-proc "diodon"))
+      (display-message (format nil "diodon executable not found in PATH."))))
 
-  (define (stop-fehlstart)
-    "Stop fehlstart, if running."
-    (when %fehlstart-proc
-      (kill-process %fehlstart-proc)
-      (setq %fehlstart-proc nil))))
+  (define (stop-diodon)
+    "Stop diodon, if running."
+    (when %diodon-proc
+      (kill-process %diodon-proc)
+      (setq %diodon-proc nil))))
