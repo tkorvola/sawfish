@@ -58,10 +58,48 @@ Each release lists incompatible changes at its top.
 @item Fix handling symbol-type defcustoms in sawfish-xgettext, preventing generation of new sawfish.pot. [Christopher Bratusek]
 
 @item Fixed that @code{Open Home} was shown in the root menu even if @code{filemanager-program} was unset. [Christopher Bratusek]
+
+@item In SawfishConfig @code{x-terminal-emulator} was used to access the Sawfish info-file. For better compat with non-Debian-distributions, use @code{xterm} instead. Note that the Sawfish variable @code{xterm-program} is not accessible from SawfishConfig. [Christopher Bratusek]
 @end itemize
 
 @item New Features
 @itemize @minus
+
+@item Session scripts with xdm (and compatible) integration. [fuchur] [Christopher Bratusek]
+@itemize x
+
+@item @code{sawfish-mate-session}/@code{Sawfish/MATE} start Sawfish and then initialize MATE session.
+
+@item @code{sawfish-kde4-session}/@code{Sawfish/KDE4} start Sawfish and then initialize KDE4 session. [note: it's still possible to select Sawfish from System Settings > Default Applications and starting KDE4 normally using Sawfish in favour of KWin]
+
+@item @code{sawfish-xfce-session}/@code{Sawfish/XFCE} start Sawfish and then initialize XFCE session.
+
+@item @code{sawfish-lumina-session}/@code{Sawfish/Lumina} start Sawfish and then initialize Lumina session. Also add Lumina integration module.
+
+@item Other desktop environments:
+@itemize +
+
+@item GNOME2: set the GConf key @code{/desktop/gnome/session/required-components/windowmanager} to @code{sawfish} and start a new session.
+
+@item LXDE: in lxsession-default-apps replace @code{openbox} with @code{sawfish}.
+
+@item Razor Qt: in the razor configuration center > default applications enter @code{sawfish} in the corresponding field.
+
+@item Other: no other desktop environments are officially supported as of now.
+@end itemize
+
+@item Note for Debian users: the official Sawfish Debian GNU/Linux packages for amd64/i386/armhf distributed at http://apt.nanolx.org/ now have three more packages built from the Sawfish source:
+@itemize +
+
+@item @code{sawfish-kde4-session}: install above mentioned KDE4 integration and (install if not already) kde-core (metapackage for minimal KDE4 desktop)
+
+@item @code{sawfish-mate-session}: install above mentioned MATE integration and (install if not already) mate-desktop-environment-core (metapackage for minimal MATE desktop)
+
+@item @code{sawfish-xfce-session}: install above mentioned XFCE integration and (install if not already) xfce (meta-package for XFCE desktop)
+
+@item @code{sawfish-lumina-session}: install above mentioned Lumina integration and (install if not already) lumina-desktop (meta-package for Lumina Desktop)
+@end itemize
+@end itemize
 
 @item @code{CTWM} like interactive window placement. Previously pressing any button while interactively placing a window would place it. @code{Sawfish} now mimics @code{CTWM}s behaviour: pressing button 1 will just place the window, button 2 will allow dragging to resize the window and place it when the button releases, button 3 will place the window and attempt to fill it to the screen bottom. [Maxime Soulé]
 
@@ -91,11 +129,19 @@ Each release lists incompatible changes at its top.
 
 @item Add @code{sawfish.wm.prg.diodon}, simple auto-starter for the @code{Diodon Clipboard Manager}. [Christopher Bratusek]
 
+@item Add @code{sawfish.wm.prg.conky}, simple auto-starter for the @code{Conky System Monitor}, that allows for custom command line options to be passed. [Christopher Bratusek]
+
 @item Add @code{sawfish.wm.prg.idesk}, simple auto-starter for the @code{Idesk Desktop Icon Manager}. [Christopher Bratusek]
 @end itemize
 
 @item Miscellaneous Changes
 @itemize @minus
+
+@item Majorly improved start-up speed of StyleTab theme by locking the re-coloring of images until all configuration is loaded, so that re-coloring is only done once upon start. [fuchur]
+
+@item In @code{sawfish.wm.prg.compton} delay compton start by 3 seconds to prevent heavy screen flickering. [fuchur]
+
+@item Partially revert focus changes introduced in Sawfish 1.6.0 [fuchur], auto-apply window-matchers for Plasma when KDE4 is detected running, for proper user experience. [Christopher Bratusek]
 
 @item Improve @code{cabinet} window-switcher. Code-cleanup, bug fixes, blacklisting applications (mostly panels, pagers) and icon for missing window-icons. [fuchur]
 

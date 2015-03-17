@@ -27,6 +27,7 @@
           rep.io.processes
           rep.io.timers
           rep.util.misc
+	  rep.regexp
           sawfish.wm.misc
           sawfish.wm.custom
           sawfish.wm.windows
@@ -39,6 +40,7 @@
   (define switch-opacity nil)
   (define update-opacity nil)
   (define stop-compton nil)
+  (define timer-load-compton nil)
 
   (defgroup window-effects "Window Effects"
     :group appearance)
@@ -243,6 +245,11 @@
       :type (number 0 100 85 1)
       :after-set (lambda () (update-opacity 'notify)))
 
+    (defcustom compton-extra-args "" "Extra arguments to compton."
+      :depends opacity-enable
+      :group (appearance window-effects)
+      :type string)
+
     ;; windows custom-settings entry
     (define-match-window-property 'opacity 'appearance '(number 0 100 100))
     (define-match-window-property 'no-shadows 'appearance 'boolean)
@@ -281,12 +288,13 @@
       (when (program-exists-p "compton")
         (stop-compton)
         (setq %compton-proc (make-process))
-        (start-process %compton-proc "compton" (format nil "%s" c-shadows) (format nil "%s" c-fade) (format nil "%s" c-avoid) (format nil "%s" c-zero)
+        (apply start-process %compton-proc "compton" (format nil "%s" c-shadows) (format nil "%s" c-fade) (format nil "%s" c-avoid) (format nil "%s" c-zero)
                        "-r" (number->string blur-radius) "-o" (format nil "%s" c-trans) "-l" (number->string left-offset)
                        "-t" (number->string top-offset) "-I" (format nil "%s" c-fade-i) "-O" (format nil "%s" c-fade-o) "-D" (number->string fade-time)
                        "-m" (format nil "%s" c-menu-o) "--shadow-red" (format nil "%s" c-red) "--shadow-green" (format nil "%s" c-green)
                        "--shadow-blue" (format nil "%s" c-blue) (format nil "%s" c-dad) "--detect-rounded-corners" "--shadow-exclude" (concat c-smenu)
-		       "--shadow-exclude" "_COMPTON_SHADOW:32c = 0")))
+		       "--shadow-exclude" "_COMPTON_SHADOW:32c = 0"
+		       (unless (= (length compton-extra-args) 0) (string-split "\\s+" compton-extra-args)))))
 
     (define (stop-compton)
       "Stop compton, if running."
@@ -386,13 +394,14 @@
                            (window-opacity w))))))
 
     (define (switch-opacity)
-      (if opacity-enable
-          (start-compton)
-        (stop-compton))
-      (map-windows (lambda (w)
-                     (if opacity-enable
-                         (window-opacity w)
-                       (dim-window w (get-opacity '100))))))
+      (when (not timer-load-compton)
+        (if opacity-enable
+            (start-compton)
+          (stop-compton))
+        (map-windows (lambda (w)
+                       (if opacity-enable
+                           (window-opacity w)
+                         (dim-window w (get-opacity '100)))))))
 
     (define (max-window w)
       (if shadows-crop-maximized
@@ -403,13 +412,22 @@
 
     (define (before-resize w)
       (dim-window w (get-opacity opacity-by-resize)))
-
+    
     (define (tab-release w)
       (if (and (car w)
                (not (cdr w)))
-           (if opacity-enable
-               (window-opacity (car w))
-             (dim-window (car w) (get-opacity '100)))))
+          (if opacity-enable
+              (window-opacity (car w))
+            (dim-window (car w) (get-opacity '100)))))
+
+    (define (timer-compton-load)
+      (setq timer-load-compton
+            (make-timer (lambda ()
+                          (setq timer-load-compton nil)
+                          (switch-opacity))
+                        (quotient 3000 1000) (mod 3000 1000))))
+    
+    (timer-compton-load)
 
     (add-hook 'window-maximized-hook (lambda (w) (if opacity-enable (max-window w))))
     (add-hook 'window-unmaximized-hook (lambda (w) (if opacity-enable (max-window w))))
@@ -422,4 +440,5 @@
     (add-hook 'after-move-hook (lambda (w) (if opacity-enable (window-opacity w))))
     (add-hook 'before-resize-hook (lambda (w) (if opacity-enable (before-resize w))))
     (add-hook 'after-resize-hook (lambda (w) (if opacity-enable (window-opacity w))))
-    (add-hook 'after-initialization-hook switch-opacity)))
+    (add-hook 'after-initialization-hook switch-opacity)
+    (add-hook 'before-exit-hook stop-compton)))

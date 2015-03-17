@@ -55,6 +55,7 @@
 	   sawfish.wm.commands.launcher
 	   sawfish.wm.ext.wallpaper
 	   sawfish.wm.prg.compton
+	   sawfish.wm.prg.conky
 	   sawfish.wm.prg.diodon
 	   sawfish.wm.prg.fehlstart
 	   sawfish.wm.prg.idesk
@@ -70,7 +71,8 @@
 	     sawfish.wm.integration.xfce
 	     sawfish.wm.integration.mate
 	     sawfish.wm.integration.razor
-	     sawfish.wm.integration.lxde)
+	     sawfish.wm.integration.lxde
+	     sawfish.wm.integration.lumina)
 
      (set-binds))
 
@@ -78,10 +80,10 @@
   ;; apps-menu, too, or it will break.
   (defvar desktop-environment "none"
     "Running desktop environment, detected by Sawfish.
-Possible values are \"kde\", \"gnome\", \"mate\", \"xfce\", \"razor\", \"lxde\" or \"none\".")
+Possible values are \"kde\", \"gnome\", \"mate\", \"xfce\", \"razor\", \"lxde\", \"lumina\" or \"none\".")
 
   (defvar want-poweroff-menu t
-    "Add poweroff menu if you don't use GNOME / KDE / XFCE / Razor-Qt / LXDE.")
+    "Add poweroff menu if you don't use GNOME / KDE / XFCE / Razor-Qt / LXDE / Lumina.")
 
   (defvar want-extra-menu-entries t
     "Provide additional entries in root menu.")
@@ -136,7 +138,8 @@ Can be used to repair damage done in user.jl after reading
 	(sawfish.wm.integration.kde#detect-kde)
 	(sawfish.wm.integration.xfce#detect-xfce)
 	(sawfish.wm.integration.razor#detect-razor)
-	(sawfish.wm.integration.lxde#detect-lxde))
+	(sawfish.wm.integration.lxde#detect-lxde)
+	(sawfish.wm.integration.lumina#detect-lumina))
     )
 
   ;; Don't signal an error even if user "require" them. These modules
@@ -161,7 +164,7 @@ Can be used to repair damage done in user.jl after reading
 	  (unless batch-mode
 	    (rename-old-stuff)
 	    ;; detect DE before loading rc
-	    (detect-desktop-environment)
+            (detect-desktop-environment)
 
 	    ;; then the customized options
 	    (condition-case data
@@ -183,6 +186,9 @@ Can be used to repair damage done in user.jl after reading
 
   (when (equal desktop-environment "kde")
     (sawfish.wm.integration.kde#kde-late-init))
+
+  (when (equal desktop-environment "lumina")
+    (sawfish.wm.integration.lumina#lumina-window-matchers))
 
   (unless batch-mode
     (when want-extra-menu-entries
@@ -301,6 +307,8 @@ Can be used to repair damage done in user.jl after reading
       (add-hook 'after-initialization-hook start-nm-applet t))
     (when init-diodon
       (add-hook 'after-initialization-hook start-diodon t))
+    (when init-conky
+      (add-hook 'after-initialization-hook start-conky t))
     (when init-idesk
       (add-hook 'after-initialization-hook start-idesk t)))
 

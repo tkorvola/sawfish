@@ -295,7 +295,7 @@ fi
 
 dnl fallback
 if test "x$KDEDIR" = x; then
-	KDEDIR="${datadir}/kde4/apps/"
+       KDEDIR="${datadir}/kde4/apps/"
 fi
 
 AC_ARG_WITH(gnome2session,

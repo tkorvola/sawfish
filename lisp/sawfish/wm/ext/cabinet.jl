@@ -183,7 +183,8 @@
   
   (defcustom cabinet:filter-out-from-display (list "^Gdesklets-daemon$" "^Xfce4-panel$" "^Mate-panel$"
                                                    "^Xfdesktop$" "^x-caja-desktop$" "^plasma-desktop$"
-						   "^Pancake$" "^lxpanel" "Sawfishpager")
+						   "^Pancake$" "^lxpanel" "Sawfishpager" "Conky"
+						   "Lumina-DE")
     nil
     :group (focus cabinet filter)
     :widget-flags (expand-horizontally expand-vertically)
@@ -395,8 +396,8 @@
            (t cabinet:default-item-forground))))
 
   (define (cabinet-item-format w)
-    (let ((item (cons (if (window-icon-image w)
-                          (window-icon-image w)
+    (let ((item (cons (if (window-icon-image w 32)
+                          (window-icon-image w 32)
                         (require 'rep.io.files)
                         (if (file-exists-p (concat (car (cdr image-load-path)) "/" "cabinet-missing.png"))
                             (make-image (concat (cdr image-load-path) "cabinet-missing.png"))))
