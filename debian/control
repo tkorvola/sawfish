@@ -68,7 +68,7 @@ Description: sawfish lisp files
 
 Package: sawfish-kde4-session
 Architecture: all
-Depends: sawfish (= ${source:Version}), kde-standard | kde-full
+Depends: sawfish (= ${source:Version}), kde-workspace
 Description: KDE4 session integration for Sawfish
  This package provides a new display manager session file, that will
  start Sawfish with KDE4.
