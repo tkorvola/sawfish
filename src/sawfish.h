@@ -262,6 +262,9 @@ struct frame_part {
     Lisp_Window *win;
     int x, y, width, height;
     Window id;
+#ifdef HAVE_X11_EXTENSIONS_XDBE_H
+    Window dbe;
+#endif
     GC gc;
 
     unsigned int clicked : 1;
