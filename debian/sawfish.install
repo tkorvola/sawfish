@@ -1,5 +1,10 @@
+sawfish.el   usr/share/emacs/site-lisp/sawfish
 usr/bin/sawfish
+usr/bin/sawfish-about
 usr/bin/sawfish-client
 usr/bin/sawfish-config
-usr/bin/sawfish-about
 usr/lib
+usr/share/gnome/wm-properties/sawfish-wm.desktop
+usr/share/man/man1
+usr/share/sawfish/sawfish.png
+usr/share/xsessions/sawfish.desktop

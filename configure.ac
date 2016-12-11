@@ -27,9 +27,9 @@ AC_CONFIG_MACRO_DIR([m4])
 AM_PROG_LIBTOOL
 
 dnl Release versioning info
-version="1.11.90"
+version="1.12.90"
 subversion=""
-codename="The Day Is My Enemy"
+codename="Bolero"
 
 VERSION=${version}
 
@@ -127,8 +127,8 @@ PKG_CHECK_MODULES(libSM, sm >= 1.0
 
 PKG_CHECK_MODULES(XTest, xtst >= 1.0
 		  ,X_EXTRA_LIBS="${X_EXTRA_LIBS} -lXtst"
-		  AC_DEFINE(HAVE_X11_EXTENSIONS_XTST_H, 1, [Have Xtest])
-		  ,AC_MSG_ERROR([cannot locate Xtest]))
+		  AC_DEFINE(HAVE_X11_EXTENSIONS_XTST_H, 1, [Have Xtest (libXtst)])
+		  ,AC_MSG_ERROR([cannot locate Xtest (libXtst)]))
 
 X_SERVER="X.Org X11R7"
 
@@ -304,8 +304,8 @@ AC_ARG_WITH(kde5session,
 
 KDE5_SESSION="$with_kde5session"
 
-if test "$with_kde4session" = "yes"; then
-	KDED5IR="`kf5-config --install data`"
+if test "$with_kde5session" = "yes"; then
+	KDE5DIR="`kf5-config --install data`"
 fi
 
 dnl fallback

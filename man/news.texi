@@ -39,7 +39,16 @@ Each release lists incompatible changes at its top.
 @c @end itemize
 @c @end itemize
 
-@heading 1.11.90 (1.12 beta) "The Day Is My Enemy"
+@heading 1.13.0 "Bolero"
+@itemize @bullet
+
+@item Bug Fixes
+@itemize @minus
+@item Improved KDE integration. Prevent Plasma and KRunner windows to be tiled. [Christopher Bratusek]
+@end itemize
+@end itemize
+
+@heading 1.12.0 "The Hidden Village"
 @itemize @bullet
 
 @item Bug Fixes
@@ -47,6 +56,10 @@ Each release lists incompatible changes at its top.
 @item Fixed that a focus change by pointer motion was ignored after x-cycle. [Teika Kazura]
 
 @item Focus-mode @code{enter-exit} now ignores @code{pointer-out} event. Fixing flickering bugs with widgets like GtkComboBox, GtkCompletion or Firefox' URL-Bar. [Teika Kazura]
+
+@item Fixed that @code{edge-flip-delay} did not work as expected. Before this fix the edge-action would always be actived when the cursor hit the edge, and @code{edge-flip-delay} would only delay the actual action. Leaving the edge before @code{edge-flip-delay} ended, would not stop the action. Now @code{edge-flip-delay} properly works when the cursor leaves the edge before @code{edge-flip-delay} ended, the action will not be executed as expected. [Christopher Bratusek]
+
+@item Better detection of transient windows during tiling [Jose A. Ortega Ruiz]
 @end itemize
 
 @item Build and Installation
@@ -81,6 +94,20 @@ Each release lists incompatible changes at its top.
 
 @item Properly uninstall all session related files upon @code{make uninstall} [Christopher Bratusek]
 
+@item Update @code{config.sub}, @code{config.guess} and @code{install-sh} to 2016-04 [Christopher Bratusek]
+
+@item Add window matcher @code{never-tile} to @code{Conky} by default [Christopher Bratusek]
+
+@item Guard @code{PangoX} functions as it is going to go away (Debian patch) [Emilio Pozuelo Monfort]
+
+@item Merge downstream Debian GNU/Linux packaging scripts upstream [Christopher Bratusek]
+
+@item More meaningful error message when @code{libXtst} was not found by @code{configure} [Allan Duncan]
+
+@item Add @code{GenericName} and @code{Categories} to desktop files [OpenSuSE patch]
+
+@item Update @code{sawfish.spec} [Allan Duncan]
+
 @item Debian code review
 @itemize x
 @item Fix FSF address across all files [Christopher Bratusek]
@@ -88,6 +115,14 @@ Each release lists incompatible changes at its top.
 @item Fix code spellings [Christopher Bratusek]
 
 @item Rename @code{configure.in} to @code{configure.ac} [Christopher Bratusek]
+
+@item Make build reproducible (Debian patch) [Jose M. Calhariz]
+
+@item Honour @code{SOURCE_DATE_EPOCH} for build.h when building Debian packages (Debian patch) [Alexis Bienvenüe]
+
+@item Add @code{Keyword} entry to @code{sawfish.desktop} (Debian patch) [Jose M. Calhariz]
+
+@item Do not remove @code{wallpaper.jlc} compiled lisp file. It used to break Wallpaper Setter, thus it was removed. But with fixes since the first release of the Wallpaper Setter this is no longer the case, thus  the compiled file does not need to be removed anymore. (Debian patch) [Jose M. Calhariz]
 @end itemize
 @end itemize
 @end itemize
