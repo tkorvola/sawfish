@@ -78,12 +78,18 @@ install : all installdirs
 installdirs : mkinstalldirs
 	$(SHELL) $< $(DESTDIR)$(sawfishdir) \
 	  $(DESTDIR)$(bindir) $(DESTDIR)$(sawfishexecdir) \
-	  $(DESTDIR)$(GNOMEDIR)/share/gnome/wm-properties \
 	  $(DESTDIR)$(datadir)/applications/ \
 	  $(DESTDIR)$(libdir)/pkgconfig/ \
-	  $(DESTDIR)$(datadir)/xsessions/ \
-	  $(DESTDIR)$(KDE4DIR)/ksmserver/windowmanagers/ \
-	  $(DESTDIR)$(KDE5DIR)/ksmserver/windowmanagers/
+	  $(DESTDIR)$(datadir)/xsessions/
+	if test $(GNOME2_SESSION) = "yes"; then \
+		$(SHELL) $< $(DESTDIR)$(GNOMEDIR)/share/gnome/wm-properties ; \
+	fi
+	if test $(KDE4_SESSION) = "yes"; then \
+		$(SHELL) $< $(DESTDIR)$(KDE4DIR)/ksmserver/windowmanagers/ ; \
+	fi
+	if test $(KDE5_SESSION) = "yes"; then \
+		$(SHELL) $< $(DESTDIR)$(KDE5DIR)/ksmserver/windowmanagers/ ; \
+	fi
 
 uninstall :
 	for dir in $(SUBDIRS); do \
@@ -105,7 +111,7 @@ uninstall :
 # At this stage, DOC file omits some docstrings. (Only small portion,
 # though.) Byte compilation makes it complete.
 DOC :
-	repdoc DOC `find $(srcdir) \( -name '*.c' -o -name '*.jl' \) -print`
+	repdoc DOC `find $(srcdir) \( -name '*.c' -o -name '*.jl' \) -print|LC_ALL=C sort`
 
 changelog :
 	$(srcdir)/scripts/make-changelog
@@ -116,7 +122,7 @@ clean :
 	done
 	rm -f *~ DOC* TAGS build.h
 
-distclean :
+distclean : clean
 	-for dir in $(SUBDIRS); do \
 	  [ -d $$dir ] && ( cd $$dir && $(MAKE) $@ ) || exit 1; \
 	done
@@ -125,7 +131,6 @@ distclean :
 		data/sawfish.pc aclocal.m4 configure ltmain.sh \
 		config.h.in
 	rm -rf autom4te.cache m4/
-	-fakeroot debian/rules clean
 
 tarball :
 	git checkout-index --prefix="$$HOME/sawfish-$(version)/" -a
@@ -134,4 +139,4 @@ TAGS :
 	etags --language=c `find $(srcdir) -name '*.[ch]' -print` \
 	      --language=lisp `find $(srcdir) -name '*.jl' -print`
 
-.PHONY: install uninstall tar clean debclean gitclean distclean tarball TAGS
+.PHONY: install uninstall tar clean distclean tarball TAGS
