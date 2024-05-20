@@ -179,7 +179,7 @@ EVENT-NAME)', where EVENT-NAME may be one of the following symbols:
     ;; Furthermore, pointer-out used to make troubles: for example,
     ;; an appearance of a menu by alt-key which covers the pointer
     ;; made the focus lost.
-    (lambda (w action)
+    (lambda (w action . args)
       (case action
 	((pointer-in)
 	 (when (and (window-really-wants-input-p w)
